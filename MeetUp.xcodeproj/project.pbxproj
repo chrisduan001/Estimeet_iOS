@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		623BBD5D1C7EE97800643C3C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 623BBD5C1C7EE97800643C3C /* LoginViewController.xib */; };
+		623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BBD611C7EE9AD00643C3C /* LoginModel.swift */; };
+		623BBD641C7EE9E900643C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BBD631C7EE9E900643C3C /* LoginViewController.swift */; };
+		62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62A3529F1C7EE63E00701ECA /* MainViewController.xib */; };
 		62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7B1C73057F008513DF /* AppDelegate.swift */; };
-		62AB5F7E1C73057F008513DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7D1C73057F008513DF /* ViewController.swift */; };
-		62AB5F811C73057F008513DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F7F1C73057F008513DF /* Main.storyboard */; };
+		62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7D1C73057F008513DF /* MainViewController.swift */; };
 		62AB5F841C73057F008513DF /* MeetUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F821C73057F008513DF /* MeetUp.xcdatamodeld */; };
 		62AB5F861C73057F008513DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F851C73057F008513DF /* Assets.xcassets */; };
 		62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F871C73057F008513DF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		623BBD5C1C7EE97800643C3C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		623BBD611C7EE9AD00643C3C /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		623BBD631C7EE9E900643C3C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		62A3529F1C7EE63E00701ECA /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		62AB5F781C73057F008513DF /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62AB5F7B1C73057F008513DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62AB5F7D1C73057F008513DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		62AB5F801C73057F008513DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		62AB5F7D1C73057F008513DF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		62AB5F831C73057F008513DF /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
-		62AB5F851C73057F008513DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		62AB5F851C73057F008513DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MeetUp/Assets.xcassets; sourceTree = "<group>"; };
 		62AB5F881C73057F008513DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		62AB5F8A1C73057F008513DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62AB5F8A1C73057F008513DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeetUp/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,11 +43,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		623BBD5A1C7EE91600643C3C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				62A3529F1C7EE63E00701ECA /* MainViewController.xib */,
+				623BBD5C1C7EE97800643C3C /* LoginViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		623BBD5B1C7EE92A00643C3C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				62AB5F7D1C73057F008513DF /* MainViewController.swift */,
+				623BBD631C7EE9E900643C3C /* LoginViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		623BBD601C7EE99A00643C3C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				623BBD611C7EE9AD00643C3C /* LoginModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		62AB5F6F1C73057F008513DF = {
 			isa = PBXGroup;
 			children = (
 				62AB5F7A1C73057F008513DF /* MeetUp */,
 				62AB5F791C73057F008513DF /* Products */,
+				62AB5F871C73057F008513DF /* LaunchScreen.storyboard */,
+				62AB5F8A1C73057F008513DF /* Info.plist */,
+				62AB5F851C73057F008513DF /* Assets.xcassets */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +91,10 @@
 		62AB5F7A1C73057F008513DF /* MeetUp */ = {
 			isa = PBXGroup;
 			children = (
+				623BBD601C7EE99A00643C3C /* Model */,
+				623BBD5B1C7EE92A00643C3C /* Controller */,
+				623BBD5A1C7EE91600643C3C /* View */,
 				62AB5F7B1C73057F008513DF /* AppDelegate.swift */,
-				62AB5F7D1C73057F008513DF /* ViewController.swift */,
-				62AB5F7F1C73057F008513DF /* Main.storyboard */,
-				62AB5F851C73057F008513DF /* Assets.xcassets */,
-				62AB5F871C73057F008513DF /* LaunchScreen.storyboard */,
-				62AB5F8A1C73057F008513DF /* Info.plist */,
 				62AB5F821C73057F008513DF /* MeetUp.xcdatamodeld */,
 			);
 			path = MeetUp;
@@ -125,9 +158,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				623BBD5D1C7EE97800643C3C /* LoginViewController.xib in Resources */,
+				62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */,
 				62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */,
 				62AB5F861C73057F008513DF /* Assets.xcassets in Resources */,
-				62AB5F811C73057F008513DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62AB5F7E1C73057F008513DF /* ViewController.swift in Sources */,
+				623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */,
+				62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */,
 				62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */,
+				623BBD641C7EE9E900643C3C /* LoginViewController.swift in Sources */,
 				62AB5F841C73057F008513DF /* MeetUp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,20 +183,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		62AB5F7F1C73057F008513DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				62AB5F801C73057F008513DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		62AB5F871C73057F008513DF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				62AB5F881C73057F008513DF /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = MeetUp;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -288,6 +317,7 @@
 				62AB5F8F1C73057F008513DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
