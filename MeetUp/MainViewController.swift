@@ -24,12 +24,6 @@ class MainViewController: UIViewController {
         presentViewController(modalVC, animated: true, completion: nil)
     }
     
-    
-    @IBAction func startNav(sender: UIButton) {
-        let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        presentViewController(modalVC, animated: true, completion: nil)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
