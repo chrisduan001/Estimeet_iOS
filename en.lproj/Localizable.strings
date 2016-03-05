@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  MeetUp
+
+  Created by Chris Duan on 2/03/16.
+  Copyright © 2016 Chris. All rights reserved.
+*/
+"Login_Signin" = "SIGN IN";
+"Login_title" = "Log in";

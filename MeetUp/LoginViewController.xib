@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
+                <outlet property="signInButton" destination="SZS-ER-MpT" id="pEk-fv-qTm"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ere-OY-VqN"/>
             </connections>
         </placeholder>
@@ -21,12 +22,40 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZS-ER-MpT" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
+                    <rect key="frame" x="90" y="555" width="420" height="30"/>
+                    <state key="normal" title="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="roundColor">
+                            <color key="value" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onSignIn:" destination="-1" eventType="touchUpInside" id="GmJ-oE-jAo"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="SZS-ER-MpT" secondAttribute="trailing" constant="90" id="JmN-k5-d5W"/>
+                <constraint firstItem="SZS-ER-MpT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qjx-d8-RIg"/>
                 <constraint firstItem="vpg-Gq-DWp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="S3p-u1-ax2"/>
+                <constraint firstAttribute="leading" relation="lessThanOrEqual" secondItem="SZS-ER-MpT" secondAttribute="leading" constant="-90" id="TMC-rN-4jW"/>
                 <constraint firstItem="vpg-Gq-DWp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bUd-9M-y4x"/>
+                <constraint firstAttribute="bottom" secondItem="SZS-ER-MpT" secondAttribute="bottom" constant="15" id="jmT-ja-sxP"/>
             </constraints>
+            <point key="canvasLocation" x="517" y="491"/>
         </view>
     </objects>
 </document>
