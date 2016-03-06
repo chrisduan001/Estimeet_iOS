@@ -8,8 +8,7 @@
 
 import UIKit
 
-class MainViewController: BaseViewController {
-
+class MainViewController: BaseViewController {    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,11 +23,9 @@ class MainViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         let user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
         if user == nil {
-            let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-            presentViewController(modalVC, animated: true, completion: nil)
+            Navigator.sharedInstance.navigateToLogin(self)
         } else if user?.userName == "" {
-            let modalVc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            presentViewController(modalVc, animated: true, completion: nil)
+            Navigator.sharedInstance.navigateToProfilePage(self)
         }
     }
     
@@ -36,8 +33,7 @@ class MainViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     @IBAction func tempButton(sender: UIButton) {
-        let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        presentViewController(modalVC, animated: true, completion: nil)
+        Navigator.sharedInstance.navigateToLogin(self)
         MeetUpUserDefaults.sharedInstance.removeUserDefault()
     }
 }

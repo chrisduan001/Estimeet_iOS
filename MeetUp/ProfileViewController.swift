@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: BaseViewController {
+class ProfileViewController: BaseViewController, ProfileListener, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var imgUserDp: UIImageView!
     @IBOutlet weak var lblEnterName: UILabel!
@@ -16,11 +16,15 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var btnGetStart: UIButton!
     @IBOutlet weak var lblOr: UILabel!
     @IBOutlet weak var btn_facebook: UIButton!
+
+    var imagePicker: UIImagePickerController!
+    var profileModel: ProfileModel!
     
     //MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileModel = ProfileModel(serviceHelper: ServiceHelper.sharedInstance, listener: self)
         setUpLabelDisplay()
         setUpImageAction()
     }
@@ -47,7 +51,30 @@ class ProfileViewController: BaseViewController {
     
     //MARK: BUTTON ACTION
     func userDpTapped() {
-
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        imagePicker.delegate = self
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func onGetStart(sender: UIButton) {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+        profileModel.onStartUpdateProfile("", imageString: "")
+    }
+    
+    @IBAction func onFacebookClicked(sender: UIButton) {
+    }
+    
+    //MARK: CALL BACK
+    func onProfileUpdated() {
+        
+    }
+    
+    //MARK: IMAGE
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        self.imgUserDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
 }
 

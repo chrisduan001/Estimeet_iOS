@@ -10,9 +10,9 @@ import Foundation
 import DigitsKit
 
 class LoginModel: BaseModel {
-    let listener: ServiceListener
+    let listener: LoginListener
     
-    init(serviceHelper: ServiceHelper, listener: ServiceListener) {
+    init(serviceHelper: ServiceHelper, listener: LoginListener) {
         self.listener = listener
         super.init(serviceHelper: serviceHelper)
     }
@@ -20,20 +20,20 @@ class LoginModel: BaseModel {
     func onStartSignin(signinAuth: SigninAuth) {
         serviceHelper.signInUser(signinAuth) {
             response in
-            print(response.request)
             let user = response.result.value
             if !self.isAnyErrors((response.response?.statusCode)!, response: user, listener: self.listener) {
                 MeetUpUserDefaults.sharedInstance.saveUserDefault(user!)
+                
+                if let name = user?.userName where !name.isEmpty {
+                    MeetUpUserDefaults.sharedInstance.updateUserProfile(name, imageUri: user!.dpUri!)
+                }
+                
                 self.listener.onLoginSuccess(user!)
             }
         }
     }
-    
-    func getData() -> String {
-        return "AA"
-    }
 }
 
-protocol ServiceListener: BaseListener {
+protocol LoginListener: BaseListener {
     func onLoginSuccess(user: User)
 }

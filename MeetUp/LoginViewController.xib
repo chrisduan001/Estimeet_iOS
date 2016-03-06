@@ -46,7 +46,7 @@
                         <action selector="onSignIn:" destination="-1" eventType="touchUpInside" id="GmJ-oE-jAo"/>
                     </connections>
                 </button>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gzg-vW-3Bb">
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gzg-vW-3Bb">
                     <rect key="frame" x="290" y="290" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>

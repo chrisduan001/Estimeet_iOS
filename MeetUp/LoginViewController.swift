@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController : BaseViewController, ServiceListener {
+class LoginViewController : BaseViewController, LoginListener {
     
     @IBOutlet weak var signInButton: UIButton!
     
@@ -50,7 +50,7 @@ class LoginViewController : BaseViewController, ServiceListener {
             return
         }
         
-        let profileVc = ProfileViewController(nibName:"ProfileViewController", bundle: nil)
-        presentViewController(profileVc, animated: true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
+        Navigator.sharedInstance.navigateToProfilePage(self)
     }
 }

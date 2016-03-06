@@ -20,6 +20,10 @@ class BaseModel {
         self.serviceHelper = serviceHelper
     }
     
+    func isTokenExpired(expireTime: CLong) -> Bool {
+        return CLong(NSDate().timeIntervalSinceReferenceDate) > expireTime
+    }
+    
     //check both http error(eg: internet, auth etc) and request error(eg: inconsisitent data)
     func isAnyErrors(statusCode: Int, response: BaseResponse?, listener: BaseListener) -> Bool {
         guard statusCode == 200 else {
@@ -32,6 +36,15 @@ class BaseModel {
         }
     
         listener.onError(errorMessage)
+        return true
+    }
+    
+    func isRenewTokenError(statusCode: Int, listener: BaseListener) -> Bool {
+        guard statusCode != 200 else {
+            return false
+        }
+        
+        statusCode >= 400 && statusCode < 500 ? listener.onAuthFail() : listener.onError("An error has occured")
         return true
     }
 }
