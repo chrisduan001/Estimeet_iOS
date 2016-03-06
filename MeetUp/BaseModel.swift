@@ -11,7 +11,6 @@ import Foundation
 class BaseModel {
     
     let serviceHelper: ServiceHelper
-    let plistDic: NSDictionary
     
     enum HttpError {
         case AuthError, GenericError
@@ -19,17 +18,20 @@ class BaseModel {
     
     init(serviceHelper: ServiceHelper) {
         self.serviceHelper = serviceHelper
-        
-        let filePath = NSBundle.mainBundle().pathForResource("GlobalVariable", ofType: "plist")
-        plistDic = NSDictionary(contentsOfFile: filePath!)!
     }
     
-    func checkErrors(statusCode: Int, listener: BaseListener) -> Bool {
+    //check both http error(eg: internet, auth etc) and request error(eg: inconsisitent data)
+    func isAnyErrors(statusCode: Int, response: BaseResponse?, listener: BaseListener) -> Bool {
         guard statusCode == 200 else {
-            statusCode == plistDic.objectForKey("error_auth") as! Int ? listener.onAuthFail() : listener.onError("An error has occured")
+            statusCode == AppDelegate.plistDic?.objectForKey("error_auth") as! Int ? listener.onAuthFail() : listener.onError("An error has occured")
+            return true
+        }
+        
+        guard let errorMessage = response?.getErrorMessage() where !errorMessage.isEmpty else {
             return false
         }
     
+        listener.onError(errorMessage)
         return true
     }
 }

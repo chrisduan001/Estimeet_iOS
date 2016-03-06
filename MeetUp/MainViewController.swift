@@ -13,6 +13,7 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TODO:
         self.title = "Main"
     }
     
@@ -21,14 +22,23 @@ class MainViewController: BaseViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        presentViewController(modalVC, animated: true, completion: nil)
+        let user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
+        if user == nil {
+            let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            presentViewController(modalVC, animated: true, completion: nil)
+        } else if user?.userName == "" {
+            let modalVc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            presentViewController(modalVc, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
+    @IBAction func tempButton(sender: UIButton) {
+        let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        presentViewController(modalVC, animated: true, completion: nil)
+        MeetUpUserDefaults.sharedInstance.removeUserDefault()
+    }
 }
 

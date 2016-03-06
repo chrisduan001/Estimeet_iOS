@@ -21,11 +21,20 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0P-vO-0GB">
+                    <rect key="frame" x="277" y="318" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="tempButton:" destination="-1" eventType="touchUpInside" id="e8D-fI-mfp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="g0P-vO-0GB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FF9-Jo-HBN"/>
                 <constraint firstItem="6F7-nA-tgw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HjA-cm-MLP"/>
                 <constraint firstItem="6F7-nA-tgw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MQi-Oh-sNU"/>
+                <constraint firstItem="g0P-vO-0GB" firstAttribute="top" secondItem="6F7-nA-tgw" secondAttribute="bottom" constant="8" id="qdE-U8-vLy"/>
             </constraints>
         </view>
     </objects>

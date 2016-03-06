@@ -16,6 +16,8 @@ class BaseResponse: Mappable {
         
     }
     
+    init() {}
+    
     func mapping(map: Map) {
         errorCode <- map["errorCode"]
     }

@@ -22,27 +22,35 @@ class LoginViewController : BaseViewController, ServiceListener {
     }
     
     override func viewWillAppear(animated: Bool) {
-        signInButton.setTitle(NSLocalizedString("Login_Signin", comment: "SIGN IN"), forState: .Normal)
+        signInButton.setTitle(NSLocalizedString(GlobalString.login_SignIn, comment: "SIGN IN"), forState: .Normal)
     }
     
     func initialize() {
-        self.title = NSLocalizedString("Login_title", comment: "title login")
+        self.title = NSLocalizedString(GlobalString.login_title, comment: "title login")
         loginModel = LoginModel(serviceHelper: ServiceHelper.sharedInstance, listener: self)
     }
 
     //MARK: BUTTON ACTION
     @IBAction func onSignIn(sender: UIButton) {
-        DigitsModel.onSignInClicked()
+        DigitsModel.onSignInClicked{
+            signinAuth in
+            guard signinAuth != nil else {
+                return
+            }
+            self.startActivityIndicator()
+            self.loginModel.onStartSignin(signinAuth!)
+        }
     }
     
     //MARK: CALL BACK
-    func onGetSampleData(user: User) {
-        print(user.userName)
-        print(user.userId)
-
-    }
-    
-    func onError(message: String) {
+    func onLoginSuccess(user: User) {
+        endActivityIndicator()
+        guard let name = user.userName where name.isEmpty else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            return
+        }
         
+        let profileVc = ProfileViewController(nibName:"ProfileViewController", bundle: nil)
+        presentViewController(profileVc, animated: true, completion: nil)
     }
 }

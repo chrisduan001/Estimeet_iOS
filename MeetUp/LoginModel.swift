@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DigitsKit
 
 class LoginModel: BaseModel {
     let listener: ServiceListener
@@ -16,18 +17,14 @@ class LoginModel: BaseModel {
         super.init(serviceHelper: serviceHelper)
     }
     
-    func requestSampleData() {
-        serviceHelper.requestSampleData {
+    func onStartSignin(signinAuth: SigninAuth) {
+        serviceHelper.signInUser(signinAuth) {
             response in
-            if self.checkErrors((response.response?.statusCode)!, listener: self.listener) {
-                let user = response.result.value
-                print(user)
-                
-                guard let errorMessage = user?.getErrorMessage() where !errorMessage.isEmpty else {
-                    self.listener.onGetSampleData(user!)
-                    return
-                }
-                self.listener.onError(errorMessage)
+            print(response.request)
+            let user = response.result.value
+            if !self.isAnyErrors((response.response?.statusCode)!, response: user, listener: self.listener) {
+                MeetUpUserDefaults.sharedInstance.saveUserDefault(user!)
+                self.listener.onLoginSuccess(user!)
             }
         }
     }
@@ -38,5 +35,5 @@ class LoginModel: BaseModel {
 }
 
 protocol ServiceListener: BaseListener {
-    func onGetSampleData(user: User)
+    func onLoginSuccess(user: User)
 }

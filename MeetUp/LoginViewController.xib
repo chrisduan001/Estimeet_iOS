@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Gzg-vW-3Bb" id="ktJ-7W-oIw"/>
                 <outlet property="signInButton" destination="SZS-ER-MpT" id="pEk-fv-qTm"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ere-OY-VqN"/>
             </connections>
@@ -17,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Log in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpg-Gq-DWp">
-                    <rect key="frame" x="249.5" y="289.5" width="101.5" height="20.5"/>
+                    <rect key="frame" x="249" y="289" width="101.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -45,15 +46,20 @@
                         <action selector="onSignIn:" destination="-1" eventType="touchUpInside" id="GmJ-oE-jAo"/>
                     </connections>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gzg-vW-3Bb">
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Gzg-vW-3Bb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Bbx-5U-kF0"/>
                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="SZS-ER-MpT" secondAttribute="trailing" constant="90" id="JmN-k5-d5W"/>
                 <constraint firstItem="SZS-ER-MpT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qjx-d8-RIg"/>
                 <constraint firstItem="vpg-Gq-DWp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="S3p-u1-ax2"/>
                 <constraint firstAttribute="leading" relation="lessThanOrEqual" secondItem="SZS-ER-MpT" secondAttribute="leading" constant="-90" id="TMC-rN-4jW"/>
                 <constraint firstItem="vpg-Gq-DWp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bUd-9M-y4x"/>
                 <constraint firstAttribute="bottom" secondItem="SZS-ER-MpT" secondAttribute="bottom" constant="15" id="jmT-ja-sxP"/>
+                <constraint firstItem="Gzg-vW-3Bb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xO7-pf-o3p"/>
             </constraints>
             <point key="canvasLocation" x="517" y="491"/>
         </view>

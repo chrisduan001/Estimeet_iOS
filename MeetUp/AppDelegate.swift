@@ -15,6 +15,7 @@ import DigitsKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static let plistDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GlobalVariable", ofType: "plist")!)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
