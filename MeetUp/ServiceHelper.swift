@@ -16,26 +16,7 @@ class ServiceHelper {
     
     static let sharedInstance = ServiceHelper()
     private init() {} //prevents other from using init() initlizer, will throw error if do so
-    
-    func requestSampleData(completionHandler: (response: Response<User, NSError>) -> Void) {
-        let sampleDataUri = ServiceHelper.BASE_URL + "/signin/getsimpledata"
-        Alamofire.request(.GET, sampleDataUri).responseObject {
-            (response: Response<User, NSError>) in
-            completionHandler(response: response)
-        }
-    }
-    
-    func signInUser(authModel: SigninAuth, completionHandler: (response: Response<User, NSError>) -> Void) {
-        let signInUri = ServiceHelper.BASE_URL + "/signin/signinuser"
-        let jsonString = Mapper().toJSON(authModel)
-        let request = Alamofire.request(.POST, signInUri, parameters: jsonString, encoding: .JSON)
-        request.responseObject {
-            (response: Response<User, NSError>) in
-            completionHandler(response: response)
-        }
-        logDebugInfo(request)
-    }
-    
+
     func requestAuthToken(id: Int, password: String, completionHandler: (response: Response<TokenResponse, NSError>) -> Void) {
         let tokenUri = ServiceHelper.BASE_URL + "/estimeetauth/token"
         let json = ["grant_type":"password", "username":id, "password":password]
@@ -47,7 +28,33 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func signInUser(authModel: SigninAuth, completionHandler: (response: Response<User, NSError>) -> Void) {
+        let signInUri = ServiceHelper.BASE_URL + "/signin/signinuser"
+        let request = Alamofire.request(.POST, signInUri, parameters: getJsonString(authModel), encoding: .JSON)
+        request.responseObject {
+            (response: Response<User, NSError>) in
+            completionHandler(response: response)
+        }
+        logDebugInfo(request)
+    }
+    
+    func updateProfile(updateModel: UpdateProfile, token: String, completionHandler: (response: Response<User, NSError>) -> Void) {
+        let profileUri = ServiceHelper.BASE_URL + "/profile/updateuserprofile"
+        let request = Alamofire.request(.POST, profileUri, parameters: getJsonString(updateModel), encoding: .JSON, headers: ["Authorization" : "Bearer \(token)"])
+        request.responseObject {
+            (response: Response<User, NSError>) in
+            completionHandler(response: response)
+        }
+        print("update profile request: \(request.request)")
+    }
+    
+    private func getJsonString<T:Mappable>(model: T) -> [String: AnyObject] {
+        return Mapper().toJSON(model)
+    }
+    
     private func logDebugInfo(request:Request) {
         print("debug descriptin: \(request.debugDescription)")
     }
 }
+
+

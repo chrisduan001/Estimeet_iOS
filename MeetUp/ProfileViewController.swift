@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
-class ProfileViewController: BaseViewController, ProfileListener, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileViewController: BaseViewController, ProfileListener,UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet weak var imgUserDp: UIImageView!
     @IBOutlet weak var lblEnterName: UILabel!
@@ -24,7 +26,7 @@ class ProfileViewController: BaseViewController, ProfileListener, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileModel = ProfileModel(serviceHelper: ServiceHelper.sharedInstance, listener: self)
+        profileModel = ProfileModel(serviceHelper: ServiceHelper.sharedInstance, userDefaults: MeetUpUserDefaults.sharedInstance, listener: self)
         setUpLabelDisplay()
         setUpImageAction()
     }
@@ -59,22 +61,52 @@ class ProfileViewController: BaseViewController, ProfileListener, UINavigationCo
     }
     
     @IBAction func onGetStart(sender: UIButton) {
-//        self.dismissViewControllerAnimated(true, completion: nil)
-        profileModel.onStartUpdateProfile("", imageString: "")
+        let imageData = UIImagePNGRepresentation(imgUserDp.image!)!
+        profileModel.onStartUpdateProfile("chris", imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))
+        startActivityIndicator()
     }
     
     @IBAction func onFacebookClicked(sender: UIButton) {
+        let fbLoginManager = FBSDKLoginManager()
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            self.getFbData()
+        } else {
+            fbLoginManager.logInWithReadPermissions(["public_profile"], fromViewController: self) {
+                (result, error) -> Void in
+                guard result.token != nil else {
+                    return
+                }
+                self.getFbData()
+            }
+        }
     }
     
     //MARK: CALL BACK
     func onProfileUpdated() {
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        endActivityIndicator()
     }
     
     //MARK: IMAGE
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         self.imgUserDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    }
+    
+    //MARK: FACEBOOK
+    func getFbData() {
+        let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me?fields=id,name", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result:AnyObject!, error) -> Void in
+            
+            if error != nil {
+                
+            } else {
+                let id = result.valueForKey("id") as! String
+                let userName = result.valueForKey("name") as! String
+                
+                print("id \(id), name \(userName)")
+            }
+        })
     }
 }
 

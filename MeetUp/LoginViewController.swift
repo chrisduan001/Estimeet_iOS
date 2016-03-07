@@ -27,12 +27,12 @@ class LoginViewController : BaseViewController, LoginListener {
     
     func initialize() {
         self.title = NSLocalizedString(GlobalString.login_title, comment: "title login")
-        loginModel = LoginModel(serviceHelper: ServiceHelper.sharedInstance, listener: self)
+        loginModel = LoginModel(serviceHelper: ServiceHelper.sharedInstance, userDefaults: MeetUpUserDefaults.sharedInstance, listener: self)
     }
 
     //MARK: BUTTON ACTION
     @IBAction func onSignIn(sender: UIButton) {
-        DigitsModel.onSignInClicked{
+        DigitsModel.onSignInClicked {
             signinAuth in
             guard signinAuth != nil else {
                 return

@@ -167,6 +167,13 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		62794FDF1C8D77E100112261 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
 		62AB5F6F1C73057F008513DF = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +215,7 @@
 		62C2C9FB1C8AC9A00029B3DB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				62794FDF1C8D77E100112261 /* Facebook */,
 				62C2C9FC1C8AC9B90029B3DB /* RoundedButton.swift */,
 				62C2CA061C8AE8470029B3DB /* CustomColor.swift */,
 				622785E21C8BBFD9006FDD55 /* GlobalString.swift */,
@@ -516,6 +524,10 @@
 			baseConfigurationReference = D958C55934E8DFB1745195A1 /* Pods-MeetUp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MeetUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.estimeet.MeetUp;
@@ -528,6 +540,10 @@
 			baseConfigurationReference = D13B20D89153F4132EB95735 /* Pods-MeetUp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MeetUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.estimeet.MeetUp;

@@ -9,5 +9,7 @@ pod 'AlamofireObjectMapper', '~> 2.1'
 pod 'ObjectMapper', '~> 1.1'
 pod 'Fabric'
 pod 'Digits'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
 end
 

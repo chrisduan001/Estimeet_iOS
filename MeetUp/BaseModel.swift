@@ -11,17 +11,28 @@ import Foundation
 class BaseModel {
     
     let serviceHelper: ServiceHelper
+    let userDefaults: MeetUpUserDefaults
     
     enum HttpError {
         case AuthError, GenericError
     }
     
-    init(serviceHelper: ServiceHelper) {
+    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults) {
         self.serviceHelper = serviceHelper
+        self.userDefaults = userDefaults
     }
     
     func isTokenExpired(expireTime: CLong) -> Bool {
         return CLong(NSDate().timeIntervalSinceReferenceDate) > expireTime
+    }
+    
+    func processTokenResponse(statusCode: Int, tokenResponse: TokenResponse?, listener: BaseListener) -> Bool {
+        guard !self.isRenewTokenError(statusCode, listener: listener) else {
+            return false
+        }
+        
+        MeetUpUserDefaults.sharedInstance.updateUserToken(tokenResponse!.accessToken, expireInSeconds: tokenResponse!.expiresIn)
+        return true
     }
     
     //check both http error(eg: internet, auth etc) and request error(eg: inconsisitent data)
@@ -39,7 +50,7 @@ class BaseModel {
         return true
     }
     
-    func isRenewTokenError(statusCode: Int, listener: BaseListener) -> Bool {
+    private func isRenewTokenError(statusCode: Int, listener: BaseListener) -> Bool {
         guard statusCode != 200 else {
             return false
         }

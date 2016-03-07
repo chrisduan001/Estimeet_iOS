@@ -12,9 +12,9 @@ import DigitsKit
 class LoginModel: BaseModel {
     let listener: LoginListener
     
-    init(serviceHelper: ServiceHelper, listener: LoginListener) {
+    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: LoginListener) {
         self.listener = listener
-        super.init(serviceHelper: serviceHelper)
+        super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
     func onStartSignin(signinAuth: SigninAuth) {
@@ -22,10 +22,10 @@ class LoginModel: BaseModel {
             response in
             let user = response.result.value
             if !self.isAnyErrors((response.response?.statusCode)!, response: user, listener: self.listener) {
-                MeetUpUserDefaults.sharedInstance.saveUserDefault(user!)
+                self.userDefaults.saveUserDefault(user!)
                 
                 if let name = user?.userName where !name.isEmpty {
-                    MeetUpUserDefaults.sharedInstance.updateUserProfile(name, imageUri: user!.dpUri!)
+                    self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
                 }
                 
                 self.listener.onLoginSuccess(user!)
