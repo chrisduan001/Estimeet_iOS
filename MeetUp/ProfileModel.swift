@@ -22,9 +22,11 @@ class ProfileModel: BaseModel {
             serviceHelper.requestAuthToken(user.id!, password: user.password!) {
                 response in
                 print("Token response: \(response.response)")
+                let tokenResponse = response.result.value
                 guard self.processTokenResponse(response.response!.statusCode, tokenResponse: response.result.value, listener: self.listener) else {
                     return
                 }
+                user.token = tokenResponse!.accessToken
                 self.updateProfile(user, imageString: imageString, name: name)
             }
         } else {

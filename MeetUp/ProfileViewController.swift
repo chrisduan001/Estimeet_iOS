@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import FBSDKLoginKit
-import FBSDKCoreKit
+import Kingfisher
 
-class ProfileViewController: BaseViewController, ProfileListener,UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class ProfileViewController: BaseViewController, ProfileListener, FbCallbackListener, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet weak var imgUserDp: UIImageView!
     @IBOutlet weak var lblEnterName: UILabel!
@@ -61,24 +60,20 @@ class ProfileViewController: BaseViewController, ProfileListener,UINavigationCon
     }
     
     @IBAction func onGetStart(sender: UIButton) {
+        guard let userName = tfUserName.text where !userName.isEmpty else {
+            showAlert(NSLocalizedString(GlobalString.error_alert_title, comment: "alert title"),
+                message: NSLocalizedString(GlobalString.error_empty_name, comment: "empty name"),
+                 button: NSLocalizedString(GlobalString.error_alert_button, comment: "error button"))
+            return
+        }
+        
         let imageData = UIImagePNGRepresentation(imgUserDp.image!)!
-        profileModel.onStartUpdateProfile("chris", imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))
+        profileModel.onStartUpdateProfile(userName, imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))
         startActivityIndicator()
     }
     
     @IBAction func onFacebookClicked(sender: UIButton) {
-        let fbLoginManager = FBSDKLoginManager()
-        if FBSDKAccessToken.currentAccessToken() != nil {
-            self.getFbData()
-        } else {
-            fbLoginManager.logInWithReadPermissions(["public_profile"], fromViewController: self) {
-                (result, error) -> Void in
-                guard result.token != nil else {
-                    return
-                }
-                self.getFbData()
-            }
-        }
+        FacebookModel().onStartFacebookLogin(self, listener: self)
     }
     
     //MARK: CALL BACK
@@ -87,26 +82,17 @@ class ProfileViewController: BaseViewController, ProfileListener,UINavigationCon
         endActivityIndicator()
     }
     
+    func onFacebookSuccessful(id: String, userName: String) {
+        tfUserName.text = userName
+        let dpUri = "https://graph.facebook.com/" + id + "/picture?type=large";
+        //TODO: add placeholder image, just incase user click get start before image load
+        imgUserDp.kf_setImageWithURL(NSURL(string: dpUri)!, placeholderImage: nil)
+    }
+    
     //MARK: IMAGE
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        self.imgUserDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-    }
-    
-    //MARK: FACEBOOK
-    func getFbData() {
-        let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me?fields=id,name", parameters: nil)
-        graphRequest.startWithCompletionHandler({ (connection, result:AnyObject!, error) -> Void in
-            
-            if error != nil {
-                
-            } else {
-                let id = result.valueForKey("id") as! String
-                let userName = result.valueForKey("name") as! String
-                
-                print("id \(id), name \(userName)")
-            }
-        })
+        imgUserDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
 }
 

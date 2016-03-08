@@ -32,6 +32,7 @@
 		62AB5F841C73057F008513DF /* MeetUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F821C73057F008513DF /* MeetUp.xcdatamodeld */; };
 		62AB5F861C73057F008513DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F851C73057F008513DF /* Assets.xcassets */; };
 		62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F871C73057F008513DF /* LaunchScreen.storyboard */; };
+		62BD34881C8EB932008751B0 /* FacebookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BD34871C8EB932008751B0 /* FacebookModel.swift */; };
 		62C2C9FD1C8AC9B90029B3DB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2C9FC1C8AC9B90029B3DB /* RoundedButton.swift */; };
 		62C2CA021C8AE5440029B3DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62C2CA011C8AE5440029B3DB /* Default-568h@2x.png */; };
 		62C2CA051C8AE60B0029B3DB /* DigitsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2CA041C8AE60B0029B3DB /* DigitsModel.swift */; };
@@ -68,6 +69,7 @@
 		62AB5F831C73057F008513DF /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
 		62AB5F851C73057F008513DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MeetUp/Assets.xcassets; sourceTree = "<group>"; };
 		62AB5F8A1C73057F008513DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeetUp/Info.plist; sourceTree = "<group>"; };
+		62BD34871C8EB932008751B0 /* FacebookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookModel.swift; sourceTree = "<group>"; };
 		62C2C9FC1C8AC9B90029B3DB /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		62C2CA011C8AE5440029B3DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		62C2CA041C8AE60B0029B3DB /* DigitsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitsModel.swift; sourceTree = "<group>"; };
@@ -120,12 +122,12 @@
 		623BBD601C7EE99A00643C3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				62BD34861C8EB90A008751B0 /* ThirdParty */,
 				6240B19A1C86CEC500899CD9 /* Post */,
 				6240B1971C86CE8800899CD9 /* Response */,
 				623BBD611C7EE9AD00643C3C /* LoginModel.swift */,
 				622785EF1C8C1C99006FDD55 /* ProfileModel.swift */,
 				6240B1B51C881FB500899CD9 /* BaseModel.swift */,
-				62C2CA041C8AE60B0029B3DB /* DigitsModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -210,6 +212,15 @@
 				62AB5F821C73057F008513DF /* MeetUp.xcdatamodeld */,
 			);
 			path = MeetUp;
+			sourceTree = "<group>";
+		};
+		62BD34861C8EB90A008751B0 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				62C2CA041C8AE60B0029B3DB /* DigitsModel.swift */,
+				62BD34871C8EB932008751B0 /* FacebookModel.swift */,
+			);
+			name = ThirdParty;
 			sourceTree = "<group>";
 		};
 		62C2C9FB1C8AC9A00029B3DB /* Utils */ = {
@@ -399,6 +410,7 @@
 				622785E31C8BBFD9006FDD55 /* GlobalString.swift in Sources */,
 				622785E71C8BCE2F006FDD55 /* ProfileViewController.swift in Sources */,
 				62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */,
+				62BD34881C8EB932008751B0 /* FacebookModel.swift in Sources */,
 				622785EB1C8BD460006FDD55 /* MeetUpUserDefaults.swift in Sources */,
 				6240B1BD1C8834D900899CD9 /* BaseResponse.swift in Sources */,
 				62C2C9FD1C8AC9B90029B3DB /* RoundedButton.swift in Sources */,

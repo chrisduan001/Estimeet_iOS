@@ -18,4 +18,5 @@ class GlobalString{
     
     static let error_alert_title    = "error_alert_title"
     static let error_alert_button   = "error_alert_button"
+    static let error_empty_name     = "error_message_empty_name"
 }

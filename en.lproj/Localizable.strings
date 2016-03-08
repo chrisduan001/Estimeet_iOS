@@ -5,14 +5,15 @@
   Created by Chris Duan on 2/03/16.
   Copyright © 2016 Chris. All rights reserved.
 */
-"Login_Signin"          = "SIGN IN";
-"Login_title"           = "Log in";
-"profile_enter_name"    = "Enter Your Name";
-"profile_btn_start"     = "Get Started!";
-"profile_facebook"      = "Import From Facebook";
-"profile_lbl_or"        = "Or";
+"Login_Signin"                  = "SIGN IN";
+"Login_title"                   = "Log in";
+"profile_enter_name"            = "Enter Your Name";
+"profile_btn_start"             = "Get Started!";
+"profile_facebook"              = "Import From Facebook";
+"profile_lbl_or"                = "Or";
 
 
 
-"error_alert_title"     = "Error";
-"error_alert_button"    = "Ok";
+"error_alert_title"             = "Error";
+"error_alert_button"            = "Ok";
+"error_message_empty_name"      = "Name can't be empty";

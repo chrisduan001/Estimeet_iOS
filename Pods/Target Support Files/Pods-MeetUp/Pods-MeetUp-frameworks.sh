@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MeetUp/Bolts.framework"
   install_framework "Pods-MeetUp/FBSDKCoreKit.framework"
   install_framework "Pods-MeetUp/FBSDKLoginKit.framework"
+  install_framework "Pods-MeetUp/Kingfisher.framework"
   install_framework "Pods-MeetUp/ObjectMapper.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -97,5 +98,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MeetUp/Bolts.framework"
   install_framework "Pods-MeetUp/FBSDKCoreKit.framework"
   install_framework "Pods-MeetUp/FBSDKLoginKit.framework"
+  install_framework "Pods-MeetUp/Kingfisher.framework"
   install_framework "Pods-MeetUp/ObjectMapper.framework"
 fi

@@ -18,7 +18,7 @@ class BaseViewController: UIViewController, BaseListener {
     }
     
     func logOut() {
-        Digits.sharedInstance().logOut()
+//        Digits.sharedInstance().logOut()
     }
     
     func startActivityIndicator() {
@@ -33,6 +33,12 @@ class BaseViewController: UIViewController, BaseListener {
         }
     }
     
+    func showAlert(title: String, message: String, button: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     //MARK: LISTENER
     func onAuthFail() {
         endActivityIndicator()
@@ -41,9 +47,8 @@ class BaseViewController: UIViewController, BaseListener {
     
     func onError(message: String) {
         endActivityIndicator()
-        
-        let alert = UIAlertController(title: NSLocalizedString(GlobalString.error_alert_title, comment: "error title"), message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString(GlobalString.error_alert_button, comment: "error button"), style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        showAlert(NSLocalizedString(GlobalString.error_alert_title, comment: "error title"),
+                                            message: message,
+                                             button: NSLocalizedString(GlobalString.error_alert_button, comment: "error button"))
     }
 }

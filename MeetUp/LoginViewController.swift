@@ -49,8 +49,8 @@ class LoginViewController : BaseViewController, LoginListener {
             self.dismissViewControllerAnimated(true, completion: nil)
             return
         }
-        
-        dismissViewControllerAnimated(true, completion: nil)
+
         Navigator.sharedInstance.navigateToProfilePage(self)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
