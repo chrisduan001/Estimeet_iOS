@@ -45,12 +45,18 @@ class LoginViewController : BaseViewController, LoginListener {
     //MARK: CALL BACK
     func onLoginSuccess(user: User) {
         endActivityIndicator()
-        guard let name = user.userName where name.isEmpty else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-            return
-        }
+        
+        showAlert(NSLocalizedString(GlobalString.alert_title_info, comment: "Permission"),
+            message: NSLocalizedString(GlobalString.prompt_address_book, comment: "permission prompt") ,
+            button: NSLocalizedString(GlobalString.alert_button_ok, comment: "ok button"))
+        ContactListModel().getContactList()
+        
+//        guard let name = user.userName where name.isEmpty else {
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//            return
+//        }
 
-        Navigator.sharedInstance.navigateToProfilePage(self)
-        dismissViewControllerAnimated(true, completion: nil)
+//        Navigator.sharedInstance.navigateToProfilePage(self)
+//        dismissViewControllerAnimated(true, completion: nil)
     }
 }

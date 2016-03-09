@@ -47,8 +47,8 @@ class BaseViewController: UIViewController, BaseListener {
     
     func onError(message: String) {
         endActivityIndicator()
-        showAlert(NSLocalizedString(GlobalString.error_alert_title, comment: "error title"),
+        showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "error title"),
                                             message: message,
-                                             button: NSLocalizedString(GlobalString.error_alert_button, comment: "error button"))
+                                             button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"))
     }
 }

@@ -16,7 +16,10 @@ class GlobalString{
     static let profile_facebook     = "profile_facebook"
     static let profile_lbl_or       = "profile_lbl_or"
     
-    static let error_alert_title    = "error_alert_title"
-    static let error_alert_button   = "error_alert_button"
+    static let alert_title_error    = "alert_title_error"
+    static let alert_button_ok      = "alert_button_ok"
+    static let alert_title_info     = "alert_title_info"
     static let error_empty_name     = "error_message_empty_name"
+    
+    static let prompt_address_book  = "permission_prompt_addressbook"
 }

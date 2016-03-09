@@ -61,9 +61,9 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
     
     @IBAction func onGetStart(sender: UIButton) {
         guard let userName = tfUserName.text where !userName.isEmpty else {
-            showAlert(NSLocalizedString(GlobalString.error_alert_title, comment: "alert title"),
+            showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "alert title"),
                 message: NSLocalizedString(GlobalString.error_empty_name, comment: "empty name"),
-                 button: NSLocalizedString(GlobalString.error_alert_button, comment: "error button"))
+                 button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"))
             return
         }
         

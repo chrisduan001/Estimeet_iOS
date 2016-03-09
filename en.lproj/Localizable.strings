@@ -7,13 +7,16 @@
 */
 "Login_Signin"                  = "SIGN IN";
 "Login_title"                   = "Log in";
+
 "profile_enter_name"            = "Enter Your Name";
 "profile_btn_start"             = "Get Started!";
 "profile_facebook"              = "Import From Facebook";
 "profile_lbl_or"                = "Or";
 
+"permission_prompt_addressbook" = "We need your permission to access your address book to find your friend";
 
-
-"error_alert_title"             = "Error";
-"error_alert_button"            = "Ok";
+"alert_title_error"             = "Error";
+"alert_title_info"              = "Info";
+"alert_button_ok"               = "Ok";
+"alert_button_cancel"           = "Cancel";
 "error_message_empty_name"      = "Name can't be empty";
