@@ -19,7 +19,11 @@ class GlobalString{
     static let alert_title_error    = "alert_title_error"
     static let alert_button_ok      = "alert_button_ok"
     static let alert_title_info     = "alert_title_info"
+    
     static let error_empty_name     = "error_message_empty_name"
+    static let error_fetal          = "error_fatal_error"
+    static let error_insert_data    = "error_insert_data_server"
+    static let error_generic        = "error_generic"
     
     static let prompt_address_book  = "permission_prompt_addressbook"
 }

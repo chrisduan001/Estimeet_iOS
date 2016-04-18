@@ -21,11 +21,10 @@ class BaseResponse: Mappable {
     func mapping(map: Map) {
         errorCode <- map["errorCode"]
     }
-    
+
     func getErrorMessage() -> String {
         guard errorCode == 0 else {
-            //TODO: put proper error message here
-            return "An error has occurred"
+            return ErrorFactory.generateErrorWithCode(errorCode!)
         }
         
         return ""

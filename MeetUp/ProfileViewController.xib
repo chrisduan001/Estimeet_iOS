@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="MeetUp" customModuleProvider="target">
@@ -131,6 +131,7 @@
                 <constraint firstItem="8fP-Xr-ive" firstAttribute="top" secondItem="owr-UW-NjX" secondAttribute="bottom" constant="16" id="vNJ-Qc-vG0"/>
                 <constraint firstItem="TkP-7a-zhR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="vbC-60-WpW"/>
             </constraints>
+            <point key="canvasLocation" x="168" y="392"/>
         </view>
     </objects>
     <resources>

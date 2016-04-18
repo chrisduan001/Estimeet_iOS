@@ -33,9 +33,9 @@ class BaseViewController: UIViewController, BaseListener {
         }
     }
     
-    func showAlert(title: String, message: String, button: String) {
+    func showAlert(title: String, message: String, button: String, onOkClicked: (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: onOkClicked))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -49,6 +49,7 @@ class BaseViewController: UIViewController, BaseListener {
         endActivityIndicator()
         showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "error title"),
                                             message: message,
-                                             button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"))
+                                             button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"),
+                                             onOkClicked: {_ in })
     }
 }

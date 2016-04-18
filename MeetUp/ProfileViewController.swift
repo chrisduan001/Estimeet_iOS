@@ -41,7 +41,7 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
         self.imgUserDp.layer.cornerRadius = self.imgUserDp.frame.size.width / 2
         self.imgUserDp.clipsToBounds = true
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("userDpTapped"))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.userDpTapped))
         self.imgUserDp.addGestureRecognizer(tapRecognizer)
     }
     
@@ -63,7 +63,8 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
         guard let userName = tfUserName.text where !userName.isEmpty else {
             showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "alert title"),
                 message: NSLocalizedString(GlobalString.error_empty_name, comment: "empty name"),
-                 button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"))
+                 button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"),
+            onOkClicked: { _ in })
             return
         }
         
@@ -95,8 +96,3 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
         imgUserDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
 }
-
-
-
-
-

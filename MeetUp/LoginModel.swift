@@ -18,12 +18,14 @@ class LoginModel: BaseModel {
     }
     
     func onStartSignin(signinAuth: SigninAuth) {
+        weak var weakSelf = self
+        
         serviceHelper.signInUser(signinAuth) {
             response in
             let user = response.result.value
             if !self.isAnyErrors((response.response?.statusCode)!, response: user, listener: self.listener) {
                 self.userDefaults.saveUserDefault(user!)
-                
+                weakSelf!.baseUser = user!
                 if let name = user?.userName where !name.isEmpty {
                     self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
                 }
@@ -31,6 +33,12 @@ class LoginModel: BaseModel {
                 self.listener.onLoginSuccess(user!)
             }
         }
+    }
+    
+    func sendContactList(contactList: String) {
+        let contactModel = Contacts(id: baseUser!.id!, userId: baseUser!.userId!, contacts: contactList);
+        //todo..token is null here, get token first
+        serviceHelper.sendUserContacts(contactModel, token: baseUser!.token!)
     }
 }
 

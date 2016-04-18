@@ -76,7 +76,7 @@ class MeetUpUserDefaults {
     }
     
     func removeUserDefault() {
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
+//        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
     }
 }
 

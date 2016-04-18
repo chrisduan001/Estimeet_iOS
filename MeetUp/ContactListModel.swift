@@ -7,22 +7,52 @@
 //
 
 import Foundation
-import AddressBook
+import ContactsUI
 
 class ContactListModel {
     
-    func getContactList() {
+    let store = CNContactStore()
+    
+    func getContactList() -> String {
+        var contactList = ""
         
-        let addressBook = ABAddressBookCreateWithOptions(nil,nil)?.takeRetainedValue()
-        
-        ABAddressBookRequestAccessWithCompletion(addressBook) {
-            granted, error in
-            guard let people = ABAddressBookCopyArrayOfAllPeople(addressBook)?.takeRetainedValue() as? NSArray else {
-                return
+        switch CNContactStore.authorizationStatusForEntityType(.Contacts) {
+        case .Authorized:
+            contactList = self.getAllContacts()
+            break
+        case .NotDetermined:
+            store.requestAccessForEntityType(.Contacts) { suceed, err in
+                guard err == nil && suceed else {
+                    return
+                }
             }
-            
-            
+            contactList = getAllContacts()
+            break
+        default:
+            break
         }
         
+        return contactList
+    }
+    
+    private func getAllContacts() -> String {
+        var contactList = ""
+        let toFetch = [CNContactPhoneNumbersKey]
+        let request = CNContactFetchRequest(keysToFetch: toFetch)
+        
+        do{
+            try store.enumerateContactsWithFetchRequest(request) {
+                contact, stop in
+                if contact.isKeyAvailable(CNContactPhoneNumbersKey) {
+                    for phoneNumber in contact.phoneNumbers {
+                        let a = phoneNumber.value as! CNPhoneNumber
+                        contactList += contactList.isEmpty ? a.stringValue : ",\(a.stringValue)"
+                        a.stringValue
+                    }
+                }
+            }
+        } catch {}
+        
+        return contactList
     }
 }

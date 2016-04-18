@@ -19,4 +19,9 @@
 "alert_title_info"              = "Info";
 "alert_button_ok"               = "Ok";
 "alert_button_cancel"           = "Cancel";
+
+
 "error_message_empty_name"      = "Name can't be empty";
+"error_fatal_error"             = "Fatal error occurred, please try to reinstall the app";
+"error_insert_data_server"      = "An error occurred while perform your operation, please try again";
+"error_generic"                 = "An error occurred, please try again";

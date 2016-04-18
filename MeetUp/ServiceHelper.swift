@@ -35,6 +35,7 @@ class ServiceHelper {
             (response: Response<User, NSError>) in
             completionHandler(response: response)
         }
+        
         logDebugInfo(request)
     }
     
@@ -46,6 +47,13 @@ class ServiceHelper {
             completionHandler(response: response)
         }
         print("update profile request: \(request.request)")
+    }
+    
+    func sendUserContacts(contactModel: Contacts, token: String) {
+        let sendContactUri = ServiceHelper.BASE_URL + "/Profile/buildFriendsFromContacts"
+        let request = Alamofire.request(.POST, sendContactUri, parameters: getJsonString(contactModel), encoding: .JSON, headers: ["Authorization" : "Bearer \(token)"])
+
+        print("send contact: \(request.request)")
     }
     
     private func getJsonString<T:Mappable>(model: T) -> [String: AnyObject] {

@@ -12,14 +12,13 @@ class BaseModel {
     
     let serviceHelper: ServiceHelper
     let userDefaults: MeetUpUserDefaults
-    
-    enum HttpError {
-        case AuthError, GenericError
-    }
+    var baseUser: User?
     
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults) {
         self.serviceHelper = serviceHelper
         self.userDefaults = userDefaults
+        
+        baseUser = userDefaults.getUserFromDefaults()
     }
     
     func isTokenExpired(expireTime: CLong) -> Bool {
@@ -38,7 +37,7 @@ class BaseModel {
     //check both http error(eg: internet, auth etc) and request error(eg: inconsisitent data)
     func isAnyErrors(statusCode: Int, response: BaseResponse?, listener: BaseListener) -> Bool {
         guard statusCode == 200 else {
-            statusCode == AppDelegate.plistDic?.objectForKey("error_auth") as! Int ? listener.onAuthFail() : listener.onError("An error has occured")
+            isAuthError(statusCode) ? listener.onAuthFail() : listener.onError(ErrorFactory.generateGenericErrorMessage())
             return true
         }
         
@@ -55,12 +54,16 @@ class BaseModel {
             return false
         }
         
-        statusCode >= 400 && statusCode < 500 ? listener.onAuthFail() : listener.onError("An error has occured")
+        isAuthError(statusCode) ? listener.onAuthFail() : listener.onError(ErrorFactory.generateGenericErrorMessage())
         return true
+    }
+    
+    private func isAuthError(statusCode: Int) -> Bool {
+        return statusCode >= 400 && statusCode < 500
     }
 }
 
-protocol BaseListener {
+protocol BaseListener: class {
     func onError(message: String)
     //if auth failed, nav user back to login screen
     //generally this shouldn't happen

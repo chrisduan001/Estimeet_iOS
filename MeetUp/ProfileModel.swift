@@ -9,7 +9,7 @@
 import Foundation
 
 class ProfileModel: BaseModel {
-    let listener: ProfileListener
+    unowned let listener: ProfileListener
     
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: ProfileListener) {
         self.listener = listener
