@@ -10,7 +10,8 @@ import Foundation
 import DigitsKit
 
 class LoginModel: BaseModel {
-    let listener: LoginListener
+    unowned let listener: LoginListener
+    var contactModel:Contacts!
     
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: LoginListener) {
         self.listener = listener
@@ -18,14 +19,12 @@ class LoginModel: BaseModel {
     }
     
     func onStartSignin(signinAuth: SigninAuth) {
-        weak var weakSelf = self
-        
         serviceHelper.signInUser(signinAuth) {
             response in
             let user = response.result.value
-            if !self.isAnyErrors((response.response?.statusCode)!, response: user, listener: self.listener) {
+            if !self.isAnyErrors((response.response?.statusCode)!, response: user) {
                 self.userDefaults.saveUserDefault(user!)
-                weakSelf!.baseUser = user!
+
                 if let name = user?.userName where !name.isEmpty {
                     self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
                 }
@@ -36,9 +35,18 @@ class LoginModel: BaseModel {
     }
     
     func sendContactList(contactList: String) {
-        let contactModel = Contacts(id: baseUser!.id!, userId: baseUser!.userId!, contacts: contactList);
-        //todo..token is null here, get token first
+        contactModel = Contacts(id: baseUser!.id!, userId: baseUser!.userId!, contacts: contactList);
+        makeNetworkRequest()
+    }
+    
+    //MARK EXTEND SUPER
+    //this will only called when the previous call is successful
+    override func startNetworkRequest() {
         serviceHelper.sendUserContacts(contactModel, token: baseUser!.token!)
+    }
+    
+    override func onError(message: String) {
+        listener.onError(message)
     }
 }
 

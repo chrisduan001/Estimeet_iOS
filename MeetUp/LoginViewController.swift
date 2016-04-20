@@ -46,25 +46,24 @@ class LoginViewController : BaseViewController, LoginListener {
     func onLoginSuccess(user: User) {
         endActivityIndicator()
         
-        weak var weakSelf = self
         //dialog shows before ask user for permission
         showAlert(NSLocalizedString(GlobalString.alert_title_info, comment: "Permission"),
                   message: NSLocalizedString(GlobalString.prompt_address_book, comment: "permission prompt") ,
                    button: NSLocalizedString(GlobalString.alert_button_ok, comment: "ok button"),
               onOkClicked:{ (alert: UIAlertAction!) in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    weakSelf!.startActivityIndicator()
-                    weakSelf!.loginModel.sendContactList(ContactListModel().getContactList())
+                    self.startActivityIndicator()
+                    self.loginModel.sendContactList(ContactListModel().getContactList())
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        weakSelf?.endActivityIndicator()
+                        self.endActivityIndicator()
                         guard let name = user.userName where name.isEmpty else {
                             self.dismissViewControllerAnimated(true, completion: nil)
                             return
                         }
                         
                         Navigator.sharedInstance.navigateToProfilePage(self)
-                        weakSelf!.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }
                 

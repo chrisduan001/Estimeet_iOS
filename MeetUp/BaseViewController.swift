@@ -42,6 +42,7 @@ class BaseViewController: UIViewController, BaseListener {
     //MARK: LISTENER
     func onAuthFail() {
         endActivityIndicator()
+        showAlert("Auth Error", message: "Auth error", button: "ok", onOkClicked: {_ in})
         self.logOut()
     }
     
