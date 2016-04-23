@@ -53,6 +53,7 @@
 		6203A81F1CCB4F8500401B07 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		6203A8211CCB6D5500401B07 /* DataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntity.swift; sourceTree = "<group>"; };
 		6203A8231CCB7EC800401B07 /* MeetUp001.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp001.xcdatamodel; sourceTree = "<group>"; };
+		6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PonyDebugger_Bridging_Header.h; sourceTree = "<group>"; };
 		622785E01C8B8947006FDD55 /* SigninAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninAuth.swift; sourceTree = "<group>"; };
 		622785E21C8BBFD9006FDD55 /* GlobalString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalString.swift; sourceTree = "<group>"; };
 		622785E41C8BCA65006FDD55 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -270,6 +271,7 @@
 		62C2CA031C8AE55B0029B3DB /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */,
 				62C2CA011C8AE5440029B3DB /* Default-568h@2x.png */,
 			);
 			name = Support;
@@ -540,6 +542,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = PonyDebugger_Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -577,6 +580,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = PonyDebugger_Bridging_Header.h;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

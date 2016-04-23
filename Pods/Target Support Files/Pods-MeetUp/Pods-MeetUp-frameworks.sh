@@ -91,6 +91,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MeetUp/FBSDKLoginKit.framework"
   install_framework "Pods-MeetUp/Kingfisher.framework"
   install_framework "Pods-MeetUp/ObjectMapper.framework"
+  install_framework "Pods-MeetUp/PonyDebugger.framework"
+  install_framework "Pods-MeetUp/SocketRocket.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MeetUp/Alamofire.framework"
@@ -100,4 +102,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MeetUp/FBSDKLoginKit.framework"
   install_framework "Pods-MeetUp/Kingfisher.framework"
   install_framework "Pods-MeetUp/ObjectMapper.framework"
+  install_framework "Pods-MeetUp/PonyDebugger.framework"
+  install_framework "Pods-MeetUp/SocketRocket.framework"
 fi

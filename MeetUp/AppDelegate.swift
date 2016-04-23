@@ -11,7 +11,7 @@ import CoreData
 import Fabric
 import DigitsKit
 import FBSDKCoreKit
-
+import PonyDebugger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
+        
+        //PONY DEBUGGER
+        let debugger = PDDebugger.defaultInstance()
+        let url = NSURL(string: "ws://192.168.1.66:9000/device")
+        debugger.connectToURL(url)
+        debugger.forwardAllNetworkTraffic()
+        debugger.enableNetworkTrafficDebugging()
+        debugger.enableCoreDataDebugging()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

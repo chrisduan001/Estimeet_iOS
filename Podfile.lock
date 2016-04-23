@@ -18,6 +18,9 @@ PODS:
     - FBSDKCoreKit
   - Kingfisher (2.0.4)
   - ObjectMapper (1.1.5)
+  - PonyDebugger (0.4.5):
+    - SocketRocket
+  - SocketRocket (0.5.0)
   - TwitterCore (1.15.1):
     - Fabric
 
@@ -30,6 +33,16 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Kingfisher (~> 2.0)
   - ObjectMapper (~> 1.1)
+  - PonyDebugger (from `https://github.com/square/PonyDebugger.git`)
+
+EXTERNAL SOURCES:
+  PonyDebugger:
+    :git: https://github.com/square/PonyDebugger.git
+
+CHECKOUT OPTIONS:
+  PonyDebugger:
+    :commit: 1a9b1a1f328fc79463aac978828044d9aacbbada
+    :git: https://github.com/square/PonyDebugger.git
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
@@ -41,6 +54,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   Kingfisher: 8f1ec2c067ade2c549a1a594379b69c4b1ff81ab
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
+  PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
+  SocketRocket: 2c51efccd2d73c99a923407ca4b06e7e9da95dbf
   TwitterCore: 12983a7464e34afbbf18881347898a9db526ac71
 
 COCOAPODS: 0.39.0
