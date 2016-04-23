@@ -41,7 +41,7 @@ class ServiceHelper {
     
     func updateProfile(updateModel: UpdateProfile, token: String, completionHandler: (response: Response<User, NSError>) -> Void) {
         let profileUri = ServiceHelper.BASE_URL + "/profile/updateuserprofile"
-        let request = Alamofire.request(.POST, profileUri, parameters: getJsonString(updateModel), encoding: .JSON, headers: ["Authorization" : "Bearer \(token)"])
+        let request = Alamofire.request(.POST, profileUri, parameters: getJsonString(updateModel), encoding: .JSON, headers: getAuthHeader(token))
         request.responseObject {
             (response: Response<User, NSError>) in
             completionHandler(response: response)
@@ -51,9 +51,25 @@ class ServiceHelper {
     
     func sendUserContacts(contactModel: Contacts, token: String) {
         let sendContactUri = ServiceHelper.BASE_URL + "/Profile/buildFriendsFromContacts"
-        let request = Alamofire.request(.POST, sendContactUri, parameters: getJsonString(contactModel), encoding: .JSON, headers: ["Authorization" : "Bearer \(token)"])
+        let request = Alamofire.request(.POST, sendContactUri, parameters: getJsonString(contactModel), encoding: .JSON, headers: getAuthHeader(token))
 
         print("send contact: \(request.request)")
+    }
+    
+    func getFriendList(id: Int, userUId: CLong, token: String, completionHandler: (response: Response<ListItem<Friend>, NSError>) -> Void) {
+        let getFriendListUri = "\(ServiceHelper.BASE_URL)/user/getfriendslist?id=\(id)&userid=\(userUId)"
+        let request = Alamofire.request(.GET, getFriendListUri, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseObject {
+            (response: Response<ListItem<Friend>, NSError>) in
+            completionHandler(response: response)
+        }
+        
+        print("get friend list: \(request.request)")
+    }
+    
+    private func getAuthHeader(token: String) -> [String: String] {
+        return ["Authorization" : "Bearer \(token)"]
     }
     
     private func getJsonString<T:Mappable>(model: T) -> [String: AnyObject] {

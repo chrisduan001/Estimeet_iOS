@@ -24,7 +24,8 @@ class LoginModel: BaseModel {
             let user = response.result.value
             if !self.isAnyErrors((response.response?.statusCode)!, response: user) {
                 self.userDefaults.saveUserDefault(user!)
-
+                //update baseuser data. password will be changed
+                self.baseUser = self.userDefaults.getUserFromDefaults()
                 if let name = user?.userName where !name.isEmpty {
                     self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
                 }
@@ -35,7 +36,7 @@ class LoginModel: BaseModel {
     }
     
     func sendContactList(contactList: String) {
-        contactModel = Contacts(id: baseUser!.id!, userId: baseUser!.userId!, contacts: contactList);
+        contactModel = Contacts(userId: baseUser!.userId!, userUId: baseUser!.userUId!, contacts: contactList)
         makeNetworkRequest()
     }
     

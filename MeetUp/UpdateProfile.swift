@@ -10,15 +10,15 @@ import Foundation
 import ObjectMapper
 
 class UpdateProfile: Mappable {
-    var id: Int?
-    var userId: CLong?
+    var userId: Int?
+    var userUId: CLong?
     var imageString: String?
     var userRegion: String?
     var userName: String?
     
-    init(id: Int, userId: CLong, imageString: String, userRegion: String, userName: String) {
-        self.id = id
+    init(userId: Int, userUId: CLong, imageString: String, userRegion: String, userName: String) {
         self.userId = userId
+        self.userUId = userUId
         self.imageString = imageString
         self.userRegion = userRegion
         self.userName = userName
@@ -28,8 +28,8 @@ class UpdateProfile: Mappable {
     }
     
     func mapping(map: Map) {
-        id          <- map["id"]
-        userId      <- map["userId"]
+        userId      <- map["id"]
+        userUId     <- map["userId"]
         imageString <- map["imageString"]
         userRegion  <- map["userRegion"]
         userName    <- map["userName"]

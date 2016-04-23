@@ -9,10 +9,6 @@
 import Foundation
 import Alamofire
 
-protocol BaseModel1 {
-    func abc()
-}
-
 class BaseModel {
     let serviceHelper: ServiceHelper
     let userDefaults: MeetUpUserDefaults
@@ -31,7 +27,7 @@ class BaseModel {
     
     func makeNetworkRequest() {
         if isTokenExpired((baseUser?.expireTime)!) {
-            serviceHelper.requestAuthToken(baseUser!.id!, password: baseUser!.password!) {
+            serviceHelper.requestAuthToken(baseUser!.userId!, password: baseUser!.password!) {
                 response in
                 print("Token response: \(response.response)")
                 guard self.processTokenResponse(response.response!.statusCode, tokenResponse: response.result.value) else {

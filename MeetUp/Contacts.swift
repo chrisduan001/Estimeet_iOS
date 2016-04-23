@@ -10,21 +10,21 @@ import Foundation
 import ObjectMapper
 
 class Contacts: Mappable {
-    var id: Int!
-    var userId: CLong!
+    var userId: Int!
+    var userUId: CLong!
     var contacts: String!
     
-    init(id: Int, userId: CLong, contacts: String) {
-        self.id = id
+    init(userId: Int, userUId: CLong, contacts: String) {
         self.userId = userId
+        self.userUId = userUId
         self.contacts = contacts
     }
     
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
-        id          <- map["id"]
-        userId      <- map["userId"]
+        userId      <- map["id"]
+        userUId     <- map["userId"]
         contacts    <- map["contacts"]
     }
 }

@@ -12,13 +12,13 @@ import ObjectMapper
 class SigninAuth: Mappable {
     var authHeader: String?
     var authUri: String?
-    var userId: CLong?
+    var userUId: CLong?
     var phoneNumber: String?
     
-    init(authHeader: String, authUri: String, userId: CLong, phoneNumber: String) {
+    init(authHeader: String, authUri: String, userUId: CLong, phoneNumber: String) {
         self.authHeader = authHeader
         self.authUri = authUri
-        self.userId = userId
+        self.userUId = userUId
         self.phoneNumber = phoneNumber
     }
     
@@ -26,9 +26,9 @@ class SigninAuth: Mappable {
     }
     
     func mapping(map: Map) {
-        authHeader <- map["authHeader"]
-        authUri    <- map["authUri"]
-        userId     <- map["userId"]
+        authHeader  <- map["authHeader"]
+        authUri     <- map["authUri"]
+        userUId     <- map["userId"]
         phoneNumber <- map["phoneNumber"]
     }
 }

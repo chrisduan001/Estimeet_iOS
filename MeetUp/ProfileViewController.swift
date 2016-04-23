@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class ProfileViewController: BaseViewController, ProfileListener, FbCallbackListener, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class ProfileViewController: BaseViewController, ProfileListener, FriendListListener, FbCallbackListener, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet weak var imgUserDp: UIImageView!
     @IBOutlet weak var lblEnterName: UILabel!
@@ -19,13 +19,11 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
     @IBOutlet weak var btn_facebook: UIButton!
 
     var imagePicker: UIImagePickerController!
-    var profileModel: ProfileModel!
     
     //MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileModel = ProfileModel(serviceHelper: ServiceHelper.sharedInstance, userDefaults: MeetUpUserDefaults.sharedInstance, listener: self)
         setUpLabelDisplay()
         setUpImageAction()
     }
@@ -69,7 +67,9 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
         }
         
         let imageData = UIImagePNGRepresentation(imgUserDp.image!)!
-        profileModel.onStartUpdateProfile(userName, imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))
+        ModelFactory.sharedInstance.provideProfileModel(self)
+            .onStartUpdateProfile(userName, imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))
+
         startActivityIndicator()
     }
     
@@ -79,8 +79,7 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
     
     //MARK: CALL BACK
     func onProfileUpdated() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        endActivityIndicator()
+        ModelFactory.sharedInstance.provideFriendListModel(self).getFriendList()
     }
     
     func onFacebookSuccessful(id: String, userName: String) {
@@ -88,6 +87,11 @@ class ProfileViewController: BaseViewController, ProfileListener, FbCallbackList
         let dpUri = "https://graph.facebook.com/" + id + "/picture?type=large";
         //TODO: add placeholder image, just incase user click get start before image load
         imgUserDp.kf_setImageWithURL(NSURL(string: dpUri)!, placeholderImage: nil)
+    }
+    
+    func onGetFriendList(listItem: ListItem<Friend>?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        endActivityIndicator()
     }
     
     //MARK: IMAGE

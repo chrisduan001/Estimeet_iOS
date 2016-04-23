@@ -33,7 +33,7 @@ class DigitsModel {
             let uri = authHeader["X-Auth-Service-Provider"] as! String
             let header = authHeader["X-Verify-Credentials-Authorization"] as! String
             let phoneNumber = session!.phoneNumber.stringByReplacingOccurrencesOfString("+", withString: "")
-            let model = SigninAuth(authHeader: header, authUri: uri, userId: CLong(session!.userID)!, phoneNumber: phoneNumber)
+            let model = SigninAuth(authHeader: header, authUri: uri, userUId: CLong(session!.userID)!, phoneNumber: phoneNumber)
             completionHandler(signinAuth: model)
         }
     }

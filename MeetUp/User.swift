@@ -10,8 +10,8 @@ import Foundation
 import ObjectMapper
 
 class User : BaseResponse {
-    var id: Int?
-    var userId: CLong?
+    var userId: Int?
+    var userUId: CLong?
     var userName: String?
     var dpUri: String?
     var phoneNumber: String?
@@ -28,8 +28,8 @@ class User : BaseResponse {
     }
     
     init(id:Int, userId:CLong, userName:String, dpUri:String, phoneNumber:String, password:String, token:String, expireTime:CLong) {
-        self.id = id
-        self.userId = userId
+        self.userId = id
+        self.userUId = userId
         self.userName = userName
         self.dpUri = dpUri
         self.phoneNumber = phoneNumber
@@ -41,8 +41,8 @@ class User : BaseResponse {
     }
     
     override func mapping(map: Map) {
-        id          <- map["id"]
-        userId      <- map["userId"]
+        userId          <- map["id"]
+        userUId      <- map["userId"]
         userName    <- map["userName"]
         dpUri       <- map["dpUri"]
         phoneNumber <- map["phoneNumber"]

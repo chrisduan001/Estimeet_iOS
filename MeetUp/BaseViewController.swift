@@ -18,6 +18,8 @@ class BaseViewController: UIViewController, BaseListener {
     }
     
     func logOut() {
+        //TODO: SET UP PROPER LOGOUT
+//        Navigator.sharedInstance.navigateToLogin(self)
 //        Digits.sharedInstance().logOut()
     }
     

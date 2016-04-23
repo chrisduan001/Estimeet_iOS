@@ -22,11 +22,14 @@ class MainViewController: BaseViewController {
     
     override func viewDidAppear(animated: Bool) {
         let user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
-        if user == nil {
-            Navigator.sharedInstance.navigateToLogin(self)
-        } else if user?.userName == "" {
-            Navigator.sharedInstance.navigateToProfilePage(self)
-        }
+        //TODO: test only nav to profile page
+//        if user == nil {
+//            Navigator.sharedInstance.navigateToLogin(self)
+//        } else if user?.userName == "" {
+//            Navigator.sharedInstance.navigateToProfilePage(self)
+//        }
+        
+        Navigator.sharedInstance.navigateToProfilePage(self)
     }
     
     override func didReceiveMemoryWarning() {

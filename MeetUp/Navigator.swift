@@ -10,8 +10,7 @@ import Foundation
 class Navigator {
     static let sharedInstance = Navigator()
     
-    private init() {
-    }
+    private init() {}
     
     func navigateToLogin(vc: BaseViewController) {
         let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)

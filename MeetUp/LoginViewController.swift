@@ -27,7 +27,7 @@ class LoginViewController : BaseViewController, LoginListener {
     
     func initialize() {
         self.title = NSLocalizedString(GlobalString.login_title, comment: "title login")
-        loginModel = LoginModel(serviceHelper: ServiceHelper.sharedInstance, userDefaults: MeetUpUserDefaults.sharedInstance, listener: self)
+        loginModel = ModelFactory.sharedInstance.provideLoginModel(self)
     }
 
     //MARK: BUTTON ACTION

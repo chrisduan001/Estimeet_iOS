@@ -49,8 +49,8 @@ class MeetUpUserDefaults {
     
     func saveUserDefault(user: User) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setInteger(user.id!, forKey: ID)
-        userDefaults.setInteger(user.userId!, forKey: USER_ID)
+        userDefaults.setInteger(user.userId!, forKey: ID)
+        userDefaults.setInteger(user.userUId!, forKey: USER_ID)
         userDefaults.setObject(user.phoneNumber!, forKey: PHONE)
         userDefaults.setObject(user.password!, forKey: PASSWORD)
         

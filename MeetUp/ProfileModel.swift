@@ -19,23 +19,26 @@ class ProfileModel: BaseModel {
     }
     
     func onStartUpdateProfile(name: String, imageString: String) {
-        updateModel = UpdateProfile(id: baseUser!.id!, userId: baseUser!.userId!, imageString: imageString, userRegion: "", userName: name)
+//        updateModel = UpdateProfile(id: baseUser!.userId!, userId: baseUser!.userUId!, imageString: imageString, userRegion: "", userName: name)
         makeNetworkRequest()
     }
     
     //MARK EXTEND SUPER
     override func startNetworkRequest() {
-        serviceHelper.updateProfile(updateModel, token: baseUser!.token!) {
-            response in
-            let user = response.result.value
-            guard !self.isAnyErrors(response.response!.statusCode, response: user) else {
-                return
-            }
-            print("Update profile response:\(response.response)")
-            self.userDefaults.updateUserProfile(user!.userName!, imageUri: user!.dpUri!)
-            
-            self.listener.onProfileUpdated()
-        }
+        //TODO..TEST ONLY
+//        serviceHelper.updateProfile(updateModel, token: baseUser!.token!) {
+//            response in
+//            let user = response.result.value
+//            guard !self.isAnyErrors(response.response!.statusCode, response: user) else {
+//                return
+//            }
+//            print("Update profile response:\(response.response)")
+//            self.userDefaults.updateUserProfile(user!.userName!, imageUri: user!.dpUri!)
+//            
+//            self.listener.onProfileUpdated()
+//        }
+        
+        self.listener.onProfileUpdated()
     }
     
     override func onError(message: String) {
