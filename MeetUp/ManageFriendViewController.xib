@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageFriendViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="aYl-ZK-Vcv" id="YAW-0h-4IN"/>
+                <outlet property="tableView" destination="oin-fw-AcM" id="gj8-N0-u4k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Oq4-cM-SML"/>
             </connections>
         </placeholder>
@@ -18,16 +20,25 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oin-fw-AcM">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="QyK-ed-Zi9"/>
+                        <outlet property="delegate" destination="-1" id="GlF-0Z-eBh"/>
+                    </connections>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aYl-ZK-Vcv">
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="oin-fw-AcM" secondAttribute="bottom" id="2HK-rZ-gHs"/>
+                <constraint firstItem="aYl-ZK-Vcv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BT0-rJ-dvh"/>
                 <constraint firstItem="oin-fw-AcM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="N4e-ka-Kh4"/>
                 <constraint firstItem="oin-fw-AcM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="S5L-dY-ekc"/>
                 <constraint firstAttribute="trailing" secondItem="oin-fw-AcM" secondAttribute="trailing" id="bPQ-pv-88x"/>
+                <constraint firstItem="aYl-ZK-Vcv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="evK-ii-ulA"/>
             </constraints>
-            <point key="canvasLocation" x="326" y="356"/>
+            <point key="canvasLocation" x="-126" y="314"/>
         </view>
     </objects>
 </document>

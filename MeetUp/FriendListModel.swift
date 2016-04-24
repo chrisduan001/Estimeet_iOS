@@ -22,6 +22,10 @@ class FriendListModel: BaseModel {
         makeNetworkRequest()
     }
     
+    func getDbFriends() {
+        listener.onGetFriendList(dataHelper.getFriends())
+    }
+    
     //MARK EXTEND SUPER
     override func startNetworkRequest() {
         serviceHelper.getFriendList(baseUser!.userId!, userUId: baseUser!.userUId!, token: baseUser!.token!) {
@@ -31,26 +35,23 @@ class FriendListModel: BaseModel {
                 return
             }
             
-            var isAnyFriends = false
             if listItem?.items != nil {
                 let friendsList = listItem?.items as [FriendEntity]!
                 self.dataHelper.storeFriendList(friendsList)
-                
-                isAnyFriends = friendsList.count > 0
             }
-            self.listener.onGetFriendList(isAnyFriends)
+            self.listener.onGetFriendList(listItem?.items)
         }
     }
     
     override func onAuthError() {
-        listener.onGetFriendList(false)
+        listener.onGetFriendList(nil)
     }
     
     override func onError(message: String) {
-        listener.onGetFriendList(false)
+        listener.onGetFriendList(nil)
     }
 }
 
 protocol FriendListListener: BaseListener {
-    func onGetFriendList(isAnyFriends: Bool)
+    func onGetFriendList(friends: [FriendEntity]?)
 }

@@ -89,10 +89,11 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
         imgUserDp.kf_setImageWithURL(NSURL(string: dpUri)!, placeholderImage: nil)
     }
     
-    func onGetFriendList(isAnyFriends: Bool) {
+    func onGetFriendList(friends: [FriendEntity]?) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let mainVc = appDelegate.window!.rootViewController as! MainViewController
-        mainVc.isAnyFriends = isAnyFriends
+        
+        mainVc.isAnyFriends = friends != nil && friends?.count > 0
         endActivityIndicator()
         self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     }

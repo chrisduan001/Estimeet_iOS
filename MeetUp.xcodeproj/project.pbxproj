@@ -12,6 +12,7 @@
 		6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A8211CCB6D5500401B07 /* DataEntity.swift */; };
 		621538FB1CCC7DD700554726 /* ManageFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621538F91CCC7DD700554726 /* ManageFriendViewController.swift */; };
 		621538FC1CCC7DD700554726 /* ManageFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621538FA1CCC7DD700554726 /* ManageFriendViewController.xib */; };
+		621539001CCCA03E00554726 /* ManageFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621538FF1CCCA03E00554726 /* ManageFriendCell.xib */; };
 		622785E11C8B8947006FDD55 /* SigninAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622785E01C8B8947006FDD55 /* SigninAuth.swift */; };
 		622785E31C8BBFD9006FDD55 /* GlobalString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622785E21C8BBFD9006FDD55 /* GlobalString.swift */; };
 		622785E51C8BCA65006FDD55 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 622785E41C8BCA65006FDD55 /* ProfileViewController.xib */; };
@@ -58,6 +59,7 @@
 		6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PonyDebugger_Bridging_Header.h; sourceTree = "<group>"; };
 		621538F91CCC7DD700554726 /* ManageFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFriendViewController.swift; sourceTree = "<group>"; };
 		621538FA1CCC7DD700554726 /* ManageFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageFriendViewController.xib; sourceTree = "<group>"; };
+		621538FF1CCCA03E00554726 /* ManageFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageFriendCell.xib; sourceTree = "<group>"; };
 		622785E01C8B8947006FDD55 /* SigninAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninAuth.swift; sourceTree = "<group>"; };
 		622785E21C8BBFD9006FDD55 /* GlobalString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalString.swift; sourceTree = "<group>"; };
 		622785E41C8BCA65006FDD55 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				6240B1B91C88285B00899CD9 /* ViewController */,
+				621538FF1CCCA03E00554726 /* ManageFriendCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				6240B1AF1C86E90E00899CD9 /* Localizable.strings in Resources */,
 				622785E51C8BCA65006FDD55 /* ProfileViewController.xib in Resources */,
 				623BBD5D1C7EE97800643C3C /* LoginViewController.xib in Resources */,
+				621539001CCCA03E00554726 /* ManageFriendCell.xib in Resources */,
 				62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */,
 				62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */,
 				62C2CA021C8AE5440029B3DB /* Default-568h@2x.png in Resources */,
