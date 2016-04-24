@@ -15,7 +15,7 @@ class FriendEntity: BaseResponse {
     var userName: String!
     var dpUri: String!
     var image: NSData?
-    var isFavourite: Bool!
+    var isFavourite: Bool! = false
     
     required init?(_ map: Map) {
         super.init(map)

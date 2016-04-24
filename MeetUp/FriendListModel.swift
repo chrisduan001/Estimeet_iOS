@@ -26,6 +26,10 @@ class FriendListModel: BaseModel {
         listener.onGetFriendList(dataHelper.getFriends())
     }
     
+    func saveFriendImage(imgData: NSData) {
+        dataHelper.saveFriendImage(imgData)
+    }
+    
     //MARK EXTEND SUPER
     override func startNetworkRequest() {
         serviceHelper.getFriendList(baseUser!.userId!, userUId: baseUser!.userUId!, token: baseUser!.token!) {

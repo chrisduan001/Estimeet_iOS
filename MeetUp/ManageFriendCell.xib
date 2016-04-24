@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="identifier" id="PLM-Mp-8Gb">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="identifier" id="PLM-Mp-8Gb" customClass="ManageFriendTableViewCell" customModule="MeetUp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PLM-Mp-8Gb" id="EmU-Fg-a3x">
@@ -35,17 +35,32 @@
                             <constraint firstAttribute="height" constant="40" id="wTZ-13-vCg"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2j9-WG-3aO">
+                        <rect key="frame" x="76" y="68.5" width="244" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="UBd-Iu-Gmt"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mQu-hz-jTj" firstAttribute="centerY" secondItem="EmU-Fg-a3x" secondAttribute="centerY" id="0aN-G4-ijH"/>
                     <constraint firstItem="EYu-rh-fgR" firstAttribute="leading" secondItem="YXC-Eg-sKC" secondAttribute="trailing" constant="8" id="3no-D9-ttK"/>
                     <constraint firstItem="YXC-Eg-sKC" firstAttribute="leading" secondItem="EmU-Fg-a3x" secondAttribute="leadingMargin" id="7kL-Gg-ec4"/>
+                    <constraint firstAttribute="bottom" secondItem="2j9-WG-3aO" secondAttribute="bottom" id="KbY-B2-Hf2"/>
+                    <constraint firstItem="2j9-WG-3aO" firstAttribute="leading" secondItem="YXC-Eg-sKC" secondAttribute="trailing" constant="8" id="YND-A6-Sue"/>
                     <constraint firstItem="mQu-hz-jTj" firstAttribute="trailing" secondItem="EmU-Fg-a3x" secondAttribute="trailingMargin" id="agm-OA-1Qv"/>
                     <constraint firstItem="mQu-hz-jTj" firstAttribute="leading" secondItem="EYu-rh-fgR" secondAttribute="trailing" constant="8" id="eqB-VU-LHb"/>
                     <constraint firstItem="EYu-rh-fgR" firstAttribute="centerY" secondItem="EmU-Fg-a3x" secondAttribute="centerY" id="jZ4-xH-WXU"/>
+                    <constraint firstAttribute="trailing" secondItem="2j9-WG-3aO" secondAttribute="trailing" id="oxw-DC-Kzg"/>
                     <constraint firstItem="YXC-Eg-sKC" firstAttribute="centerY" secondItem="EmU-Fg-a3x" secondAttribute="centerY" id="swH-NC-3uJ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="friendAction" destination="mQu-hz-jTj" id="IbF-nL-5BW"/>
+                <outlet property="friendDp" destination="YXC-Eg-sKC" id="PTy-Ui-8C6"/>
+                <outlet property="friendName" destination="EYu-rh-fgR" id="uYO-MD-sy5"/>
+            </connections>
             <point key="canvasLocation" x="341" y="313"/>
         </tableViewCell>
     </objects>

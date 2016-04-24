@@ -33,7 +33,7 @@ class DataHelper {
             friendObj.setValue(friend.userId, forKey: DataEntity.FRIEND_ATTR_USERID)
             friendObj.setValue(friend.userUId, forKey: DataEntity.FRIEND_ATTR_USERUID)
             friendObj.setValue(friend.userName, forKey: DataEntity.FRIEND_ATTR_USERNAME)
-            friendObj.setValue(friend.isFavourite == nil ? true : false, forKey: DataEntity.FRIEND_ATTR_FAVOURITE)
+            friendObj.setValue(friend.isFavourite == nil ? false : true, forKey: DataEntity.FRIEND_ATTR_FAVOURITE)
             friendObj.setValue(friend.image, forKey: DataEntity.FRIEND_ATTR_IMAGE)
             friendObj.setValue(friend.dpUri, forKey: DataEntity.FRIEND_ATTR_IMAGEURI)
         }
@@ -43,6 +43,10 @@ class DataHelper {
         } catch {
             //TODO..ADD PROPER EXCEPTION HANDLING
         }
+    }
+    
+    func saveFriendImage(imgData: NSData) {
+        
     }
     
     func getFriends() -> [FriendEntity] {
