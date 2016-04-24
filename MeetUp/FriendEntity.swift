@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Friend: BaseResponse {
+class FriendEntity: BaseResponse {
     var userId: Int!
     var userUId: CLong!
     var userName: String!
