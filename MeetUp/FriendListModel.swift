@@ -26,8 +26,8 @@ class FriendListModel: BaseModel {
         listener.onGetFriendList(dataHelper.getFriends())
     }
     
-    func saveFriendImage(imgData: NSData) {
-        dataHelper.saveFriendImage(imgData)
+    func saveFriendImage(id: Int, imgData: NSData) {
+        dataHelper.saveFriendImage(id, imgData: imgData)
     }
     
     //MARK EXTEND SUPER

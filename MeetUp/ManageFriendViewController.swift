@@ -90,7 +90,7 @@ class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITab
                                                 guard image != nil else {
                                                     return
                                                 }
-                                                self.friendListModel.saveFriendImage(UIImagePNGRepresentation(image!)!)
+                                                self.friendListModel.saveFriendImage(friend.userId, imgData: UIImagePNGRepresentation(image!)!)
                                             }
             })
         }

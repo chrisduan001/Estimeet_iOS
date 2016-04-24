@@ -45,8 +45,15 @@ class DataHelper {
         }
     }
     
-    func saveFriendImage(imgData: NSData) {
+    func saveFriendImage(id: Int, imgData: NSData) {
+        let friendObj = getFriend(id)
+        friendObj?.setValue(imgData, forKey: DataEntity.FRIEND_ATTR_IMAGE)
         
+        dispatch_async(dispatch_get_main_queue()) {
+            do {
+                try self.context.save()
+            } catch {}
+        }
     }
     
     func getFriends() -> [FriendEntity] {
@@ -70,6 +77,17 @@ class DataHelper {
         } catch {}
         
         return friendList
+    }
+    
+    func getFriend(userId: Int) -> AnyObject? {
+        let request = NSFetchRequest(entityName: DataEntity.ENTITY_FRIEND)
+        request.predicate = NSPredicate(format: "\(DataEntity.FRIEND_ATTR_USERID) = %@", String(userId))
+        
+        do {
+            return try context.executeFetchRequest(request)[0]
+        } catch {}
+        
+        return nil
     }
     
     func deleteAllFriends() {
