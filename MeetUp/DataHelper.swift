@@ -25,7 +25,7 @@ class DataHelper {
     
     func storeFriendList(friends: [FriendEntity]) {
         let entity = NSEntityDescription.entityForName(DataEntity.ENTITY_FRIEND, inManagedObjectContext: context)
-        
+
         deleteAllFriends()
         
         for friend in friends {

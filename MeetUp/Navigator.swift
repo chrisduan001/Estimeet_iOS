@@ -21,4 +21,9 @@ class Navigator {
         let modalVc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         vc.presentViewController(modalVc, animated: true, completion: nil)
     }
+    
+    func navigateToFriendList(vc: BaseViewController) {
+        let controller = ManageFriendViewController(nibName: "ManageFriendViewController", bundle: nil)
+        vc.navigationController?.pushViewController(controller, animated: true)
+    }
 }

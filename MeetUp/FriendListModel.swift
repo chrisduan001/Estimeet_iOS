@@ -31,22 +31,26 @@ class FriendListModel: BaseModel {
                 return
             }
             
+            var isAnyFriends = false
             if listItem?.items != nil {
-                self.dataHelper.storeFriendList(listItem!.items)
+                let friendsList = listItem?.items as [FriendEntity]!
+                self.dataHelper.storeFriendList(friendsList)
+                
+                isAnyFriends = friendsList.count > 0
             }
-            self.listener.onGetFriendList(listItem)
+            self.listener.onGetFriendList(isAnyFriends)
         }
     }
     
     override func onAuthError() {
-        listener.onGetFriendList(nil)
+        listener.onGetFriendList(false)
     }
     
     override func onError(message: String) {
-        listener.onGetFriendList(nil)
+        listener.onGetFriendList(false)
     }
 }
 
 protocol FriendListListener: BaseListener {
-    func onGetFriendList(listItem: ListItem<FriendEntity>?)
+    func onGetFriendList(isAnyFriends: Bool)
 }

@@ -9,13 +9,13 @@
 import UIKit
 
 class MainViewController: BaseViewController {
-    var friendList: [FriendEntity]?
+    var isAnyFriends: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO:
-        self.title = "Main"
+        let headerImg = UIImage(named: "navigation_icon")
+        self.navigationItem.titleView = UIImageView(image: headerImg)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -25,10 +25,17 @@ class MainViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         let user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
 
-        if user == nil {
-            Navigator.sharedInstance.navigateToLogin(self)
-        } else if user?.userName == "" {
-            Navigator.sharedInstance.navigateToProfilePage(self)
+        guard user != nil && !(user?.userName?.isEmpty)! else{
+            if user == nil {
+                Navigator.sharedInstance.navigateToLogin(self)
+            } else {
+                Navigator.sharedInstance.navigateToProfilePage(self)
+            }
+            return
+        }
+        
+        if isAnyFriends {
+            Navigator.sharedInstance.navigateToFriendList(self)
         }
     }
     
