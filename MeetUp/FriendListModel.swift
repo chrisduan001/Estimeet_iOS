@@ -48,5 +48,5 @@ class FriendListModel: BaseModel {
 }
 
 protocol FriendListListener: BaseListener {
-    func onGetFriendList(listItem: ListItem<Friend>?)
+    func onGetFriendList(listItem: ListItem<FriendEntity>?)
 }

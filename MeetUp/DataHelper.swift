@@ -23,7 +23,7 @@ class DataHelper {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     }
     
-    func storeFriendList(friends: [Friend]) {
+    func storeFriendList(friends: [FriendEntity]) {
         let entity = NSEntityDescription.entityForName(DataEntity.ENTITY_FRIEND, inManagedObjectContext: context)
         
         deleteAllFriends()
@@ -45,9 +45,9 @@ class DataHelper {
         }
     }
     
-    func getFriends() -> [Friend] {
+    func getFriends() -> [FriendEntity] {
         let request = NSFetchRequest(entityName: DataEntity.ENTITY_FRIEND)
-        var friendList = [Friend]()
+        var friendList = [FriendEntity]()
         
         do {
             let results = try context.executeFetchRequest(request)
@@ -59,7 +59,7 @@ class DataHelper {
                 let image = result.valueForKey(DataEntity.FRIEND_ATTR_IMAGE) as? NSData
                 let uri = result.valueForKey(DataEntity.FRIEND_ATTR_IMAGEURI) as! String
                 
-                let friendObj = Friend(userId: id, userUId: uid, userName: name, dpUri: uri, image: image, isFavourite: favourite)
+                let friendObj = FriendEntity(userId: id, userUId: uid, userName: name, dpUri: uri, image: image, isFavourite: favourite)
                 friendList.append(friendObj)
             }
             

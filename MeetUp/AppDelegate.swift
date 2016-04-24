@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         debugger.forwardAllNetworkTraffic()
         debugger.enableNetworkTrafficDebugging()
         debugger.enableCoreDataDebugging()
+        debugger.addManagedObjectContext(self.managedObjectContext)
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

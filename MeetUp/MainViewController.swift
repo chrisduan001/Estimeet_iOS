@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MainViewController: BaseViewController {    
+class MainViewController: BaseViewController {
+    var friendList: [FriendEntity]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,19 +24,18 @@ class MainViewController: BaseViewController {
     
     override func viewDidAppear(animated: Bool) {
         let user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
-        //TODO: test only nav to profile page
-//        if user == nil {
-//            Navigator.sharedInstance.navigateToLogin(self)
-//        } else if user?.userName == "" {
-//            Navigator.sharedInstance.navigateToProfilePage(self)
-//        }
-        
-        Navigator.sharedInstance.navigateToProfilePage(self)
+
+        if user == nil {
+            Navigator.sharedInstance.navigateToLogin(self)
+        } else if user?.userName == "" {
+            Navigator.sharedInstance.navigateToProfilePage(self)
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     @IBAction func tempButton(sender: UIButton) {
         Navigator.sharedInstance.navigateToLogin(self)
         MeetUpUserDefaults.sharedInstance.removeUserDefault()

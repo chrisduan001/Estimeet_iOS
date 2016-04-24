@@ -58,12 +58,12 @@ class LoginViewController : BaseViewController, LoginListener {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.endActivityIndicator()
                         guard let name = user.userName where name.isEmpty else {
+                            //go to main page
                             self.dismissViewControllerAnimated(true, completion: nil)
                             return
                         }
                         
                         Navigator.sharedInstance.navigateToProfilePage(self)
-                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }
                 

@@ -56,12 +56,12 @@ class ServiceHelper {
         print("send contact: \(request.request)")
     }
     
-    func getFriendList(id: Int, userUId: CLong, token: String, completionHandler: (response: Response<ListItem<Friend>, NSError>) -> Void) {
+    func getFriendList(id: Int, userUId: CLong, token: String, completionHandler: (response: Response<ListItem<FriendEntity>, NSError>) -> Void) {
         let getFriendListUri = "\(ServiceHelper.BASE_URL)/user/getfriendslist?id=\(id)&userid=\(userUId)"
         let request = Alamofire.request(.GET, getFriendListUri, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
         
         request.responseObject {
-            (response: Response<ListItem<Friend>, NSError>) in
+            (response: Response<ListItem<FriendEntity>, NSError>) in
             completionHandler(response: response)
         }
         
