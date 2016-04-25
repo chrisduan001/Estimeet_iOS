@@ -9,46 +9,93 @@
 import UIKit
 import Kingfisher
 
-class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, FriendListListener {
+class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate,
+FriendListListener, ManageFriendCellDelegate {
     @IBOutlet weak var tableView: UITableView!
+    
+    private var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.topItem?.title = "Main"
         
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(self)
-        friendListModel.getDbFriends()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        friendListModel.getFriendFetchedResultsController()
     }
     
     //MARK: CALLBACK
+    func setFriendFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {
+        self.fetchedResultsController = fetchedResultsController
+        self.fetchedResultsController.delegate = self
+        do {
+            try self.fetchedResultsController.performFetch()
+            if fetchedResultsController.fetchedObjects?.count <= 0 {
+                startActivityIndicator()
+                friendListModel.makeNetworkRequest()
+            } else {
+                tableView.reloadData()
+            }
+        } catch {
+            print("An exception occurred while fetch reuest")
+        }
+    }
+    
     func onGetFriendList(friends: [FriendEntity]?) {
         endActivityIndicator()
-        
-        guard friends != nil else {
-            return
-        }
-        
-        if friends!.count <= 0 {
-            friendListModel.makeNetworkRequest()
-            startActivityIndicator()
-        } else {
-            friendList = friends!
-            self.tableView.reloadData()
+    }
+    
+    //MARK: NSFetchedResultsControllerDelegate
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            break
+        case .Delete:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+        case .Update:
+            if let indexPath = indexPath {
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! ManageFriendTableViewCell
+                setUpCell(cell, indexPath: indexPath)
+            }
+        case .Move:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            }
         }
     }
     
     //MARK: TABLE VIEW
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendList.count
+        if let sections = fetchedResultsController.sections {
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -64,8 +111,7 @@ class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITab
         }
         
         if cell != nil {
-            let friend = friendList[indexPath.row]
-            setUpCell(friend, cell: cell!)
+            setUpCell(cell!, indexPath: indexPath)
         }
 
         return cell!
@@ -75,25 +121,34 @@ class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITab
         return ManageFriendTableViewCell.CELL_HEIGHT
     }
     
-    private func setUpCell(friend: FriendEntity, cell: ManageFriendTableViewCell) {
+    private func setUpCell(cell: ManageFriendTableViewCell, indexPath: NSIndexPath) {
+        let friendObj = fetchedResultsController.objectAtIndexPath(indexPath)
+        let friend = DataEntity.sharedInstance.translateFriendObjToFriendEntity(friendObj)
+        cell.indexPath = indexPath
+        cell.setDelegate(self)
         cell.friendName.text = friend.userName
         cell.friendAction.image = UIImage(named: friend.isFavourite! ? "cancel" : "add_friend")
         
         if friend.image != nil {
             cell.friendDp.image = UIImage(data: friend.image!)
         } else {
-            cell.friendDp.kf_setImageWithURL(NSURL(string: friend.dpUri)!,
-                                         placeholderImage: nil,
-                                              optionsInfo: [.Transition(ImageTransition.Fade(1))],
-                                        completionHandler: { (image, error, cacheType, imageURL) in
-                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                                                guard image != nil else {
-                                                    return
-                                                }
-                                                self.friendListModel.saveFriendImage(friend.userId, imgData: UIImagePNGRepresentation(image!)!)
-                                            }
+            ImageFactory.sharedInstance.loadImageFromUrl(cell.friendDp,
+                                                         fromUrl: NSURL(string:friend.dpUri)!,
+                                                         placeHolder: nil,
+                                                         completionHandler: { (image, error, cacheType, imageURL) in
+                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                                                                guard image != nil else {
+                                                                    return
+                                                                }
+                                                                self.friendListModel.saveFriendImage(friendObj, imgData: UIImagePNGRepresentation(image!)!)
+                                                            }
             })
         }
+    }
+    
+    //MARK: CELL DELEGATE
+    func onAddFriendClicked(indexPath: NSIndexPath) {
+        friendListModel.setFavouriteFriend(fetchedResultsController.objectAtIndexPath(indexPath))
     }
     
     //MARK: VARIABLE

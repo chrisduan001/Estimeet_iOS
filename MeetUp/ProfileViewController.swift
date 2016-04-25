@@ -98,6 +98,10 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
         self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     }
     
+    func setFriendFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {
+        NSException(name: "Not implement exception", reason: "This method has to be implemented", userInfo: nil).raise()
+    }
+    
     //MARK: IMAGE
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)

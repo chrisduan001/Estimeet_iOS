@@ -23,6 +23,7 @@ class DataHelper {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     }
     
+    //MARK: FRIEND ACTIONS
     func storeFriendList(friends: [FriendEntity]) {
         let entity = NSEntityDescription.entityForName(DataEntity.ENTITY_FRIEND, inManagedObjectContext: context)
 
@@ -33,7 +34,7 @@ class DataHelper {
             friendObj.setValue(friend.userId, forKey: DataEntity.FRIEND_ATTR_USERID)
             friendObj.setValue(friend.userUId, forKey: DataEntity.FRIEND_ATTR_USERUID)
             friendObj.setValue(friend.userName, forKey: DataEntity.FRIEND_ATTR_USERNAME)
-            friendObj.setValue(friend.isFavourite == nil ? false : true, forKey: DataEntity.FRIEND_ATTR_FAVOURITE)
+            friendObj.setValue(friend.isFavourite == nil ? false : friend.isFavourite, forKey: DataEntity.FRIEND_ATTR_FAVOURITE)
             friendObj.setValue(friend.image, forKey: DataEntity.FRIEND_ATTR_IMAGE)
             friendObj.setValue(friend.dpUri, forKey: DataEntity.FRIEND_ATTR_IMAGEURI)
         }
@@ -45,15 +46,23 @@ class DataHelper {
         }
     }
     
-    func saveFriendImage(id: Int, imgData: NSData) {
-        let friendObj = getFriend(id)
-        friendObj?.setValue(imgData, forKey: DataEntity.FRIEND_ATTR_IMAGE)
+    func saveFriendImage(friendObj: AnyObject, imgData: NSData) {
+        friendObj.setValue(imgData, forKey: DataEntity.FRIEND_ATTR_IMAGE)
         
         dispatch_async(dispatch_get_main_queue()) {
             do {
                 try self.context.save()
             } catch {}
         }
+    }
+    
+    func setFavouriteFriend(friendObj: AnyObject) {
+        let favourite = friendObj.valueForKey(DataEntity.FRIEND_ATTR_FAVOURITE) as! Bool
+        friendObj.setValue(!favourite, forKey: DataEntity.FRIEND_ATTR_FAVOURITE)
+        
+        do {
+            try context.save()
+        } catch {}
     }
     
     func getFriends() -> [FriendEntity] {
@@ -97,6 +106,14 @@ class DataHelper {
         do {
             try context.executeRequest(deleteRequest)
         } catch {}
+    }
+    
+    //MARK: FETCHED RESULTS
+    func getFriendsFetchedResults() -> NSFetchedResultsController {
+        let request = NSFetchRequest(entityName: DataEntity.ENTITY_FRIEND)
+        let sort = NSSortDescriptor(key: DataEntity.FRIEND_ATTR_USERNAME, ascending: true)
+        request.sortDescriptors = [sort]
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "manageFriendCache")
     }
 }
 

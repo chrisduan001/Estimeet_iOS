@@ -16,6 +16,7 @@ class MainViewController: BaseViewController {
         
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
+        
     }
     
     override func viewWillAppear(animated: Bool) {

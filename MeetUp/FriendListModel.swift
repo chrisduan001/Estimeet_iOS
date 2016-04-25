@@ -22,12 +22,20 @@ class FriendListModel: BaseModel {
         makeNetworkRequest()
     }
     
-    func getDbFriends() {
-        listener.onGetFriendList(dataHelper.getFriends())
+    func saveFriendImage(friendObj: AnyObject, imgData: NSData) {
+        dataHelper.saveFriendImage(friendObj, imgData: imgData)
     }
     
-    func saveFriendImage(id: Int, imgData: NSData) {
-        dataHelper.saveFriendImage(id, imgData: imgData)
+    func setFavouriteFriend(friendObj: AnyObject) {
+        dataHelper.setFavouriteFriend(friendObj)
+    }
+    
+    func getFriendFetchedResultsController() {
+        listener.setFriendFetchedResultsController(dataHelper.getFriendsFetchedResults())
+    }
+    
+    func deleteData() {
+        dataHelper.deleteAllFriends()
     }
     
     //MARK EXTEND SUPER
@@ -58,4 +66,5 @@ class FriendListModel: BaseModel {
 
 protocol FriendListListener: BaseListener {
     func onGetFriendList(friends: [FriendEntity]?)
+    func setFriendFetchedResultsController(fetchedResultsController: NSFetchedResultsController)
 }
