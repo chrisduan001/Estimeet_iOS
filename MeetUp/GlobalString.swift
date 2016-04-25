@@ -31,4 +31,8 @@ class GlobalString{
     static let page_title_profile   = "page_title_profile"
     
     static let table_recommend_friend = "table_recommend_friend"
+    
+    static let profile_name         = "page_profile_name"
+    static let profile_id           = "page_profile_id"
+    static let profile_mobile       = "page_profile_mobile"
 }

@@ -13,6 +13,7 @@ class MeetUpUserDefaults {
     private let USER_ID = "USER_ID"
     private let NAME = "USER_NAME"
     private let DP = "USER_DP"
+    private let DP_DATA = "USER_DP_DATA"
     private let PHONE = "PHONE_NUMBER"
     private let PASSWORD = "PASSWORD"
     private let TOKEN = "AUTH_TOKEN"
@@ -42,9 +43,10 @@ class MeetUpUserDefaults {
         password = password == nil ? "" : password!
         token = token == nil ? "" : token!
         expire = expire == nil ? 0 : expire!
+        let imageData = userDefaults.objectForKey(DP_DATA) as? NSData
         
         
-        return User(id: id!, userId: userId!, userName: name!, dpUri: dpUri!, phoneNumber: phone!, password: password!, token: token!, expireTime: expire!)
+        return User(id: id!, userId: userId!, userName: name!, dpUri: dpUri!, phoneNumber: phone!, password: password!, token: token!, expireTime: expire!, imageData: imageData)
     }
     
     func saveUserDefault(user: User) {
@@ -65,6 +67,13 @@ class MeetUpUserDefaults {
         userDefaults.synchronize()
     }
     
+    func saveUserImageData(image: NSData) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(image, forKey: DP_DATA)
+        
+        userDefaults.synchronize()
+    }
+    
     func updateUserToken(token:String, expireInSeconds: CLong) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(token, forKey: TOKEN)
@@ -76,7 +85,7 @@ class MeetUpUserDefaults {
     }
     
     func removeUserDefault() {
-//        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
     }
 }
 

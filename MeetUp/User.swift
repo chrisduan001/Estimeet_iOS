@@ -18,6 +18,7 @@ class User : BaseResponse {
     var password: String?
     var token: String?
     var expireTime: CLong?
+    var image: NSData?
     
     required init?(_ map: Map) {
         super.init(map)
@@ -27,7 +28,7 @@ class User : BaseResponse {
         super.init()
     }
     
-    init(id:Int, userId:CLong, userName:String, dpUri:String, phoneNumber:String, password:String, token:String, expireTime:CLong) {
+    init(id:Int, userId:CLong, userName:String, dpUri:String, phoneNumber:String, password:String, token:String, expireTime:CLong, imageData: NSData?) {
         self.userId = id
         self.userUId = userId
         self.userName = userName
@@ -36,13 +37,14 @@ class User : BaseResponse {
         self.password = password
         self.token = token
         self.expireTime = expireTime
+        self.image = imageData
         
         super.init()
     }
     
     override func mapping(map: Map) {
-        userId          <- map["id"]
-        userUId      <- map["userId"]
+        userId      <- map["id"]
+        userUId     <- map["userId"]
         userName    <- map["userName"]
         dpUri       <- map["dpUri"]
         phoneNumber <- map["phoneNumber"]

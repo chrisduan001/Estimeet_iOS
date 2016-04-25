@@ -9,23 +9,21 @@
 import UIKit
 
 class MainViewController: BaseViewController {
-    var isAnyFriends: Bool = true
+    var isAnyFriends: Bool = false
     
+    private var user: User?
+    
+    //MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        
+        user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
     }
     
     override func viewDidAppear(animated: Bool) {
-        let user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
-
         guard user != nil && !(user?.userName?.isEmpty)! else{
             if user == nil {
                 Navigator.sharedInstance.navigateToLogin(self)
@@ -40,13 +38,12 @@ class MainViewController: BaseViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    @IBAction func onManageFriend(sender: UIBarButtonItem) {
+        Navigator.sharedInstance.navigateToFriendList(self)
     }
     
-    @IBAction func tempButton(sender: UIButton) {
-        Navigator.sharedInstance.navigateToLogin(self)
-        MeetUpUserDefaults.sharedInstance.removeUserDefault()
+    @IBAction func onManageProfile(sender: UIBarButtonItem) {
+        Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
     }
 }
 

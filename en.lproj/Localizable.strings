@@ -30,3 +30,7 @@
 "page_title_profile"            = "Profile";
 
 "table_recommend_friend"        = "Recommended Friends";
+
+"page_profile_name"             = "Name";
+"page_profile_id"               = "ID";
+"page_profile_mobile"           = "Mobile Number";
