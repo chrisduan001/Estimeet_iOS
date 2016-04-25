@@ -26,4 +26,9 @@ class GlobalString{
     static let error_generic        = "error_generic"
     
     static let prompt_address_book  = "permission_prompt_addressbook"
+    
+    static let navigation_main      = "navigation_main"
+    static let page_title_profile   = "page_title_profile"
+    
+    static let table_recommend_friend = "table_recommend_friend"
 }

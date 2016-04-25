@@ -17,7 +17,8 @@ FriendListListener, ManageFriendCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = "Main"
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString(GlobalString.navigation_main, comment: "navigation button")
+        self.navigationItem.title = NSLocalizedString(GlobalString.page_title_profile, comment: "title")
         
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(self)
         friendListModel.getFriendFetchedResultsController()
@@ -87,6 +88,30 @@ FriendListListener, ManageFriendCellDelegate {
         }
         
         return 0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let frame = self.tableView.frame
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: ManageFriendTableViewCell.HEADER_HEIGHT))
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: frame.width, height: ManageFriendTableViewCell.HEADER_HEIGHT))
+        
+        //center the header label
+        let labelCenter = label.center
+        label.center.y = ManageFriendTableViewCell.HEADER_HEIGHT / CGFloat(2)
+        label.center = labelCenter
+        
+        let headerTitle = NSLocalizedString(GlobalString.table_recommend_friend, comment: "Recommend friend")
+        label.text = headerTitle
+        label.textColor = UIColor().headerTextColor()
+        
+        view.addSubview(label)
+        view.backgroundColor = UIColor().sectionHeaderColor()
+        
+        return view
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return ManageFriendTableViewCell.HEADER_HEIGHT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

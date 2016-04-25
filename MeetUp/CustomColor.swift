@@ -13,6 +13,14 @@ extension UIColor {
         return UIColorFromHex("#77A500")
     }
     
+    public func sectionHeaderColor() -> UIColor {
+        return UIColorFromHex("#cccccc")
+    }
+    
+    public func headerTextColor() -> UIColor {
+        return UIColorFromHex("#4d4d4d")
+    }
+    
     private func UIColorFromHex(hex: String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         

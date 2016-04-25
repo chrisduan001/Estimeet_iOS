@@ -25,3 +25,8 @@
 "error_fatal_error"             = "Fatal error occurred, please try to reinstall the app";
 "error_insert_data_server"      = "An error occurred while perform your operation, please try again";
 "error_generic"                 = "An error occurred, please try again";
+
+"navigation_main"               = "Main";
+"page_title_profile"            = "Profile";
+
+"table_recommend_friend"        = "Recommended Friends";
