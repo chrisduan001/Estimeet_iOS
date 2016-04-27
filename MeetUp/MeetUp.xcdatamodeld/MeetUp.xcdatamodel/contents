@@ -6,9 +6,11 @@
         <attribute name="imageUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userUId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="userUId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="SessionColumn" syncable="YES"/>
     <elements>
         <element name="Friend" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="SessionColumn" positionX="-63" positionY="27" width="128" height="45"/>
     </elements>
 </model>

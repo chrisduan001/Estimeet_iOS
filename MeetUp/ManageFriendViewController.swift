@@ -67,8 +67,12 @@ FriendListListener, ManageFriendCellDelegate {
             }
         case .Update:
             if let indexPath = indexPath {
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as! ManageFriendTableViewCell
-                setUpCell(cell, indexPath: indexPath)
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as? ManageFriendTableViewCell
+                if cell != nil {
+                    setUpCell(cell!, indexPath: indexPath)
+                } else {
+                    print("null value found at \(indexPath.row)")
+                }
             }
         case .Move:
             if let indexPath = indexPath {
@@ -130,15 +134,13 @@ FriendListListener, ManageFriendCellDelegate {
         
         if cell == nil {
             let object = NibLoader.sharedInstance.loadNibWithName("ManageFriendCell", owner: nil, ofclass: ManageFriendTableViewCell.self)
-            if object != nil {
-                cell = object as? ManageFriendTableViewCell
-            }
+            cell = object as? ManageFriendTableViewCell
         }
         
         if cell != nil {
-            setUpCell(cell!, indexPath: indexPath)
+            setUpCell(cell!, indexPath: indexPath) 
         }
-
+        
         return cell!
     }
     

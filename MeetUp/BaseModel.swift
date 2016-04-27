@@ -21,8 +21,8 @@ class BaseModel {
         baseUser = userDefaults.getUserFromDefaults()
     }
     
-    func isTokenExpired(expireTime: CLong) -> Bool {
-        return CLong(NSDate().timeIntervalSinceReferenceDate) > expireTime
+    func isTokenExpired(expireTime: Int) -> Bool {
+        return Int(NSDate().timeIntervalSinceReferenceDate) > expireTime
     }
     
     func makeNetworkRequest() {

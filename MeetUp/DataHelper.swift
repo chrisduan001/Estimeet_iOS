@@ -73,7 +73,7 @@ class DataHelper {
             let results = try context.executeFetchRequest(request)
             for result in results {
                 let id = result.valueForKey(DataEntity.FRIEND_ATTR_USERID) as! Int
-                let uid = result.valueForKey(DataEntity.FRIEND_ATTR_USERUID) as! CLong
+                let uid = result.valueForKey(DataEntity.FRIEND_ATTR_USERUID) as! String
                 let name = result.valueForKey(DataEntity.FRIEND_ATTR_USERNAME) as! String
                 let favourite = result.valueForKey(DataEntity.FRIEND_ATTR_FAVOURITE) as! Bool
                 let image = result.valueForKey(DataEntity.FRIEND_ATTR_IMAGE) as? NSData

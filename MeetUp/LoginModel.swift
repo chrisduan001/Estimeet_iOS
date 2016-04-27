@@ -21,6 +21,7 @@ class LoginModel: BaseModel {
     func onStartSignin(signinAuth: SigninAuth) {
         serviceHelper.signInUser(signinAuth) {
             response in
+            print("sign in response: \(response.response)")
             let user = response.result.value
             if !self.isAnyErrors((response.response?.statusCode)!, response: user) {
                 self.userDefaults.saveUserDefault(user!)

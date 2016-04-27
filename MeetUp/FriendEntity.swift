@@ -11,7 +11,8 @@ import ObjectMapper
 
 class FriendEntity: BaseResponse {
     var userId: Int!
-    var userUId: CLong!
+    var userUId: String!
+    var uidNumber: NSNumber!
     var userName: String!
     var dpUri: String!
     var image: NSData?
@@ -25,7 +26,7 @@ class FriendEntity: BaseResponse {
         super.init()
     }
     
-    init(userId: Int, userUId: CLong, userName: String, dpUri: String, image: NSData?, isFavourite: Bool) {
+    init(userId: Int, userUId: String, userName: String, dpUri: String, image: NSData?, isFavourite: Bool) {
         self.userId = userId
         self.userUId = userUId
         self.userName = userName
@@ -37,8 +38,10 @@ class FriendEntity: BaseResponse {
     
     override func mapping(map: Map) {
         userId          <- map["id"]
-        userUId         <- map["userId"]
+        uidNumber       <- map["userId"]
         userName        <- map["userName"]
         dpUri           <- map["dpUri"]
+        //the server returns int value, need to transfer to string value
+        userUId = "\(uidNumber!)"
     }
 }

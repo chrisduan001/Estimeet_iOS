@@ -11,14 +11,15 @@ import ObjectMapper
 
 class User : BaseResponse {
     var userId: Int?
-    var userUId: CLong?
+    var userUId: String?
     var userName: String?
     var dpUri: String?
     var phoneNumber: String?
     var password: String?
     var token: String?
-    var expireTime: CLong?
+    var expireTime: Int?
     var image: NSData?
+    var uidIntValue: NSNumber?
     
     required init?(_ map: Map) {
         super.init(map)
@@ -28,7 +29,7 @@ class User : BaseResponse {
         super.init()
     }
     
-    init(id:Int, userId:CLong, userName:String, dpUri:String, phoneNumber:String, password:String, token:String, expireTime:CLong, imageData: NSData?) {
+    init(id:Int, userId:String, userName:String, dpUri:String, phoneNumber:String, password:String, token:String, expireTime:Int, imageData: NSData?) {
         self.userId = id
         self.userUId = userId
         self.userName = userName
@@ -44,13 +45,21 @@ class User : BaseResponse {
     
     override func mapping(map: Map) {
         userId      <- map["id"]
-        userUId     <- map["userId"]
+        uidIntValue <- map["userId"]
         userName    <- map["userName"]
         dpUri       <- map["dpUri"]
         phoneNumber <- map["phoneNumber"]
         password    <- map["password"]
         token       <- map["token"]
         expireTime  <- map["expires_in"]
+        //the server returns int value, need to transfer to string value
+        userUId = "\(uidIntValue!)"
+    
         super.mapping(map)
     }
 }
+
+
+
+
+

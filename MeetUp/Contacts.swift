@@ -11,10 +11,10 @@ import ObjectMapper
 
 class Contacts: Mappable {
     var userId: Int!
-    var userUId: CLong!
+    var userUId: String!
     var contacts: String!
     
-    init(userId: Int, userUId: CLong, contacts: String) {
+    init(userId: Int, userUId: String, contacts: String) {
         self.userId = userId
         self.userUId = userUId
         self.contacts = contacts

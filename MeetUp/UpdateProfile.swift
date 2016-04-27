@@ -11,12 +11,12 @@ import ObjectMapper
 
 class UpdateProfile: Mappable {
     var userId: Int?
-    var userUId: CLong?
+    var userUId: String?
     var imageString: String?
     var userRegion: String?
     var userName: String?
     
-    init(userId: Int, userUId: CLong, imageString: String, userRegion: String, userName: String) {
+    init(userId: Int, userUId: String, imageString: String, userRegion: String, userName: String) {
         self.userId = userId
         self.userUId = userUId
         self.imageString = imageString

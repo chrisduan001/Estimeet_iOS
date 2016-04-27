@@ -92,8 +92,8 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
     func onGetFriendList(friends: [FriendEntity]?) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let mainVc = appDelegate.window!.rootViewController as! MainViewController
-        
         mainVc.isAnyFriends = friends != nil && friends?.count > 0
+        mainVc.user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
         endActivityIndicator()
         self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     }

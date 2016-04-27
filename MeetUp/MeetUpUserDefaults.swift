@@ -25,13 +25,13 @@ class MeetUpUserDefaults {
     func getUserFromDefaults() -> User? {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let id = userDefaults.objectForKey(ID) as? Int
-        let userId = userDefaults.objectForKey(USER_ID) as? CLong
+        let userId = userDefaults.objectForKey(USER_ID) as? String
         var name = userDefaults.objectForKey(NAME) as? String
         var dpUri = userDefaults.objectForKey(DP) as? String
         var phone = userDefaults.objectForKey(PHONE) as? String
         var password = userDefaults.objectForKey(PASSWORD) as? String
         var token = userDefaults.objectForKey(TOKEN) as? String
-        var expire = userDefaults.objectForKey(EXPIRES) as? CLong
+        var expire = userDefaults.objectForKey(EXPIRES) as? Int
         
         guard id != nil && userId != nil else {
             return nil
@@ -52,7 +52,7 @@ class MeetUpUserDefaults {
     func saveUserDefault(user: User) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setInteger(user.userId!, forKey: ID)
-        userDefaults.setInteger(user.userUId!, forKey: USER_ID)
+        userDefaults.setObject(user.userUId!, forKey: USER_ID)
         userDefaults.setObject(user.phoneNumber!, forKey: PHONE)
         userDefaults.setObject(user.password!, forKey: PASSWORD)
         
@@ -74,10 +74,10 @@ class MeetUpUserDefaults {
         userDefaults.synchronize()
     }
     
-    func updateUserToken(token:String, expireInSeconds: CLong) {
+    func updateUserToken(token:String, expireInSeconds: Int) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(token, forKey: TOKEN)
-        let timeInSecond =  CLong(NSDate().timeIntervalSinceReferenceDate) + expireInSeconds
+        let timeInSecond =  Int(NSDate().timeIntervalSinceReferenceDate) + expireInSeconds
         //should renew 10 min before expires
         userDefaults.setInteger(timeInSecond - 600, forKey: EXPIRES)
         

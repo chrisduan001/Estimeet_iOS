@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="mCS-y5-TnE" id="B9c-mc-5vq"/>
                 <outlet property="view" destination="iN0-l3-epB" id="4Ox-SM-1mH"/>
             </connections>
         </placeholder>
@@ -36,6 +37,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="561"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
+                        <outlet property="delegate" destination="-1" id="qK8-Wi-hYB"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

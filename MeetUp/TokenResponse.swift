@@ -12,7 +12,7 @@ import ObjectMapper
 class TokenResponse: BaseResponse{
     var accessToken: String!
     var tokenType: String!
-    var expiresIn: CLong!
+    var expiresIn: Int!
     
     required init?(_ map: Map) {
         super.init(map)
@@ -22,7 +22,7 @@ class TokenResponse: BaseResponse{
         super.init()
     }
     
-    init(accessToken: String, tokenType: String, expiresIn: CLong) {
+    init(accessToken: String, tokenType: String, expiresIn: Int) {
         self.accessToken = accessToken
         self.tokenType = tokenType
         self.expiresIn = expiresIn

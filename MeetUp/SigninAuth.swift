@@ -12,10 +12,10 @@ import ObjectMapper
 class SigninAuth: Mappable {
     var authHeader: String?
     var authUri: String?
-    var userUId: CLong?
+    var userUId: String?
     var phoneNumber: String?
     
-    init(authHeader: String, authUri: String, userUId: CLong, phoneNumber: String) {
+    init(authHeader: String, authUri: String, userUId: String, phoneNumber: String) {
         self.authHeader = authHeader
         self.authUri = authUri
         self.userUId = userUId

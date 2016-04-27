@@ -25,7 +25,7 @@ class DataEntity {
         let imageUri = friendObj.valueForKey(DataEntity.FRIEND_ATTR_IMAGEURI) as! String
         let userId = friendObj.valueForKey(DataEntity.FRIEND_ATTR_USERID) as! Int
         let userName = friendObj.valueForKey(DataEntity.FRIEND_ATTR_USERNAME) as! String
-        let userUId = friendObj.valueForKey(DataEntity.FRIEND_ATTR_USERUID) as! CLong
+        let userUId = friendObj.valueForKey(DataEntity.FRIEND_ATTR_USERUID) as! String
         
         return FriendEntity(userId: userId,
                            userUId: userUId,

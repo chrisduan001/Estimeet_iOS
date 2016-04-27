@@ -42,6 +42,7 @@ class FriendListModel: BaseModel {
     override func startNetworkRequest() {
         serviceHelper.getFriendList(baseUser!.userId!, userUId: baseUser!.userUId!, token: baseUser!.token!) {
             response in
+            print("get friend list response \(response.response)")
             let listItem = response.result.value
             guard !self.isAnyErrors(response.response!.statusCode, response: listItem) else {
                 return
