@@ -12,7 +12,7 @@ class ManageFriendTableViewCell: UITableViewCell {
     static let CELL_HEIGHT:CGFloat = 70
     static let HEADER_HEIGHT: CGFloat = 20
     
-    weak var delegate: ManageFriendCellDelegate!
+    var delegate: ManageFriendCellDelegate!
 
     @IBOutlet weak var friendDp: UIImageView!
     @IBOutlet weak var friendName: UILabel!

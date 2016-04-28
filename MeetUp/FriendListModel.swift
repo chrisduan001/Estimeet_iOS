@@ -9,10 +9,10 @@
 import Foundation
 
 class FriendListModel: BaseModel {
-    unowned let listener: FriendListListener
+    weak var listener: FriendListListener?
     private let dataHelper: DataHelper
     
-    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, listener: FriendListListener) {
+    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, listener: FriendListListener?) {
         self.listener = listener
         self.dataHelper = dataHelper
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
@@ -31,11 +31,7 @@ class FriendListModel: BaseModel {
     }
     
     func getFriendFetchedResultsController() {
-        listener.setFriendFetchedResultsController(dataHelper.getFriendsFetchedResults())
-    }
-    
-    func deleteData() {
-        dataHelper.deleteAllFriends()
+        listener!.setFriendFetchedResultsController(dataHelper.getFriendsFetchedResults())
     }
     
     //MARK EXTEND SUPER
@@ -52,16 +48,16 @@ class FriendListModel: BaseModel {
                 let friendsList = listItem?.items as [FriendEntity]!
                 self.dataHelper.storeFriendList(friendsList)
             }
-            self.listener.onGetFriendList(listItem?.items)
+            self.listener!.onGetFriendList(listItem?.items)
         }
     }
     
     override func onAuthError() {
-        listener.onGetFriendList(nil)
+        listener!.onGetFriendList(nil)
     }
     
     override func onError(message: String) {
-        listener.onGetFriendList(nil)
+        listener!.onGetFriendList(nil)
     }
 }
 

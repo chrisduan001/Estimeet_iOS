@@ -34,8 +34,8 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="561"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
+                    <rect key="frame" x="0.0" y="64" width="600" height="497"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
@@ -46,7 +46,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="mCS-y5-TnE" secondAttribute="trailing" id="Jwe-7E-sxm"/>
-                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="M35-FI-N5Q"/>
+                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="M35-FI-N5Q"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="top" secondItem="mCS-y5-TnE" secondAttribute="bottom" id="Ty2-58-oZw"/>
                 <constraint firstAttribute="bottom" secondItem="HSq-JY-hmO" secondAttribute="bottom" constant="-5" id="X0a-hg-PBM"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sBJ-GJ-ze8"/>

@@ -24,11 +24,15 @@ class ModelFactory {
         return ProfileModel(serviceHelper: serviceHelper, userDefaults: userDefaults, listener: listener)
     }
     
-    func provideFriendListModel(listener: FriendListListener) -> FriendListModel {
+    func provideFriendListModel(listener: FriendListListener?) -> FriendListModel {
         return FriendListModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
     }
     
     func provideManageProfileModel(listener: BaseListener) -> ManageProfileModel {
         return ManageProfileModel(serviceHelper: serviceHelper, userDefaults: userDefaults, listener: listener)
+    }
+    
+    func provideMainModel(listener: MainModelListener) -> MainModel {
+        return MainModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62024B081CD2007A00AB5C90 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B071CD2007A00AB5C90 /* MainModel.swift */; };
+		62024B0A1CD2069D00AB5C90 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B091CD2069D00AB5C90 /* TableViewHeader.swift */; };
 		6203A81D1CCB470700401B07 /* MeetUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6203A81B1CCB470700401B07 /* MeetUp.xcdatamodeld */; };
 		6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A81F1CCB4F8500401B07 /* DataHelper.swift */; };
 		6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A8211CCB6D5500401B07 /* DataEntity.swift */; };
@@ -51,7 +53,6 @@
 		62C3A6251CC384EB005D2F83 /* ErrorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3A6241CC384EA005D2F83 /* ErrorFactory.swift */; };
 		62C3A6271CC39559005D2F83 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3A6261CC39559005D2F83 /* Contacts.swift */; };
 		62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */; };
-		62F8879E1CCDD268009C1C4F /* FetchedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8879D1CCDD268009C1C4F /* FetchedResults.swift */; };
 		62F887A81CCE09B9009C1C4F /* ManageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */; };
 		62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */; };
 		62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */; };
@@ -59,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62024B071CD2007A00AB5C90 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		62024B091CD2069D00AB5C90 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		6203A81C1CCB470700401B07 /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
 		6203A81F1CCB4F8500401B07 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		6203A8211CCB6D5500401B07 /* DataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntity.swift; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		62C3A6241CC384EA005D2F83 /* ErrorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorFactory.swift; sourceTree = "<group>"; };
 		62C3A6261CC39559005D2F83 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
-		62F8879D1CCDD268009C1C4F /* FetchedResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResults.swift; sourceTree = "<group>"; };
 		62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileViewController.swift; sourceTree = "<group>"; };
 		62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageProfileViewController.xib; sourceTree = "<group>"; };
 		62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileModel.swift; sourceTree = "<group>"; };
@@ -134,7 +136,6 @@
 			children = (
 				6203A81F1CCB4F8500401B07 /* DataHelper.swift */,
 				6203A8211CCB6D5500401B07 /* DataEntity.swift */,
-				62F8879D1CCDD268009C1C4F /* FetchedResults.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -143,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				621539021CCCC1A100554726 /* ManageFriendTableViewCell.swift */,
+				62024B091CD2069D00AB5C90 /* TableViewHeader.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -191,6 +193,7 @@
 				6240B1B51C881FB500899CD9 /* BaseModel.swift */,
 				623867351CCB1B47001ADA20 /* FriendListModel.swift */,
 				62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */,
+				62024B071CD2007A00AB5C90 /* MainModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -485,13 +488,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62F8879E1CCDD268009C1C4F /* FetchedResults.swift in Sources */,
 				621539031CCCC1A100554726 /* ManageFriendTableViewCell.swift in Sources */,
 				6203A81D1CCB470700401B07 /* MeetUp.xcdatamodeld in Sources */,
 				623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */,
 				623867361CCB1B47001ADA20 /* FriendListModel.swift in Sources */,
 				6238673D1CCB2BF9001ADA20 /* ModelFactory.swift in Sources */,
 				6240B19D1C86CF3600899CD9 /* ServiceHelper.swift in Sources */,
+				62024B081CD2007A00AB5C90 /* MainModel.swift in Sources */,
 				621539051CCCC68300554726 /* NibLoader.swift in Sources */,
 				62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */,
 				62C2CA071C8AE8470029B3DB /* CustomColor.swift in Sources */,
@@ -515,6 +518,7 @@
 				621538FB1CCC7DD700554726 /* ManageFriendViewController.swift in Sources */,
 				622785F41C8C2409006FDD55 /* TokenResponse.swift in Sources */,
 				6240B1B61C881FB500899CD9 /* BaseModel.swift in Sources */,
+				62024B0A1CD2069D00AB5C90 /* TableViewHeader.swift in Sources */,
 				62BD348A1C8ED234008751B0 /* ContactListModel.swift in Sources */,
 				623867381CCB203E001ADA20 /* ListItem.swift in Sources */,
 				62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */,

@@ -65,6 +65,7 @@ FriendListListener, ManageFriendCellDelegate {
             if let indexPath = indexPath {
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
+            break
         case .Update:
             if let indexPath = indexPath {
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? ManageFriendTableViewCell
@@ -74,6 +75,7 @@ FriendListListener, ManageFriendCellDelegate {
                     print("null value found at \(indexPath.row)")
                 }
             }
+            break
         case .Move:
             if let indexPath = indexPath {
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -82,6 +84,7 @@ FriendListListener, ManageFriendCellDelegate {
             if let newIndexPath = newIndexPath {
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
             }
+            break
         }
     }
     
@@ -95,23 +98,13 @@ FriendListListener, ManageFriendCellDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let frame = self.tableView.frame
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: ManageFriendTableViewCell.HEADER_HEIGHT))
-        let label = UILabel(frame: CGRect(x: 10, y: 0, width: frame.width, height: ManageFriendTableViewCell.HEADER_HEIGHT))
-        
-        //center the header label
-        let labelCenter = label.center
-        label.center.y = ManageFriendTableViewCell.HEADER_HEIGHT / CGFloat(2)
-        label.center = labelCenter
-        
-        let headerTitle = NSLocalizedString(GlobalString.table_recommend_friend, comment: "Recommend friend")
-        label.text = headerTitle
-        label.textColor = UIColor().headerTextColor()
-        
-        view.addSubview(label)
-        view.backgroundColor = UIColor().sectionHeaderColor()
-        
-        return view
+        return TableViewHeader.sharedInstance
+            .getTableHeaderView(tableView,
+                                withTitle: NSLocalizedString(GlobalString.table_recommend_friend,
+                                  comment: "Recommend friend"),
+                               withHeight: ManageFriendTableViewCell.HEADER_HEIGHT,
+                                textColor: UIColor().headerTextColor(),
+                          backgroundColor: UIColor().sectionHeaderColor())
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

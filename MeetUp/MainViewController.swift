@@ -9,13 +9,14 @@
 import UIKit
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
-    NSFetchedResultsControllerDelegate{
-    
-    var isAnyFriends: Bool = false
-    
-    var user: User?
+    NSFetchedResultsControllerDelegate, MainModelListener{
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var isAnyFriends: Bool = false
+    var user: User?
+    
+    private var fetchedResultsController: NSFetchedResultsController!
     
     //MARK: LIFECYCLE
     override func viewDidLoad() {
@@ -23,9 +24,150 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
+        
+        ModelFactory.sharedInstance.provideMainModel(self).setUpMainTableView()
     }
     
+
     override func viewDidAppear(animated: Bool) {
+        //this method will only run once on start up check if user has already logged in
+        initialSetUp()
+    }
+    
+    //MARK: MODEL CALLBACK
+    func setSessionFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {
+        self.fetchedResultsController = fetchedResultsController
+        self.fetchedResultsController.delegate = self
+        
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            print("An exception occurred while fetch request")
+        }
+    }
+    
+    //MARK: BUTTON CLICK EVENT
+    @IBAction func onManageFriend(sender: UIBarButtonItem) {
+        Navigator.sharedInstance.navigateToFriendList(self)
+    }
+    
+    @IBAction func onManageProfile(sender: UIBarButtonItem) {
+        Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
+    }
+    
+    //MARK: TABLEVIEW
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return TableViewHeader.sharedInstance
+            .getTableHeaderView(tableView,
+                                withTitle: NSLocalizedString(GlobalString.table_recommend_friend,
+                                    comment: "Recommend friend"),
+                                withHeight: ManageFriendTableViewCell.HEADER_HEIGHT,
+                                textColor: UIColor().headerTextColor(),
+                                backgroundColor: UIColor().sectionHeaderColor())
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return ManageFriendTableViewCell.HEADER_HEIGHT
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let sections = fetchedResultsController.sections {
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
+        }
+        
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        let identifier = "identifier"
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ManageFriendTableViewCell
+        
+        if cell == nil {
+            let object = NibLoader.sharedInstance.loadNibWithName("ManageFriendCell", owner: nil, ofclass: ManageFriendTableViewCell.self)
+            cell = object as? ManageFriendTableViewCell
+        }
+        
+        if cell != nil {
+            setUpCell(cell!, indexPath: indexPath)
+        }
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return ManageFriendTableViewCell.CELL_HEIGHT
+    }
+    
+    private func setUpCell(cell: ManageFriendTableViewCell, indexPath: NSIndexPath) {
+        let friendObj = fetchedResultsController.objectAtIndexPath(indexPath)
+        let friend = DataEntity.sharedInstance.translateFriendObjToFriendEntity(friendObj)
+        cell.indexPath = indexPath
+        cell.friendName.text = friend.userName
+        
+        if friend.image != nil {
+            cell.friendDp.image = UIImage(data: friend.image!)
+        } else {
+            ImageFactory.sharedInstance.loadImageFromUrl(cell.friendDp,
+                                                         fromUrl: NSURL(string:friend.dpUri)!,
+                                                         placeHolder: nil,
+                                                         completionHandler: { (image, error, cacheType, imageURL) in
+                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                                                                guard image != nil else {
+                                                                    return
+                                                                }
+                                                                ModelFactory.sharedInstance.provideFriendListModel(nil).saveFriendImage(friendObj, imgData: UIImagePNGRepresentation(image!)!)
+                                                            }
+            })
+        }
+    }
+    
+    //MARK: NSFETCHED RESULT DELEGATE
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            break
+        case .Delete:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            break
+        case .Update:
+            if let indexPath = indexPath {
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as? ManageFriendTableViewCell
+                if cell != nil {
+                    setUpCell(cell!, indexPath: indexPath)
+                } else {
+                    print("null value found at \(indexPath.row)")
+                }
+            }
+            break
+        case .Move:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            }
+            break
+        }
+    }
+    
+    private func initialSetUp() {
         if user == nil {
             user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
         }
@@ -43,42 +185,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             Navigator.sharedInstance.navigateToFriendList(self)
         }
     }
-    
-    //MARK: BUTTON CLICK EVENT
-    @IBAction func onManageFriend(sender: UIBarButtonItem) {
-        Navigator.sharedInstance.navigateToFriendList(self)
-    }
-    
-    @IBAction func onManageProfile(sender: UIBarButtonItem) {
-        Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
-    }
-    
-    //MARK: TABLEVIEW
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        let identifier = "identifier"
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ManageFriendTableViewCell
-        
-        return cell!
-    }
-    
 }
 
 
