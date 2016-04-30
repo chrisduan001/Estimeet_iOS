@@ -13,11 +13,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
-    var isAnyFriends: Bool = false
-    var user: User?
-    
-    private var fetchedResultsController: NSFetchedResultsController!
-    
     //MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +21,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
         ModelFactory.sharedInstance.provideMainModel(self).setUpMainTableView()
+        
+        friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
     }
     
 
@@ -126,10 +123,25 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                                                                 guard image != nil else {
                                                                     return
                                                                 }
-                                                                ModelFactory.sharedInstance.provideFriendListModel(nil).saveFriendImage(friendObj, imgData: UIImagePNGRepresentation(image!)!)
+                                                                self.friendListModel.saveFriendImage(friendObj, imgData: UIImagePNGRepresentation(image!)!)
                                                             }
             })
         }
+    }
+    
+    //MARK: TABLEVIEW SWIPE ACTION
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
+            self.friendListModel.setFavouriteFriend(self.fetchedResultsController.objectAtIndexPath(indexPath))
+        }
+        
+        sendRequest.backgroundColor = UIColor().primaryColor()
+        
+        return [sendRequest]
     }
     
     //MARK: NSFETCHED RESULT DELEGATE
@@ -167,6 +179,31 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        let indexSet = NSIndexSet(index: sectionIndex)
+        
+        switch type {
+        case .Insert:
+            tableView.insertSections(indexSet, withRowAnimation: .Fade)
+            break
+        case .Delete:
+            tableView.deleteSections(indexSet, withRowAnimation: .Fade)
+            break
+        default:
+            break
+        }
+    }
+    
+    //MARK: INIT SET UP
     private func initialSetUp() {
         if user == nil {
             user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
@@ -185,6 +222,13 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             Navigator.sharedInstance.navigateToFriendList(self)
         }
     }
+    
+    var isAnyFriends: Bool = false
+    var user: User?
+    
+    var friendListModel: FriendListModel!
+    
+    private var fetchedResultsController: NSFetchedResultsController!
 }
 
 

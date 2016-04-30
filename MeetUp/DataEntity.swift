@@ -16,6 +16,23 @@ class DataEntity {
     static let FRIEND_ATTR_USERNAME = "userName"
     static let FRIEND_ATTR_USERUID = "userUId"
     
+    static let ENTITY_SESSION = "SessionColumn"
+    static let SESSION_ATTR_TYPE = "sessionType"
+    static let SESSION_ATTR_REQUEST_TIME = "sessionRequestedTime"
+    static let SESSION_ATTR_ID = "sessionId"
+    static let SESSION_ATTR_FRIEND_ID = "friendId"
+    static let SESSION_ATTR_EXPIRE_IN_MIN = "expireInMinutes"
+    static let SESSION_ATTR_DATE_UPDATED = "dateUpdated"
+    static let SESSION_ATTR_DATE_CREATED = "dateCreated"
+    static let SESSION_ATTR_LOCATION = "sessionLocation"
+    static let SESSION_ATTR_LID = "sessionLId"
+    
+    static let ENTITY_SESSIONDATA = "SessionData"
+    static let ENTITY_ATTR_TRAVEL_MODE = "travelMode"
+    static let ENTITY_ATTR_SESSION_ID = "sessionId"
+    static let ENTITY_ATTR_ETA = "eta"
+    static let ENTITY_ATTR_DISTANCE = "distance"
+    
     static let sharedInstance = DataEntity()
     private init() {}
     
@@ -33,5 +50,9 @@ class DataEntity {
                              dpUri: imageUri,
                              image: image,
                        isFavourite: favourite)
+    }
+    
+    func translateSessionObjToSessionEntity(sessionObj: AnyObject) {
+        
     }
 }

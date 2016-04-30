@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		62024B081CD2007A00AB5C90 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B071CD2007A00AB5C90 /* MainModel.swift */; };
 		62024B0A1CD2069D00AB5C90 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B091CD2069D00AB5C90 /* TableViewHeader.swift */; };
-		6203A81D1CCB470700401B07 /* MeetUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6203A81B1CCB470700401B07 /* MeetUp.xcdatamodeld */; };
+		62024B0D1CD21D1200AB5C90 /* MeetUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */; };
+		62024B0F1CD47A0C00AB5C90 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B0E1CD47A0C00AB5C90 /* SessionModel.swift */; };
+		62024B111CD47BC300AB5C90 /* SessionDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */; };
 		6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A81F1CCB4F8500401B07 /* DataHelper.swift */; };
 		6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A8211CCB6D5500401B07 /* DataEntity.swift */; };
 		621538FB1CCC7DD700554726 /* ManageFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621538F91CCC7DD700554726 /* ManageFriendViewController.swift */; };
@@ -62,10 +64,11 @@
 /* Begin PBXFileReference section */
 		62024B071CD2007A00AB5C90 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		62024B091CD2069D00AB5C90 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
-		6203A81C1CCB470700401B07 /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
+		62024B0C1CD21D1200AB5C90 /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
+		62024B0E1CD47A0C00AB5C90 /* SessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
+		62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDataEntity.swift; sourceTree = "<group>"; };
 		6203A81F1CCB4F8500401B07 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		6203A8211CCB6D5500401B07 /* DataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntity.swift; sourceTree = "<group>"; };
-		6203A8231CCB7EC800401B07 /* MeetUp001.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp001.xcdatamodel; sourceTree = "<group>"; };
 		6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PonyDebugger_Bridging_Header.h; sourceTree = "<group>"; };
 		621538F91CCC7DD700554726 /* ManageFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFriendViewController.swift; sourceTree = "<group>"; };
 		621538FA1CCC7DD700554726 /* ManageFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageFriendViewController.xib; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 				623867351CCB1B47001ADA20 /* FriendListModel.swift */,
 				62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */,
 				62024B071CD2007A00AB5C90 /* MainModel.swift */,
+				62024B0E1CD47A0C00AB5C90 /* SessionModel.swift */,
+				62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -252,7 +257,7 @@
 			children = (
 				62AB5F7A1C73057F008513DF /* MeetUp */,
 				6240B1B11C86E90E00899CD9 /* Localizable.strings */,
-				6203A81B1CCB470700401B07 /* MeetUp.xcdatamodeld */,
+				62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */,
 				62AB5F871C73057F008513DF /* LaunchScreen.storyboard */,
 				62AB5F8A1C73057F008513DF /* Info.plist */,
 				62AB5F851C73057F008513DF /* Assets.xcassets */,
@@ -489,7 +494,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				621539031CCCC1A100554726 /* ManageFriendTableViewCell.swift in Sources */,
-				6203A81D1CCB470700401B07 /* MeetUp.xcdatamodeld in Sources */,
 				623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */,
 				623867361CCB1B47001ADA20 /* FriendListModel.swift in Sources */,
 				6238673D1CCB2BF9001ADA20 /* ModelFactory.swift in Sources */,
@@ -506,6 +510,8 @@
 				62BD34881C8EB932008751B0 /* FacebookModel.swift in Sources */,
 				62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */,
 				6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */,
+				62024B0D1CD21D1200AB5C90 /* MeetUp.xcdatamodeld in Sources */,
+				62024B111CD47BC300AB5C90 /* SessionDataEntity.swift in Sources */,
 				622785EB1C8BD460006FDD55 /* MeetUpUserDefaults.swift in Sources */,
 				6240B1BD1C8834D900899CD9 /* BaseResponse.swift in Sources */,
 				62C2C9FD1C8AC9B90029B3DB /* RoundedButton.swift in Sources */,
@@ -522,6 +528,7 @@
 				62BD348A1C8ED234008751B0 /* ContactListModel.swift in Sources */,
 				623867381CCB203E001ADA20 /* ListItem.swift in Sources */,
 				62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */,
+				62024B0F1CD47A0C00AB5C90 /* SessionModel.swift in Sources */,
 				6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */,
 				622785F21C8C1E6B006FDD55 /* UpdateProfile.swift in Sources */,
 				622785E11C8B8947006FDD55 /* SigninAuth.swift in Sources */,
@@ -699,13 +706,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6203A81B1CCB470700401B07 /* MeetUp.xcdatamodeld */ = {
+		62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6203A8231CCB7EC800401B07 /* MeetUp001.xcdatamodel */,
-				6203A81C1CCB470700401B07 /* MeetUp.xcdatamodel */,
+				62024B0C1CD21D1200AB5C90 /* MeetUp.xcdatamodel */,
 			);
-			currentVersion = 6203A81C1CCB470700401B07 /* MeetUp.xcdatamodel */;
+			currentVersion = 62024B0C1CD21D1200AB5C90 /* MeetUp.xcdatamodel */;
 			name = MeetUp.xcdatamodeld;
 			path = MeetUp/MeetUp.xcdatamodeld;
 			sourceTree = "<group>";

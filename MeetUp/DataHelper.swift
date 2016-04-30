@@ -108,6 +108,10 @@ class DataHelper {
         } catch {}
     }
     
+    //MARK: SESSION ACTIONS
+    func createSession(session: AnyObject, withSessionType: Int) {
+    }
+    
     //MARK: FETCHED RESULTS
     func getFriendsFetchedResults() -> NSFetchedResultsController {
         let request = NSFetchRequest(entityName: DataEntity.ENTITY_FRIEND)
