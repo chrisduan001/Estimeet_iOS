@@ -69,24 +69,13 @@ class DataHelper {
         } catch {}
     }
     
-    func deleteAllSession() {
-        let request = NSFetchRequest(entityName: String(SessionColumn))
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
-        do {
-            try context.executeRequest(deleteRequest)
-        } catch {}
-    }
-    
     //MARK: SESSION ACTIONS
-    func createSession(friendObj: Friend, withSessionType: Int) {
+    func createSession(friendObj: Friend) {
         if friendObj.session == nil {
             let newSession = NSEntityDescription.insertNewObjectForEntityForName(String(SessionColumn), inManagedObjectContext: context) as! SessionColumn
-            newSession.friendId = friendObj.userId
-            newSession.sessionType = withSessionType
-            friendObj.session = newSession
+            SessionFactory.sharedInstance.createRequestedSession(newSession, friendId: friendObj.userId!)
         } else {
-            friendObj.session!.friendId = friendObj.userId
-            friendObj.session!.sessionType = withSessionType
+            SessionFactory.sharedInstance.createRequestedSession(friendObj.session!, friendId: friendObj.userId!)
         }
         
         do {
@@ -95,6 +84,32 @@ class DataHelper {
         } catch {
             print("error while save new session")
         }
+    }
+    
+    func getAllSessions() -> [SessionColumn] {
+        let request = NSFetchRequest(entityName: String(SessionColumn))
+        do {
+            return try context.executeFetchRequest(request) as! [SessionColumn]
+        } catch {}
+        
+        return []
+    }
+    
+    func deleteSession(session: SessionColumn) {
+        session.friend!.sectionHeader = SECTION_HEADER_FRIEND
+        context.deleteObject(session)
+        
+        do {
+            try context.save()
+        } catch {}
+    }
+    
+    func deleteAllSession() {
+        let request = NSFetchRequest(entityName: String(SessionColumn))
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        do {
+            try context.executeRequest(deleteRequest)
+        } catch {}
     }
     
     //MARK: FETCHED RESULTS

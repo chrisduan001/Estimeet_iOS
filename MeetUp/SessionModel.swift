@@ -17,10 +17,6 @@ class SessionModel: BaseModel {
     }
     
     func sendSessionRequest(friendObj: Friend) {
-        dataHelper.createSession(friendObj, withSessionType: SessionModel.SENT_SESSION)
+        dataHelper.createSession(friendObj)
     }
-    
-    static let SENT_SESSION = 100
-    static let RECEIVED_SESSION = 102
-    static let ACTIVE_SESSION = 103
 }

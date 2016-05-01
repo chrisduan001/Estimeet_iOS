@@ -16,7 +16,7 @@ extension SessionColumn {
 
     @NSManaged var dateCreated: NSNumber?
     @NSManaged var dateUpdated: NSNumber?
-    @NSManaged var expireInMinutes: NSNumber?
+    @NSManaged var expireInMillis: NSNumber?
     @NSManaged var friendId: NSNumber?
     @NSManaged var sessionId: NSNumber?
     @NSManaged var sessionLId: NSNumber?
