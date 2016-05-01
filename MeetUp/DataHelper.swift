@@ -32,6 +32,7 @@ class DataHelper {
         for friend in friends {
             let friendObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as! Friend
             DataEntity.sharedInstance.translateFriendEntityToDBFriend(friend, dbFriend: friendObj)
+            friendObj.sectionHeader = SECTION_HEADER_FRIEND
         }
         
         do {
@@ -68,6 +69,14 @@ class DataHelper {
         } catch {}
     }
     
+    func deleteAllSession() {
+        let request = NSFetchRequest(entityName: String(SessionColumn))
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        do {
+            try context.executeRequest(deleteRequest)
+        } catch {}
+    }
+    
     //MARK: SESSION ACTIONS
     func createSession(friendObj: Friend, withSessionType: Int) {
         if friendObj.session == nil {
@@ -82,6 +91,7 @@ class DataHelper {
         
         do {
             try context.save()
+            friendObj.sectionHeader = SECTION_HEADER_SESSION
         } catch {
             print("error while save new session")
         }
@@ -98,12 +108,15 @@ class DataHelper {
     func getSessionFetchedResults() -> NSFetchedResultsController {
         let request = NSFetchRequest(entityName: String(Friend))
         let predict = NSPredicate(format: "favourite == %@", NSNumber(bool: true))
-        let sort = NSSortDescriptor(key: "userName", ascending: true)
+        let sort = NSSortDescriptor(key: "sectionHeader", ascending: true)
         request.predicate = predict
         request.sortDescriptors = [sort]
         
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "isActiveSesion", cacheName: "sessionCache")
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "sectionHeader", cacheName: nil)
     }
+    
+    private let SECTION_HEADER_FRIEND = "Friend"
+    private let SECTION_HEADER_SESSION = "Active"
 }
 
 

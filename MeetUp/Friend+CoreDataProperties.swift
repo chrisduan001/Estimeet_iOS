@@ -20,6 +20,7 @@ extension Friend {
     @NSManaged var userId: NSNumber?
     @NSManaged var userName: String?
     @NSManaged var userUId: String?
+    @NSManaged var sectionHeader: String?
     @NSManaged var session: SessionColumn?
 
 }
