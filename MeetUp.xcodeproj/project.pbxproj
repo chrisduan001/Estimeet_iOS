@@ -12,6 +12,12 @@
 		62024B0D1CD21D1200AB5C90 /* MeetUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */; };
 		62024B0F1CD47A0C00AB5C90 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B0E1CD47A0C00AB5C90 /* SessionModel.swift */; };
 		62024B111CD47BC300AB5C90 /* SessionDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */; };
+		62024B251CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B1F1CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift */; };
+		62024B261CD5A3E500AB5C90 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B201CD5A3E500AB5C90 /* SessionData.swift */; };
+		62024B271CD5A3E500AB5C90 /* SessionColumn+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B211CD5A3E500AB5C90 /* SessionColumn+CoreDataProperties.swift */; };
+		62024B281CD5A3E500AB5C90 /* SessionColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B221CD5A3E500AB5C90 /* SessionColumn.swift */; };
+		62024B291CD5A3E500AB5C90 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B231CD5A3E500AB5C90 /* Friend+CoreDataProperties.swift */; };
+		62024B2A1CD5A3E500AB5C90 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B241CD5A3E500AB5C90 /* Friend.swift */; };
 		6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A81F1CCB4F8500401B07 /* DataHelper.swift */; };
 		6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A8211CCB6D5500401B07 /* DataEntity.swift */; };
 		621538FB1CCC7DD700554726 /* ManageFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621538F91CCC7DD700554726 /* ManageFriendViewController.swift */; };
@@ -67,6 +73,12 @@
 		62024B0C1CD21D1200AB5C90 /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
 		62024B0E1CD47A0C00AB5C90 /* SessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDataEntity.swift; sourceTree = "<group>"; };
+		62024B1F1CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62024B201CD5A3E500AB5C90 /* SessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
+		62024B211CD5A3E500AB5C90 /* SessionColumn+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionColumn+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62024B221CD5A3E500AB5C90 /* SessionColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionColumn.swift; sourceTree = "<group>"; };
+		62024B231CD5A3E500AB5C90 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62024B241CD5A3E500AB5C90 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		6203A81F1CCB4F8500401B07 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		6203A8211CCB6D5500401B07 /* DataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntity.swift; sourceTree = "<group>"; };
 		6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PonyDebugger_Bridging_Header.h; sourceTree = "<group>"; };
@@ -134,9 +146,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62024B121CD59A1100AB5C90 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				62024B1F1CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift */,
+				62024B201CD5A3E500AB5C90 /* SessionData.swift */,
+				62024B211CD5A3E500AB5C90 /* SessionColumn+CoreDataProperties.swift */,
+				62024B221CD5A3E500AB5C90 /* SessionColumn.swift */,
+				62024B231CD5A3E500AB5C90 /* Friend+CoreDataProperties.swift */,
+				62024B241CD5A3E500AB5C90 /* Friend.swift */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
 		6203A81E1CCB4F7300401B07 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				62024B121CD59A1100AB5C90 /* Entity */,
 				6203A81F1CCB4F8500401B07 /* DataHelper.swift */,
 				6203A8211CCB6D5500401B07 /* DataEntity.swift */,
 			);
@@ -498,14 +524,18 @@
 				623867361CCB1B47001ADA20 /* FriendListModel.swift in Sources */,
 				6238673D1CCB2BF9001ADA20 /* ModelFactory.swift in Sources */,
 				6240B19D1C86CF3600899CD9 /* ServiceHelper.swift in Sources */,
+				62024B291CD5A3E500AB5C90 /* Friend+CoreDataProperties.swift in Sources */,
 				62024B081CD2007A00AB5C90 /* MainModel.swift in Sources */,
+				62024B251CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift in Sources */,
 				621539051CCCC68300554726 /* NibLoader.swift in Sources */,
 				62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */,
+				62024B261CD5A3E500AB5C90 /* SessionData.swift in Sources */,
 				62C2CA071C8AE8470029B3DB /* CustomColor.swift in Sources */,
 				622785F01C8C1C99006FDD55 /* ProfileModel.swift in Sources */,
 				6240B1991C86CEA100899CD9 /* User.swift in Sources */,
 				622785E31C8BBFD9006FDD55 /* GlobalString.swift in Sources */,
 				622785E71C8BCE2F006FDD55 /* ProfileViewController.swift in Sources */,
+				62024B281CD5A3E500AB5C90 /* SessionColumn.swift in Sources */,
 				62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */,
 				62BD34881C8EB932008751B0 /* FacebookModel.swift in Sources */,
 				62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */,
@@ -513,10 +543,12 @@
 				62024B0D1CD21D1200AB5C90 /* MeetUp.xcdatamodeld in Sources */,
 				62024B111CD47BC300AB5C90 /* SessionDataEntity.swift in Sources */,
 				622785EB1C8BD460006FDD55 /* MeetUpUserDefaults.swift in Sources */,
+				62024B271CD5A3E500AB5C90 /* SessionColumn+CoreDataProperties.swift in Sources */,
 				6240B1BD1C8834D900899CD9 /* BaseResponse.swift in Sources */,
 				62C2C9FD1C8AC9B90029B3DB /* RoundedButton.swift in Sources */,
 				622785ED1C8C198D006FDD55 /* Navigator.swift in Sources */,
 				6238673A1CCB214D001ADA20 /* FriendEntity.swift in Sources */,
+				62024B2A1CD5A3E500AB5C90 /* Friend.swift in Sources */,
 				6240B1B81C8827C300899CD9 /* BaseViewController.swift in Sources */,
 				623BBD641C7EE9E900643C3C /* LoginViewController.swift in Sources */,
 				62F887A81CCE09B9009C1C4F /* ManageProfileViewController.swift in Sources */,

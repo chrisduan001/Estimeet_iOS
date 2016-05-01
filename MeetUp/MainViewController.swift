@@ -23,6 +23,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         ModelFactory.sharedInstance.provideMainModel(self).setUpMainTableView()
         
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
+        sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
     }
     
 
@@ -107,16 +108,15 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func setUpCell(cell: ManageFriendTableViewCell, indexPath: NSIndexPath) {
-        let friendObj = fetchedResultsController.objectAtIndexPath(indexPath)
-        let friend = DataEntity.sharedInstance.translateFriendObjToFriendEntity(friendObj)
+        let friendObj = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         cell.indexPath = indexPath
-        cell.friendName.text = friend.userName
+        cell.friendName.text = friendObj.userName
         
-        if friend.image != nil {
-            cell.friendDp.image = UIImage(data: friend.image!)
+        if friendObj.image != nil {
+            cell.friendDp.image = UIImage(data: friendObj.image!)
         } else {
             ImageFactory.sharedInstance.loadImageFromUrl(cell.friendDp,
-                                                         fromUrl: NSURL(string:friend.dpUri)!,
+                                                         fromUrl: NSURL(string:friendObj.imageUri!)!,
                                                          placeHolder: nil,
                                                          completionHandler: { (image, error, cacheType, imageURL) in
                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -136,7 +136,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
-            self.friendListModel.setFavouriteFriend(self.fetchedResultsController.objectAtIndexPath(indexPath))
+            self.sessionModel.sendSessionRequest(self.fetchedResultsController.objectAtIndexPath(indexPath) as! Friend)
         }
         
         sendRequest.backgroundColor = UIColor().primaryColor()
@@ -227,6 +227,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     var user: User?
     
     var friendListModel: FriendListModel!
+    var sessionModel: SessionModel!
     
     private var fetchedResultsController: NSFetchedResultsController!
 }

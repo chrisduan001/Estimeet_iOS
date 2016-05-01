@@ -16,8 +16,8 @@ class SessionModel: BaseModel {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
-    func sendSessionRequest(sessionObj: AnyObject) {
-        dataHelper.createSession(sessionObj, withSessionType: SessionModel.SENT_SESSION)
+    func sendSessionRequest(friendObj: Friend) {
+        dataHelper.createSession(friendObj, withSessionType: SessionModel.SENT_SESSION)
     }
     
     static let SENT_SESSION = 100

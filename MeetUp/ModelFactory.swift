@@ -35,4 +35,8 @@ class ModelFactory {
     func provideMainModel(listener: MainModelListener) -> MainModel {
         return MainModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
     }
+    
+    func provideSessionModel(listener: BaseListener) -> SessionModel {
+        return SessionModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper)
+    }
 }

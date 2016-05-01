@@ -22,11 +22,11 @@ class FriendListModel: BaseModel {
         makeNetworkRequest()
     }
     
-    func saveFriendImage(friendObj: AnyObject, imgData: NSData) {
+    func saveFriendImage(friendObj: Friend, imgData: NSData) {
         dataHelper.saveFriendImage(friendObj, imgData: imgData)
     }
     
-    func setFavouriteFriend(friendObj: AnyObject) {
+    func setFavouriteFriend(friendObj: Friend) {
         dataHelper.setFavouriteFriend(friendObj)
     }
     

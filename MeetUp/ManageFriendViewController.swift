@@ -142,18 +142,17 @@ FriendListListener, ManageFriendCellDelegate {
     }
     
     private func setUpCell(cell: ManageFriendTableViewCell, indexPath: NSIndexPath) {
-        let friendObj = fetchedResultsController.objectAtIndexPath(indexPath)
-        let friend = DataEntity.sharedInstance.translateFriendObjToFriendEntity(friendObj)
+        let friendObj = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         cell.indexPath = indexPath
         cell.setDelegate(self)
-        cell.friendName.text = friend.userName
-        cell.friendAction.image = UIImage(named: friend.isFavourite! ? "cancel" : "add_friend")
+        cell.friendName.text = friendObj.userName
+        cell.friendAction.image = UIImage(named: friendObj.favourite!.boolValue ? "cancel" : "add_friend")
         
-        if friend.image != nil {
-            cell.friendDp.image = UIImage(data: friend.image!)
+        if friendObj.image != nil {
+            cell.friendDp.image = UIImage(data: friendObj.image!)
         } else {
             ImageFactory.sharedInstance.loadImageFromUrl(cell.friendDp,
-                                                         fromUrl: NSURL(string:friend.dpUri)!,
+                                                         fromUrl: NSURL(string:friendObj.imageUri!)!,
                                                          placeHolder: nil,
                                                          completionHandler: { (image, error, cacheType, imageURL) in
                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -168,7 +167,7 @@ FriendListListener, ManageFriendCellDelegate {
     
     //MARK: CELL DELEGATE
     func onAddFriendClicked(indexPath: NSIndexPath) {
-        friendListModel.setFavouriteFriend(fetchedResultsController.objectAtIndexPath(indexPath))
+        friendListModel.setFavouriteFriend(fetchedResultsController.objectAtIndexPath(indexPath) as! Friend)
     }
     
     //MARK: VARIABLE
