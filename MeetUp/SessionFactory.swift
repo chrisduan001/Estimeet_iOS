@@ -11,7 +11,7 @@ class SessionFactory {
     static let sharedInstance = SessionFactory()
     private init() {}
     //time to expire after session request
-    private let DEFAULT_EXPIRE_TIME = 5
+    private let DEFAULT_EXPIRE_TIME = 0.1
     
     private func setupSessionTimeWithDefaultValue(session: SessionColumn) {
         session.expireInMillis = TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: DEFAULT_EXPIRE_TIME)
@@ -24,14 +24,27 @@ class SessionFactory {
         setupSessionTimeWithDefaultValue(session)
     }
     
-    func checkSession(dataHelper: DataHelper) -> Bool {
+    //nil == no session available, no == no active session, yes == active session
+    func checkSession(dataHelper: DataHelper) -> Bool? {
         let sessions = dataHelper.getAllSessions()
         
         var isAnyActiveSession:Bool?
         for session in sessions {
+            let currentMillis: NSNumber = NSDate.timeIntervalSinceReferenceDate() * 1000
+            if currentMillis.longLongValue > session.dateCreated!.longLongValue + session.expireInMillis!.longLongValue {
+                dataHelper.deleteSession(session)
+            } else {
+                if session.sessionType == ACTIVE_SESSION {
+                    isAnyActiveSession = true
+                } else {
+                    if isAnyActiveSession == nil {
+                        isAnyActiveSession = false
+                    }
+                }
+            }
         }
         
-        return false
+        return isAnyActiveSession
     }
     
     private let SENT_SESSION = 100

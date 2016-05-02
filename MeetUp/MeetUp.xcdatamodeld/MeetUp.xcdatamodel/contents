@@ -20,7 +20,7 @@
         <attribute name="sessionLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sessionRequestedTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sessionType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="friend" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friend" inverseName="session" inverseEntity="Friend" syncable="YES"/>
+        <relationship name="friend" maxCount="1" deletionRule="Nullify" destinationEntity="Friend" inverseName="session" inverseEntity="Friend" syncable="YES"/>
         <relationship name="sessionData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SessionData" inverseName="sessionColumn" inverseEntity="SessionData" syncable="YES"/>
     </entity>
     <entity name="SessionData" representedClassName=".SessionData" syncable="YES">
@@ -28,7 +28,7 @@
         <attribute name="eta" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sessionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="travelMode" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="sessionColumn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SessionColumn" inverseName="sessionData" inverseEntity="SessionColumn" syncable="YES"/>
+        <relationship name="sessionColumn" maxCount="1" deletionRule="Nullify" destinationEntity="SessionColumn" inverseName="sessionData" inverseEntity="SessionColumn" syncable="YES"/>
     </entity>
     <elements>
         <element name="Friend" positionX="-119" positionY="-373" width="128" height="165"/>

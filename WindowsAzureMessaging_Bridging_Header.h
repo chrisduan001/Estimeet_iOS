@@ -9,6 +9,7 @@
 #ifndef PonyDebugger_Bridging_Header_h
 #define PonyDebugger_Bridging_Header_h
 
+#import "WindowsAzureMessaging/WindowsAzureMessaging.h"
 #import <PonyDebugger/PonyDebugger.h>
 
 #endif /* PonyDebugger_Bridging_Header_h */

@@ -17,7 +17,7 @@ class TimeConverter {
     static let sharedInstance = TimeConverter()
     private init() {}
     
-    func convertToMilliseconds(type: TimeType, value: Int) -> NSNumber {
+    func convertToMilliseconds(type: TimeType, value: Double) -> NSNumber {
         switch type {
         case .MINUTES:
             return value * 60000

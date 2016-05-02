@@ -72,8 +72,10 @@ class DataHelper {
     //MARK: SESSION ACTIONS
     func createSession(friendObj: Friend) {
         if friendObj.session == nil {
-            let newSession = NSEntityDescription.insertNewObjectForEntityForName(String(SessionColumn), inManagedObjectContext: context) as! SessionColumn
+            let entity = NSEntityDescription.entityForName(String(SessionColumn), inManagedObjectContext: context)
+            let newSession = SessionColumn(entity: entity!, insertIntoManagedObjectContext: context)
             SessionFactory.sharedInstance.createRequestedSession(newSession, friendId: friendObj.userId!)
+            friendObj.session = newSession
         } else {
             SessionFactory.sharedInstance.createRequestedSession(friendObj.session!, friendId: friendObj.userId!)
         }

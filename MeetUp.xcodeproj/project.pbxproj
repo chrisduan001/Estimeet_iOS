@@ -22,6 +22,7 @@
 		62024B2E1CD611D900AB5C90 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62024B2D1CD611D900AB5C90 /* TimeConverter.swift */; };
 		6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A81F1CCB4F8500401B07 /* DataHelper.swift */; };
 		6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203A8211CCB6D5500401B07 /* DataEntity.swift */; };
+		620E72E11CD76CCB0064B59F /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E72E01CD76CCB0064B59F /* WindowsAzureMessaging.framework */; };
 		621538FB1CCC7DD700554726 /* ManageFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621538F91CCC7DD700554726 /* ManageFriendViewController.swift */; };
 		621538FC1CCC7DD700554726 /* ManageFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621538FA1CCC7DD700554726 /* ManageFriendViewController.xib */; };
 		621539001CCCA03E00554726 /* ManageFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621538FF1CCCA03E00554726 /* ManageFriendCell.xib */; };
@@ -85,7 +86,8 @@
 		62024B2D1CD611D900AB5C90 /* TimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		6203A81F1CCB4F8500401B07 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		6203A8211CCB6D5500401B07 /* DataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntity.swift; sourceTree = "<group>"; };
-		6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PonyDebugger_Bridging_Header.h; sourceTree = "<group>"; };
+		6203A8241CCB837D00401B07 /* WindowsAzureMessaging_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowsAzureMessaging_Bridging_Header.h; sourceTree = "<group>"; };
+		620E72E01CD76CCB0064B59F /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		621538F91CCC7DD700554726 /* ManageFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFriendViewController.swift; sourceTree = "<group>"; };
 		621538FA1CCC7DD700554726 /* ManageFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageFriendViewController.xib; sourceTree = "<group>"; };
 		621538FF1CCCA03E00554726 /* ManageFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageFriendCell.xib; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				653B95412D35C0DAC541D3A0 /* Pods_MeetUp.framework in Frameworks */,
+				620E72E11CD76CCB0064B59F /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +350,7 @@
 		62C2CA031C8AE55B0029B3DB /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				6203A8241CCB837D00401B07 /* PonyDebugger_Bridging_Header.h */,
+				6203A8241CCB837D00401B07 /* WindowsAzureMessaging_Bridging_Header.h */,
 				62C2CA011C8AE5440029B3DB /* Default-568h@2x.png */,
 			);
 			name = Support;
@@ -376,6 +379,7 @@
 		E9783D84E790D32DB76B19CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				620E72E01CD76CCB0064B59F /* WindowsAzureMessaging.framework */,
 				BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */,
 			);
 			name = Frameworks;
@@ -641,7 +645,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = PonyDebugger_Bridging_Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = WindowsAzureMessaging_Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -679,7 +683,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = PonyDebugger_Bridging_Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = WindowsAzureMessaging_Bridging_Header.h;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -691,15 +695,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MeetUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.estimeet.MeetUp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.estimeet.estimeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "490b98fa-56f1-4eca-b0d3-2e0898fbeb87";
 			};
 			name = Debug;
 		};
@@ -710,15 +715,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MeetUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.estimeet.MeetUp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.estimeet.estimeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "490b98fa-56f1-4eca-b0d3-2e0898fbeb87";
 			};
 			name = Release;
 		};

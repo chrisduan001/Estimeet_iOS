@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
-    NSFetchedResultsControllerDelegate, MainModelListener{
+    NSFetchedResultsControllerDelegate, MainModelListener, SessionListener{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,6 +26,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        sessionModel.checkSessionExpiration()
+    }
 
     override func viewDidAppear(animated: Bool) {
         //this method will only run once on start up check if user has already logged in
@@ -42,6 +45,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } catch {
             print("An exception occurred while fetch request")
         }
+    }
+    
+    func onCheckSessionExpiration(result: Bool?) {
+        
     }
     
     //MARK: BUTTON CLICK EVENT
@@ -188,15 +195,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
         let indexSet = NSIndexSet(index: sectionIndex)
         
         switch type {
         case .Insert:
-            tableView.insertSections(indexSet, withRowAnimation: .Fade)
+            tableView.insertSections(indexSet, withRowAnimation: .None)
             break
         case .Delete:
-            tableView.deleteSections(indexSet, withRowAnimation: .Fade)
+            tableView.deleteSections(indexSet, withRowAnimation: .None)
             break
         default:
             break
