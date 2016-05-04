@@ -19,6 +19,8 @@ class MeetUpUserDefaults {
     private let TOKEN = "AUTH_TOKEN"
     private let EXPIRES = "TOKEN_EXPIRE_TIME"
 
+    private let VERSION_CODE = "VERSION_CODE"
+
     static let sharedInstance = MeetUpUserDefaults()
     private init() {}
     
@@ -82,6 +84,19 @@ class MeetUpUserDefaults {
         userDefaults.setInteger(timeInSecond - 600, forKey: EXPIRES)
         
         userDefaults.synchronize()
+    }
+    
+    func setVersionCode(code: String) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(code, forKey: VERSION_CODE)
+        
+        userDefaults.synchronize()
+    }
+    
+    func getVersionCode() -> String? {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        return userDefaults.objectForKey(VERSION_CODE) as? String
     }
     
     func removeUserDefault() {

@@ -16,6 +16,9 @@ class GlobalString{
     static let profile_facebook     = "profile_facebook"
     static let profile_lbl_or       = "profile_lbl_or"
     
+    static let push_denied_title    = "push_permission_denied_title"
+    static let push_denied_msg      = "push_permission_denied_msg"
+    
     static let alert_title_error    = "alert_title_error"
     static let alert_button_ok      = "alert_button_ok"
     static let alert_title_info     = "alert_title_info"
@@ -35,4 +38,5 @@ class GlobalString{
     static let profile_name         = "page_profile_name"
     static let profile_id           = "page_profile_id"
     static let profile_mobile       = "page_profile_mobile"
+    
 }

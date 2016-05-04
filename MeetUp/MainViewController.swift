@@ -17,6 +17,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveNotification), name: PushNotification.BROADCAST_NOTIFICATION_KEY, object: nil)
+        
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
@@ -33,6 +35,17 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(animated: Bool) {
         //this method will only run once on start up check if user has already logged in
         initialSetUp()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    @objc private func onReceiveNotification(notification: NSNotification) {
+        if notification.name == PushNotification.BROADCAST_NOTIFICATION_KEY {
+            let data = notification.userInfo
+            showAlert(data.debugDescription, message: "received", button: "ok", onOkClicked: {_ in})
+        }
     }
     
     //MARK: MODEL CALLBACK
@@ -227,6 +240,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if isAnyFriends {
             Navigator.sharedInstance.navigateToFriendList(self)
         }
+        
+        //register push notification
+        //todo..need refactor, maybe dynamically set rootview controller eg: at appdelegate if user==nil, set login vc as root
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.registerForPushNotifications(UIApplication.sharedApplication())
     }
     
     var isAnyFriends: Bool = false

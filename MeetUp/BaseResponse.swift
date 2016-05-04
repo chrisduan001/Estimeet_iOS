@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class BaseResponse: Mappable {
-    private var errorCode: Int?
+    var errorCode: Int?
     
     required init?(_ map: Map) {
         

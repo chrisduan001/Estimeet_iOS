@@ -68,6 +68,17 @@ class ServiceHelper {
         print("get friend list: \(request.request)")
     }
     
+    func registerPushChannel(id: Int, userUId: String, token: String, completionHandler: (response: Response<BaseResponse, NSError>) -> Void) {
+        let regChannelUri = "\(ServiceHelper.BASE_URL)/user/registerchannel?channeltype=apn&id=\(id)&userid=\(userUId)"
+        let request = Alamofire.request(.GET, regChannelUri, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseObject { (response: Response<BaseResponse, NSError>) in
+            completionHandler(response: response)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     private func getAuthHeader(token: String) -> [String: String] {
         return ["Authorization" : "Bearer \(token)"]
     }

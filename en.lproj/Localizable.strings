@@ -8,6 +8,9 @@
 "Login_Signin"                  = "SIGN IN";
 "Login_title"                   = "Log in";
 
+"push_permission_denied_title"  = "Warning";
+"push_permission_denied_msg"    = "You've disable the push notification, the app may not work properly";
+
 "profile_enter_name"            = "Enter Your Name";
 "profile_btn_start"             = "Get Started!";
 "profile_facebook"              = "Import From Facebook";

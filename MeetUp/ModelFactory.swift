@@ -13,8 +13,19 @@ class ModelFactory {
     private init() {}
     
     let serviceHelper: ServiceHelper = ServiceHelper.sharedInstance
-    let userDefaults: MeetUpUserDefaults = MeetUpUserDefaults.sharedInstance
+    private let userDefaults: MeetUpUserDefaults = MeetUpUserDefaults.sharedInstance
     let dataHelper: DataHelper = DataHelper.sharedInstance
+    
+    func provideUserDefaults() -> MeetUpUserDefaults {
+        return MeetUpUserDefaults.sharedInstance
+    }
+    
+    func provideVersionNumber() -> String {
+        let dictionary = NSBundle.mainBundle().infoDictionary!
+        let build = dictionary["CFBundleVersion"] as! String
+        
+        return build
+    }
     
     func provideLoginModel(listener: LoginListener) -> LoginModel {
         return LoginModel(serviceHelper: serviceHelper, userDefaults: userDefaults, listener: listener)
@@ -38,5 +49,9 @@ class ModelFactory {
     
     func provideSessionModel(listener: SessionListener) -> SessionModel {
         return SessionModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, sessionListener: listener)
+    }
+    
+    func providePushModel() -> PushModel {
+        return PushModel(serviceHelper: serviceHelper, userDefaults: userDefaults, build: provideVersionNumber())
     }
 }

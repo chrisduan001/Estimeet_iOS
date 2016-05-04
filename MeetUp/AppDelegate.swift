@@ -31,17 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
-        registerForPushNotifications(application)
 
         //PONY DEBUGGER
-        let debugger = PDDebugger.defaultInstance()
-        let url = NSURL(string: "ws://192.168.1.66:9000/device")
-        debugger.connectToURL(url)
-        debugger.forwardAllNetworkTraffic()
-        debugger.enableNetworkTrafficDebugging()
-        debugger.enableCoreDataDebugging()
-        debugger.addManagedObjectContext(self.managedObjectContext)
+//        let debugger = PDDebugger.defaultInstance()
+//        let url = NSURL(string: "ws://192.168.1.66:9000/device")
+//        debugger.connectToURL(url)
+//        debugger.forwardAllNetworkTraffic()
+//        debugger.enableNetworkTrafficDebugging()
+//        debugger.enableCoreDataDebugging()
+//        debugger.addManagedObjectContext(self.managedObjectContext)
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -76,17 +74,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: PUSH NOTIFICATION
     func registerForPushNotifications(application: UIApplication) {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert], categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
-        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types != .None {
+            application.registerForRemoteNotifications()
+        } else {
+            let rootVc = self.window?.rootViewController!.childViewControllers[0] as! BaseViewController
+            rootVc.showAlert(NSLocalizedString(GlobalString.push_denied_title,
+                comment: "push notification denied title"),
+                message: NSLocalizedString(GlobalString.push_denied_msg, comment: "push permission denied message"),
+                 button: NSLocalizedString(GlobalString.alert_button_ok, comment: "button_ok"), onOkClicked: {_ in})
+        }
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        
+        ModelFactory.sharedInstance.providePushModel().registerPushChannel(deviceToken)
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        
+        PushNotification.sharedInstance.receivePushMessage(userInfo)
     }
 
     // MARK: - Core Data stack
