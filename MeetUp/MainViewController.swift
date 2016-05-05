@@ -17,7 +17,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveNotification), name: PushNotification.BROADCAST_NOTIFICATION_KEY, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveNotification), name: PushNotification.GENERAL_NOTIFICATION_KEY, object: nil)
         
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
@@ -42,9 +42,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc private func onReceiveNotification(notification: NSNotification) {
-        if notification.name == PushNotification.BROADCAST_NOTIFICATION_KEY {
-            let data = notification.userInfo
-            showAlert(data.debugDescription, message: "received", button: "ok", onOkClicked: {_ in})
+        if notification.name == PushNotification.GENERAL_NOTIFICATION_KEY {
+            
         }
     }
     

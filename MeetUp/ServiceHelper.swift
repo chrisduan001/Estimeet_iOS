@@ -95,6 +95,17 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func getAllNotifications(userId: Int, userUId: String, token: String, completionHandler: (response: Response<ListItem<NotificationResponse>, NSError>) -> Void) {
+        let getNotificationUrl = "\(ServiceHelper.BASE_URL)/user/getallnotifications?id=\(userId)&userid=\(userUId)"
+        let request = Alamofire.request(.GET, getNotificationUrl, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseObject { (response: Response<ListItem<NotificationResponse>, NSError>) in
+            completionHandler(response: response)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     private func getAuthHeader(token: String) -> [String: String] {
         return ["Authorization" : "Bearer \(token)"]
     }

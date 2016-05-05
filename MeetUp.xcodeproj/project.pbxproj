@@ -44,8 +44,10 @@
 		623BBD5D1C7EE97800643C3C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 623BBD5C1C7EE97800643C3C /* LoginViewController.xib */; };
 		623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BBD611C7EE9AD00643C3C /* LoginModel.swift */; };
 		623BBD641C7EE9E900643C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BBD631C7EE9E900643C3C /* LoginViewController.swift */; };
-		623D64441CD9F65C00F344E6 /* PushModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64431CD9F65C00F344E6 /* PushModel.swift */; };
+		623D64441CD9F65C00F344E6 /* PushChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64431CD9F65C00F344E6 /* PushChannelModel.swift */; };
 		623D64461CDB36A200F344E6 /* NotificationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64451CDB36A200F344E6 /* NotificationEntity.swift */; };
+		623D64481CDB563000F344E6 /* GetNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64471CDB563000F344E6 /* GetNotificationModel.swift */; };
+		623D644A1CDB580000F344E6 /* NotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64491CDB580000F344E6 /* NotificationResponse.swift */; };
 		6240B1991C86CEA100899CD9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B1981C86CEA100899CD9 /* User.swift */; };
 		6240B19D1C86CF3600899CD9 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B19C1C86CF3600899CD9 /* ServiceHelper.swift */; };
 		6240B1AF1C86E90E00899CD9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6240B1B11C86E90E00899CD9 /* Localizable.strings */; };
@@ -112,8 +114,10 @@
 		623BBD5C1C7EE97800643C3C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		623BBD611C7EE9AD00643C3C /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		623BBD631C7EE9E900643C3C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		623D64431CD9F65C00F344E6 /* PushModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushModel.swift; sourceTree = "<group>"; };
+		623D64431CD9F65C00F344E6 /* PushChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushChannelModel.swift; sourceTree = "<group>"; };
 		623D64451CDB36A200F344E6 /* NotificationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationEntity.swift; sourceTree = "<group>"; };
+		623D64471CDB563000F344E6 /* GetNotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNotificationModel.swift; sourceTree = "<group>"; };
+		623D64491CDB580000F344E6 /* NotificationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationResponse.swift; sourceTree = "<group>"; };
 		6240B1981C86CEA100899CD9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6240B19C1C86CF3600899CD9 /* ServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		6240B1B01C86E90E00899CD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -237,8 +241,9 @@
 				62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */,
 				62024B071CD2007A00AB5C90 /* MainModel.swift */,
 				62024B0E1CD47A0C00AB5C90 /* SessionModel.swift */,
-				623D64431CD9F65C00F344E6 /* PushModel.swift */,
+				623D64431CD9F65C00F344E6 /* PushChannelModel.swift */,
 				62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */,
+				623D64471CDB563000F344E6 /* GetNotificationModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				622785F31C8C2409006FDD55 /* TokenResponse.swift */,
 				623867371CCB203E001ADA20 /* ListItem.swift */,
 				623867391CCB214D001ADA20 /* FriendEntity.swift */,
+				623D64491CDB580000F344E6 /* NotificationResponse.swift */,
 			);
 			name = Response;
 			sourceTree = "<group>";
@@ -544,8 +550,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				621539031CCCC1A100554726 /* ManageFriendTableViewCell.swift in Sources */,
+				623D644A1CDB580000F344E6 /* NotificationResponse.swift in Sources */,
 				623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */,
 				628E94791CD9E2E0002385FD /* PushNotification.swift in Sources */,
+				623D64481CDB563000F344E6 /* GetNotificationModel.swift in Sources */,
 				623867361CCB1B47001ADA20 /* FriendListModel.swift in Sources */,
 				6238673D1CCB2BF9001ADA20 /* ModelFactory.swift in Sources */,
 				6240B19D1C86CF3600899CD9 /* ServiceHelper.swift in Sources */,
@@ -582,7 +590,7 @@
 				62F887A81CCE09B9009C1C4F /* ManageProfileViewController.swift in Sources */,
 				62C2CA051C8AE60B0029B3DB /* DigitsModel.swift in Sources */,
 				621538FB1CCC7DD700554726 /* ManageFriendViewController.swift in Sources */,
-				623D64441CD9F65C00F344E6 /* PushModel.swift in Sources */,
+				623D64441CD9F65C00F344E6 /* PushChannelModel.swift in Sources */,
 				622785F41C8C2409006FDD55 /* TokenResponse.swift in Sources */,
 				6240B1B61C881FB500899CD9 /* BaseModel.swift in Sources */,
 				62024B0A1CD2069D00AB5C90 /* TableViewHeader.swift in Sources */,

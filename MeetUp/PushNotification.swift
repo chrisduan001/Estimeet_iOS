@@ -7,17 +7,52 @@
 //
 
 import Foundation
+import UIKit
+
 class PushNotification {
-    
-    static let BROADCAST_NOTIFICATION_KEY = "co.nz.estimeet.pushmessage"
+
+    static let GENERAL_NOTIFICATION_KEY = "co.nz.estimeet.pushmessage"
     
     static let sharedInstance = PushNotification()
     private init() {
     }
     
     func receivePushMessage(message: [NSObject : AnyObject]) {
-        let data: [String: String] = message["aps"] as! [String: String]
+        let pushData: [String: String] = message["aps"] as! [String: String]
         
-        NSNotificationCenter.defaultCenter().postNotificationName(PushNotification.BROADCAST_NOTIFICATION_KEY, object: self, userInfo: message)
+        let pushMessage = pushData["message"]!
+        let msgArray = pushMessage.componentsSeparatedByString(",")
+        let code = Int(msgArray[0])!
+        
+        switch code {
+        //100 general notification, need to pull data from server
+        case 100:
+            //new friend join
+            sendGeneralNotification()
+            break
+        case 101:
+            //new session request
+            sendGeneralNotification()
+            break
+        case 102:
+            //friend accepted session
+            sendGeneralNotification()
+            break
+        case 103:
+            //session cancelled, delete item from db
+            onSessionCancelled()
+            break
+        case 999:
+            break
+        default: break
+        }
+    }
+    
+    private func onSessionCancelled() {
+        
+    }
+    
+    private func sendGeneralNotification() {
+        NSNotificationCenter.defaultCenter().postNotificationName(PushNotification.GENERAL_NOTIFICATION_KEY, object: self, userInfo: nil)
     }
 }

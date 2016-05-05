@@ -51,7 +51,7 @@ class ModelFactory {
         return SessionModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, sessionListener: listener)
     }
     
-    func providePushModel() -> PushModel {
-        return PushModel(serviceHelper: serviceHelper, userDefaults: userDefaults, build: provideVersionNumber())
+    func providePushChannelModel() -> PushChannelModel {
+        return PushChannelModel(serviceHelper: serviceHelper, userDefaults: userDefaults, build: provideVersionNumber())
     }
 }

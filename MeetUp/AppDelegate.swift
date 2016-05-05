@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        ModelFactory.sharedInstance.providePushModel().registerPushChannel(deviceToken)
+        ModelFactory.sharedInstance.providePushChannelModel().registerPushChannel(deviceToken)
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {

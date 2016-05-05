@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class PushModel: BaseModel {
+class PushChannelModel: BaseModel {
     
     private let buildNumber: String!
     
