@@ -16,6 +16,8 @@ class PushNotification {
     }
     
     func receivePushMessage(message: [NSObject : AnyObject]) {
+        let data: [String: String] = message["aps"] as! [String: String]
+        
         NSNotificationCenter.defaultCenter().postNotificationName(PushNotification.BROADCAST_NOTIFICATION_KEY, object: self, userInfo: message)
     }
 }

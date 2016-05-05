@@ -45,6 +45,7 @@
 		623BBD621C7EE9AD00643C3C /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BBD611C7EE9AD00643C3C /* LoginModel.swift */; };
 		623BBD641C7EE9E900643C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BBD631C7EE9E900643C3C /* LoginViewController.swift */; };
 		623D64441CD9F65C00F344E6 /* PushModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64431CD9F65C00F344E6 /* PushModel.swift */; };
+		623D64461CDB36A200F344E6 /* NotificationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623D64451CDB36A200F344E6 /* NotificationEntity.swift */; };
 		6240B1991C86CEA100899CD9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B1981C86CEA100899CD9 /* User.swift */; };
 		6240B19D1C86CF3600899CD9 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B19C1C86CF3600899CD9 /* ServiceHelper.swift */; };
 		6240B1AF1C86E90E00899CD9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6240B1B11C86E90E00899CD9 /* Localizable.strings */; };
@@ -112,6 +113,7 @@
 		623BBD611C7EE9AD00643C3C /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		623BBD631C7EE9E900643C3C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		623D64431CD9F65C00F344E6 /* PushModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushModel.swift; sourceTree = "<group>"; };
+		623D64451CDB36A200F344E6 /* NotificationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationEntity.swift; sourceTree = "<group>"; };
 		6240B1981C86CEA100899CD9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6240B19C1C86CF3600899CD9 /* ServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		6240B1B01C86E90E00899CD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				622785E01C8B8947006FDD55 /* SigninAuth.swift */,
 				622785F11C8C1E6B006FDD55 /* UpdateProfile.swift */,
 				62C3A6261CC39559005D2F83 /* Contacts.swift */,
+				623D64451CDB36A200F344E6 /* NotificationEntity.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				62024B251CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift in Sources */,
 				621539051CCCC68300554726 /* NibLoader.swift in Sources */,
 				62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */,
+				623D64461CDB36A200F344E6 /* NotificationEntity.swift in Sources */,
 				62024B261CD5A3E500AB5C90 /* SessionData.swift in Sources */,
 				62024B2C1CD60A0600AB5C90 /* SessionFactory.swift in Sources */,
 				62C2CA071C8AE8470029B3DB /* CustomColor.swift in Sources */,

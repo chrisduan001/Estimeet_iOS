@@ -98,6 +98,7 @@ class DataHelper {
     }
     
     func deleteSession(session: SessionColumn) {
+        //reset the session from active to friend
         session.friend!.sectionHeader = SECTION_HEADER_FRIEND
         context.deleteObject(session)
         

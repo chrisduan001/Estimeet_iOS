@@ -12,6 +12,9 @@ class SessionModel: BaseModel {
     
     private let dataHelper: DataHelper
     
+    private var friendObj: Friend!
+    private var notificationModel: NotificationEntity!
+    
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, sessionListener: SessionListener) {
         self.dataHelper = dataHelper
         self.sessionListener = sessionListener
@@ -19,11 +22,34 @@ class SessionModel: BaseModel {
     }
     
     func sendSessionRequest(friendObj: Friend) {
+        self.friendObj = friendObj
+        notificationModel = NotificationEntity(senderId: baseUser!.userId!, receiverId: friendObj.userId! as Int, receiverUId: friendObj.userUId!)
+        makeNetworkRequest()
         dataHelper.createSession(friendObj)
     }
     
     func checkSessionExpiration() {
         SessionFactory.sharedInstance.checkSession(dataHelper)
+    }
+    
+    //MARK: EXTEND SUPER
+    override func startNetworkRequest() {
+        serviceHelper.sendRequestSession(notificationModel, length: 0, token: baseUser!.token!) { (response) in
+            if !response {
+                self.onError(ErrorFactory.generateGenericErrorMessage())
+            }
+        }
+    }
+    
+    override func onAuthError() {
+        sessionListener.onAuthFail()
+    }
+    
+    override func onError(message: String) {
+        if friendObj.session != nil {
+            dataHelper.deleteSession(friendObj.session!)
+        }
+        sessionListener.onError(message)
     }
 }
 
