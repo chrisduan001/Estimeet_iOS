@@ -106,6 +106,23 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func deleteNotifications(userId: Int, userUid: String, notificationId: Int, token: String, completionHandler: (response: Bool) -> Void) {
+        let deleteNotificationUrl = "\(ServiceHelper.BASE_URL)/user/deleteNotifications?id=\(userId)&userId=\(userUid)&notificationId=\(notificationId)"
+        let request = Alamofire.request(.GET, deleteNotificationUrl, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseString { (response: Response<String, NSError>) in
+            print("request session result \(response.response)")
+            var result = false
+            if let value = response.result.value {
+                result = value == "true"
+            }
+            
+            completionHandler(response: result)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     private func getAuthHeader(token: String) -> [String: String] {
         return ["Authorization" : "Bearer \(token)"]
     }

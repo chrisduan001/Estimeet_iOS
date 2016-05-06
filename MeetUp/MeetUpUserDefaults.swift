@@ -20,6 +20,8 @@ class MeetUpUserDefaults {
     private let EXPIRES = "TOKEN_EXPIRE_TIME"
 
     private let VERSION_CODE = "VERSION_CODE"
+    
+    private let NOTIFICATION_ID = "NOTIFICATION_ID"
 
     static let sharedInstance = MeetUpUserDefaults()
     private init() {}
@@ -97,6 +99,19 @@ class MeetUpUserDefaults {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         return userDefaults.objectForKey(VERSION_CODE) as? String
+    }
+    
+    func setNotificationId(id: Int) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setInteger(id, forKey: NOTIFICATION_ID)
+        
+        userDefaults.synchronize()
+    }
+    
+    func getNotificaitonId() -> Int {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        return userDefaults.integerForKey(NOTIFICATION_ID)
     }
     
     func removeUserDefault() {

@@ -54,4 +54,8 @@ class ModelFactory {
     func providePushChannelModel() -> PushChannelModel {
         return PushChannelModel(serviceHelper: serviceHelper, userDefaults: userDefaults, build: provideVersionNumber())
     }
+    
+    func provideGetNotificationModel(listener: GetNotificationListener) -> GetNotificationModel {
+        return GetNotificationModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
+    }
 }

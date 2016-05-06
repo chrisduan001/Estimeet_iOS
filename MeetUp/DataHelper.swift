@@ -42,6 +42,18 @@ class DataHelper {
         }
     }
     
+    func saveFriend(friend: FriendEntity) {
+        let entity = NSEntityDescription.entityForName(String(Friend), inManagedObjectContext: context)
+        
+        let friendObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as! Friend
+        DataEntity.sharedInstance.translateFriendEntityToDBFriend(friend, dbFriend: friendObj)
+        friendObj.sectionHeader = SECTION_HEADER_FRIEND
+        
+        do {
+            try context.save()
+        } catch {}
+    }
+    
     func saveFriendImage(friendObj: Friend, imgData: NSData) {
         friendObj.image = imgData
         
@@ -60,6 +72,19 @@ class DataHelper {
         } catch {}
     }
     
+    func getFriend(id: Int) -> Friend? {
+        let request = NSFetchRequest(entityName: String(Friend))
+        let predict = NSPredicate(format: "userId == %@", id)
+        request.predicate = predict
+        
+        do {
+            let result = try context.executeFetchRequest(request) as! [Friend]
+            return result[0]
+        } catch {}
+        
+        return nil
+    }
+    
     func deleteAllFriends() {
         let request = NSFetchRequest(entityName: String(Friend))
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
@@ -72,20 +97,50 @@ class DataHelper {
     //MARK: SESSION ACTIONS
     func createSession(friendObj: Friend) {
         if friendObj.session == nil {
-            let entity = NSEntityDescription.entityForName(String(SessionColumn), inManagedObjectContext: context)
-            let newSession = SessionColumn(entity: entity!, insertIntoManagedObjectContext: context)
-            SessionFactory.sharedInstance.createRequestedSession(newSession, friendId: friendObj.userId!)
-            friendObj.session = newSession
-        } else {
-            SessionFactory.sharedInstance.createRequestedSession(friendObj.session!, friendId: friendObj.userId!)
+            friendObj.session = createNewSessionObject()
         }
         
+        SessionFactory.sharedInstance.createRequestedSession(friendObj.session!, friendId: friendObj.userId!)
         do {
             try context.save()
             friendObj.sectionHeader = SECTION_HEADER_SESSION
         } catch {
             print("error while save new session")
         }
+    }
+    
+    func createPendingSession(friendId: Int, requestedTime: Int, friendObj: Friend) {
+        if friendObj.session == nil {
+            friendObj.session = createNewSessionObject()
+        }
+        
+        SessionFactory.sharedInstance.createPendingSession(friendObj.session!, friendId: friendId, requestedTime: requestedTime)
+        
+        do {
+            try context.save()
+            friendObj.sectionHeader = SECTION_HEADER_SESSION
+        } catch {
+            print("error while save session")
+        }
+    }
+    
+    func createActiveSession(friendId: Int, sessionId: Int, sessionLId: NSNumber, expireInMillis: NSNumber, length: Int, friendObj: Friend) {
+        if friendObj.session == nil {
+            friendObj.session = createNewSessionObject()
+        }
+        
+        SessionFactory.sharedInstance.createActiveSession(friendObj.session!, friendId: friendId, sessionId: sessionId, sessionLid: sessionLId, expireInMillis: expireInMillis, length: length)
+        
+        do {
+            try context.save()
+            friendObj.sectionHeader = SECTION_HEADER_SESSION
+        } catch {}
+    }
+    
+    private func createNewSessionObject() -> SessionColumn {
+        let entity = NSEntityDescription.entityForName(String(SessionColumn), inManagedObjectContext: context)
+        let newSession = SessionColumn(entity: entity!, insertIntoManagedObjectContext: context)
+        return newSession
     }
     
     func getAllSessions() -> [SessionColumn] {

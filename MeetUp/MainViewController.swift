@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
-    NSFetchedResultsControllerDelegate, MainModelListener, SessionListener{
+    NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,10 +26,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
+        getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
     }
     
     override func viewWillAppear(animated: Bool) {
         sessionModel.checkSessionExpiration()
+        getNotificationModel.getAllNotifications()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -43,7 +45,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     @objc private func onReceiveNotification(notification: NSNotification) {
         if notification.name == PushNotification.GENERAL_NOTIFICATION_KEY {
-            
+            getNotificationModel.getAllNotifications()
         }
     }
     
@@ -60,6 +62,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onCheckSessionExpiration(result: Bool?) {
+        
+    }
+    
+    func onCreateNewSession(expireTimeInMilli: NSNumber) {
         
     }
     
@@ -251,6 +257,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     var friendListModel: FriendListModel!
     var sessionModel: SessionModel!
+    var getNotificationModel: GetNotificationModel!
     
     private var fetchedResultsController: NSFetchedResultsController!
 }

@@ -18,10 +18,35 @@ class SessionFactory {
         session.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
     }
     
+    private func setUpSessionTime(expireTime: NSNumber, session: SessionColumn) {
+        session.expireInMillis = expireTime
+        session.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
+    }
+    
     func createRequestedSession(session: SessionColumn, friendId: NSNumber) {
         session.friendId = friendId
         session.sessionType = SENT_SESSION
         setupSessionTimeWithDefaultValue(session)
+    }
+    
+    func createPendingSession(session: SessionColumn, friendId: Int, requestedTime: Int) -> SessionColumn {
+        session.friendId = friendId
+        session.sessionRequestedTime = requestedTime
+        session.sessionType = RECEIVED_SESSION
+        setupSessionTimeWithDefaultValue(session)
+        
+        return session
+    }
+    
+    func createActiveSession(session: SessionColumn, friendId: Int, sessionId: Int, sessionLid: NSNumber, expireInMillis: NSNumber, length: Int) -> SessionColumn {
+        session.sessionId = sessionId
+        session.sessionLId = sessionLid
+        session.friendId = friendId
+        session.sessionType = ACTIVE_SESSION
+        session.sessionRequestedTime = length
+        setUpSessionTime(expireInMillis, session: session)
+        
+        return session
     }
     
     //nil == no session available, no == no active session, yes == active session

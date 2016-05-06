@@ -22,6 +22,52 @@ class GetNotificationModel: BaseModel {
         makeNetworkRequest()
     }
     
+    private func processFriendRequest(appendix: String) {
+        let appendixArray = appendix.componentsSeparatedByString(",")
+        let userId = Int(appendixArray[0])
+        let userUId = appendixArray[1]
+        let userName = appendixArray[2]
+        let dpUri = appendixArray[3]
+        let friendEntity = FriendEntity(userId: userId!, userUId: userUId, userName: userName, dpUri: dpUri, image: nil, isFavourite: false)
+        
+        dataHelper.saveFriend(friendEntity)
+    }
+    
+    private func processSessionRequest(appendix: String) {
+        let appendixArray = appendix.componentsSeparatedByString(",")
+        let friendId = Int(appendixArray[0])
+        //request length to share (0,1,2)
+        let length = Int(appendixArray[1])
+        guard let friendObj = dataHelper.getFriend(friendId!) else {
+            return
+        }
+        
+        dataHelper.createPendingSession(friendId!, requestedTime: length!, friendObj: friendObj)
+    }
+    
+    private func createNewSession(appendix: String) {
+        let appendixArray = appendix.componentsSeparatedByString(",")
+        let friendId = Int(appendixArray[0])
+        let sessionId = Int(appendixArray[1])
+        let sessionLId = NSNumber(longLong: CLongLong(appendixArray[2])!)
+        let length = Int(appendixArray[3])
+        let expireInMillis = NSNumber(longLong: CLongLong(appendixArray[5])!)
+        
+        guard let friendObj = dataHelper.getFriend(friendId!) else {
+            return
+        }
+        
+        dataHelper.createActiveSession(friendId!, sessionId: sessionId!, sessionLId: sessionLId, expireInMillis: expireInMillis, length: length!, friendObj: friendObj)
+    }
+    
+    private func deleteNotification(notificationId: Int) {
+        serviceHelper.deleteNotifications(baseUser!.userId!, userUid: baseUser!.userUId!, notificationId: notificationId, token: baseUser!.token!) { (response) in
+            if response {
+                self.userDefaults.setNotificationId(0)
+            }
+        }
+    }
+    
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
         serviceHelper.getAllNotifications(baseUser!.userId!, userUId: baseUser!.userUId!, token: baseUser!.token!) { (response) in
@@ -32,18 +78,36 @@ class GetNotificationModel: BaseModel {
                 return
             }
             
+            let storedNotificationId = self.userDefaults.getNotificaitonId()
+            var notificationId = 0
             if listItem?.items != nil {
                 for item in listItem!.items {
+                    //notification item already processed
+                    if storedNotificationId > item.notificationId {
+                        continue
+                    }
+                    
                     switch item.identifier {
                     case self.NOTIFICATION_FRIEND_REQUEST:
+                        self.processFriendRequest(item.appendix)
                         break
                     case self.NOTIFICATION_SESSION_REQUEST:
+                        self.processSessionRequest(item.appendix)
                         break
                     case self.NOTIFICAITON_SESSION_ACCEPTANCE:
+                        self.createNewSession(item.appendix)
                         break
                     default:break
                     }
+                    
+                    if item.notificationId > notificationId {
+                        notificationId = item.notificationId
+                    }
                 }
+            }
+            self.userDefaults.setNotificationId(notificationId)
+            if notificationId != 0 {
+                self.deleteNotification(notificationId)
             }
         }
     }
@@ -64,3 +128,7 @@ class GetNotificationModel: BaseModel {
 protocol GetNotificationListener: BaseListener {
     func onCreateNewSession(expireTimeInMilli: NSNumber)
 }
+
+
+
+
