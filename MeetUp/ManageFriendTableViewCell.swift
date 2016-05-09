@@ -10,7 +10,7 @@ import UIKit
 
 class ManageFriendTableViewCell: UITableViewCell {
     static let CELL_HEIGHT:CGFloat = 70
-    static let HEADER_HEIGHT: CGFloat = 20
+    static let HEADER_HEIGHT: CGFloat = 30
     
     var delegate: ManageFriendCellDelegate!
 

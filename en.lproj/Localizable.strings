@@ -37,3 +37,18 @@
 "page_profile_name"             = "Name";
 "page_profile_id"               = "ID";
 "page_profile_mobile"           = "Mobile Number";
+
+"cell_header_friends"           = "Friends";
+"cell_header_active"            = "Active";
+
+"action_button_accept"          = "Accept";
+"action_button_ignore"          = "Ignore";
+
+"sent_request_label"            = "Estimeet request sent";
+
+"time_minutes"                  = "Minute(s)";
+"time_hours"                    = "Hour(s)";
+"distance_unit_km"              = "KM";
+"travel_info_distance"          = "Distance: ";
+"travel_info_eta"               = "ETA: ";
+"expired_string"                = "(Expired)";

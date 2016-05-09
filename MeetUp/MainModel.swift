@@ -22,6 +22,7 @@ class MainModel: BaseModel {
         listener.setSessionFetchedResultsController(dataHelper.getSessionFetchedResults())
     }
     
+    
 }
 
 protocol MainModelListener: BaseListener {

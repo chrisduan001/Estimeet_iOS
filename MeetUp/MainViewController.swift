@@ -9,7 +9,8 @@
 import UIKit
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
-    NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener{
+    NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener,
+    FriendSessionCellDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,8 +23,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
-        ModelFactory.sharedInstance.provideMainModel(self).setUpMainTableView()
-        
+        mainModel = ModelFactory.sharedInstance.provideMainModel(self)
+        mainModel.setUpMainTableView()
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
         getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
@@ -90,11 +91,25 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return TableViewHeader.sharedInstance
             .getTableHeaderView(tableView,
-                                withTitle: NSLocalizedString(GlobalString.table_recommend_friend,
-                                    comment: "Recommend friend"),
+                                withTitle: getSectionHeaderName(section),
                                 withHeight: ManageFriendTableViewCell.HEADER_HEIGHT,
                                 textColor: UIColor().headerTextColor(),
                                 backgroundColor: UIColor().sectionHeaderColor())
+    }
+    
+    private func getSectionHeaderName(section: Int) -> String {
+        //both friends and active session
+        if fetchedResultsController.sections?.count > 1 {
+            return NSLocalizedString(section == 0 ? GlobalString.cell_header_active : GlobalString.cell_header_friend,
+                                     comment: "Friends / Active")
+        } else { //else needs find out if the section is friend or active session
+            if let friend = fetchedResultsController.fetchedObjects?.first as? Friend {
+                return NSLocalizedString(friend.session == nil ? GlobalString.cell_header_friend : GlobalString.cell_header_active,
+                                         comment: "Friends / Active")
+            }
+            
+            return ""
+        }
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -114,14 +129,15 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
 
         let identifier = "identifier"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ManageFriendTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? FriendSessionTableViewCell
         
         if cell == nil {
-            let object = NibLoader.sharedInstance.loadNibWithName("ManageFriendCell", owner: nil, ofclass: ManageFriendTableViewCell.self)
-            cell = object as? ManageFriendTableViewCell
+            let object = NibLoader.sharedInstance.loadNibWithName("FriendSessionTableViewCell", owner: nil, ofclass: FriendSessionTableViewCell.self)
+            cell = object as? FriendSessionTableViewCell
         }
         
         if cell != nil {
+            cell?.setDelegate(self)
             setUpCell(cell!, indexPath: indexPath)
         }
         
@@ -132,15 +148,34 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         return ManageFriendTableViewCell.CELL_HEIGHT
     }
     
-    private func setUpCell(cell: ManageFriendTableViewCell, indexPath: NSIndexPath) {
+    private func setUpCell(cell: FriendSessionTableViewCell, indexPath: NSIndexPath) {
         let friendObj = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
+        
         cell.indexPath = indexPath
-        cell.friendName.text = friendObj.userName
+        if let session = friendObj.session {
+            cell.img_action.hidden = false
+            switch session.sessionType! {
+            case SessionFactory.sharedInstance.SENT_SESSION:
+                setUpSentSessionView(cell, friend: friendObj)
+                break
+            case SessionFactory.sharedInstance.RECEIVED_SESSION:
+                setUpReceivedSessionView(cell, friend: friendObj)
+                break
+            case SessionFactory.sharedInstance.ACTIVE_SESSION:
+                setUpActiveSessionView(cell, friend: friendObj)
+                break
+            default: break
+            }
+        } else {
+            cell.addView(cell.view_default)
+            cell.friend_name.text = friendObj.userName
+            cell.img_action.hidden = true
+        }
         
         if friendObj.image != nil {
-            cell.friendDp.image = UIImage(data: friendObj.image!)
+            cell.img_dp.image = UIImage(data: friendObj.image!)
         } else {
-            ImageFactory.sharedInstance.loadImageFromUrl(cell.friendDp,
+            ImageFactory.sharedInstance.loadImageFromUrl(cell.img_dp,
                                                          fromUrl: NSURL(string:friendObj.imageUri!)!,
                                                          placeHolder: nil,
                                                          completionHandler: { (image, error, cacheType, imageURL) in
@@ -154,7 +189,32 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: TABLEVIEW SWIPE ACTION
+    private func setUpSentSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
+        cell.addView(cell.view_request_sent)
+        cell.request_sent_name.text = friend.userName
+        cell.request_sent_label.text = NSLocalizedString(GlobalString.sent_request_label, comment: "sent request label")
+    }
+    
+    private func setUpReceivedSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
+        cell.addView(cell.view_session_request)
+        cell.request_name.text = friend.userName
+        cell.btn_accept.setTitle(NSLocalizedString(GlobalString.button_accept, comment: "accept button"), forState: .Normal)
+        cell.btn_ignore.setTitle(NSLocalizedString(GlobalString.button_ignore, comment: "ignore button"), forState: .Normal)
+    }
+    
+    private func setUpActiveSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
+        cell.addView(cell.view_distance_eta)
+        if let sessionData = friend.session?.sessionData {
+            let expireString = TravelInfoFactory.sharedInstance.isLocationDataExpired(friend.session!.dateUpdated!) ?NSLocalizedString(GlobalString.expired_string, comment: "expired") : ""
+            
+            cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
+            
+            cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
+            cell.session_location.text = "Unknown"
+        }
+    }
+    
+    //MARK: TABLEVIEW ACTION
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
@@ -167,6 +227,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         sendRequest.backgroundColor = UIColor().primaryColor()
         
         return [sendRequest]
+    }
+    
+    func onCancelSession(indexPath: NSIndexPath) {
     }
     
     //MARK: NSFETCHED RESULT DELEGATE
@@ -183,14 +246,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
             break
         case .Update:
-            if let indexPath = indexPath {
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as? ManageFriendTableViewCell
-                if cell != nil {
-                    setUpCell(cell!, indexPath: indexPath)
-                } else {
-                    print("null value found at \(indexPath.row)")
-                }
-            }
+//            if let indexPath = indexPath {
+//                let cell = tableView.cellForRowAtIndexPath(indexPath) as? ManageFriendTableViewCell
+//                if cell != nil {
+//                    setUpCell(cell!, indexPath: indexPath)
+//                } else {
+//                    print("null value found at \(indexPath.row)")
+//                }
+//            }
             break
         case .Move:
             if let indexPath = indexPath {
@@ -258,6 +321,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     var friendListModel: FriendListModel!
     var sessionModel: SessionModel!
     var getNotificationModel: GetNotificationModel!
+    var mainModel: MainModel!
     
     private var fetchedResultsController: NSFetchedResultsController!
 }

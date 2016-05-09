@@ -19,6 +19,9 @@ class GetNotificationModel: BaseModel {
     }
     
     func getAllNotifications() {
+        if baseUser == nil {
+            return
+        }
         makeNetworkRequest()
     }
     

@@ -72,7 +72,7 @@ class SessionFactory {
         return isAnyActiveSession
     }
     
-    private let SENT_SESSION = 100
-    private let RECEIVED_SESSION = 102
-    private let ACTIVE_SESSION = 103
+    let SENT_SESSION = 100
+    let RECEIVED_SESSION = 102
+    let ACTIVE_SESSION = 103
 }

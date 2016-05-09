@@ -39,4 +39,18 @@ class GlobalString{
     static let profile_id           = "page_profile_id"
     static let profile_mobile       = "page_profile_mobile"
     
+    static let cell_header_friend   = "cell_header_friends"
+    static let cell_header_active   = "cell_header_active"
+    
+    static let button_accept        = "action_button_accept"
+    static let button_ignore        = "action_button_ignore"
+    
+    static let sent_request_label   = "sent_request_label"
+    
+    static let time_unit_minutes    = "time_minutes"
+    static let time_unit_hours      = "time_hours"
+    static let distance_unit_km     = "KM"
+    static let travel_info_distance = "travel_info_distance"
+    static let travel_info_eta      = "travel_info_eta"
+    static let expired_string       = "expired_string"
 }

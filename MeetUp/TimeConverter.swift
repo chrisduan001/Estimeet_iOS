@@ -27,4 +27,8 @@ class TimeConverter {
             return value * 1000
         }
     }
+    
+    func convertFromSecondsToMinutes(value: Int) -> Int {
+        return value / 60
+    }
 }

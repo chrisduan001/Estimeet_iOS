@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NTA-bk-ajI">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NTA-bk-ajI" customClass="FriendSessionTableViewCell" customModule="MeetUp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NTA-bk-ajI" id="pL3-3k-3i6">
@@ -29,20 +29,42 @@
                             <constraint firstAttribute="width" constant="35" id="yX6-Si-pTC"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kii-Tb-18O">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kii-Tb-18O">
                         <rect key="frame" x="66" y="8" width="187" height="53.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="leading" secondItem="kii-Tb-18O" secondAttribute="trailing" constant="24" id="1F7-5L-N93"/>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" constant="9" id="CxD-gG-Baf"/>
+                    <constraint firstItem="kii-Tb-18O" firstAttribute="leading" secondItem="7o2-95-uy7" secondAttribute="trailing" constant="18" id="NE8-za-RQp"/>
+                    <constraint firstItem="kii-Tb-18O" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" id="Q0T-0R-HU0"/>
                     <constraint firstItem="7o2-95-uy7" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" constant="7" id="XIw-zv-OQn"/>
+                    <constraint firstItem="kii-Tb-18O" firstAttribute="bottom" secondItem="pL3-3k-3i6" secondAttribute="bottomMargin" id="XRr-Ua-fCU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="7o2-95-uy7" secondAttribute="bottom" constant="6.5" id="gfH-Vp-2UT"/>
                     <constraint firstItem="7o2-95-uy7" firstAttribute="leading" secondItem="pL3-3k-3i6" secondAttribute="leadingMargin" id="hsn-rr-Ljt"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Xmd-Fu-Hi1" secondAttribute="bottom" constant="9.5" id="mLC-yh-pZF"/>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="trailing" secondItem="pL3-3k-3i6" secondAttribute="trailingMargin" id="yAo-zO-nNm"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_accept" destination="dzg-Ye-fce" id="hO8-zx-FHV"/>
+                <outlet property="btn_ignore" destination="r1J-4a-y78" id="N3O-yV-hCZ"/>
+                <outlet property="friend_name" destination="nq9-Zz-Tmq" id="2Ke-V0-1ar"/>
+                <outlet property="img_action" destination="Xmd-Fu-Hi1" id="rE3-Ss-mHS"/>
+                <outlet property="img_dp" destination="7o2-95-uy7" id="QUc-gy-paj"/>
+                <outlet property="request_name" destination="h1X-E9-dse" id="Efi-WL-DxS"/>
+                <outlet property="request_sent_label" destination="1pn-kC-6ML" id="uxP-2n-63n"/>
+                <outlet property="request_sent_name" destination="oAd-Ig-Wp8" id="0Bc-OK-IzB"/>
+                <outlet property="session_distance" destination="BWC-eH-6iV" id="3WB-H9-BiL"/>
+                <outlet property="session_eta" destination="rYv-hm-kAG" id="Jpg-SN-Eph"/>
+                <outlet property="session_location" destination="JOE-vk-cEM" id="rFi-6N-dcC"/>
+                <outlet property="view_container" destination="kii-Tb-18O" id="JkP-Vl-pwH"/>
+                <outlet property="view_default" destination="abM-8l-tyb" id="ij1-Fv-G3o"/>
+                <outlet property="view_distance_eta" destination="m6c-sk-3VK" id="da8-G3-out"/>
+                <outlet property="view_request_sent" destination="MqJ-x5-bbY" id="iTL-tI-yWS"/>
+                <outlet property="view_session_request" destination="FEf-j6-PVD" id="s9x-HO-Yw7"/>
+            </connections>
             <point key="canvasLocation" x="547" y="344"/>
         </tableViewCell>
         <view contentMode="scaleToFill" id="FEf-j6-PVD">

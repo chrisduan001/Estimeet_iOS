@@ -21,7 +21,7 @@
         <attribute name="sessionRequestedTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sessionType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="friend" maxCount="1" deletionRule="Nullify" destinationEntity="Friend" inverseName="session" inverseEntity="Friend" syncable="YES"/>
-        <relationship name="sessionData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SessionData" inverseName="sessionColumn" inverseEntity="SessionData" syncable="YES"/>
+        <relationship name="sessionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SessionData" inverseName="sessionColumn" inverseEntity="SessionData" syncable="YES"/>
     </entity>
     <entity name="SessionData" representedClassName=".SessionData" syncable="YES">
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>

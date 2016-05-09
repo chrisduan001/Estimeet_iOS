@@ -2,7 +2,7 @@
 //  SessionColumn+CoreDataProperties.swift
 //  MeetUp
 //
-//  Created by Chris Duan on 1/05/16.
+//  Created by Chris Duan on 8/05/16.
 //  Copyright © 2016 Chris. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -24,6 +24,6 @@ extension SessionColumn {
     @NSManaged var sessionRequestedTime: NSNumber?
     @NSManaged var sessionType: NSNumber?
     @NSManaged var friend: Friend?
-    @NSManaged var sessionData: NSSet?
+    @NSManaged var sessionData: SessionData?
 
 }
