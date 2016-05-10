@@ -25,11 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let mainViewController = MainViewController(nibName: "MainViewController", bundle: nil)
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        navigationController.navigationBar.tintColor = UIColor().primaryColor()
+        let user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
         
-        window?.rootViewController = navigationController
+        if user == nil || user!.userName!.isEmpty {
+            let loginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            window?.rootViewController = loginViewController
+        } else {
+            setMainRootViewController()
+        }
+
+        
         window?.makeKeyAndVisible()
 
         //PONY DEBUGGER
@@ -42,6 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        debugger.addManagedObjectContext(self.managedObjectContext)
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func setMainRootViewController() {
+        let mainViewController = MainViewController(nibName: "MainViewController", bundle: nil)
+        let navigationController = UINavigationController(rootViewController: mainViewController)
+        navigationController.navigationBar.tintColor = UIColor().primaryColor()
+        window?.rootViewController = navigationController
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
