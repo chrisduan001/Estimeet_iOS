@@ -74,7 +74,7 @@ class DataHelper {
     
     func getFriend(id: Int) -> Friend? {
         let request = NSFetchRequest(entityName: String(Friend))
-        let predict = NSPredicate(format: "userId == %@", id)
+        let predict = NSPredicate(format: "userId == %@", NSNumber(integer: id))
         request.predicate = predict
         
         do {

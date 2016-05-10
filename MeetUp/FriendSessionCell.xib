@@ -36,14 +36,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="leading" secondItem="kii-Tb-18O" secondAttribute="trailing" constant="24" id="1F7-5L-N93"/>
-                    <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" constant="9" id="CxD-gG-Baf"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="leading" secondItem="7o2-95-uy7" secondAttribute="trailing" constant="18" id="NE8-za-RQp"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" id="Q0T-0R-HU0"/>
-                    <constraint firstItem="7o2-95-uy7" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" constant="7" id="XIw-zv-OQn"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="bottom" secondItem="pL3-3k-3i6" secondAttribute="bottomMargin" id="XRr-Ua-fCU"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="7o2-95-uy7" secondAttribute="bottom" constant="6.5" id="gfH-Vp-2UT"/>
                     <constraint firstItem="7o2-95-uy7" firstAttribute="leading" secondItem="pL3-3k-3i6" secondAttribute="leadingMargin" id="hsn-rr-Ljt"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Xmd-Fu-Hi1" secondAttribute="bottom" constant="9.5" id="mLC-yh-pZF"/>
+                    <constraint firstItem="7o2-95-uy7" firstAttribute="centerY" secondItem="pL3-3k-3i6" secondAttribute="centerY" id="isU-ba-dYf"/>
+                    <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="centerY" secondItem="pL3-3k-3i6" secondAttribute="centerY" id="itS-En-xXD"/>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="trailing" secondItem="pL3-3k-3i6" secondAttribute="trailingMargin" id="yAo-zO-nNm"/>
                 </constraints>
             </tableViewCellContentView>
@@ -65,20 +63,20 @@
                 <outlet property="view_request_sent" destination="MqJ-x5-bbY" id="iTL-tI-yWS"/>
                 <outlet property="view_session_request" destination="FEf-j6-PVD" id="s9x-HO-Yw7"/>
             </connections>
-            <point key="canvasLocation" x="547" y="344"/>
+            <point key="canvasLocation" x="104" y="480"/>
         </tableViewCell>
         <view contentMode="scaleToFill" id="FEf-j6-PVD">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="53.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1X-E9-dse">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="39"/>
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="22.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzg-Ye-fce" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="47" width="70" height="23"/>
+                    <rect key="frame" x="0.0" y="30" width="70" height="23"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="23" id="sYX-fD-kaK"/>
                         <constraint firstAttribute="width" constant="70" id="v8s-U4-Tdd"/>
@@ -102,7 +100,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-4a-y78">
-                    <rect key="frame" x="82" y="47" width="70" height="23"/>
+                    <rect key="frame" x="82" y="30.5" width="70" height="23"/>
                     <state key="normal" title="Ignore">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -125,11 +123,11 @@
             <point key="canvasLocation" x="547" y="520"/>
         </view>
         <view contentMode="scaleToFill" id="abM-8l-tyb">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="53.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nq9-Zz-Tmq">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="53.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -137,16 +135,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="nq9-Zz-Tmq" secondAttribute="trailing" id="H8o-XS-OuK"/>
-                <constraint firstItem="nq9-Zz-Tmq" firstAttribute="leading" secondItem="abM-8l-tyb" secondAttribute="leading" id="d4u-o1-Osl"/>
-                <constraint firstAttribute="bottom" secondItem="nq9-Zz-Tmq" secondAttribute="bottom" id="f82-mT-u47"/>
-                <constraint firstItem="nq9-Zz-Tmq" firstAttribute="top" secondItem="abM-8l-tyb" secondAttribute="top" id="qbN-8p-j8N"/>
+                <constraint firstAttribute="trailing" secondItem="nq9-Zz-Tmq" secondAttribute="trailing" id="4zy-wd-zZ9"/>
+                <constraint firstAttribute="bottom" secondItem="nq9-Zz-Tmq" secondAttribute="bottom" id="ZJ2-uB-R1b"/>
+                <constraint firstItem="nq9-Zz-Tmq" firstAttribute="leading" secondItem="abM-8l-tyb" secondAttribute="leading" id="cPP-Hj-eO4"/>
+                <constraint firstItem="nq9-Zz-Tmq" firstAttribute="top" secondItem="abM-8l-tyb" secondAttribute="top" id="m8Z-9o-rTc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="547" y="669"/>
         </view>
         <view contentMode="scaleToFill" id="m6c-sk-3VK">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="72"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="53.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 2.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWC-eH-6iV">
@@ -159,7 +157,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 5 Minutes (Walk)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYv-hm-kAG">
-                    <rect key="frame" x="0.0" y="28" width="250" height="15"/>
+                    <rect key="frame" x="0.0" y="19" width="250" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="jd8-Xa-5jc"/>
                     </constraints>
@@ -168,7 +166,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Auckland" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOE-vk-cEM">
-                    <rect key="frame" x="0.0" y="57" width="250" height="15"/>
+                    <rect key="frame" x="0.0" y="38.5" width="250" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ptC-tQ-cTt"/>
                     </constraints>
@@ -190,20 +188,20 @@
                 <constraint firstItem="BWC-eH-6iV" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" id="vux-5c-XZe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="547" y="849"/>
+            <point key="canvasLocation" x="547" y="844.5"/>
         </view>
         <view contentMode="scaleToFill" id="MqJ-x5-bbY">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="53.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAd-Ig-Wp8">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="46.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimeet request sent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pn-kC-6ML">
-                    <rect key="frame" x="0.0" y="54.5" width="250" height="15.5"/>
+                    <rect key="frame" x="0.0" y="38" width="250" height="15.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="6mP-DL-aN1"/>
                     </constraints>
@@ -223,7 +221,7 @@
                 <constraint firstItem="oAd-Ig-Wp8" firstAttribute="leading" secondItem="MqJ-x5-bbY" secondAttribute="leading" id="vcb-kK-Tae"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="904" y="669"/>
+            <point key="canvasLocation" x="904" y="664.75"/>
         </view>
     </objects>
 </document>

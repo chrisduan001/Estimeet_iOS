@@ -132,7 +132,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? FriendSessionTableViewCell
         
         if cell == nil {
-            let object = NibLoader.sharedInstance.loadNibWithName("FriendSessionTableViewCell", owner: nil, ofclass: FriendSessionTableViewCell.self)
+            let object = NibLoader.sharedInstance.loadNibWithName("FriendSessionCell", owner: nil, ofclass: FriendSessionTableViewCell.self)
             cell = object as? FriendSessionTableViewCell
         }
         
