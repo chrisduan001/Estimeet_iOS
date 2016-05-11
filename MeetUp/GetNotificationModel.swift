@@ -52,7 +52,7 @@ class GetNotificationModel: BaseModel {
         let appendixArray = appendix.componentsSeparatedByString(",")
         let friendId = Int(appendixArray[0])
         let sessionId = Int(appendixArray[1])
-        let sessionLId = NSNumber(longLong: CLongLong(appendixArray[2])!)
+        let sessionLId = appendixArray[2]
         let length = Int(appendixArray[3])
         let expireInMillis = NSNumber(longLong: CLongLong(appendixArray[5])!)
         

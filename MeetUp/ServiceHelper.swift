@@ -123,6 +123,17 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func getTravelInfo(entity: RequestLocationEntity, token: String, completionHandler: (response: Response<ListItem<LocationModelResponse>, NSError>) -> Void) {
+        let getTravelInfoUrl = "\(ServiceHelper.BASE_URL)/session/getsessiondata"
+        let request = Alamofire.request(.POST, getTravelInfoUrl, parameters: getJsonString(entity), encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseObject { (response: Response<ListItem<LocationModelResponse>, NSError>) in
+            completionHandler(response: response)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     private func getAuthHeader(token: String) -> [String: String] {
         return ["Authorization" : "Bearer \(token)"]
     }

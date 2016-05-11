@@ -38,7 +38,7 @@ class SessionFactory {
         return session
     }
     
-    func createActiveSession(session: SessionColumn, friendId: Int, sessionId: Int, sessionLid: NSNumber, expireInMillis: NSNumber, length: Int) -> SessionColumn {
+    func createActiveSession(session: SessionColumn, friendId: Int, sessionId: Int, sessionLid: String, expireInMillis: NSNumber, length: Int) -> SessionColumn {
         session.sessionId = sessionId
         session.sessionLId = sessionLid
         session.friendId = friendId

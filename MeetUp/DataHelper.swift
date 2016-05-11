@@ -101,9 +101,9 @@ class DataHelper {
         }
         
         SessionFactory.sharedInstance.createRequestedSession(friendObj.session!, friendId: friendObj.userId!)
+        friendObj.sectionHeader = SECTION_HEADER_SESSION
         do {
             try context.save()
-            friendObj.sectionHeader = SECTION_HEADER_SESSION
         } catch {
             print("error while save new session")
         }
@@ -115,25 +115,23 @@ class DataHelper {
         }
         
         SessionFactory.sharedInstance.createPendingSession(friendObj.session!, friendId: friendId, requestedTime: requestedTime)
-        
+        friendObj.sectionHeader = SECTION_HEADER_SESSION
         do {
             try context.save()
-            friendObj.sectionHeader = SECTION_HEADER_SESSION
         } catch {
             print("error while save session")
         }
     }
     
-    func createActiveSession(friendId: Int, sessionId: Int, sessionLId: NSNumber, expireInMillis: NSNumber, length: Int, friendObj: Friend) {
+    func createActiveSession(friendId: Int, sessionId: Int, sessionLId: String, expireInMillis: NSNumber, length: Int, friendObj: Friend) {
         if friendObj.session == nil {
             friendObj.session = createNewSessionObject()
         }
         
         SessionFactory.sharedInstance.createActiveSession(friendObj.session!, friendId: friendId, sessionId: sessionId, sessionLid: sessionLId, expireInMillis: expireInMillis, length: length)
-        
+        friendObj.sectionHeader = SECTION_HEADER_SESSION
         do {
             try context.save()
-            friendObj.sectionHeader = SECTION_HEADER_SESSION
         } catch {}
     }
     
@@ -168,6 +166,27 @@ class DataHelper {
         do {
             try context.executeRequest(deleteRequest)
         } catch {}
+    }
+    
+    //MARK: SESSION DATA
+    func storeSessionData(distance: Int, eta: Int, travelMode: Int, session: SessionColumn) {
+        if session.sessionData == nil {
+            session.sessionData = createNewSessionDataObject();
+        }
+        
+        session.sessionData!.distance = distance
+        session.sessionData!.eta = eta
+        session.sessionData!.travelMode = travelMode
+        
+        do {
+            try context.save()
+        } catch {}
+    }
+    
+    func createNewSessionDataObject() -> SessionData {
+        let entity = NSEntityDescription.entityForName(String(SessionData), inManagedObjectContext: context)
+        let sessionData = SessionData(entity: entity!, insertIntoManagedObjectContext: context)
+        return sessionData
     }
     
     //MARK: FETCHED RESULTS

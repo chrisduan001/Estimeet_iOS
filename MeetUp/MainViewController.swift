@@ -167,9 +167,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             default: break
             }
         } else {
-            cell.addView(cell.view_default)
-            cell.friend_name.text = friendObj.userName
-            cell.img_action.hidden = true
+            setupDefaultSessionView(cell, friend: friendObj)
         }
         
         if friendObj.image != nil {
@@ -189,6 +187,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    private func setupDefaultSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
+        cell.addView(cell.view_default)
+        cell.friend_name.text = friend.userName
+        cell.img_action.hidden = true
+    }
+    
     private func setUpSentSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
         cell.addView(cell.view_request_sent)
         cell.request_sent_name.text = friend.userName
@@ -203,14 +207,16 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func setUpActiveSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
-        cell.addView(cell.view_distance_eta)
         if let sessionData = friend.session?.sessionData {
+            cell.addView(cell.view_distance_eta)
             let expireString = TravelInfoFactory.sharedInstance.isLocationDataExpired(friend.session!.dateUpdated!) ?NSLocalizedString(GlobalString.expired_string, comment: "expired") : ""
             
             cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
             
             cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
             cell.session_location.text = "Unknown"
+        } else {
+            setupDefaultSessionView(cell, friend: friend)
         }
     }
     
@@ -220,10 +226,19 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
-            self.sessionModel.sendSessionRequest(self.fetchedResultsController.objectAtIndexPath(indexPath) as! Friend)
-        }
+        let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         
+        var sendRequest: UITableViewRowAction
+        if friend.session == nil {
+            sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
+                self.sessionModel.sendSessionRequest(friend)
+            }
+        } else {
+            sendRequest = UITableViewRowAction(style: .Normal, title: "Request Estimeet") { (action, index) in
+                self.mainModel.sendSessionDataRequest(friend)
+            }
+        }
+
         sendRequest.backgroundColor = UIColor().primaryColor()
         
         return [sendRequest]
