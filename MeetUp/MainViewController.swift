@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
     NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener,
-    FriendSessionCellDelegate{
+    FriendSessionCellDelegate, CLLocationManagerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    
+    private var locationManager: CLLocationManager!
     
     //MARK: LIFECYCLE
     override func viewDidLoad() {
@@ -77,6 +80,43 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onManageProfile(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
+    }
+    
+    //MARK: LOCATION SERVICE
+    func getUserCurrentLocation() {
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+        }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        
+        if locationManager.respondsToSelector(#selector(CLLocationManager.requestAlwaysAuthorization)) {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+            locationManager.startUpdatingLocation()
+        }
+    }
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch status {
+        case .Restricted, .Denied:
+            onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_LOCATION_SERVICE))
+            break
+        case .AuthorizedAlways:
+            locationManager.startUpdatingLocation()
+            break
+        default: break
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        mainModel.onGetUserGeoData("\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)")
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func sendSessionRequest() {
+        
     }
     
     //MARK: TABLEVIEW
@@ -231,6 +271,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         var sendRequest: UITableViewRowAction
         if friend.session == nil {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
+                //check if the location service is available and then request the current location and store to user defaults
+                self.getUserCurrentLocation()
                 self.sessionModel.sendSessionRequest(friend)
             }
         } else {

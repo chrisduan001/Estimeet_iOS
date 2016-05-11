@@ -14,6 +14,8 @@ class ErrorFactory {
     
     static let ERROR_CODE_USER_GEO_UNAVAILABLE = 710
     
+    static let ERROR_LOCATION_SERVICE = 800
+    
     static func generateErrorWithCode(errorCode: Int) -> String {
         let errorMessage: String
         
@@ -26,6 +28,9 @@ class ErrorFactory {
             break
         case ERROR_CODE_USER_GEO_UNAVAILABLE:
             errorMessage = NSLocalizedString(GlobalString.user_geo_unavailable, comment: "unable to get location error")
+            break
+        case ERROR_LOCATION_SERVICE:
+            errorMessage = NSLocalizedString(GlobalString.user_location_failed, comment: "Location service error")
         default:
             errorMessage = generateGenericErrorMessage()
             break

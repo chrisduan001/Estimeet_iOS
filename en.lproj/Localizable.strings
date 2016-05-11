@@ -54,3 +54,4 @@
 "expired_string"                = "(Expired)";
 
 "user_geo_unavailable"          = "Unable to get your location, request failed";
+"user_location_unavilable"      = "Your location service not available, you may not be able to find the location data";

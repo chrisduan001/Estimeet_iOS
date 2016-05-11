@@ -55,4 +55,5 @@ class GlobalString{
     static let expired_string       = "expired_string"
     
     static let user_geo_unavailable = "user_geo_unavailable"
+    static let user_location_failed = "user_location_unavilable"
 }
