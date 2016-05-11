@@ -51,6 +51,10 @@ class BaseModel {
         return true
     }
     
+    func generateErrorMessage(errorCode: Int) {
+        onError(ErrorFactory.generateErrorWithCode(errorCode)) 
+    }
+    
     //MARK: CHECK ERROR
     //check both http error(eg: internet, auth etc) and request error(eg: inconsisitent data)
     func isAnyErrors(statusCode: Int, response: BaseResponse?) -> Bool {

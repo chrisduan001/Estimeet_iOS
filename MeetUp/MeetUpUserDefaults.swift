@@ -22,6 +22,8 @@ class MeetUpUserDefaults {
     private let VERSION_CODE = "VERSION_CODE"
     
     private let NOTIFICATION_ID = "NOTIFICATION_ID"
+    
+    private let USER_GEO = "USER_GEO"
 
     static let sharedInstance = MeetUpUserDefaults()
     private init() {}
@@ -112,6 +114,18 @@ class MeetUpUserDefaults {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         return userDefaults.integerForKey(NOTIFICATION_ID)
+    }
+    
+    func saveUserGeo(userGeo: String) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(userGeo, forKey: USER_GEO)
+        
+        userDefaults.synchronize()
+    }
+    
+    func getUserGeo() -> String? {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        return userDefaults.objectForKey(USER_GEO) as? String
     }
     
     func removeUserDefault() {

@@ -31,13 +31,18 @@ class MainModel: BaseModel {
     
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
+        let geoCoordinate = userDefaults.getUserGeo()
+        guard geoCoordinate != nil else {
+            generateErrorMessage(ErrorFactory.ERROR_CODE_USER_GEO_UNAVAILABLE)
+            return
+        }
         let entity = RequestLocationEntity(userId: baseUser!.userId!,
                                          friendId: friendObj.userId!.integerValue,
                                         friendUid: friendObj.userUId!,
                                         sessionId: friendObj.session!.sessionId!.integerValue,
                                        sessionLid: friendObj!.session!.sessionLId!,
                                        travelMode: -1,
-                                          userGeo: "")
+                                          userGeo: geoCoordinate!)
         
         serviceHelper.getTravelInfo(entity, token: baseUser!.token!) {
             response in

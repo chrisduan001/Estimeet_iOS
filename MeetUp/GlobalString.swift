@@ -53,4 +53,6 @@ class GlobalString{
     static let travel_info_distance = "travel_info_distance"
     static let travel_info_eta      = "travel_info_eta"
     static let expired_string       = "expired_string"
+    
+    static let user_geo_unavailable = "user_geo_unavailable"
 }

@@ -52,3 +52,5 @@
 "travel_info_distance"          = "Distance: ";
 "travel_info_eta"               = "ETA: ";
 "expired_string"                = "(Expired)";
+
+"user_geo_unavailable"          = "Unable to get your location, request failed";
