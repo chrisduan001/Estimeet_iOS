@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class BaseModel {
+class BaseModel: NSObject {
     let serviceHelper: ServiceHelper
     let userDefaults: MeetUpUserDefaults
     var baseUser: User?

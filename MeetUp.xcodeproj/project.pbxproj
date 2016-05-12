@@ -73,6 +73,7 @@
 		62D5BF511CE08EDD0085CDBE /* TravelInfoFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF501CE08EDD0085CDBE /* TravelInfoFactory.swift */; };
 		62D5BF531CE1E8080085CDBE /* LocationModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF521CE1E8080085CDBE /* LocationModelResponse.swift */; };
 		62D5BF551CE1E9460085CDBE /* RequestLocationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF541CE1E9460085CDBE /* RequestLocationEntity.swift */; };
+		62D5BF591CE47F340085CDBE /* LocationServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF581CE47F340085CDBE /* LocationServiceModel.swift */; };
 		62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */; };
 		62F887A81CCE09B9009C1C4F /* ManageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */; };
 		62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */; };
@@ -151,6 +152,7 @@
 		62D5BF501CE08EDD0085CDBE /* TravelInfoFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelInfoFactory.swift; sourceTree = "<group>"; };
 		62D5BF521CE1E8080085CDBE /* LocationModelResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModelResponse.swift; sourceTree = "<group>"; };
 		62D5BF541CE1E9460085CDBE /* RequestLocationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestLocationEntity.swift; sourceTree = "<group>"; };
+		62D5BF581CE47F340085CDBE /* LocationServiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceModel.swift; sourceTree = "<group>"; };
 		62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
 		62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileViewController.swift; sourceTree = "<group>"; };
 		62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageProfileViewController.xib; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				623D64431CD9F65C00F344E6 /* PushChannelModel.swift */,
 				62024B101CD47BC300AB5C90 /* SessionDataEntity.swift */,
 				623D64471CDB563000F344E6 /* GetNotificationModel.swift */,
+				62D5BF581CE47F340085CDBE /* LocationServiceModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				62BD34881C8EB932008751B0 /* FacebookModel.swift in Sources */,
 				62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */,
 				6203A8221CCB6D5500401B07 /* DataEntity.swift in Sources */,
+				62D5BF591CE47F340085CDBE /* LocationServiceModel.swift in Sources */,
 				62024B0D1CD21D1200AB5C90 /* MeetUp.xcdatamodeld in Sources */,
 				62024B111CD47BC300AB5C90 /* SessionDataEntity.swift in Sources */,
 				622785EB1C8BD460006FDD55 /* MeetUpUserDefaults.swift in Sources */,

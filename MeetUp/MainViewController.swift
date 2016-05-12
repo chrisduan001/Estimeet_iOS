@@ -11,7 +11,7 @@ import CoreLocation
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
     NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener,
-    FriendSessionCellDelegate, CLLocationManagerDelegate{
+    FriendSessionCellDelegate, LocationServiceListener{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +31,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
         getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
+        locationServiceModel = ModelFactory.sharedInstance.provideLocationServicemodel(self)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,6 +74,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func onLocationAuthorized() {
+        sessionModel.sendSessionRequest(selectedFriend)
+    }
+    
     //MARK: BUTTON CLICK EVENT
     @IBAction func onManageFriend(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToFriendList(self)
@@ -80,43 +85,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onManageProfile(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
-    }
-    
-    //MARK: LOCATION SERVICE
-    func getUserCurrentLocation() {
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-        }
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        
-        if locationManager.respondsToSelector(#selector(CLLocationManager.requestAlwaysAuthorization)) {
-            locationManager.requestAlwaysAuthorization()
-        } else {
-            locationManager.startUpdatingLocation()
-        }
-    }
-
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        switch status {
-        case .Restricted, .Denied:
-            onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_LOCATION_SERVICE))
-            break
-        case .AuthorizedAlways:
-            locationManager.startUpdatingLocation()
-            break
-        default: break
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        mainModel.onGetUserGeoData("\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)")
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func sendSessionRequest() {
-        
     }
     
     //MARK: TABLEVIEW
@@ -272,8 +240,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if friend.session == nil {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
                 //check if the location service is available and then request the current location and store to user defaults
-                self.getUserCurrentLocation()
-                self.sessionModel.sendSessionRequest(friend)
+                self.selectedFriend = friend
+                self.locationServiceModel.getCurrentLocation()
             }
         } else {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Request Estimeet") { (action, index) in
@@ -379,6 +347,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     var sessionModel: SessionModel!
     var getNotificationModel: GetNotificationModel!
     var mainModel: MainModel!
+    var locationServiceModel: LocationServiceModel!
+    
+    var selectedFriend: Friend!
     
     private var fetchedResultsController: NSFetchedResultsController!
 }

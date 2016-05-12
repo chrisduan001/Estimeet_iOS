@@ -29,10 +29,6 @@ class MainModel: BaseModel {
         makeNetworkRequest()
     }
     
-    func onGetUserGeoData(geoData: String) {
-        userDefaults.saveUserGeo(geoData)
-    }
-    
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
         let geoCoordinate = userDefaults.getUserGeo()
