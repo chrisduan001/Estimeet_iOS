@@ -67,11 +67,13 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onCheckSessionExpiration(result: Bool?) {
-        
+        if result == nil || !result! {
+            locationServiceModel.startTracking(-1)
+        }
     }
     
     func onCreateNewSession(expireTimeInMilli: NSNumber) {
-        
+        locationServiceModel.startTracking(expireTimeInMilli)
     }
     
     func onLocationAuthorized() {

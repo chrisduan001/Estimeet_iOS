@@ -15,6 +15,7 @@ import PonyDebugger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    static var SESSION_TIME_TO_EXPIRE: NSNumber?
 
     var window: UIWindow?
     static let plistDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GlobalVariable", ofType: "plist")!)

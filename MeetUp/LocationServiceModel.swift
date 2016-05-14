@@ -23,6 +23,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
+    //MARK: CONTROLLER CALL
     func getCurrentLocation() {
         if locationManager == nil {
             locationManager = CLLocationManager()
@@ -46,41 +47,71 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         }
     }
     
+    func startTracking(expireTimeInMillis: NSNumber) {
+        AppDelegate.SESSION_TIME_TO_EXPIRE = NSDate.timeIntervalSinceReferenceDate() + expireTimeInMillis.doubleValue
+        
+        if trackTimer != nil {
+            trackTimer.invalidate()
+        }
+        trackTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
+    }
+    
+    //timer method
+    func makeContinuousTracking() {
+        if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
+            NSDate.timeIntervalSinceReferenceDate() > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
+            stopTrackingTimer()
+            
+            print("Tracking timer stopped")
+        } else {
+            print("Get location")
+            getCurrentLocation()
+        }
+    }
+    
+    private func onPermissionDenied() {
+        AppDelegate.SESSION_TIME_TO_EXPIRE = nil
+        if listener != nil {
+            listener!.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_LOCATION_SERVICE))
+        }
+    }
+    
+    private func permissionGranted() {
+        if listener != nil {
+            listener!.onLocationAuthorized()
+        }
+        
+        startLocationUpdate()
+    }
+    
+    private func stopTrackingTimer() {
+        AppDelegate.SESSION_TIME_TO_EXPIRE = nil
+        if trackTimer != nil {
+            trackTimer.invalidate()
+            trackTimer = nil
+        }
+    }
+    
+    //MARK: LOCATION MANAGER DELEGATE
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch status {
         case .Restricted, .Denied:
             onPermissionDenied()
             break
         case .AuthorizedAlways:
-            locationManager.startUpdatingLocation()
             permissionGranted()
             break
         default: break
         }
     }
     
-    func startTracking() {
-        trackTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(LocationServiceModel.timerMethod), userInfo: nil, repeats: true)
-    }
-    
-    func timerMethod() {
-    }
-    
-    func onPermissionDenied() {
-        if listener != nil {
-            listener!.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_LOCATION_SERVICE))
-        }
-    }
-    
-    func permissionGranted() {
-        if listener != nil {
-            listener!.onLocationAuthorized()
-        }
-    }
-    
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         userDefaults.saveUserGeo("\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)")
         locationManager.stopUpdatingLocation()
+    }
+    
+    private func startLocationUpdate() {
+        locationManager.startUpdatingLocation()
     }
 }
 
