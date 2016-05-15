@@ -17,7 +17,7 @@ class TravelInfoFactory {
         let minutes = TimeConverter.sharedInstance.convertFromSecondsToMinutes(seconds)
         
         if minutes <= 60 {
-            return ("\(minutes) \(timeUnitMinutes))")
+            return ("\(minutes) \(timeUnitMinutes)")
         } else {
             let hours = minutes /  60
             let remainder = minutes % 60
@@ -29,7 +29,7 @@ class TravelInfoFactory {
     func getDistanceString(distance: Double) -> String {
         let distanceUnit = NSLocalizedString(GlobalString.distance_unit_km, comment: "KM")
         //round to 2 decimal point
-        return ("\(round((distance * 1000) * 100) / 100) \(distanceUnit)")
+        return ("\(round((distance / 1000) * 100) / 100) \(distanceUnit)")
     }
     
     func isLocationDataExpired(dateUpdated: NSNumber) -> Bool {

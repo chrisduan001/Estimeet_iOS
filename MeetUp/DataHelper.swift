@@ -174,13 +174,16 @@ class DataHelper {
             session.sessionData = createNewSessionDataObject();
         }
         
+        session.dateUpdated = NSDate.timeIntervalSinceReferenceDate() * 1000
         session.sessionData!.distance = distance
         session.sessionData!.eta = eta
         session.sessionData!.travelMode = travelMode
         
         do {
             try context.save()
-        } catch {}
+        } catch {
+            print("error occurred while save session data")
+        }
     }
     
     func createNewSessionDataObject() -> SessionData {
@@ -204,7 +207,7 @@ class DataHelper {
         request.predicate = predict
         request.sortDescriptors = [sort]
         
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "sectionHeader", cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "sectionHeader", cacheName: "mainSessionCache")
     }
     
     private let SECTION_HEADER_FRIEND = "Friend"

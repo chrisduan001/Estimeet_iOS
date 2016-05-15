@@ -29,7 +29,7 @@ class SessionModel: BaseModel {
     }
     
     func checkSessionExpiration() {
-        SessionFactory.sharedInstance.checkSession(dataHelper)
+        sessionListener.onCheckSessionExpiration(SessionFactory.sharedInstance.checkSession(dataHelper))
     }
     
     //MARK: EXTEND SUPER

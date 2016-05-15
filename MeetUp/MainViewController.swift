@@ -16,13 +16,13 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
     
-    private var locationManager: CLLocationManager!
-    
     //MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveNotification), name: PushNotification.GENERAL_NOTIFICATION_KEY, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveLifecycleNotification), name: AppDelegate.LIFE_CYCLE_NOTIFICATION, object: nil)
         
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
@@ -39,8 +39,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(animated: Bool) {
-        sessionModel.checkSessionExpiration()
-        getNotificationModel.getAllNotifications()
+        onResume()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -58,6 +57,18 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @objc private func onReceiveLifecycleNotification(notification: NSNotification) {
+        if notification.name == AppDelegate.LIFE_CYCLE_NOTIFICATION {
+            onResume()
+        }
+    }
+    
+    private func onResume() {
+        print("on resume called")
+        sessionModel.checkSessionExpiration()
+        getNotificationModel.getAllNotifications()
+    }
+    
     //MARK: TOOLBAR
     private func setDefaultToolbarItem() {
         let barButtonItem1 = UIBarButtonItem(image: UIImage(named: "navigation_icon"), style: .Plain, target: self, action: #selector(MainViewController.onManageFriend(_:)))
@@ -71,6 +82,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func setTravelModeToolbar() {
+        guard toolbar.items?.count < 6 else {
+            //travel mode toolbar already set
+            return
+        }
+        
         let flexiSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let barButtonItem1 = UIBarButtonItem(image: UIImage(named: "ic_directions_walk_green"), style: .Plain, target: self, action: #selector(MainViewController.onWalkingSelected))
         let barButtonItem2 = UIBarButtonItem(image: UIImage(named: "ic_directions_car_green"), style: .Plain, target: self, action: #selector(MainViewController.onDrivingSelected))
@@ -80,6 +96,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let toolbarItems: [UIBarButtonItem] = [barButtonItem1, flexiSpace, barButtonItem2, flexiSpace, barButtonItem3, flexiSpace, barButtonItem4]
         toolbar.setItems(toolbarItems, animated: true)
         resetToolbarSelection()
+        mainModel.getTravelMode()
     }
     
     //MARK: MODEL CALLBACK
@@ -95,8 +112,16 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onCheckSessionExpiration(result: Bool?) {
+        //nil == no session available, no == no active session, yes == active session
         if result == nil || !result! {
+            //STOP TRACKING TIMER
             locationServiceModel.startTracking(-1)
+        }
+        
+        if result == nil {
+            setDefaultToolbarItem()
+        } else {
+            setTravelModeToolbar()
         }
     }
     
@@ -104,8 +129,30 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         locationServiceModel.startTracking(expireTimeInMilli)
     }
     
+    func onSessionCompleted() {
+        sessionModel.checkSessionExpiration()
+    }
+    
     func onLocationAuthorized() {
         sessionModel.sendSessionRequest(selectedFriend)
+    }
+    
+    func onGetTravelMode(travelMode: Int) {
+        switch travelMode {
+        case TRAVEL_MODE.WALKING.rawValue:
+            onWalkingSelected()
+            break
+        case TRAVEL_MODE.DRIVING.rawValue:
+            onDrivingSelected()
+            break
+        case TRAVEL_MODE.TRANSIT.rawValue:
+            onTransitSelected()
+            break
+        case TRAVEL_MODE.BIKE.rawValue:
+            onBikeSelected()
+            break
+        default: break
+        }
     }
     
     //MARK: TOOLBAR BUTTON CLICK EVENT
@@ -121,24 +168,32 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         print("walking selected")
         resetToolbarSelection()
         toolbar.items![0].tintColor = UIColor.lightGrayColor()
+        
+        mainModel.setTravelMode(TRAVEL_MODE.WALKING.rawValue)
     }
     
     func onDrivingSelected() {
         print("driving selected")
         resetToolbarSelection()
         toolbar.items![2].tintColor = UIColor.lightGrayColor()
+        
+        mainModel.setTravelMode(TRAVEL_MODE.DRIVING.rawValue)
     }
     
     func onTransitSelected() {
         print("transit selected")
         resetToolbarSelection()
         toolbar.items![4].tintColor = UIColor.lightGrayColor()
+        
+        mainModel.setTravelMode(TRAVEL_MODE.TRANSIT.rawValue)
     }
     
     func onBikeSelected() {
         print("Bike selected")
         resetToolbarSelection()
         toolbar.items![6].tintColor = UIColor.lightGrayColor()
+        
+        mainModel.setTravelMode(TRAVEL_MODE.BIKE.rawValue)
     }
     
     func resetToolbarSelection() {
@@ -282,7 +337,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
             
             cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
-            cell.session_location.text = "Unknown"
+            cell.session_location.text = "Location: Unknown"
         } else {
             setupDefaultSessionView(cell, friend: friend)
         }
@@ -300,15 +355,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if friend.session == nil {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
                 //check if the location service is available and then request the current location and store to user defaults
-//                self.selectedFriend = friend
-//                self.locationServiceModel.getCurrentLocation()
-                
-                
-                if self.toolbar.items?.count > 3 {
-                    self.setDefaultToolbarItem()
-                } else {
-                    self.setTravelModeToolbar()
-                }
+                self.selectedFriend = friend
+                self.locationServiceModel.getCurrentLocation()
+                self.setTravelModeToolbar()
             }
             
         } else {
@@ -385,18 +434,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: INIT SET UP
     private func initialSetUp() {
-        if user == nil {
-            user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
-        }
-        
-        guard user != nil && !(user?.userName?.isEmpty)! else{
-            if user == nil {
-                Navigator.sharedInstance.navigateToLogin(self)
-            } else {
-                Navigator.sharedInstance.navigateToProfilePage(self)
-            }
-            return
-        }
+        user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
         
         if isAnyFriends {
             Navigator.sharedInstance.navigateToFriendList(self)
@@ -419,7 +457,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     var selectedFriend: Friend!
     
+    private var locationManager: CLLocationManager!
+    
     private var fetchedResultsController: NSFetchedResultsController!
+    
+    private enum TRAVEL_MODE: Int {
+        case WALKING, DRIVING, TRANSIT, BIKE
+        
+    }
 }
 
 

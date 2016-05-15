@@ -92,6 +92,10 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
             trackTimer.invalidate()
             trackTimer = nil
         }
+        
+        if listener != nil {
+            listener?.onSessionCompleted()
+        }
     }
     
     //MARK: LOCATION MANAGER DELEGATE
@@ -137,4 +141,5 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
 
 protocol LocationServiceListener: BaseListener {
     func onLocationAuthorized()
+    func onSessionCompleted()
 }

@@ -13,6 +13,7 @@ class BaseViewController: UIViewController, BaseListener {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
+    //MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
     }

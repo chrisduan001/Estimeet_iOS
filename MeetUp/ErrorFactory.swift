@@ -13,6 +13,7 @@ class ErrorFactory {
     private static let ERROR_CODE_DATA_INSERT = 600
     
     static let ERROR_CODE_USER_GEO_UNAVAILABLE = 710
+    static let ERROR_CODE_SESSION_FRIEND_GEO_EXPIRED = 702
     
     static let ERROR_LOCATION_SERVICE = 800
     
@@ -29,8 +30,12 @@ class ErrorFactory {
         case ERROR_CODE_USER_GEO_UNAVAILABLE:
             errorMessage = NSLocalizedString(GlobalString.user_geo_unavailable, comment: "unable to get location error")
             break
+        case ERROR_CODE_SESSION_FRIEND_GEO_EXPIRED:
+            errorMessage = NSLocalizedString(GlobalString.friend_location_expire, comment: "friend didn't update their location")
+            break
         case ERROR_LOCATION_SERVICE:
             errorMessage = NSLocalizedString(GlobalString.user_location_failed, comment: "Location service error")
+            break
         default:
             errorMessage = generateGenericErrorMessage()
             break

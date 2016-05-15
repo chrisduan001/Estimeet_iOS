@@ -29,6 +29,14 @@ class MainModel: BaseModel {
         makeNetworkRequest()
     }
     
+    func setTravelMode(travelMode: Int) {
+        userDefaults.saveTravelMode(travelMode)
+    }
+    
+    func getTravelMode() {
+        listener.onGetTravelMode(userDefaults.getTravelMode())
+    }
+    
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
         let geoCoordinate = userDefaults.getUserGeo()
@@ -71,4 +79,5 @@ class MainModel: BaseModel {
 
 protocol MainModelListener: BaseListener {
     func setSessionFetchedResultsController(fetchedResultsController: NSFetchedResultsController)
+    func onGetTravelMode(travelMode: Int)
 }
