@@ -24,6 +24,7 @@ class MeetUpUserDefaults {
     private let NOTIFICATION_ID = "NOTIFICATION_ID"
     
     private let USER_GEO = "USER_GEO"
+    private let TRAVEL_MODE = "TRAVEL_MODE"
 
     static let sharedInstance = MeetUpUserDefaults()
     private init() {}
@@ -126,6 +127,19 @@ class MeetUpUserDefaults {
     func getUserGeo() -> String? {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         return userDefaults.objectForKey(USER_GEO) as? String
+    }
+    
+    func getTravelMode() -> Int {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let travelMode = userDefaults.objectForKey(TRAVEL_MODE) as? Int
+        return travelMode == nil ? 0 : travelMode!
+    }
+    
+    func saveTravelMode(travelMode: Int) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setInteger(travelMode, forKey: TRAVEL_MODE)
+        
+        userDefaults.synchronize()
     }
     
     func removeUserDefault() {

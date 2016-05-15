@@ -16,9 +16,7 @@ class PushChannelModel: BaseModel {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
-    func registerPushChannel(deviceToken: NSData) {
-        let hub = SBNotificationHub(connectionString: "Endpoint=sb://meetup.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=3XEU5LpvQH7DsLfWIj4t+6csDar4B0PE83rxlm1qJDE=", notificationHubPath: "meetup")
-        
+    func registerPushChannel(deviceToken: NSData) {        
         if userDefaults.getVersionCode() == nil || userDefaults.getVersionCode()! != buildNumber {
             userDefaults.setVersionCode(buildNumber)
             makeNetworkRequest()
@@ -26,7 +24,7 @@ class PushChannelModel: BaseModel {
 
         let tag: Set<String> = [baseUser!.userUId!]
         do {
-            try hub.registerNativeWithDeviceToken(deviceToken, tags: tag)
+            try notificationHub.registerNativeWithDeviceToken(deviceToken, tags: tag)
         } catch {}
     }
     
@@ -47,4 +45,6 @@ class PushChannelModel: BaseModel {
     override func onError(message: String) {
         userDefaults.setVersionCode("")
     }
+    
+    private let notificationHub = SBNotificationHub(connectionString: "Endpoint=sb://meetup.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=3XEU5LpvQH7DsLfWIj4t+6csDar4B0PE83rxlm1qJDE=", notificationHubPath: "meetup")
 }

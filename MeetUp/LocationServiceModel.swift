@@ -18,6 +18,8 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     private var trackTimer: NSTimer!
     private var backgroundTaskIdentifier: UIBackgroundTaskIdentifier!
     
+    private var locationData: String!
+    
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: LocationServiceListener?) {
         self.listener = listener
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
@@ -53,7 +55,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         if trackTimer != nil {
             trackTimer.invalidate()
         }
-        trackTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
+        trackTimer = NSTimer.scheduledTimerWithTimeInterval(120.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
     }
     
     //timer method
@@ -106,13 +108,31 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        userDefaults.saveUserGeo("\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)")
+        locationData = "\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)"
+        userDefaults.saveUserGeo(locationData)
+        //send geo data to server
+        makeNetworkRequest()
         locationManager.stopUpdatingLocation()
     }
     
     private func startLocationUpdate() {
         locationManager.startUpdatingLocation()
     }
+    
+    //MARK: EXTEND SUPER
+    override func startNetworkRequest() {
+        serviceHelper.sendGeoData(locationData, userUid: baseUser!.userUId!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!, notificationModel: NotificationEntity(senderId: baseUser!.userId!, receiverId: 0, receiverUId: "")) { (response) in
+            if !response {
+                self.stopTrackingTimer()
+            }
+        }
+    }
+    
+    override func onAuthError() {
+        self.stopTrackingTimer()
+    }
+    
+    override func onError(message: String) {}
 }
 
 protocol LocationServiceListener: BaseListener {
