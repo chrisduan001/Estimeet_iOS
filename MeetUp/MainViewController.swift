@@ -14,6 +14,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     FriendSessionCellDelegate, LocationServiceListener{
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     private var locationManager: CLLocationManager!
     
@@ -26,6 +27,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
+        setDefaultToolbarItem()
+        
+        //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
         mainModel.setUpMainTableView()
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
@@ -54,6 +58,30 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: TOOLBAR
+    private func setDefaultToolbarItem() {
+        let barButtonItem1 = UIBarButtonItem(image: UIImage(named: "navigation_icon"), style: .Plain, target: self, action: #selector(MainViewController.onManageFriend(_:)))
+        barButtonItem1.tintColor = UIColor().primaryColor()
+        let flexiSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let barButtonItem2 = UIBarButtonItem(image: UIImage(named: "navigation_icon"), style: .Plain, target: self, action: #selector(MainViewController.onManageProfile(_:)))
+        barButtonItem2.tintColor = UIColor().primaryColor()
+        
+        let toolbarItems: [UIBarButtonItem] = [barButtonItem1, flexiSpace, barButtonItem2]
+        toolbar.setItems(toolbarItems, animated: true)
+    }
+    
+    private func setTravelModeToolbar() {
+        let flexiSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let barButtonItem1 = UIBarButtonItem(image: UIImage(named: "ic_directions_walk_green"), style: .Plain, target: self, action: #selector(MainViewController.onWalkingSelected))
+        let barButtonItem2 = UIBarButtonItem(image: UIImage(named: "ic_directions_car_green"), style: .Plain, target: self, action: #selector(MainViewController.onDrivingSelected))
+        let barButtonItem3 = UIBarButtonItem(image: UIImage(named: "ic_directions_bus_green"), style: .Plain, target: self, action: #selector(MainViewController.onTransitSelected))
+        let barButtonItem4 = UIBarButtonItem(image: UIImage(named: "ic_directions_bike_green"), style: .Plain, target: self, action: #selector(MainViewController.onBikeSelected))
+        
+        let toolbarItems: [UIBarButtonItem] = [barButtonItem1, flexiSpace, barButtonItem2, flexiSpace, barButtonItem3, flexiSpace, barButtonItem4]
+        toolbar.setItems(toolbarItems, animated: true)
+        resetToolbarSelection()
+    }
+    
     //MARK: MODEL CALLBACK
     func setSessionFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {
         self.fetchedResultsController = fetchedResultsController
@@ -80,13 +108,43 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         sessionModel.sendSessionRequest(selectedFriend)
     }
     
-    //MARK: BUTTON CLICK EVENT
-    @IBAction func onManageFriend(sender: UIBarButtonItem) {
+    //MARK: TOOLBAR BUTTON CLICK EVENT
+    func onManageFriend(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToFriendList(self)
     }
     
-    @IBAction func onManageProfile(sender: UIBarButtonItem) {
+    func onManageProfile(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
+    }
+    
+    func onWalkingSelected() {
+        print("walking selected")
+        resetToolbarSelection()
+        toolbar.items![0].tintColor = UIColor.lightGrayColor()
+    }
+    
+    func onDrivingSelected() {
+        print("driving selected")
+        resetToolbarSelection()
+        toolbar.items![2].tintColor = UIColor.lightGrayColor()
+    }
+    
+    func onTransitSelected() {
+        print("transit selected")
+        resetToolbarSelection()
+        toolbar.items![4].tintColor = UIColor.lightGrayColor()
+    }
+    
+    func onBikeSelected() {
+        print("Bike selected")
+        resetToolbarSelection()
+        toolbar.items![6].tintColor = UIColor.lightGrayColor()
+    }
+    
+    func resetToolbarSelection() {
+        for toolbarItems in toolbar.items! {
+            toolbarItems.tintColor = UIColor().primaryColor()
+        }
     }
     
     //MARK: TABLEVIEW
@@ -242,9 +300,17 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if friend.session == nil {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
                 //check if the location service is available and then request the current location and store to user defaults
-                self.selectedFriend = friend
-                self.locationServiceModel.getCurrentLocation()
+//                self.selectedFriend = friend
+//                self.locationServiceModel.getCurrentLocation()
+                
+                
+                if self.toolbar.items?.count > 3 {
+                    self.setDefaultToolbarItem()
+                } else {
+                    self.setTravelModeToolbar()
+                }
             }
+            
         } else {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Request Estimeet") { (action, index) in
                 self.mainModel.sendSessionDataRequest(friend)
