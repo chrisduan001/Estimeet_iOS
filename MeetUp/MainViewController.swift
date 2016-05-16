@@ -16,7 +16,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
     
-    //MARK: LIFECYCLE
+    //MARK: LIFECYCLE    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,22 +111,20 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func onCheckSessionExpiration(result: Bool?) {
-        //nil == no session available, no == no active session, yes == active session
-        if result == nil || !result! {
-            //STOP TRACKING TIMER
-            locationServiceModel.startTracking(-1)
-        }
-        
-        if result == nil {
+    func onCheckSessionExpiration(timeToExpire: NSNumber?) {
+        var expireTime = timeToExpire
+        if expireTime == nil {
             setDefaultToolbarItem()
+            expireTime = -1
         } else {
             setTravelModeToolbar()
         }
+        
+        locationServiceModel.startTracking(expireTime!)
     }
     
-    func onCreateNewSession(expireTimeInMilli: NSNumber) {
-        locationServiceModel.startTracking(expireTimeInMilli)
+    func onCreateNewSession(dateCreated: NSNumber) {
+        locationServiceModel.startTracking(dateCreated)
     }
     
     func onSessionCompleted() {
@@ -134,7 +132,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onLocationAuthorized() {
-        sessionModel.sendSessionRequest(selectedFriend)
+        if selectedFriend != nil {
+            sessionModel.sendSessionRequest(selectedFriend!)
+        }
     }
     
     func onGetTravelMode(travelMode: Int) {
@@ -332,7 +332,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private func setUpActiveSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
         if let sessionData = friend.session?.sessionData {
             cell.addView(cell.view_distance_eta)
-            let expireString = TravelInfoFactory.sharedInstance.isLocationDataExpired(friend.session!.dateUpdated!) ?NSLocalizedString(GlobalString.expired_string, comment: "expired") : ""
+            let expireString = TravelInfoFactory.sharedInstance.isLocationDataExpired(friend.dateUpdated!) ?NSLocalizedString(GlobalString.expired_string, comment: "expired") : ""
             
             cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
             
@@ -361,8 +361,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
             
         } else {
+            //get distance and eta
             sendRequest = UITableViewRowAction(style: .Normal, title: "Request Estimeet") { (action, index) in
                 self.mainModel.sendSessionDataRequest(friend)
+                self.tableView.editing = false
             }
         }
 
@@ -388,14 +390,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
             break
         case .Update:
-//            if let indexPath = indexPath {
-//                let cell = tableView.cellForRowAtIndexPath(indexPath) as? ManageFriendTableViewCell
-//                if cell != nil {
-//                    setUpCell(cell!, indexPath: indexPath)
-//                } else {
-//                    print("null value found at \(indexPath.row)")
-//                }
-//            }
+            if let indexPath = indexPath {
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as? FriendSessionTableViewCell
+                if cell != nil {
+                    setUpCell(cell!, indexPath: indexPath)
+                } else {
+                    print("null value found at \(indexPath.row)")
+                }
+            }
             break
         case .Move:
             if let indexPath = indexPath {
@@ -455,7 +457,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     var mainModel: MainModel!
     var locationServiceModel: LocationServiceModel!
     
-    var selectedFriend: Friend!
+    var selectedFriend: Friend?
     
     private var locationManager: CLLocationManager!
     

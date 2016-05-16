@@ -54,5 +54,5 @@ class SessionModel: BaseModel {
 }
 
 protocol SessionListener: BaseListener {
-    func onCheckSessionExpiration(result: Bool?)
+    func onCheckSessionExpiration(timeToExpire: NSNumber?)
 }

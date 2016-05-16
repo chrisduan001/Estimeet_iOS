@@ -60,7 +60,11 @@ class GetNotificationModel: BaseModel {
             return
         }
         
-        dataHelper.createActiveSession(friendId!, sessionId: sessionId!, sessionLId: sessionLId, expireInMillis: expireInMillis, length: length!, friendObj: friendObj)
+        let dateCreated = dataHelper.createActiveSession(friendId!, sessionId: sessionId!, sessionLId: sessionLId, expireInMillis: expireInMillis, length: length!, friendObj: friendObj)
+        guard dateCreated.intValue > 0 else {
+            return
+        }
+        getNotificationListener.onCreateNewSession(dateCreated)
     }
     
     private func deleteNotification(notificationId: Int) {
@@ -129,7 +133,7 @@ class GetNotificationModel: BaseModel {
 }
 
 protocol GetNotificationListener: BaseListener {
-    func onCreateNewSession(expireTimeInMilli: NSNumber)
+    func onCreateNewSession(dateCreated: NSNumber)
 }
 
 

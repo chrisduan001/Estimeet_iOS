@@ -49,13 +49,24 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         }
     }
     
-    func startTracking(expireTimeInMillis: NSNumber) {
-        AppDelegate.SESSION_TIME_TO_EXPIRE = NSDate.timeIntervalSinceReferenceDate() + expireTimeInMillis.doubleValue
+    func startTracking(dateCreated: NSNumber) {
+        guard dateCreated.intValue > 0 else {
+            AppDelegate.SESSION_TIME_TO_EXPIRE = nil
+            stopTimer()
+            return
+        }
         
+        AppDelegate.SESSION_TIME_TO_EXPIRE = NSDate.timeIntervalSinceReferenceDate() + dateCreated.doubleValue
+        
+        stopTimer()
+        trackTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer() {
         if trackTimer != nil {
             trackTimer.invalidate()
+            trackTimer = nil
         }
-        trackTimer = NSTimer.scheduledTimerWithTimeInterval(120.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
     }
     
     //timer method
@@ -117,6 +128,10 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         //send geo data to server
         makeNetworkRequest()
         locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error occurred while get location")
     }
     
     private func startLocationUpdate() {

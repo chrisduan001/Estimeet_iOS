@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Friend" representedClassName=".Friend" syncable="YES">
+        <attribute name="dateUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="favourite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="imageUri" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,7 +13,6 @@
     </entity>
     <entity name="SessionColumn" representedClassName=".SessionColumn" syncable="YES">
         <attribute name="dateCreated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="dateUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="expireInMillis" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="friendId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sessionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -31,8 +31,8 @@
         <relationship name="sessionColumn" maxCount="1" deletionRule="Nullify" destinationEntity="SessionColumn" inverseName="sessionData" inverseEntity="SessionColumn" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Friend" positionX="-119" positionY="-373" width="128" height="165"/>
-        <element name="SessionColumn" positionX="-378" positionY="-288" width="128" height="210"/>
+        <element name="Friend" positionX="-119" positionY="-373" width="128" height="180"/>
+        <element name="SessionColumn" positionX="-378" positionY="-288" width="128" height="195"/>
         <element name="SessionData" positionX="-63" positionY="54" width="128" height="120"/>
     </elements>
 </model>

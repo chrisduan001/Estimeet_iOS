@@ -35,8 +35,4 @@ class DataEntity {
 //                             image: image,
 //                       isFavourite: favourite)
 //    }
-    
-    func translateSessionObjToSessionEntity(sessionObj: AnyObject) {
-        
-    }
 }

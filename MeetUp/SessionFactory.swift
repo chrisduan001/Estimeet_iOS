@@ -50,26 +50,26 @@ class SessionFactory {
     }
     
     //nil == no session available, no == no active session, yes == active session
-    func checkSession(dataHelper: DataHelper) -> Bool? {
+    func checkSession(dataHelper: DataHelper) -> NSNumber? {
         let sessions = dataHelper.getAllSessions()
         
-        var isAnyActiveSession:Bool?
+        var timeToExpire: NSNumber?
         for session in sessions {
             let currentMillis: NSNumber = NSDate.timeIntervalSinceReferenceDate() * 1000
             if currentMillis.longLongValue > session.dateCreated!.longLongValue + session.expireInMillis!.longLongValue {
                 dataHelper.deleteSession(session)
             } else {
                 if session.sessionType == ACTIVE_SESSION {
-                    isAnyActiveSession = true
+                    timeToExpire = session.expireInMillis
                 } else {
-                    if isAnyActiveSession == nil {
-                        isAnyActiveSession = false
+                    if timeToExpire == nil {
+                        timeToExpire = 0
                     }
                 }
             }
         }
         
-        return isAnyActiveSession
+        return timeToExpire
     }
     
     let SENT_SESSION = 100

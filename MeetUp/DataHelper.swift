@@ -123,7 +123,7 @@ class DataHelper {
         }
     }
     
-    func createActiveSession(friendId: Int, sessionId: Int, sessionLId: String, expireInMillis: NSNumber, length: Int, friendObj: Friend) {
+    func createActiveSession(friendId: Int, sessionId: Int, sessionLId: String, expireInMillis: NSNumber, length: Int, friendObj: Friend) -> NSNumber {
         if friendObj.session == nil {
             friendObj.session = createNewSessionObject()
         }
@@ -132,7 +132,11 @@ class DataHelper {
         friendObj.sectionHeader = SECTION_HEADER_SESSION
         do {
             try context.save()
+            
+            return friendObj.session!.dateCreated!
         } catch {}
+        
+        return -1
     }
     
     private func createNewSessionObject() -> SessionColumn {
@@ -153,11 +157,16 @@ class DataHelper {
     func deleteSession(session: SessionColumn) {
         //reset the session from active to friend
         session.friend!.sectionHeader = SECTION_HEADER_FRIEND
+        if session.sessionData != nil {
+            context.deleteObject(session.sessionData!)
+        }
         context.deleteObject(session)
         
         do {
             try context.save()
-        } catch {}
+        } catch {
+            print("error occurred while delete session")
+        }
     }
     
     func deleteAllSession() {
@@ -165,7 +174,9 @@ class DataHelper {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
         do {
             try context.executeRequest(deleteRequest)
-        } catch {}
+        } catch {
+            print("error occurred while delete all session")
+        }
     }
     
     //MARK: SESSION DATA
@@ -173,8 +184,8 @@ class DataHelper {
         if session.sessionData == nil {
             session.sessionData = createNewSessionDataObject();
         }
-        
-        session.dateUpdated = NSDate.timeIntervalSinceReferenceDate() * 1000
+        session.sessionData?.sessionColumn = session
+        session.friend!.dateUpdated = NSDate.timeIntervalSinceReferenceDate() * 1000
         session.sessionData!.distance = distance
         session.sessionData!.eta = eta
         session.sessionData!.travelMode = travelMode

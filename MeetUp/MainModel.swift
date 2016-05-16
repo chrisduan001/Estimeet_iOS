@@ -44,6 +44,7 @@ class MainModel: BaseModel {
             generateErrorMessage(ErrorFactory.ERROR_CODE_USER_GEO_UNAVAILABLE)
             return
         }
+        //-1 get default mode
         let entity = RequestLocationEntity(userId: baseUser!.userId!,
                                          friendId: friendObj.userId!.integerValue,
                                         friendUid: friendObj.userUId!,
