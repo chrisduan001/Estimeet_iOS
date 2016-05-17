@@ -153,6 +153,24 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func cancelSession(notificationEntity: NotificationEntity, token: String, completionHandler: (response: Bool) -> Void) {
+        let cancelSessionUrl = "\(ServiceHelper.BASE_URL)/session/cancelsession"
+        
+        let request = Alamofire.request(.POST, cancelSessionUrl, parameters: getJsonString(notificationEntity), encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseString { (response: Response<String, NSError>) in
+            print("request result \(response.response)")
+            var result = false
+            if let value = response.result.value {
+                result = value == "true"
+            }
+            
+            completionHandler(response: result)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     private func getAuthHeader(token: String) -> [String: String] {
         return ["Authorization" : "Bearer \(token)"]
     }

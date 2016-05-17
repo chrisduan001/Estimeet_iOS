@@ -17,6 +17,8 @@ class ErrorFactory {
     
     static let ERROR_LOCATION_SERVICE = 800
     
+    static let GENERIC_ERROR_MESSAGE = 1000
+    
     static func generateErrorWithCode(errorCode: Int) -> String {
         let errorMessage: String
         
@@ -36,6 +38,8 @@ class ErrorFactory {
         case ERROR_LOCATION_SERVICE:
             errorMessage = NSLocalizedString(GlobalString.user_location_failed, comment: "Location service error")
             break
+        case GENERIC_ERROR_MESSAGE:
+            errorMessage = generateGenericErrorMessage()
         default:
             errorMessage = generateGenericErrorMessage()
             break

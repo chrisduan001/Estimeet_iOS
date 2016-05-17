@@ -27,8 +27,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
-        setDefaultToolbarItem()
-        
         //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
         mainModel.setUpMainTableView()
@@ -36,6 +34,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
         getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
         locationServiceModel = ModelFactory.sharedInstance.provideLocationServicemodel(self)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        setDefaultToolbarItem()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -320,6 +322,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.addView(cell.view_request_sent)
         cell.request_sent_name.text = friend.userName
         cell.request_sent_label.text = NSLocalizedString(GlobalString.sent_request_label, comment: "sent request label")
+        cell.img_action.hidden = false
     }
     
     private func setUpReceivedSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
@@ -327,6 +330,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.request_name.text = friend.userName
         cell.btn_accept.setTitle(NSLocalizedString(GlobalString.button_accept, comment: "accept button"), forState: .Normal)
         cell.btn_ignore.setTitle(NSLocalizedString(GlobalString.button_ignore, comment: "ignore button"), forState: .Normal)
+        cell.img_action.hidden = false
     }
     
     private func setUpActiveSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
@@ -341,6 +345,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } else {
             setupDefaultSessionView(cell, friend: friend)
         }
+        cell.img_action.hidden = false
     }
     
     //MARK: TABLEVIEW ACTION
@@ -374,6 +379,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onCancelSession(indexPath: NSIndexPath) {
+        let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
+        
+        guard friend.session != nil else {
+            return
+        }
+        sessionModel.cancelSession(friend)
     }
     
     //MARK: NSFETCHED RESULT DELEGATE

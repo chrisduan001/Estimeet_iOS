@@ -27,7 +27,7 @@ class DataHelper {
     func storeFriendList(friends: [FriendEntity]) {
         let entity = NSEntityDescription.entityForName(String(Friend), inManagedObjectContext: context)
 
-        deleteAllFriends()
+        deleteDataBase()
         
         for friend in friends {
             let friendObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as! Friend
@@ -85,13 +85,45 @@ class DataHelper {
         return nil
     }
     
-    func deleteAllFriends() {
+    //MARK: DELETE ACTION
+    func deleteDataBase() {
+        deleteAllSession()
+        
         let request = NSFetchRequest(entityName: String(Friend))
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
         
         do {
             try context.executeRequest(deleteRequest)
         } catch {}
+    }
+    
+    func deleteAllSession() {
+        let request = NSFetchRequest(entityName: String(SessionColumn))
+        let sessionDataRequest = NSFetchRequest(entityName: String(SessionData))
+        let sessionDataDeleteRequest = NSBatchDeleteRequest(fetchRequest: sessionDataRequest)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do {
+            try context.executeRequest(sessionDataDeleteRequest)
+            try context.executeRequest(deleteRequest)
+        } catch {
+            print("error occurred while delete all session")
+        }
+    }
+    
+    func deleteSession(session: SessionColumn) {
+        //reset the session from active to friend
+        session.friend!.sectionHeader = SECTION_HEADER_FRIEND
+        if session.sessionData != nil {
+            context.deleteObject(session.sessionData!)
+        }
+        context.deleteObject(session)
+        
+        do {
+            try context.save()
+        } catch {
+            print("error occurred while delete session")
+        }
     }
     
     //MARK: SESSION ACTIONS
@@ -109,6 +141,17 @@ class DataHelper {
         }
     }
     
+    func insertSession(session: TempSessionModel, friend: Friend) {
+        friend.sectionHeader = SECTION_HEADER_SESSION
+        friend.session = createNewSessionObject()
+        session.translateTempModelToSession(friend.session!)
+        do {
+            try context.save()
+        } catch {
+            print("error when insert session")
+        }
+    }
+    
     func createPendingSession(friendId: Int, requestedTime: Int, friendObj: Friend) {
         if friendObj.session == nil {
             friendObj.session = createNewSessionObject()
@@ -121,6 +164,10 @@ class DataHelper {
         } catch {
             print("error while save session")
         }
+    }
+    
+    func deleteFriendSession(friend: Friend) {
+        deleteSession(friend.session!)
     }
     
     func createActiveSession(friendId: Int, sessionId: Int, sessionLId: String, expireInMillis: NSNumber, length: Int, friendObj: Friend) -> NSNumber {
@@ -152,31 +199,6 @@ class DataHelper {
         } catch {}
         
         return []
-    }
-    
-    func deleteSession(session: SessionColumn) {
-        //reset the session from active to friend
-        session.friend!.sectionHeader = SECTION_HEADER_FRIEND
-        if session.sessionData != nil {
-            context.deleteObject(session.sessionData!)
-        }
-        context.deleteObject(session)
-        
-        do {
-            try context.save()
-        } catch {
-            print("error occurred while delete session")
-        }
-    }
-    
-    func deleteAllSession() {
-        let request = NSFetchRequest(entityName: String(SessionColumn))
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
-        do {
-            try context.executeRequest(deleteRequest)
-        } catch {
-            print("error occurred while delete all session")
-        }
     }
     
     //MARK: SESSION DATA

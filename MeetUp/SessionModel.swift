@@ -15,6 +15,10 @@ class SessionModel: BaseModel {
     private var friendObj: Friend!
     private var notificationModel: NotificationEntity!
     
+    private var request_type_cancel_session: Bool!
+    private var session: SessionColumn!
+    private var tempSessionModel: TempSessionModel!
+    
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, sessionListener: SessionListener) {
         self.dataHelper = dataHelper
         self.sessionListener = sessionListener
@@ -22,6 +26,7 @@ class SessionModel: BaseModel {
     }
     
     func sendSessionRequest(friendObj: Friend) {
+        request_type_cancel_session = false
         self.friendObj = friendObj
         notificationModel = NotificationEntity(senderId: baseUser!.userId!, receiverId: friendObj.userId! as Int, receiverUId: friendObj.userUId!)
         makeNetworkRequest()
@@ -32,11 +37,36 @@ class SessionModel: BaseModel {
         sessionListener.onCheckSessionExpiration(SessionFactory.sharedInstance.checkSession(dataHelper))
     }
     
+    func cancelSession(friendObj: Friend) {
+        request_type_cancel_session = true
+        self.friendObj = friendObj
+        session = friendObj.session!
+        tempSessionModel = TempSessionModel()
+        tempSessionModel.translateSessionToTempModel(session)
+        SessionFactory.sharedInstance.deleteFriendSession(dataHelper, friend: friendObj)
+        makeNetworkRequest()
+    }
+    
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
-        serviceHelper.sendRequestSession(notificationModel, length: 0, token: baseUser!.token!) { (response) in
-            if !response {
-                self.onError(ErrorFactory.generateGenericErrorMessage())
+        if request_type_cancel_session! {
+            serviceHelper.cancelSession(
+            NotificationEntity(senderId: baseUser!.userId!,
+                             receiverId: friendObj.userId!.integerValue,
+                            receiverUId: friendObj.userUId!),
+            token: baseUser!.token!) { (response) in
+                if !response {
+                    SessionFactory.sharedInstance.insertSession(self.dataHelper, session: self.tempSessionModel, friend: self.friendObj)
+                    self.sessionListener.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.GENERIC_ERROR_MESSAGE))
+                }
+            }
+            
+
+        } else {
+            serviceHelper.sendRequestSession(notificationModel, length: 0, token: baseUser!.token!) { (response) in
+                if !response {
+                    self.onError(ErrorFactory.generateGenericErrorMessage())
+                }
             }
         }
     }

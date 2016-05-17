@@ -12,5 +12,13 @@ import CoreData
 
 class Friend: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    //used for sorting
+    var timeToExpireSorter: NSNumber {
+        get {
+            if session == nil || session!.expireInMillis == nil {
+                return 0
+            }
+            return session!.expireInMillis!
+        }
+    }
 }

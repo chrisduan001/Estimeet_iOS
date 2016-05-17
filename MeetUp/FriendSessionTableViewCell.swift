@@ -44,6 +44,8 @@ class FriendSessionTableViewCell: UITableViewCell {
         img_dp.layer.cornerRadius = img_dp.frame.size.width / 2
         img_dp.clipsToBounds = true
         
+        img_action.layer.cornerRadius = img_action.frame.size.width / 2
+        img_action.clipsToBounds = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(FriendSessionTableViewCell.actionButtonTapped))
         img_action.addGestureRecognizer(tapRecognizer)
     }

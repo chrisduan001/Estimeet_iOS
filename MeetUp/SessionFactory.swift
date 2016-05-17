@@ -49,6 +49,14 @@ class SessionFactory {
         return session
     }
     
+    func deleteFriendSession(dataHelper: DataHelper, friend: Friend) {
+        dataHelper.deleteFriendSession(friend)
+    }
+    
+    func insertSession(dataHelper: DataHelper, session: TempSessionModel, friend: Friend) {
+        dataHelper.insertSession(session, friend: friend)
+    }
+    
     //nil == no session available, no == no active session, yes == active session
     func checkSession(dataHelper: DataHelper) -> NSNumber? {
         let sessions = dataHelper.getAllSessions()
@@ -60,7 +68,10 @@ class SessionFactory {
                 dataHelper.deleteSession(session)
             } else {
                 if session.sessionType == ACTIVE_SESSION {
-                    timeToExpire = session.expireInMillis
+                    //get largest session to expire
+                    if timeToExpire == nil || timeToExpire!.compare(session.expireInMillis!) == .OrderedAscending {
+                        timeToExpire = session.expireInMillis
+                    }
                 } else {
                     if timeToExpire == nil {
                         timeToExpire = 0
