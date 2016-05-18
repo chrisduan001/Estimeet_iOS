@@ -98,12 +98,18 @@
                             <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onAcceptClicked:" destination="NTA-bk-ajI" eventType="touchUpInside" id="CUk-DW-hUe"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-4a-y78">
                     <rect key="frame" x="82" y="30" width="70" height="23"/>
                     <state key="normal" title="Ignore">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="onIgnoreClicked:" destination="NTA-bk-ajI" eventType="touchUpInside" id="KLy-eO-h31"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

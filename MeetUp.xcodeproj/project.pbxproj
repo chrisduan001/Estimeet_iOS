@@ -54,6 +54,7 @@
 		6240B1B81C8827C300899CD9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B1B71C8827C300899CD9 /* BaseViewController.swift */; };
 		6240B1BD1C8834D900899CD9 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B1BC1C8834D900899CD9 /* BaseResponse.swift */; };
 		627780E81CEB25D700FF69E9 /* TempSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E71CEB25D700FF69E9 /* TempSessionModel.swift */; };
+		627780EA1CEC6E1700FF69E9 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E91CEC6E1700FF69E9 /* SessionResponse.swift */; };
 		628E94791CD9E2E0002385FD /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628E94781CD9E2E0002385FD /* PushNotification.swift */; };
 		62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62A3529F1C7EE63E00701ECA /* MainViewController.xib */; };
 		62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7B1C73057F008513DF /* AppDelegate.swift */; };
@@ -133,6 +134,7 @@
 		6240B1B71C8827C300899CD9 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6240B1BC1C8834D900899CD9 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		627780E71CEB25D700FF69E9 /* TempSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempSessionModel.swift; sourceTree = "<group>"; };
+		627780E91CEC6E1700FF69E9 /* SessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		628E94781CD9E2E0002385FD /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		62A3529F1C7EE63E00701ECA /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		62AB5F781C73057F008513DF /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,6 +278,7 @@
 				623867391CCB214D001ADA20 /* FriendEntity.swift */,
 				623D64491CDB580000F344E6 /* NotificationResponse.swift */,
 				62D5BF521CE1E8080085CDBE /* LocationModelResponse.swift */,
+				627780E91CEC6E1700FF69E9 /* SessionResponse.swift */,
 			);
 			name = Response;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				62024B081CD2007A00AB5C90 /* MainModel.swift in Sources */,
 				62024B251CD5A3E500AB5C90 /* SessionData+CoreDataProperties.swift in Sources */,
 				62D5BF511CE08EDD0085CDBE /* TravelInfoFactory.swift in Sources */,
+				627780EA1CEC6E1700FF69E9 /* SessionResponse.swift in Sources */,
 				621539051CCCC68300554726 /* NibLoader.swift in Sources */,
 				62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */,
 				623D64461CDB36A200F344E6 /* NotificationEntity.swift in Sources */,

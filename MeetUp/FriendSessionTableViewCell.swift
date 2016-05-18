@@ -72,8 +72,18 @@ class FriendSessionTableViewCell: UITableViewCell {
     func setDelegate(delegate: FriendSessionCellDelegate) {
         self.delegate = delegate
     }
+    
+    @IBAction func onAcceptClicked(sender: UIButton) {
+        delegate.onSessionAccepted(indexPath)
+    }
+
+    @IBAction func onIgnoreClicked(sender: UIButton) {
+        delegate.onSessionIgnored(indexPath)
+    }
 }
 
 protocol FriendSessionCellDelegate: class {
     func onCancelSession(indexPath: NSIndexPath)
+    func onSessionAccepted(indexPath: NSIndexPath)
+    func onSessionIgnored(indexPath: NSIndexPath)
 }

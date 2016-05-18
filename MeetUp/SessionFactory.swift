@@ -57,6 +57,23 @@ class SessionFactory {
         dataHelper.insertSession(session, friend: friend)
     }
     
+    func updateSessionId(dataHelper: DataHelper, sessionId: Int, sessionLid: String, friend: Friend) {
+        dataHelper.updateSessionId(friend, sessionId: sessionId, sessionLId: sessionLid)
+    }
+    
+    func getRequestTimeInMinutes(requestLength: Int) -> Int {
+        switch requestLength {
+        case 0:
+            return 15
+        case 1:
+            return 30
+        case 2:
+            return 60
+        default:
+            return 15
+        }
+    }
+    
     //nil == no session available, no == no active session, yes == active session
     func checkSession(dataHelper: DataHelper) -> NSNumber? {
         let sessions = dataHelper.getAllSessions()

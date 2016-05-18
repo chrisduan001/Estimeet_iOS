@@ -27,6 +27,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
+        setDefaultToolbarItem()
+        
         //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
         mainModel.setUpMainTableView()
@@ -35,11 +37,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
         locationServiceModel = ModelFactory.sharedInstance.provideLocationServicemodel(self)
     }
-    
-    override func viewWillLayoutSubviews() {
-        setDefaultToolbarItem()
-    }
-    
+
     override func viewWillAppear(animated: Bool) {
         onResume()
     }
@@ -123,6 +121,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
         
         locationServiceModel.startTracking(expireTime!)
+    }
+    
+    //called when the only session was ignored
+    func onNoSessionsAvailable() {
+        setDefaultToolbarItem()
     }
     
     func onCreateNewSession(dateCreated: NSNumber) {
@@ -350,6 +353,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: TABLEVIEW ACTION
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
+        if friend.session != nil && friend.session!.sessionType! != SessionFactory.sharedInstance.ACTIVE_SESSION {
+            return false
+        }
         return true
     }
     
@@ -385,6 +392,16 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             return
         }
         sessionModel.cancelSession(friend)
+    }
+    
+    func onSessionAccepted(indexPath: NSIndexPath) {
+        let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
+        sessionModel.acceptNewSession(friend)
+    }
+    
+    func onSessionIgnored(indexPath: NSIndexPath) {
+        let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
+        sessionModel.removeSessionFromDb(friend)
     }
     
     //MARK: NSFETCHED RESULT DELEGATE

@@ -16,7 +16,9 @@ class SessionModel: BaseModel {
     private var notificationModel: NotificationEntity!
     
     private var request_type_cancel_session: Bool!
-    private var session: SessionColumn!
+    private var request_type_send_request: Bool!
+    private var request_type_create_session: Bool!
+    
     private var tempSessionModel: TempSessionModel!
     
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, sessionListener: SessionListener) {
@@ -25,26 +27,62 @@ class SessionModel: BaseModel {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
+    //called when app on resume & when session completed or cancelled
+    func checkSessionExpiration() {
+        sessionListener.onCheckSessionExpiration(SessionFactory.sharedInstance.checkSession(dataHelper))
+    }
+    
     func sendSessionRequest(friendObj: Friend) {
-        request_type_cancel_session = false
+        resetRequestType()
+        request_type_send_request = true
         self.friendObj = friendObj
         notificationModel = NotificationEntity(senderId: baseUser!.userId!, receiverId: friendObj.userId! as Int, receiverUId: friendObj.userUId!)
         makeNetworkRequest()
         dataHelper.createSession(friendObj)
     }
     
-    func checkSessionExpiration() {
-        sessionListener.onCheckSessionExpiration(SessionFactory.sharedInstance.checkSession(dataHelper))
+    func cancelSession(friendObj: Friend) {
+        resetRequestType()
+        request_type_cancel_session = true
+        storeTempSession(friendObj)
+        removeSessionFromDb(friendObj)
+        checkSessionExpiration()
+        makeNetworkRequest()
     }
     
-    func cancelSession(friendObj: Friend) {
-        request_type_cancel_session = true
-        self.friendObj = friendObj
-        session = friendObj.session!
-        tempSessionModel = TempSessionModel()
-        tempSessionModel.translateSessionToTempModel(session)
-        SessionFactory.sharedInstance.deleteFriendSession(dataHelper, friend: friendObj)
+    func acceptNewSession(friendObj: Friend) {
+        resetRequestType()
+        request_type_create_session = true
+        storeTempSession(friendObj)
+        SessionFactory.sharedInstance.createActiveSession(friendObj.session!,
+                                                          friendId: friendObj.userId!.integerValue,
+                                                          sessionId: 0,
+                                                          sessionLid: "",
+                                                          expireInMillis: friendObj.session!.expireInMillis!,
+                                                          length: friendObj.session!.sessionRequestedTime!.integerValue)
+        
+        notificationModel = NotificationEntity(senderId: baseUser!.userId!, receiverId: friendObj.userId!.integerValue, receiverUId: friendObj.userUId!)
+        
         makeNetworkRequest()
+    }
+    
+    private func storeTempSession(friendObj: Friend) {
+        self.friendObj = friendObj
+        tempSessionModel = TempSessionModel()
+        tempSessionModel.translateSessionToTempModel(friendObj.session!)
+    }
+    
+    private func resetRequestType() {
+        request_type_cancel_session = false
+        request_type_send_request = false
+        request_type_create_session = false
+    }
+    
+    func removeSessionFromDb(friendObj: Friend) {
+        SessionFactory.sharedInstance.deleteFriendSession(dataHelper, friend: friendObj)
+        if dataHelper.getAllSessions().count <= 0 {
+            sessionListener.onNoSessionsAvailable()
+        }
     }
     
     //MARK: EXTEND SUPER
@@ -60,14 +98,26 @@ class SessionModel: BaseModel {
                     self.sessionListener.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.GENERIC_ERROR_MESSAGE))
                 }
             }
-            
-
-        } else {
+        } else if request_type_send_request! {
             serviceHelper.sendRequestSession(notificationModel, length: 0, token: baseUser!.token!) { (response) in
                 if !response {
                     self.onError(ErrorFactory.generateGenericErrorMessage())
+                    self.checkSessionExpiration()
                 }
             }
+        } else if request_type_create_session! {
+            serviceHelper.createSession(SessionFactory.sharedInstance.getRequestTimeInMinutes(tempSessionModel.sessionRequestedTime!.integerValue),
+                                        length: tempSessionModel.sessionRequestedTime!.integerValue,
+                                        notificationEntity: notificationModel,
+                                        token: baseUser!.token!,
+                                        completionHandler: { (response) in
+                                            guard !self.isAnyErrors(response.result.error!.code, response: response.result.value) else {
+                                                return
+                                            }
+                                            
+                                            
+                                            self.checkSessionExpiration()
+            })
         }
     }
     
@@ -76,6 +126,11 @@ class SessionModel: BaseModel {
     }
     
     override func onError(message: String) {
+        if request_type_create_session! {
+            SessionFactory.sharedInstance.insertSession(dataHelper, session: self.tempSessionModel, friend: self.friendObj)
+            
+            return
+        }
         if friendObj.session != nil {
             dataHelper.deleteSession(friendObj.session!)
         }
@@ -85,4 +140,5 @@ class SessionModel: BaseModel {
 
 protocol SessionListener: BaseListener {
     func onCheckSessionExpiration(timeToExpire: NSNumber?)
+    func onNoSessionsAvailable()
 }

@@ -186,6 +186,18 @@ class DataHelper {
         return -1
     }
     
+    func updateSessionId(friend: Friend, sessionId: Int, sessionLId: String) {
+        let session = friend.session!
+        session.sessionId = sessionId
+        session.sessionLId = sessionLId
+        
+        do {
+            try context.save()
+        } catch {
+            print("error while update session id")
+        }
+    }
+    
     private func createNewSessionObject() -> SessionColumn {
         let entity = NSEntityDescription.entityForName(String(SessionColumn), inManagedObjectContext: context)
         let newSession = SessionColumn(entity: entity!, insertIntoManagedObjectContext: context)

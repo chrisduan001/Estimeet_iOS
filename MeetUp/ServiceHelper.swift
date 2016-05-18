@@ -134,6 +134,17 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func createSession(expireInMinutes: Int, length: Int, notificationEntity: NotificationEntity, token: String, completionHandler: (response: Response<SessionResponse, NSError>) -> Void) {
+        let createSessionUrl = "\(ServiceHelper.BASE_URL)/session/createsession"
+        let request = Alamofire.request(.POST, createSessionUrl, parameters: getJsonString(notificationEntity), encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseObject { (response: Response<SessionResponse, NSError>) in
+            completionHandler(response: response)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     func sendGeoData(geoData: String, userUid: String, travelMode: Int, token: String, notificationModel: NotificationEntity,
                      completionHandler: (response: Bool) -> Void) {
         let sendGeoUrl = "\(ServiceHelper.BASE_URL)/user/sendgeodata?data=\(geoData)&useruid=\(userUid)&travelmode=\(travelMode)&neednotify=\(false)"
