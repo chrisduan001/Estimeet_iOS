@@ -30,7 +30,7 @@ class BaseModel: NSObject {
             serviceHelper.requestAuthToken(baseUser!.userId!, password: baseUser!.password!) {
                 response in
                 print("Token response: \(response.response)")
-                guard self.processTokenResponse(response.response!.statusCode, tokenResponse: response.result.value) else {
+                guard self.processTokenResponse(response) else {
                     return
                 }
                 self.startNetworkRequest()
@@ -40,14 +40,15 @@ class BaseModel: NSObject {
         }
     }
     
-    func processTokenResponse(statusCode: Int, tokenResponse: TokenResponse?) -> Bool {
-        if self.isRenewTokenError(statusCode) {
+    func processTokenResponse(response: Response<TokenResponse, NSError>) -> Bool {
+        if self.isRenewTokenError(response) {
             return false
         }
         
-        baseUser?.token = tokenResponse!.accessToken
-        baseUser?.expireTime = tokenResponse!.expiresIn
-        MeetUpUserDefaults.sharedInstance.updateUserToken(tokenResponse!.accessToken, expireInSeconds: tokenResponse!.expiresIn)
+        let tokenResponse = response.result.value!
+        baseUser?.token = tokenResponse.accessToken
+        baseUser?.expireTime = tokenResponse.expiresIn
+        MeetUpUserDefaults.sharedInstance.updateUserToken(tokenResponse.accessToken, expireInSeconds: tokenResponse.expiresIn)
         return true
     }
     
@@ -57,18 +58,40 @@ class BaseModel: NSObject {
     
     //MARK: CHECK ERROR
     //check both http error(eg: internet, auth etc) and request error(eg: inconsisitent data)
-    func isAnyErrors(statusCode: Int, response: BaseResponse?) -> Bool {
+    func isAnyErrors<T:BaseResponse>(response: Response<T, NSError>) -> Bool {
+        if isHttpRequestError(response.response) || isHttpSessionError(response.response!.statusCode) {
+            return true
+        }
+        
+        let errorMessage = response.result.value == nil ?
+            ErrorFactory.generateGenericErrorMessage() : response.result.value!.getErrorMessage()
+
+        guard !errorMessage.isEmpty else {
+            return false
+        }
+        
+        onError(errorMessage)
+        return true
+    }
+    
+    //server not available, url not valid etc.
+    private func isHttpRequestError(httpResponse: NSHTTPURLResponse?) -> Bool {
+        guard httpResponse != nil else {
+            onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_NETWORK))
+            return true
+        }
+        
+        return false
+    }
+    
+    //auth error, with status code == 400, 500 etc
+    private func isHttpSessionError(statusCode: Int) -> Bool {
         guard statusCode == 200 else {
             isAuthError(statusCode) ? onAuthError() : onError(ErrorFactory.generateGenericErrorMessage())
             return true
         }
         
-        guard let errorMessage = response?.getErrorMessage() where !errorMessage.isEmpty else {
-            return false
-        }
-    
-        onError(errorMessage)
-        return true
+        return false
     }
     
     private func isRenewTokenError(statusCode: Int) -> Bool {
@@ -78,6 +101,10 @@ class BaseModel: NSObject {
         
         isAuthError(statusCode) ? onAuthError() : onError(ErrorFactory.generateGenericErrorMessage())
         return true
+    }
+    
+    private func isRenewTokenError<T:BaseResponse>(response: Response<T, NSError>) -> Bool {
+        return isHttpRequestError(response.response) || isHttpSessionError(response.response!.statusCode)
     }
     
     private func isAuthError(statusCode: Int) -> Bool {

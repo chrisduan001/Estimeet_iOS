@@ -27,6 +27,8 @@ class GlobalString{
     static let error_fetal          = "error_fatal_error"
     static let error_insert_data    = "error_insert_data_server"
     static let error_generic        = "error_generic"
+    static let error_network        = "error_network"
+    static let error_session_exp    = "error_session"
     
     static let prompt_address_book  = "permission_prompt_addressbook"
     

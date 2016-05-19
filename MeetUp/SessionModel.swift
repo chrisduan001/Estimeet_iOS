@@ -106,15 +106,22 @@ class SessionModel: BaseModel {
                 }
             }
         } else if request_type_create_session! {
-            serviceHelper.createSession(SessionFactory.sharedInstance.getRequestTimeInMinutes(tempSessionModel.sessionRequestedTime!.integerValue),
+            serviceHelper.createSession(SessionFactory.sharedInstance
+                .getRequestTimeInMinutes(tempSessionModel.sessionRequestedTime!.integerValue),
                                         length: tempSessionModel.sessionRequestedTime!.integerValue,
                                         notificationEntity: notificationModel,
                                         token: baseUser!.token!,
                                         completionHandler: { (response) in
-                                            guard !self.isAnyErrors(response.result.error!.code, response: response.result.value) else {
+                                            guard !self.isAnyErrors(response) else {
+                                                self.createSessionResponse = response.result.value
                                                 return
                                             }
                                             
+                                            let sessionResponse = response.result.value!
+                                            SessionFactory.sharedInstance.updateSessionId(self.dataHelper,
+                                                sessionId: sessionResponse.sessionId,
+                                                sessionLid: sessionResponse.sessionLId,
+                                                friend: self.friendObj)
                                             
                                             self.checkSessionExpiration()
             })
@@ -125,9 +132,15 @@ class SessionModel: BaseModel {
         sessionListener.onAuthFail()
     }
     
+    //check if the error is session expired error, need to delete session if the session has expired
+    private var createSessionResponse: BaseResponse?
     override func onError(message: String) {
         if request_type_create_session! {
-            SessionFactory.sharedInstance.insertSession(dataHelper, session: self.tempSessionModel, friend: self.friendObj)
+            if createSessionResponse?.errorCode == ErrorFactory.ERROR_SESSION_EXPIRED {
+                SessionFactory.sharedInstance.deleteFriendSession(dataHelper, friend: friendObj)
+            } else {
+                SessionFactory.sharedInstance.insertSession(dataHelper, session: tempSessionModel, friend: friendObj)
+            }
             
             return
         }

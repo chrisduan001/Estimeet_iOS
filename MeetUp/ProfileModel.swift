@@ -28,7 +28,7 @@ class ProfileModel: BaseModel {
         serviceHelper.updateProfile(updateModel, token: baseUser!.token!) {
             response in
             let user = response.result.value
-            guard !self.isAnyErrors(response.response!.statusCode, response: user) else {
+            guard !self.isAnyErrors(response) else {
                 return
             }
             print("Update profile response:\(response.response)")

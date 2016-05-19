@@ -40,7 +40,7 @@ class FriendListModel: BaseModel {
             response in
             print("get friend list response \(response.response)")
             let listItem = response.result.value
-            guard !self.isAnyErrors(response.response!.statusCode, response: listItem) else {
+            guard !self.isAnyErrors(response) else {
                 return
             }
             

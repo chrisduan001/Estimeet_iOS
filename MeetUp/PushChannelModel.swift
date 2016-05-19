@@ -34,7 +34,7 @@ class PushChannelModel: BaseModel {
             (response) in
             print("register channel \(response.response)")
             
-            self.isAnyErrors(response.response!.statusCode, response: response.result.value)
+            self.isAnyErrors(response)
         }
     }
     

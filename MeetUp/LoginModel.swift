@@ -23,7 +23,7 @@ class LoginModel: BaseModel {
             response in
             print("sign in response: \(response.response)")
             let user = response.result.value
-            if !self.isAnyErrors((response.response?.statusCode)!, response: user) {
+            if !self.isAnyErrors(response) {
                 self.userDefaults.saveUserDefault(user!)
                 //update baseuser data. password will be changed
                 self.baseUser = self.userDefaults.getUserFromDefaults()
