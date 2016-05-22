@@ -23,7 +23,7 @@ class BaseResponse: Mappable {
     }
 
     func getErrorMessage() -> String {
-        guard errorCode == 0 else {
+        guard errorCode == nil || errorCode == 0 else {
             return ErrorFactory.generateErrorWithCode(errorCode!)
         }
         

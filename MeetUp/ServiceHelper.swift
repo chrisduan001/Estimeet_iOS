@@ -135,7 +135,7 @@ class ServiceHelper {
     }
     
     func createSession(expireInMinutes: Int, length: Int, notificationEntity: NotificationEntity, token: String, completionHandler: (response: Response<SessionResponse, NSError>) -> Void) {
-        let createSessionUrl = "\(ServiceHelper.BASE_URL)/session/createsession"
+        let createSessionUrl = "\(ServiceHelper.BASE_URL)/session/createsession?expiretimeinminutes=\(expireInMinutes)&length=\(length)"
         let request = Alamofire.request(.POST, createSessionUrl, parameters: getJsonString(notificationEntity), encoding: .JSON, headers: getAuthHeader(token))
         
         request.responseObject { (response: Response<SessionResponse, NSError>) in

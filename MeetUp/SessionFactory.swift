@@ -57,6 +57,13 @@ class SessionFactory {
         dataHelper.insertSession(session, friend: friend)
     }
     
+    func acceptNewSession(dataHelper: DataHelper, friend: Friend) {
+        friend.session!.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
+        friend.session!.sessionType = ACTIVE_SESSION
+        
+        dataHelper.acceptNewSession(friend)
+    }
+    
     func updateSessionId(dataHelper: DataHelper, sessionId: Int, sessionLid: String, friend: Friend) {
         dataHelper.updateSessionId(friend, sessionId: sessionId, sessionLId: sessionLid)
     }

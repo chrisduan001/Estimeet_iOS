@@ -54,12 +54,7 @@ class SessionModel: BaseModel {
         resetRequestType()
         request_type_create_session = true
         storeTempSession(friendObj)
-        SessionFactory.sharedInstance.createActiveSession(friendObj.session!,
-                                                          friendId: friendObj.userId!.integerValue,
-                                                          sessionId: 0,
-                                                          sessionLid: "",
-                                                          expireInMillis: friendObj.session!.expireInMillis!,
-                                                          length: friendObj.session!.sessionRequestedTime!.integerValue)
+        SessionFactory.sharedInstance.acceptNewSession(dataHelper, friend: friendObj)
         
         notificationModel = NotificationEntity(senderId: baseUser!.userId!, receiverId: friendObj.userId!.integerValue, receiverUId: friendObj.userUId!)
         

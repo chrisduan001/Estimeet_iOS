@@ -47,8 +47,10 @@ class BaseModel: NSObject {
         
         let tokenResponse = response.result.value!
         baseUser?.token = tokenResponse.accessToken
-        baseUser?.expireTime = tokenResponse.expiresIn
-        MeetUpUserDefaults.sharedInstance.updateUserToken(tokenResponse.accessToken, expireInSeconds: tokenResponse.expiresIn)
+        //should renew 10 min before expires
+        let expireTimeInSec = Int(NSDate().timeIntervalSinceReferenceDate) + tokenResponse.expiresIn - 600
+        baseUser?.expireTime = expireTimeInSec
+        MeetUpUserDefaults.sharedInstance.updateUserToken(tokenResponse.accessToken, expireInSeconds: expireTimeInSec)
         return true
     }
     

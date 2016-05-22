@@ -186,6 +186,23 @@ class DataHelper {
         return -1
     }
     
+    func acceptNewSession(friend: Friend) {
+        friend.sectionHeader = SECTION_HEADER_SESSION
+        do {
+            try context.save()
+        } catch {
+            print("error while accept new session")
+        }
+    }
+    
+    func updateSession() {
+        do {
+            try context.save()
+        } catch {
+            print("error while update session")
+        }
+    }
+    
     func updateSessionId(friend: Friend, sessionId: Int, sessionLId: String) {
         let session = friend.session!
         session.sessionId = sessionId

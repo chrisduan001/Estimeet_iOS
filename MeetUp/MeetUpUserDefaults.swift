@@ -84,9 +84,8 @@ class MeetUpUserDefaults {
     func updateUserToken(token:String, expireInSeconds: Int) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(token, forKey: TOKEN)
-        let timeInSecond =  Int(NSDate().timeIntervalSinceReferenceDate) + expireInSeconds
-        //should renew 10 min before expires
-        userDefaults.setInteger(timeInSecond - 600, forKey: EXPIRES)
+
+        userDefaults.setInteger(expireInSeconds, forKey: EXPIRES)
         
         userDefaults.synchronize()
     }
