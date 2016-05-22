@@ -71,14 +71,16 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     
     //timer method
     func makeContinuousTracking() {
-        if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
-            NSDate.timeIntervalSinceReferenceDate() > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
-            stopTrackingTimer()
-            
-            print("Tracking timer stopped")
-        } else {
-            print("Get location")
-            getCurrentLocation()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
+                NSDate.timeIntervalSinceReferenceDate() > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
+                self.stopTrackingTimer()
+                
+                print("Tracking timer stopped")
+            } else {
+                print("Get location")
+                self.getCurrentLocation()
+            }
         }
     }
     

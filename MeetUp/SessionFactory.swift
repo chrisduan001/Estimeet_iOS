@@ -53,6 +53,10 @@ class SessionFactory {
         dataHelper.deleteFriendSession(friend)
     }
     
+    func deleteSessionById(dataHelper: DataHelper, friendId: Int) {
+        dataHelper.deleteSessionById(friendId)
+    }
+    
     func insertSession(dataHelper: DataHelper, session: TempSessionModel, friend: Friend) {
         dataHelper.insertSession(session, friend: friend)
     }

@@ -20,8 +20,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //push notification received observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveNotification), name: PushNotification.GENERAL_NOTIFICATION_KEY, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNoSessionNotification), name: PushNotification.NO_SESSION_KEY, object: nil)
+        
+        //app delegate observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveLifecycleNotification), name: AppDelegate.LIFE_CYCLE_NOTIFICATION, object: nil)
         
         let headerImg = UIImage(named: "navigation_icon")
@@ -55,6 +59,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if notification.name == PushNotification.GENERAL_NOTIFICATION_KEY {
             getNotificationModel.getAllNotifications()
         }
+    }
+    
+    @objc private func onReceiveNoSessionNotification() {
+        setDefaultToolbarItem()
     }
     
     @objc private func onReceiveLifecycleNotification(notification: NSNotification) {
