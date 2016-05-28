@@ -10,8 +10,6 @@ import Foundation
 class SessionFactory {
     static let sharedInstance = SessionFactory()
     private init() {}
-    //time to expire after session request
-    private let DEFAULT_EXPIRE_TIME = 0.1
     
     private func setupSessionTimeWithDefaultValue(session: SessionColumn) {
         session.expireInMillis = TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: DEFAULT_EXPIRE_TIME)
@@ -47,6 +45,14 @@ class SessionFactory {
         setUpSessionTime(expireInMillis, session: session)
         
         return session
+    }
+    
+    func setSessionTrackingExpireTime(trackingLength: NSNumber) {
+        //take the longest tracking time
+        let timeToExpire = NSDate.timeIntervalSinceReferenceDate() * 1000 + trackingLength.doubleValue
+        if AppDelegate.SESSION_TIME_TO_EXPIRE != nil && AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue < timeToExpire {
+            AppDelegate.SESSION_TIME_TO_EXPIRE = timeToExpire
+        }
     }
     
     func deleteFriendSession(dataHelper: DataHelper, friend: Friend) {
@@ -114,4 +120,6 @@ class SessionFactory {
     let SENT_SESSION = 100
     let RECEIVED_SESSION = 102
     let ACTIVE_SESSION = 103
+    //time to expire after session request
+    let DEFAULT_EXPIRE_TIME = 5.0
 }

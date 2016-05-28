@@ -15,6 +15,7 @@ import PonyDebugger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    //time to expire in milliseconds
     static var SESSION_TIME_TO_EXPIRE: NSNumber?
     static let LIFE_CYCLE_NOTIFICATION = "co.nz.lifecyclenotification"
 
@@ -109,8 +110,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         ModelFactory.sharedInstance.providePushChannelModel().registerPushChannel(deviceToken)
     }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         PushNotification.sharedInstance.receivePushMessage(userInfo)
     }
 

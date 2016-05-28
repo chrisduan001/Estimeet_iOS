@@ -49,14 +49,14 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         }
     }
     
-    func startTracking(dateCreated: NSNumber) {
-        guard dateCreated.intValue > 0 else {
+    func startTracking(trackingLength: NSNumber) {
+        guard trackingLength.intValue > 0 else {
             AppDelegate.SESSION_TIME_TO_EXPIRE = nil
             stopTimer()
             return
         }
         
-        AppDelegate.SESSION_TIME_TO_EXPIRE = NSDate.timeIntervalSinceReferenceDate() + dateCreated.doubleValue
+        SessionFactory.sharedInstance.setSessionTrackingExpireTime(trackingLength)
         
         stopTimer()
         trackTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
@@ -73,7 +73,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     func makeContinuousTracking() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
-                NSDate.timeIntervalSinceReferenceDate() > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
+                (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
                 self.stopTrackingTimer()
                 
                 print("Tracking timer stopped")

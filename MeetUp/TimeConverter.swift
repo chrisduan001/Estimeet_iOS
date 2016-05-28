@@ -31,4 +31,8 @@ class TimeConverter {
     func convertFromSecondsToMinutes(value: Int) -> Int {
         return value / 60
     }
+    
+    func convertFromMinutesToSeconds(minutes: Int) -> Int {
+        return minutes * 60
+    }
 }

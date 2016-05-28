@@ -171,9 +171,7 @@ class DataHelper {
     }
     
     func deleteSessionById(id: Int) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.deleteFriendSession(self.getFriend(id)!)
-        }
+        deleteFriendSession(self.getFriend(id)!)
     }
     
     func createActiveSession(friendId: Int, sessionId: Int, sessionLId: String, expireInMillis: NSNumber, length: Int, friendObj: Friend) -> NSNumber {

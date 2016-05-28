@@ -98,6 +98,8 @@ class SessionModel: BaseModel {
                 if !response {
                     self.onError(ErrorFactory.generateGenericErrorMessage())
                     self.checkSessionExpiration()
+                } else {
+                    self.sessionListener.onRequestSessionSuccessful()
                 }
             }
         } else if request_type_create_session! {
@@ -149,4 +151,5 @@ class SessionModel: BaseModel {
 protocol SessionListener: BaseListener {
     func onCheckSessionExpiration(timeToExpire: NSNumber?)
     func onNoSessionsAvailable()
+    func onRequestSessionSuccessful()
 }

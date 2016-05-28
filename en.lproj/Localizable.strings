@@ -58,3 +58,6 @@
 "user_geo_unavailable"          = "Unable to get your location, request failed";
 "user_location_unavilable"      = "Your location service not available, you may not be able to find the location data";
 "friend_location_expire"        = "Friend didn't upload their location yet, please try again later";
+
+"notification_new_session"      = "You got a new session request";
+"notification_session_create"   = "New session created";

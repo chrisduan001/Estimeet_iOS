@@ -25,7 +25,9 @@ class PushChannelModel: BaseModel {
         let tag: Set<String> = [baseUser!.userUId!]
         do {
             try notificationHub.registerNativeWithDeviceToken(deviceToken, tags: tag)
-        } catch {}
+        } catch {
+            print("register channcel failed")
+        }
     }
     
     //MARK: EXTEND SUPER
