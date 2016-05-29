@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7o2-95-uy7">
-                        <rect key="frame" x="8" y="15" width="40" height="40"/>
+                        <rect key="frame" x="10" y="12.5" width="45" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="D13-Kw-bry"/>
-                            <constraint firstAttribute="width" constant="40" id="S44-G3-7Iz"/>
+                            <constraint firstAttribute="height" constant="45" id="D13-Kw-bry"/>
+                            <constraint firstAttribute="width" constant="45" id="S44-G3-7Iz"/>
                         </constraints>
                     </imageView>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="Xmd-Fu-Hi1">
@@ -30,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kii-Tb-18O">
-                        <rect key="frame" x="66" y="8" width="187" height="53.5"/>
+                        <rect key="frame" x="73" y="8" width="180" height="53.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -39,7 +39,7 @@
                     <constraint firstItem="kii-Tb-18O" firstAttribute="leading" secondItem="7o2-95-uy7" secondAttribute="trailing" constant="18" id="NE8-za-RQp"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" id="Q0T-0R-HU0"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="bottom" secondItem="pL3-3k-3i6" secondAttribute="bottomMargin" id="XRr-Ua-fCU"/>
-                    <constraint firstItem="7o2-95-uy7" firstAttribute="leading" secondItem="pL3-3k-3i6" secondAttribute="leadingMargin" id="hsn-rr-Ljt"/>
+                    <constraint firstItem="7o2-95-uy7" firstAttribute="leading" secondItem="pL3-3k-3i6" secondAttribute="leadingMargin" constant="2" id="hsn-rr-Ljt"/>
                     <constraint firstItem="7o2-95-uy7" firstAttribute="centerY" secondItem="pL3-3k-3i6" secondAttribute="centerY" id="isU-ba-dYf"/>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="centerY" secondItem="pL3-3k-3i6" secondAttribute="centerY" id="itS-En-xXD"/>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="trailing" secondItem="pL3-3k-3i6" secondAttribute="trailingMargin" id="yAo-zO-nNm"/>
@@ -48,6 +48,7 @@
             <connections>
                 <outlet property="btn_accept" destination="dzg-Ye-fce" id="hO8-zx-FHV"/>
                 <outlet property="btn_ignore" destination="r1J-4a-y78" id="N3O-yV-hCZ"/>
+                <outlet property="circularProgressView" destination="wqe-GQ-Pmy" id="n8F-Wh-MsE"/>
                 <outlet property="friend_name" destination="nq9-Zz-Tmq" id="2Ke-V0-1ar"/>
                 <outlet property="img_action" destination="Xmd-Fu-Hi1" id="rE3-Ss-mHS"/>
                 <outlet property="img_dp" destination="7o2-95-uy7" id="QUc-gy-paj"/>
@@ -63,7 +64,7 @@
                 <outlet property="view_request_sent" destination="MqJ-x5-bbY" id="iTL-tI-yWS"/>
                 <outlet property="view_session_request" destination="FEf-j6-PVD" id="s9x-HO-Yw7"/>
             </connections>
-            <point key="canvasLocation" x="341" y="323"/>
+            <point key="canvasLocation" x="43" y="457"/>
         </tableViewCell>
         <view contentMode="scaleToFill" id="FEf-j6-PVD">
             <rect key="frame" x="0.0" y="0.0" width="187" height="53.5"/>
@@ -228,6 +229,13 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="904" y="664.75"/>
+        </view>
+        <view contentMode="scaleToFill" id="wqe-GQ-Pmy" customClass="CircularProgress" customModule="MeetUp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-214" y="590"/>
         </view>
     </objects>
     <resources>

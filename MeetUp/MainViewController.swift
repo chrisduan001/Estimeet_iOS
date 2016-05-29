@@ -147,6 +147,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func onLocationAuthorized() {
         if selectedFriend != nil {
             sessionModel.sendSessionRequest(selectedFriend!)
+            selectedFriend = nil
         }
     }
     
@@ -357,6 +358,19 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             setupDefaultSessionView(cell, friend: friend)
         }
         cell.img_action.hidden = false
+        
+        addCircularProgressView(cell)
+    }
+    
+    private func addCircularProgressView(cell: FriendSessionTableViewCell) {
+        cell.addCircularProgress()
+
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MainViewController.setCircularProgressValue), userInfo: cell, repeats: true)
+    }
+
+    @objc private func setCircularProgressValue(timer: NSTimer) {
+        let cell = timer.userInfo as! FriendSessionTableViewCell
+        cell.circularProgressView.setNeedsDisplay()
     }
     
     //MARK: TABLEVIEW ACTION
@@ -374,7 +388,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         var sendRequest: UITableViewRowAction
         if friend.session == nil {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
-                //check if the location service is available and then request the current location and store to user defaults
+                //check if the location service is available and then request the current location and store location to user defaults
                 self.selectedFriend = friend
                 
                 //start tracking with default time + 1, if user not respond to the request, stop tracking

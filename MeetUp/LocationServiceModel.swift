@@ -69,7 +69,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.distanceFilter = 100.0
+        locationManager.distanceFilter = 10.0
         
         if CLLocationManager.authorizationStatus() == .Denied {
             onPermissionDenied()

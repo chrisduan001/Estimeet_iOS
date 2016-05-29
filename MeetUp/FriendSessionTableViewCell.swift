@@ -14,6 +14,8 @@ class FriendSessionTableViewCell: UITableViewCell {
     @IBOutlet weak var img_action: UIImageView!
     @IBOutlet weak var view_container: UIView!
     
+    @IBOutlet weak var circularProgressView: CircularProgress!
+    
     //session request container
     @IBOutlet var view_session_request: UIView!
     @IBOutlet weak var request_name: UILabel!
@@ -57,6 +59,15 @@ class FriendSessionTableViewCell: UITableViewCell {
         }
         
         view_container.addSubview(view)
+    }
+    
+    func addCircularProgress() {
+        circularProgressView.removeFromSuperview()
+        let imageCenter = img_dp.center
+        circularProgressView.center = imageCenter
+        
+        addSubview(circularProgressView)
+        sendSubviewToBack(circularProgressView)
     }
     
     func actionButtonTapped() {

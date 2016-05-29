@@ -76,6 +76,7 @@
 		62D5BF531CE1E8080085CDBE /* LocationModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF521CE1E8080085CDBE /* LocationModelResponse.swift */; };
 		62D5BF551CE1E9460085CDBE /* RequestLocationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF541CE1E9460085CDBE /* RequestLocationEntity.swift */; };
 		62D5BF591CE47F340085CDBE /* LocationServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5BF581CE47F340085CDBE /* LocationServiceModel.swift */; };
+		62DE358A1CFAA19100CE46F5 /* CircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DE35891CFAA19100CE46F5 /* CircularProgress.swift */; };
 		62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */; };
 		62F887A81CCE09B9009C1C4F /* ManageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */; };
 		62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */; };
@@ -157,6 +158,7 @@
 		62D5BF521CE1E8080085CDBE /* LocationModelResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModelResponse.swift; sourceTree = "<group>"; };
 		62D5BF541CE1E9460085CDBE /* RequestLocationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestLocationEntity.swift; sourceTree = "<group>"; };
 		62D5BF581CE47F340085CDBE /* LocationServiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceModel.swift; sourceTree = "<group>"; };
+		62DE35891CFAA19100CE46F5 /* CircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgress.swift; sourceTree = "<group>"; };
 		62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
 		62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileViewController.swift; sourceTree = "<group>"; };
 		62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageProfileViewController.xib; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				622785EA1C8BD460006FDD55 /* MeetUpUserDefaults.swift */,
 				621539041CCCC68300554726 /* NibLoader.swift */,
 				62024B2D1CD611D900AB5C90 /* TimeConverter.swift */,
+				62DE35891CFAA19100CE46F5 /* CircularProgress.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				62C2C9FD1C8AC9B90029B3DB /* RoundedButton.swift in Sources */,
 				62C15D9D1CDDF0EA006B17A3 /* FriendSessionTableViewCell.swift in Sources */,
 				622785ED1C8C198D006FDD55 /* Navigator.swift in Sources */,
+				62DE358A1CFAA19100CE46F5 /* CircularProgress.swift in Sources */,
 				6238673A1CCB214D001ADA20 /* FriendEntity.swift in Sources */,
 				62024B2A1CD5A3E500AB5C90 /* Friend.swift in Sources */,
 				6240B1B81C8827C300899CD9 /* BaseViewController.swift in Sources */,
