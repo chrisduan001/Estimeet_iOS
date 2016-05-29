@@ -26,29 +26,6 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     }
     
     //MARK: CONTROLLER CALL
-    func getCurrentLocation() {
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-        }
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        
-        if CLLocationManager.authorizationStatus() == .Denied {
-            onPermissionDenied()
-            return
-        }
-        
-        if CLLocationManager.authorizationStatus() == .AuthorizedAlways {
-            permissionGranted()
-            return
-        }
-        
-        if locationManager.respondsToSelector(#selector(CLLocationManager.requestAlwaysAuthorization)) {
-            locationManager.requestAlwaysAuthorization()
-        }
-    }
-    
     func startTracking(trackingLength: NSNumber) {
         guard trackingLength.intValue > 0 else {
             AppDelegate.SESSION_TIME_TO_EXPIRE = nil
@@ -57,6 +34,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         }
         
         SessionFactory.sharedInstance.setSessionTrackingExpireTime(trackingLength)
+        makeContinuousTracking()
         
         stopTimer()
         trackTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
@@ -81,6 +59,30 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
                 print("Get location")
                 self.getCurrentLocation()
             }
+        }
+    }
+    
+    private func getCurrentLocation() {
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+        }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 100.0
+        
+        if CLLocationManager.authorizationStatus() == .Denied {
+            onPermissionDenied()
+            return
+        }
+        
+        if CLLocationManager.authorizationStatus() == .AuthorizedAlways {
+            permissionGranted()
+            return
+        }
+        
+        if locationManager.respondsToSelector(#selector(CLLocationManager.requestAlwaysAuthorization)) {
+            locationManager.requestAlwaysAuthorization()
         }
     }
     
@@ -142,11 +144,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
-        serviceHelper.sendGeoData(locationData, userUid: baseUser!.userUId!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!, notificationModel: NotificationEntity(senderId: baseUser!.userId!, receiverId: 0, receiverUId: "")) { (response) in
-            if !response {
-                self.stopTrackingTimer()
-            }
-        }
+        serviceHelper.sendGeoData(locationData, userUid: baseUser!.userUId!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!, notificationModel: NotificationEntity(senderId: baseUser!.userId!, receiverId: 0, receiverUId: "")) { _ in }
     }
     
     override func onAuthError() {

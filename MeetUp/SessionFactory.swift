@@ -50,7 +50,7 @@ class SessionFactory {
     func setSessionTrackingExpireTime(trackingLength: NSNumber) {
         //take the longest tracking time
         let timeToExpire = NSDate.timeIntervalSinceReferenceDate() * 1000 + trackingLength.doubleValue
-        if AppDelegate.SESSION_TIME_TO_EXPIRE != nil && AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue < timeToExpire {
+        if AppDelegate.SESSION_TIME_TO_EXPIRE == nil || AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue < timeToExpire {
             AppDelegate.SESSION_TIME_TO_EXPIRE = timeToExpire
         }
     }

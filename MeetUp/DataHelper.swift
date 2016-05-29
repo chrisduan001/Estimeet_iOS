@@ -111,6 +111,24 @@ class DataHelper {
         }
     }
     
+    func deleteAllActiveSession() {
+        let sessionDataRequest = NSFetchRequest(entityName: String(SessionData))
+        let sessionDataDeleteRequest = NSBatchDeleteRequest(fetchRequest: sessionDataRequest)
+        
+        let request = NSFetchRequest(entityName: String(SessionColumn))
+        let predict = NSPredicate(format: "sessionType == %@", SessionFactory.sharedInstance.ACTIVE_SESSION)
+        request.predicate = predict
+        let sessionDeleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do {
+            try context.executeRequest(sessionDataDeleteRequest)
+            try context.executeRequest(sessionDeleteRequest)
+        } catch {
+            print("error occurred while delete active sessions")
+        }
+        
+    }
+    
     func deleteSession(session: SessionColumn) {
         //reset the session from active to friend
         session.friend!.sectionHeader = SECTION_HEADER_FRIEND

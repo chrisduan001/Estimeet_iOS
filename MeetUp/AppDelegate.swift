@@ -41,13 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         //PONY DEBUGGER
-        let debugger = PDDebugger.defaultInstance()
-        let url = NSURL(string: "ws://192.168.1.65:9000/device")
-        debugger.connectToURL(url)
-        debugger.forwardAllNetworkTraffic()
-        debugger.enableNetworkTrafficDebugging()
-        debugger.enableCoreDataDebugging()
-        debugger.addManagedObjectContext(self.managedObjectContext)
+//        let debugger = PDDebugger.defaultInstance()
+//        let url = NSURL(string: "ws://192.168.1.65:9000/device")
+//        debugger.connectToURL(url)
+//        debugger.forwardAllNetworkTraffic()
+//        debugger.enableNetworkTrafficDebugging()
+//        debugger.enableCoreDataDebugging()
+//        debugger.addManagedObjectContext(self.managedObjectContext)
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

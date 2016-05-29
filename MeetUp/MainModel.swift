@@ -57,6 +57,11 @@ class MainModel: BaseModel {
             response in
             print("get travel info response \(response.response)")
             let listItem = response.result.value
+            
+            if listItem != nil && listItem?.errorCode == ErrorFactory.ERROR_SESSION_EXPIRED {
+                SessionFactory.sharedInstance.deleteFriendSession(self.dataHelper, friend: self.friendObj)
+                SessionFactory.sharedInstance.checkSession(self.dataHelper)
+            }
             guard !self.isAnyErrors(response) else {
                 return
             }

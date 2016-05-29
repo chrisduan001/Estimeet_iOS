@@ -131,11 +131,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         locationServiceModel.startTracking(expireTime!)
     }
     
-    func onRequestSessionSuccessful() {
-        //start tracking with default time + 1, if user not respond to the request, stop tracking
-        locationServiceModel.startTracking(TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: SessionFactory.sharedInstance.DEFAULT_EXPIRE_TIME + 1))
-    }
-    
     //called when the only session was ignored
     func onNoSessionsAvailable() {
         setDefaultToolbarItem()
@@ -381,7 +376,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
                 //check if the location service is available and then request the current location and store to user defaults
                 self.selectedFriend = friend
-                self.locationServiceModel.getCurrentLocation()
+                
+                //start tracking with default time + 1, if user not respond to the request, stop tracking
+                self.locationServiceModel.startTracking(TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: SessionFactory.sharedInstance.DEFAULT_EXPIRE_TIME + 1))
                 self.setTravelModeToolbar()
             }
             

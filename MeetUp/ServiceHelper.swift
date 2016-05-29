@@ -153,12 +153,6 @@ class ServiceHelper {
         
         request.responseString { (response:Response<String, NSError>) in
             print("request result \(response.response)")
-            var result = false
-            if let value = response.result.value {
-                result = value == "true"
-            }
-            
-            completionHandler(response: result)
         }
         
         logDebugInfo(request)
