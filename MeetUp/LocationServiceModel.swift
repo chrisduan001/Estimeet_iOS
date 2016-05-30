@@ -49,27 +49,24 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     
     //timer method
     func makeContinuousTracking() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
-                (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
-                self.stopTrackingTimer()
-                
-                print("Tracking timer stopped")
-            } else {
-                print("Get location")
-                self.getCurrentLocation()
-            }
+        if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
+            (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
+            self.stopTrackingTimer()
+            
+            print("Tracking timer stopped")
+        } else {
+            print("Get location")
+            self.getCurrentLocation()
         }
     }
     
     private func getCurrentLocation() {
         if locationManager == nil {
             locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.distanceFilter = 100.0
         }
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.distanceFilter = 10.0
         
         if CLLocationManager.authorizationStatus() == .Denied {
             onPermissionDenied()

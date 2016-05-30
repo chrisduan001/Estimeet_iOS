@@ -148,6 +148,6 @@ class SessionModel: BaseModel {
 }
 
 protocol SessionListener: BaseListener {
-    func onCheckSessionExpiration(timeToExpire: NSNumber?)
+    func onCheckSessionExpiration(timeToExpire: Int?)
     func onNoSessionsAvailable()
 }

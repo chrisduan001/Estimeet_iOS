@@ -119,7 +119,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func onCheckSessionExpiration(timeToExpire: NSNumber?) {
+    func onCheckSessionExpiration(timeToExpire: Int?) {
         var expireTime = timeToExpire
         if expireTime == nil {
             setDefaultToolbarItem()
@@ -128,7 +128,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             setTravelModeToolbar()
         }
         
-        locationServiceModel.startTracking(expireTime!)
+        locationServiceModel.startTracking(NSNumber(integer: expireTime!))
     }
     
     //called when the only session was ignored

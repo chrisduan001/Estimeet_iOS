@@ -92,19 +92,22 @@ class SessionFactory {
     }
     
     //nil == no session available, no == no active session, yes == active session
-    func checkSession(dataHelper: DataHelper) -> NSNumber? {
+    func checkSession(dataHelper: DataHelper) -> Int? {
         let sessions = dataHelper.getAllSessions()
+        let currentMillis: NSNumber = NSDate.timeIntervalSinceReferenceDate() * 1000
         
-        var timeToExpire: NSNumber?
+        var timeToExpire: Int?
         for session in sessions {
-            let currentMillis: NSNumber = NSDate.timeIntervalSinceReferenceDate() * 1000
-            if currentMillis.longLongValue > session.dateCreated!.longLongValue + session.expireInMillis!.longLongValue {
+            let sessionTimeLeft: Int = (session.dateCreated!.longLongValue + session.expireInMillis!.longLongValue) - currentMillis.longLongValue
+            if sessionTimeLeft <= 0 {
+                //session expired, delete session
                 dataHelper.deleteSession(session)
             } else {
-                if session.sessionType == ACTIVE_SESSION {
-                    //get largest session to expire
-                    if timeToExpire == nil || timeToExpire!.compare(session.expireInMillis!) == .OrderedAscending {
-                        timeToExpire = session.expireInMillis
+                //not expired, if session is active or request is sent and waiting for acceptance,
+                //get the session with longest time to expire
+                if session.sessionType == ACTIVE_SESSION || session.sessionType == SENT_SESSION {
+                    if timeToExpire == nil || timeToExpire! < sessionTimeLeft {
+                        timeToExpire = sessionTimeLeft
                     }
                 } else {
                     if timeToExpire == nil {
@@ -113,7 +116,7 @@ class SessionFactory {
                 }
             }
         }
-        
+        //time left
         return timeToExpire
     }
     
