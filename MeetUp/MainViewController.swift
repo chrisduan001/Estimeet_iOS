@@ -262,6 +262,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         return 0
     }
     
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let cellWillEndDisplay = cell as? FriendSessionTableViewCell {
+            cellWillEndDisplay.stopTimer()
+        }
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let identifier = "identifier"
@@ -288,7 +294,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private func setUpCell(cell: FriendSessionTableViewCell, indexPath: NSIndexPath) {
         let friendObj = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         
-        cell.indexPath = indexPath
+        cell.setCellIndexPath(indexPath)
         if let session = friendObj.session {
             cell.img_action.hidden = false
             switch session.sessionType! {
@@ -364,13 +370,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func addCircularProgressView(cell: FriendSessionTableViewCell) {
         cell.addCircularProgress()
-
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MainViewController.setCircularProgressValue), userInfo: cell, repeats: true)
-    }
-
-    @objc private func setCircularProgressValue(timer: NSTimer) {
-        let cell = timer.userInfo as! FriendSessionTableViewCell
-        cell.circularProgressView.setNeedsDisplay()
     }
     
     //MARK: TABLEVIEW ACTION
@@ -426,6 +425,20 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func onSessionIgnored(indexPath: NSIndexPath) {
         let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         sessionModel.removeSessionFromDb(friend)
+    }
+    
+    func onCellTimerTicked(cell: FriendSessionTableViewCell) {
+        let friend = fetchedResultsController.objectAtIndexPath(cell.getCellIndexPath()) as! Friend
+        let timePassed = NSDate.timeIntervalSinceReferenceDate() * 1000 - friend.session!.dateCreated!.doubleValue
+        let totalTime = friend.session!.expireInMillis!.doubleValue
+        if timePassed < totalTime {
+            let progress = timePassed / totalTime
+            cell.setCellSessionProgress(CGFloat(progress))
+            cell.circularProgressView.progress = CGFloat(progress)
+            cell.circularProgressView.setNeedsDisplay()
+        } else {
+            cell.stopTimer()
+        }
     }
     
     //MARK: NSFETCHED RESULT DELEGATE

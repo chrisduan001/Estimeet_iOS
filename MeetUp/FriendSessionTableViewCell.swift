@@ -37,8 +37,9 @@ class FriendSessionTableViewCell: UITableViewCell {
     @IBOutlet weak var request_sent_name: UILabel!
     @IBOutlet weak var request_sent_label: UILabel!
     
-    var indexPath: NSIndexPath!
-    var delegate: FriendSessionCellDelegate!
+    private var indexPath: NSIndexPath!
+    private var delegate: FriendSessionCellDelegate!
+    private var progressTimer: NSTimer!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +51,18 @@ class FriendSessionTableViewCell: UITableViewCell {
         img_action.clipsToBounds = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(FriendSessionTableViewCell.actionButtonTapped))
         img_action.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func setDelegate(delegate: FriendSessionCellDelegate) {
+        self.delegate = delegate
+    }
+    
+    func setCellIndexPath(indexPath: NSIndexPath) {
+        self.indexPath = indexPath
+    }
+    
+    func getCellIndexPath() -> NSIndexPath {
+        return indexPath
     }
     
     func addView(view: UIView) {
@@ -68,10 +81,36 @@ class FriendSessionTableViewCell: UITableViewCell {
         
         addSubview(circularProgressView)
         sendSubviewToBack(circularProgressView)
+        
+        //set initial state
+        delegate.onCellTimerTicked(self)
+        
+        startProgressTimer()
     }
     
-    func actionButtonTapped() {
-        delegate.onCancelSession(indexPath)
+    func setCellSessionProgress(progress: CGFloat) {
+        circularProgressView.progress = progress
+        circularProgressView.setNeedsLayout()
+    }
+    
+    func stopTimer() {
+        if progressTimer != nil {
+            progressTimer.invalidate()
+            progressTimer = nil
+        }
+    }
+    
+    deinit {
+        print("deinit called")
+    }
+    
+    private func startProgressTimer() {
+        progressTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(FriendSessionTableViewCell.onTimerTicked), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func onTimerTicked(timer: NSTimer) {
+        delegate.onCellTimerTicked(self)
+        print("timer tick called")
     }
     
     private func removeAllSubview(subviews: [UIView]) {
@@ -80,8 +119,8 @@ class FriendSessionTableViewCell: UITableViewCell {
         }
     }
     
-    func setDelegate(delegate: FriendSessionCellDelegate) {
-        self.delegate = delegate
+    @objc private func actionButtonTapped() {
+        delegate.onCancelSession(indexPath)
     }
     
     @IBAction func onAcceptClicked(sender: UIButton) {
@@ -97,4 +136,5 @@ protocol FriendSessionCellDelegate: class {
     func onCancelSession(indexPath: NSIndexPath)
     func onSessionAccepted(indexPath: NSIndexPath)
     func onSessionIgnored(indexPath: NSIndexPath)
+    func onCellTimerTicked(cell: FriendSessionTableViewCell)
 }
