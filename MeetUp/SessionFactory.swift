@@ -91,7 +91,7 @@ class SessionFactory {
         }
     }
     
-    //nil == no session available, no == no active session, yes == active session
+    //nil == no session available, int == time to expire(include the request sent)
     func checkSession(dataHelper: DataHelper) -> Int? {
         let sessions = dataHelper.getAllSessions()
         let currentMillis: NSNumber = NSDate.timeIntervalSinceReferenceDate() * 1000

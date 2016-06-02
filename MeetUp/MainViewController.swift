@@ -429,8 +429,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func onCellTimerTicked(cell: FriendSessionTableViewCell) {
         let friend = fetchedResultsController.objectAtIndexPath(cell.getCellIndexPath()) as! Friend
-        let timePassed = NSDate.timeIntervalSinceReferenceDate() * 1000 - friend.session!.dateCreated!.doubleValue
-        let totalTime = friend.session!.expireInMillis!.doubleValue
+        
+        guard let session = friend.session else {
+            cell.stopTimer()
+            return
+        }
+        
+        let timePassed = NSDate.timeIntervalSinceReferenceDate() * 1000 - session.dateCreated!.doubleValue
+        let totalTime = session.expireInMillis!.doubleValue
         if timePassed < totalTime {
             let progress = timePassed / totalTime
             cell.setCellSessionProgress(CGFloat(progress))

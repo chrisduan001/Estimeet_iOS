@@ -83,44 +83,57 @@ class SessionModel: BaseModel {
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
         if request_type_cancel_session! {
-            serviceHelper.cancelSession(
+            processCancelSessionRequest()
+        } else if request_type_send_request! {
+            processSendSessionRequest()
+        } else if request_type_create_session! {
+            processCreateSessionRequest()
+        }
+    }
+    
+    private func processCancelSessionRequest() {
+        //todo..process cancel active session request
+        serviceHelper.cancelSession(
             NotificationEntity(senderId: baseUser!.userId!,
-                             receiverId: friendObj.userId!.integerValue,
-                            receiverUId: friendObj.userUId!),
+                receiverId: friendObj.userId!.integerValue,
+                receiverUId: friendObj.userUId!),
             token: baseUser!.token!) { (response) in
                 if !response {
                     SessionFactory.sharedInstance.insertSession(self.dataHelper, session: self.tempSessionModel, friend: self.friendObj)
                     self.sessionListener.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.GENERIC_ERROR_MESSAGE))
                 }
-            }
-        } else if request_type_send_request! {
-            serviceHelper.sendRequestSession(notificationModel, length: 0, token: baseUser!.token!) { (response) in
-                if !response {
-                    self.onError(ErrorFactory.generateGenericErrorMessage())
-                    self.checkSessionExpiration()
-                }
-            }
-        } else if request_type_create_session! {
-            serviceHelper.createSession(SessionFactory.sharedInstance
-                .getRequestTimeInMinutes(tempSessionModel.sessionRequestedTime!.integerValue),
-                                        length: tempSessionModel.sessionRequestedTime!.integerValue,
-                                        notificationEntity: notificationModel,
-                                        token: baseUser!.token!,
-                                        completionHandler: { (response) in
-                                            guard !self.isAnyErrors(response) else {
-                                                self.createSessionResponse = response.result.value
-                                                return
-                                            }
-                                            
-                                            let sessionResponse = response.result.value!
-                                            SessionFactory.sharedInstance.updateSessionId(self.dataHelper,
-                                                sessionId: sessionResponse.sessionId,
-                                                sessionLid: sessionResponse.sessionLId,
-                                                friend: self.friendObj)
-                                            
-                                            self.checkSessionExpiration()
-            })
         }
+    }
+    
+    private func processSendSessionRequest() {
+        serviceHelper.sendRequestSession(notificationModel, length: 0, token: baseUser!.token!) { (response) in
+            if !response {
+                self.onError(ErrorFactory.generateGenericErrorMessage())
+                self.checkSessionExpiration()
+            }
+        }
+    }
+    
+    private func processCreateSessionRequest() {
+        serviceHelper.createSession(SessionFactory.sharedInstance
+            .getRequestTimeInMinutes(tempSessionModel.sessionRequestedTime!.integerValue),
+                                    length: tempSessionModel.sessionRequestedTime!.integerValue,
+                                    notificationEntity: notificationModel,
+                                    token: baseUser!.token!,
+                                    completionHandler: { (response) in
+                                        guard !self.isAnyErrors(response) else {
+                                            self.createSessionResponse = response.result.value
+                                            return
+                                        }
+                                        
+                                        let sessionResponse = response.result.value!
+                                        SessionFactory.sharedInstance.updateSessionId(self.dataHelper,
+                                            sessionId: sessionResponse.sessionId,
+                                            sessionLid: sessionResponse.sessionLId,
+                                            friend: self.friendObj)
+                                        
+                                        self.checkSessionExpiration()
+        })
     }
     
     override func onAuthError() {

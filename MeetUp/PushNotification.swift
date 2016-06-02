@@ -56,19 +56,16 @@ class PushNotification {
         let sessionFactory = SessionFactory.sharedInstance
         let dataHelper = ModelFactory.sharedInstance.dataHelper
         sessionFactory.deleteSessionById(dataHelper, friendId: friendId)
-        //todo..check if delete session in bg is possible
-        let isActiveSession = sessionFactory.checkSession(dataHelper)
-//        if isActiveSession == nil || !isActiveSession!.boolValue {
-//            if isAppActive {
-//                ModelFactory.sharedInstance.provideLocationServicemodel(nil).startTracking(-1)
-//                if isActiveSession == nil {
-//                    //send broadcast if the app is active, will need to reset the toolbar
-//                    sendPushBroadcastMessage(PushNotification.NO_SESSION_KEY)
-//                }
-//            } else {
-//               AppDelegate.SESSION_TIME_TO_EXPIRE = nil
-//            }
-//        }
+        let timeLeft = sessionFactory.checkSession(dataHelper)
+        if timeLeft == nil || timeLeft <= 0 {
+            if isAppActive {
+                ModelFactory.sharedInstance.provideLocationServicemodel(nil).startTracking(-1)
+                //send broadcast if the app is active, will need to reset the toolbar
+                sendPushBroadcastMessage(PushNotification.NO_SESSION_KEY)
+            } else {
+               AppDelegate.SESSION_TIME_TO_EXPIRE = nil
+            }
+        }
     }
     
     //will cause app to fetch data from server

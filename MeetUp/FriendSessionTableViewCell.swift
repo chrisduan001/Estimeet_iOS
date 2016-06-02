@@ -47,10 +47,20 @@ class FriendSessionTableViewCell: UITableViewCell {
         img_dp.layer.cornerRadius = img_dp.frame.size.width / 2
         img_dp.clipsToBounds = true
         
+        addCircularProgressToSuperView()
+        
         img_action.layer.cornerRadius = img_action.frame.size.width / 2
         img_action.clipsToBounds = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(FriendSessionTableViewCell.actionButtonTapped))
         img_action.addGestureRecognizer(tapRecognizer)
+    }
+    
+    private func addCircularProgressToSuperView() {
+        let imageCenter = img_dp.center
+        circularProgressView.center = imageCenter
+        addSubview(circularProgressView)
+        sendSubviewToBack(circularProgressView)
+        circularProgressView.hidden = true
     }
     
     func setDelegate(delegate: FriendSessionCellDelegate) {
@@ -75,13 +85,7 @@ class FriendSessionTableViewCell: UITableViewCell {
     }
     
     func addCircularProgress() {
-        circularProgressView.removeFromSuperview()
-        let imageCenter = img_dp.center
-        circularProgressView.center = imageCenter
-        
-        addSubview(circularProgressView)
-        sendSubviewToBack(circularProgressView)
-        
+        circularProgressView.hidden = false
         //set initial state
         delegate.onCellTimerTicked(self)
         
