@@ -36,24 +36,49 @@ class BaseViewController: UIViewController, BaseListener {
         }
     }
     
-    func showAlert(title: String, message: String, button: String, onOkClicked: (UIAlertAction) -> Void) {
+    func showAlert(title: String, message: String, buttons: [String],
+                   onOkClicked: (UIAlertAction) -> Void, onSecondButtonClicked: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: onOkClicked))
+        alert.addAction(UIAlertAction(title: buttons[0], style: UIAlertActionStyle.Default, handler: onOkClicked))
+        if buttons.count > 1 {
+            alert.addAction(UIAlertAction(title: buttons[1], style: .Default, handler: onSecondButtonClicked))
+        }
+        
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
     //MARK: LISTENER
     func onAuthFail() {
         endActivityIndicator()
-        showAlert("Auth Error", message: "Auth error", button: "ok", onOkClicked: {_ in})
+        showAlert("Auth Error", message: "Auth error",
+                  buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "error button")],
+                  onOkClicked: {_ in},
+                  onSecondButtonClicked: nil)
         self.logOut()
     }
     
     func onError(message: String) {
         endActivityIndicator()
-        showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "error title"),
+        showAlert(NSLocalizedString(GlobalString.alert_title_error,comment: "error title"),
                                             message: message,
-                                             button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"),
-                                             onOkClicked: {_ in })
+                                             buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "error button")],
+                                             onOkClicked: {_ in },
+                                             onSecondButtonClicked: nil)
+    }
+    
+    //when certian permission is not enabled, need prompt user to open setting page
+    func onErrorWithSettings(title: String, message: String) {
+        showAlert(title,
+            message: message,
+            buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "OK"),
+            NSLocalizedString(GlobalString.error_setting, comment: "settings")],
+            onOkClicked: {_ in },
+            onSecondButtonClicked: { _ in
+                guard let url = NSURL(string: UIApplicationOpenSettingsURLString) else {
+                    return
+                }
+                
+                UIApplication.sharedApplication().openURL(url)
+        })
     }
 }

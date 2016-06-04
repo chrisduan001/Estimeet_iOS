@@ -86,7 +86,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     private func onPermissionDenied() {
         AppDelegate.SESSION_TIME_TO_EXPIRE = nil
         if listener != nil {
-            listener!.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_LOCATION_SERVICE))
+            listener!.onLocationDenied()
         }
     }
     
@@ -153,5 +153,6 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
 
 protocol LocationServiceListener: BaseListener {
     func onLocationAuthorized()
+    func onLocationDenied()
     func onSessionCompleted()
 }

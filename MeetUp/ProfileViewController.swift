@@ -61,8 +61,9 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
         guard let userName = tfUserName.text where !userName.isEmpty else {
             showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "alert title"),
                 message: NSLocalizedString(GlobalString.error_empty_name, comment: "empty name"),
-                 button: NSLocalizedString(GlobalString.alert_button_ok, comment: "error button"),
-            onOkClicked: { _ in })
+                 buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "error button")],
+            onOkClicked: { _ in },
+            onSecondButtonClicked: nil)
             return
         }
         

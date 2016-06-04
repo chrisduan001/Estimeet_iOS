@@ -102,8 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let rootVc = self.window?.rootViewController!.childViewControllers[0] as! BaseViewController
             rootVc.showAlert(NSLocalizedString(GlobalString.push_denied_title,
                 comment: "push notification denied title"),
-                message: NSLocalizedString(GlobalString.push_denied_msg, comment: "push permission denied message"),
-                 button: NSLocalizedString(GlobalString.alert_button_ok, comment: "button_ok"), onOkClicked: {_ in})
+                             message: NSLocalizedString(GlobalString.push_denied_msg, comment: "push permission denied message"),
+                             buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "button_ok")], onOkClicked: {_ in},
+                             onSecondButtonClicked: nil)
         }
     }
     

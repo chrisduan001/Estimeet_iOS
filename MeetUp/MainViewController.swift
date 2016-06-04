@@ -112,7 +112,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         locationServiceModel.startTracking(NSNumber(integer: expireTime!))
     }
     
-    //called when the only session was ignored
     func onNoSessionsAvailable() {
         removeTravelModeToolbar()
     }
@@ -130,6 +129,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             sessionModel.sendSessionRequest(selectedFriend!)
             selectedFriend = nil
         }
+    }
+    
+    func onLocationDenied() {
+        onErrorWithSettings(NSLocalizedString(GlobalString.error_permission_title, comment: "Permission denied title"), message: NSLocalizedString(GlobalString.user_location_failed, comment: "Location denied"))
     }
     
     func onGetTravelMode(travelMode: Int) {
@@ -234,6 +237,16 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func removeTravelModeToolbar() {
         travelModeToolbarHeightContraint.constant = 0
+    }
+    
+    //MARK: OTHER LOGIC
+    private func checkBAFAvailability() -> Bool {
+        if UIApplication.sharedApplication().backgroundRefreshStatus != .Available {
+            onErrorWithSettings(NSLocalizedString(GlobalString.error_permission_title, comment: "title"), message: NSLocalizedString(GlobalString.error_baf, comment: "BAF Unavailable"))
+            return false
+        }
+        
+        return true
     }
     
     //MARK: TABLEVIEW
@@ -407,6 +420,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         var sendRequest: UITableViewRowAction
         if friend.session == nil {
             sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
+                //check background app refresh
+                guard self.checkBAFAvailability() else {
+                    return
+                }
                 //check if the location service is available and then request the current location and store location to user defaults
                 self.selectedFriend = friend
                 
@@ -438,6 +455,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onSessionAccepted(indexPath: NSIndexPath) {
+        guard checkBAFAvailability() else {
+            return
+        }
         let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         sessionModel.acceptNewSession(friend)
     }

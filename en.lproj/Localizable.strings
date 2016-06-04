@@ -30,6 +30,9 @@
 "error_generic"                 = "An error occurred, please try again";
 "error_network"                 = "Request failed, please check  your internet and try again";
 "error_session"                 = "Session expired, user deleted the session or expired";
+"error_baf"                     = "Background app fresh was turned off, you will not be able to update your location, please consider to turn it on";
+"error_permission_title"        = "Permission required";
+"error_setting"                 = "Setting";
 
 "navigation_main"               = "Main";
 "page_title_profile"            = "Profile";

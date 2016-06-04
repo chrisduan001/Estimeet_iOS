@@ -49,7 +49,7 @@ class LoginViewController : BaseViewController, LoginListener {
         //dialog shows before ask user for permission
         showAlert(NSLocalizedString(GlobalString.alert_title_info, comment: "Permission"),
                   message: NSLocalizedString(GlobalString.prompt_address_book, comment: "permission prompt") ,
-                   button: NSLocalizedString(GlobalString.alert_button_ok, comment: "ok button"),
+                   buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "ok button")],
               onOkClicked:{ (alert: UIAlertAction!) in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     self.startActivityIndicator()
@@ -69,6 +69,7 @@ class LoginViewController : BaseViewController, LoginListener {
                     }
                 }
                 
-        })
+        },
+              onSecondButtonClicked: nil)
     }
 }
