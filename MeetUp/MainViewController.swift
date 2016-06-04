@@ -15,6 +15,17 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
+
+    @IBOutlet weak var travelModeToolbar: UIView!
+    
+    @IBOutlet var travel_mode_walk: UIImageView!
+    @IBOutlet var travel_mode_car: UIImageView!
+    @IBOutlet var travel_mode_bus: UIImageView!
+    @IBOutlet var travel_mode_bike: UIImageView!
+    
+    @IBOutlet weak var travelModeToolbarHeightContraint: NSLayoutConstraint!
+    
+    private var travelModeToolbarDefaultHeight: CGFloat!
     
     //MARK: LIFECYCLE    
     override func viewDidLoad() {
@@ -31,7 +42,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
-        setDefaultToolbarItem()
+        travelModeToolbarDefaultHeight = travelModeToolbar.frame.size.height
         
         //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
@@ -62,7 +73,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc private func onReceiveNoSessionNotification() {
-        setDefaultToolbarItem()
+        removeTravelModeToolbar()
     }
     
     @objc private func onReceiveLifecycleNotification(notification: NSNotification) {
@@ -75,36 +86,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         print("on resume called")
         sessionModel.checkSessionExpiration()
         getNotificationModel.getAllNotifications()
-    }
-    
-    //MARK: TOOLBAR
-    private func setDefaultToolbarItem() {
-        let barButtonItem1 = UIBarButtonItem(image: UIImage(named: "navigation_icon"), style: .Plain, target: self, action: #selector(MainViewController.onManageFriend(_:)))
-        barButtonItem1.tintColor = UIColor().primaryColor()
-        let flexiSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let barButtonItem2 = UIBarButtonItem(image: UIImage(named: "navigation_icon"), style: .Plain, target: self, action: #selector(MainViewController.onManageProfile(_:)))
-        barButtonItem2.tintColor = UIColor().primaryColor()
-        
-        let toolbarItems: [UIBarButtonItem] = [barButtonItem1, flexiSpace, barButtonItem2]
-        toolbar.setItems(toolbarItems, animated: true)
-    }
-    
-    private func setTravelModeToolbar() {
-        guard toolbar.items?.count < 6 else {
-            //travel mode toolbar already set
-            return
-        }
-        
-        let flexiSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let barButtonItem1 = UIBarButtonItem(image: UIImage(named: "ic_directions_walk_green"), style: .Plain, target: self, action: #selector(MainViewController.onWalkingSelected))
-        let barButtonItem2 = UIBarButtonItem(image: UIImage(named: "ic_directions_car_green"), style: .Plain, target: self, action: #selector(MainViewController.onDrivingSelected))
-        let barButtonItem3 = UIBarButtonItem(image: UIImage(named: "ic_directions_bus_green"), style: .Plain, target: self, action: #selector(MainViewController.onTransitSelected))
-        let barButtonItem4 = UIBarButtonItem(image: UIImage(named: "ic_directions_bike_green"), style: .Plain, target: self, action: #selector(MainViewController.onBikeSelected))
-        
-        let toolbarItems: [UIBarButtonItem] = [barButtonItem1, flexiSpace, barButtonItem2, flexiSpace, barButtonItem3, flexiSpace, barButtonItem4]
-        toolbar.setItems(toolbarItems, animated: true)
-        resetToolbarSelection()
-        mainModel.getTravelMode()
     }
     
     //MARK: MODEL CALLBACK
@@ -122,10 +103,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func onCheckSessionExpiration(timeToExpire: Int?) {
         var expireTime = timeToExpire
         if expireTime == nil {
-            setDefaultToolbarItem()
+            removeTravelModeToolbar()
             expireTime = -1
         } else {
-            setTravelModeToolbar()
+            setTravelModeToolbarVisible()
         }
         
         locationServiceModel.startTracking(NSNumber(integer: expireTime!))
@@ -133,7 +114,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     //called when the only session was ignored
     func onNoSessionsAvailable() {
-        setDefaultToolbarItem()
+        removeTravelModeToolbar()
     }
     
     func onCreateNewSession(dateCreated: NSNumber) {
@@ -170,50 +151,89 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     //MARK: TOOLBAR BUTTON CLICK EVENT
-    func onManageFriend(sender: UIBarButtonItem) {
+    @IBAction func manageFriendClicked(sender: UIBarButtonItem) {
+        onManageFriend(sender)
+    }
+    
+    @IBAction func manageProfileClicked(sender: UIBarButtonItem) {
+        onManageProfile(sender)
+    }
+    
+    @IBAction func walkTapped(sender: UITapGestureRecognizer) {
+        onWalkingSelected()
+    }
+    
+    @IBAction func carTapped(sender: UITapGestureRecognizer) {
+        onDrivingSelected()
+    }
+    
+    @IBAction func busTapped(sender: UITapGestureRecognizer) {
+        onTransitSelected()
+    }
+    
+    @IBAction func bikeTapped(sender: UITapGestureRecognizer) {
+        onBikeSelected()
+    }
+    
+    private func onManageFriend(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToFriendList(self)
     }
     
-    func onManageProfile(sender: UIBarButtonItem) {
+    private func onManageProfile(sender: UIBarButtonItem) {
         Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
     }
     
-    func onWalkingSelected() {
+    private func onWalkingSelected() {
         print("walking selected")
         resetToolbarSelection()
-        toolbar.items![0].tintColor = UIColor.lightGrayColor()
-        
+        travel_mode_walk.image = getUIImageNamed("ic_directions_walk_selected")
         mainModel.setTravelMode(TRAVEL_MODE.WALKING.rawValue)
     }
     
-    func onDrivingSelected() {
+    private func onDrivingSelected() {
         print("driving selected")
         resetToolbarSelection()
-        toolbar.items![2].tintColor = UIColor.lightGrayColor()
+        travel_mode_car.image = getUIImageNamed("ic_directions_car_selected")
         
         mainModel.setTravelMode(TRAVEL_MODE.DRIVING.rawValue)
     }
     
-    func onTransitSelected() {
+    private func onTransitSelected() {
         print("transit selected")
         resetToolbarSelection()
-        toolbar.items![4].tintColor = UIColor.lightGrayColor()
+        travel_mode_bus.image = getUIImageNamed("ic_directions_bus_selected")
         
         mainModel.setTravelMode(TRAVEL_MODE.TRANSIT.rawValue)
     }
     
-    func onBikeSelected() {
+    private func onBikeSelected() {
         print("Bike selected")
         resetToolbarSelection()
-        toolbar.items![6].tintColor = UIColor.lightGrayColor()
+        travel_mode_bike.image = getUIImageNamed("ic_directions_bike_selected")
         
         mainModel.setTravelMode(TRAVEL_MODE.BIKE.rawValue)
     }
     
-    func resetToolbarSelection() {
-        for toolbarItems in toolbar.items! {
-            toolbarItems.tintColor = UIColor().primaryColor()
-        }
+    private func resetToolbarSelection() {
+        travel_mode_walk.image = getUIImageNamed("ic_directions_walk_green")
+        travel_mode_car.image = getUIImageNamed("ic_directions_car_green")
+        travel_mode_bus.image = getUIImageNamed("ic_directions_bus_green")
+        travel_mode_bike.image = getUIImageNamed("ic_directions_bike_green")
+    }
+    
+    private func getUIImageNamed(name: String) -> UIImage {
+        return UIImage(named: name)!
+    }
+    
+    //MARK: TRAVEL MODE TOOLBAR 
+    private func setTravelModeToolbarVisible() {
+        travelModeToolbarHeightContraint.constant = travelModeToolbarDefaultHeight
+        resetToolbarSelection()
+        mainModel.getTravelMode()
+    }
+    
+    private func removeTravelModeToolbar() {
+        travelModeToolbarHeightContraint.constant = 0
     }
     
     //MARK: TABLEVIEW
@@ -392,7 +412,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 
                 //start tracking with default time + 1, if user not respond to the request, stop tracking
                 self.locationServiceModel.startTracking(TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: SessionFactory.sharedInstance.DEFAULT_EXPIRE_TIME + 1))
-                self.setTravelModeToolbar()
+                self.setTravelModeToolbarVisible()
             }
             
         } else {

@@ -9,6 +9,12 @@
             <connections>
                 <outlet property="tableView" destination="mCS-y5-TnE" id="B9c-mc-5vq"/>
                 <outlet property="toolbar" destination="HSq-JY-hmO" id="IBB-OM-y2t"/>
+                <outlet property="travelModeToolbar" destination="vSj-gP-LjW" id="W83-zL-XzF"/>
+                <outlet property="travelModeToolbarHeightContraint" destination="1rD-BF-aeh" id="odC-jm-NOt"/>
+                <outlet property="travel_mode_bike" destination="jCu-4v-BKi" id="4Dx-Zn-ibI"/>
+                <outlet property="travel_mode_bus" destination="hod-kl-CFF" id="MLC-QN-F33"/>
+                <outlet property="travel_mode_car" destination="mSm-2U-8kY" id="2s7-WA-f26"/>
+                <outlet property="travel_mode_walk" destination="tEf-M4-EKy" id="8Ha-ro-MTg"/>
                 <outlet property="view" destination="iN0-l3-epB" id="4Ox-SM-1mH"/>
             </connections>
         </placeholder>
@@ -19,28 +25,195 @@
             <subviews>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-JY-hmO">
                     <rect key="frame" x="0.0" y="561" width="600" height="44"/>
-                    <items/>
+                    <items>
+                        <barButtonItem image="ic_group_add_white" id="Mwd-gI-g0E">
+                            <color key="tintColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="manageFriendClicked:" destination="-1" id="I4P-j0-iKG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="3My-ND-dBk"/>
+                        <barButtonItem image="ic_person_white" id="YOM-eS-3x1">
+                            <color key="tintColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="manageProfileClicked:" destination="-1" id="Vhb-Es-43U"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
                 </toolbar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
-                    <rect key="frame" x="0.0" y="64" width="600" height="497"/>
+                    <rect key="frame" x="0.0" y="108" width="600" height="453"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
                         <outlet property="delegate" destination="-1" id="qK8-Wi-hYB"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSj-gP-LjW">
+                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6di-zk-wgy">
+                            <rect key="frame" x="0.0" y="0.0" width="150.5" height="44"/>
+                            <subviews>
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_walk_green" translatesAutoresizingMaskIntoConstraints="NO" id="tEf-M4-EKy">
+                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="kSq-Cz-FKv"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="top" secondItem="6di-zk-wgy" secondAttribute="top" constant="1" id="JRv-rU-EdC"/>
+                                <constraint firstAttribute="bottom" secondItem="tEf-M4-EKy" secondAttribute="bottom" constant="1" id="djQ-4h-epE"/>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerY" secondItem="6di-zk-wgy" secondAttribute="centerY" id="mh5-cH-dWB"/>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerX" secondItem="6di-zk-wgy" secondAttribute="centerX" id="ogc-xk-Yjx"/>
+                            </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="dP4-q4-CAm" appends="YES" id="RhL-U1-Sgr"/>
+                            </connections>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mus-Vn-uGa">
+                            <rect key="frame" x="300" y="0.0" width="149.5" height="44"/>
+                            <subviews>
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_bus_green" translatesAutoresizingMaskIntoConstraints="NO" id="hod-kl-CFF">
+                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="OkS-wu-QuY"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="lrd-sz-Uee" appends="YES" id="gFP-iW-ftI"/>
+                                    </connections>
+                                </imageView>
+                            </subviews>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerX" secondItem="Mus-Vn-uGa" secondAttribute="centerX" id="Qjm-wZ-aUT"/>
+                                <constraint firstAttribute="bottom" secondItem="hod-kl-CFF" secondAttribute="bottom" constant="1" id="TFX-pw-CD3"/>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="top" secondItem="Mus-Vn-uGa" secondAttribute="top" constant="1" id="kA1-c0-WzJ"/>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerY" secondItem="Mus-Vn-uGa" secondAttribute="centerY" id="qFI-9Q-nSk"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42w-8z-akB">
+                            <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                            <subviews>
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_bike_green" translatesAutoresizingMaskIntoConstraints="NO" id="jCu-4v-BKi">
+                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="lun-tR-5fW"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="HHb-3p-bfT" appends="YES" id="dzp-zx-c8j"/>
+                                    </connections>
+                                </imageView>
+                            </subviews>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerX" secondItem="42w-8z-akB" secondAttribute="centerX" id="JcX-Uj-xv0"/>
+                                <constraint firstAttribute="bottom" secondItem="jCu-4v-BKi" secondAttribute="bottom" constant="1" id="U0Z-91-iHf"/>
+                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerY" secondItem="42w-8z-akB" secondAttribute="centerY" id="t0x-ZM-vGO"/>
+                                <constraint firstItem="jCu-4v-BKi" firstAttribute="top" secondItem="42w-8z-akB" secondAttribute="top" constant="1" id="z7f-nd-NfG"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sK6-TX-73r">
+                            <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                            <subviews>
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_car_green" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-2U-8kY">
+                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="JjV-Lf-veX"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="9i2-cR-nCL" appends="YES" id="yzG-Zf-Lqg"/>
+                                    </connections>
+                                </imageView>
+                            </subviews>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerX" secondItem="sK6-TX-73r" secondAttribute="centerX" id="FuT-QS-tRH"/>
+                                <constraint firstAttribute="bottom" secondItem="mSm-2U-8kY" secondAttribute="bottom" constant="1" id="r7a-aJ-qEJ"/>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="top" secondItem="sK6-TX-73r" secondAttribute="top" constant="1" id="wjf-rN-5CN"/>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerY" secondItem="sK6-TX-73r" secondAttribute="centerY" id="xXN-Jh-AaN"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="1rD-BF-aeh"/>
+                        <constraint firstItem="6di-zk-wgy" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="top" id="3Ft-EZ-9Zt"/>
+                        <constraint firstItem="42w-8z-akB" firstAttribute="width" secondItem="Mus-Vn-uGa" secondAttribute="width" id="5hv-kE-PbF"/>
+                        <constraint firstItem="Mus-Vn-uGa" firstAttribute="height" secondItem="sK6-TX-73r" secondAttribute="height" id="5sm-1w-J6t"/>
+                        <constraint firstAttribute="bottom" secondItem="6di-zk-wgy" secondAttribute="bottom" id="8D1-gQ-Jgj"/>
+                        <constraint firstAttribute="bottom" secondItem="sK6-TX-73r" secondAttribute="bottom" id="8fX-Eo-DqT"/>
+                        <constraint firstAttribute="bottom" secondItem="42w-8z-akB" secondAttribute="bottom" id="AkA-cA-0Oo"/>
+                        <constraint firstItem="sK6-TX-73r" firstAttribute="leading" secondItem="6di-zk-wgy" secondAttribute="trailing" id="BSf-cA-gxq"/>
+                        <constraint firstItem="42w-8z-akB" firstAttribute="height" secondItem="Mus-Vn-uGa" secondAttribute="height" id="D58-2B-ZZv"/>
+                        <constraint firstItem="42w-8z-akB" firstAttribute="leading" secondItem="Mus-Vn-uGa" secondAttribute="trailing" id="JYV-Mz-AF9"/>
+                        <constraint firstItem="sK6-TX-73r" firstAttribute="height" secondItem="6di-zk-wgy" secondAttribute="height" id="NVc-uW-wcb"/>
+                        <constraint firstItem="Mus-Vn-uGa" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="top" id="PwT-DE-Ono"/>
+                        <constraint firstAttribute="trailing" secondItem="42w-8z-akB" secondAttribute="trailing" id="She-K5-vfd"/>
+                        <constraint firstAttribute="bottom" secondItem="Mus-Vn-uGa" secondAttribute="bottom" id="SiC-6i-H83"/>
+                        <constraint firstItem="Mus-Vn-uGa" firstAttribute="width" secondItem="sK6-TX-73r" secondAttribute="width" id="VdB-uk-av9"/>
+                        <constraint firstItem="sK6-TX-73r" firstAttribute="width" secondItem="6di-zk-wgy" secondAttribute="width" id="WCt-6Q-ohC"/>
+                        <constraint firstItem="Mus-Vn-uGa" firstAttribute="leading" secondItem="sK6-TX-73r" secondAttribute="trailing" id="XB1-Wl-i0T"/>
+                        <constraint firstItem="42w-8z-akB" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="top" id="kVI-pa-6it"/>
+                        <constraint firstItem="6di-zk-wgy" firstAttribute="leading" secondItem="vSj-gP-LjW" secondAttribute="leading" id="ldY-RJ-Zdi"/>
+                        <constraint firstItem="sK6-TX-73r" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="top" id="tj7-U0-t8w"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="vSj-gP-LjW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="56N-Vi-Do1"/>
+                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="bottom" id="AwP-gt-lvJ"/>
                 <constraint firstAttribute="trailing" secondItem="mCS-y5-TnE" secondAttribute="trailing" id="Jwe-7E-sxm"/>
                 <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="M35-FI-N5Q"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="top" secondItem="mCS-y5-TnE" secondAttribute="bottom" id="Ty2-58-oZw"/>
+                <constraint firstItem="vSj-gP-LjW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ukj-s1-CvR"/>
                 <constraint firstAttribute="bottom" secondItem="HSq-JY-hmO" secondAttribute="bottom" constant="-5" id="X0a-hg-PBM"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sBJ-GJ-ze8"/>
+                <constraint firstAttribute="trailing" secondItem="vSj-gP-LjW" secondAttribute="trailing" id="tPO-oT-sZ3"/>
                 <constraint firstAttribute="trailing" secondItem="HSq-JY-hmO" secondAttribute="trailing" id="uOw-XS-cHR"/>
                 <constraint firstItem="mCS-y5-TnE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zwA-tW-7ok"/>
             </constraints>
-            <point key="canvasLocation" x="453" y="459"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="M35-FI-N5Q"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="182" y="463"/>
         </view>
+        <tapGestureRecognizer id="dP4-q4-CAm" userLabel="Walk tap">
+            <connections>
+                <action selector="walkTapped:" destination="-1" id="kAU-dC-1gm"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="9i2-cR-nCL" userLabel="Drive tap">
+            <connections>
+                <action selector="carTapped:" destination="-1" id="9vN-Ov-vqx"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="lrd-sz-Uee" userLabel="Transit tap">
+            <connections>
+                <action selector="busTapped:" destination="-1" id="sRm-29-uEu"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="HHb-3p-bfT" userLabel="Bike tap">
+            <connections>
+                <action selector="bikeTapped:" destination="-1" id="CpG-mf-XcL"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="ic_directions_bike_green" width="26" height="26"/>
+        <image name="ic_directions_bus_green" width="26" height="26"/>
+        <image name="ic_directions_car_green" width="26" height="26"/>
+        <image name="ic_directions_walk_green" width="26" height="26"/>
+        <image name="ic_group_add_white" width="26" height="26"/>
+        <image name="ic_person_white" width="26" height="26"/>
+    </resources>
 </document>
