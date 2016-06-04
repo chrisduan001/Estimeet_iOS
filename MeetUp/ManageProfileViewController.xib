@@ -22,12 +22,16 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N1o-pz-rgT">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N1o-pz-rgT">
                     <rect key="frame" x="255" y="70" width="90" height="90"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="UVM-x2-Lbm"/>
                         <constraint firstAttribute="height" constant="90" id="piF-za-KPZ"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="SU0-OF-ZzT" appends="YES" id="2c6-lC-b3x"/>
+                    </connections>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdC-J6-ihj">
                     <rect key="frame" x="0.0" y="183" width="600" height="30"/>
@@ -35,7 +39,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6R-u5-ZuW">
                             <rect key="frame" x="8" y="0.0" width="584" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -58,7 +62,7 @@
                                 <constraint firstAttribute="height" constant="30" id="lRr-V2-VA1"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -107,7 +111,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-bL-Xdl">
                             <rect key="frame" x="8" y="0.0" width="584" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -160,5 +164,10 @@
                 <constraint firstAttribute="trailing" secondItem="zdC-J6-ihj" secondAttribute="trailing" id="rcv-1f-gX4"/>
             </constraints>
         </view>
+        <tapGestureRecognizer id="SU0-OF-ZzT">
+            <connections>
+                <action selector="onDpClicked:" destination="-1" id="sc2-fj-BHH"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

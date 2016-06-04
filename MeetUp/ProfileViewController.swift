@@ -18,7 +18,7 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
     @IBOutlet weak var lblOr: UILabel!
     @IBOutlet weak var btn_facebook: UIButton!
 
-    var imagePicker: UIImagePickerController!
+    private var imagePicker: UIImagePickerController!
     
     //MARK: LIFE CYCLE
     override func viewDidLoad() {
