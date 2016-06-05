@@ -114,7 +114,7 @@ class FriendSessionTableViewCell: UITableViewCell {
     
     @objc private func onTimerTicked(timer: NSTimer) {
         delegate.onCellTimerTicked(self)
-        print("timer tick called")
+        print("cell progress timer tick called")
     }
     
     private func removeAllSubview(subviews: [UIView]) {

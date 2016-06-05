@@ -61,6 +61,7 @@
 		62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7D1C73057F008513DF /* MainViewController.swift */; };
 		62AB5F861C73057F008513DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F851C73057F008513DF /* Assets.xcassets */; };
 		62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62AB5F871C73057F008513DF /* LaunchScreen.storyboard */; };
+		62ADC2361D043FA70044DD48 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 62ADC2351D043FA70044DD48 /* Location.gpx */; };
 		62BD34881C8EB932008751B0 /* FacebookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BD34871C8EB932008751B0 /* FacebookModel.swift */; };
 		62BD348A1C8ED234008751B0 /* ContactListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BD34891C8ED234008751B0 /* ContactListModel.swift */; };
 		62C15D9B1CDDEF8C006B17A3 /* FriendSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C15D9A1CDDEF8C006B17A3 /* FriendSessionCell.xib */; };
@@ -143,6 +144,7 @@
 		62AB5F7D1C73057F008513DF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		62AB5F851C73057F008513DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MeetUp/Assets.xcassets; sourceTree = "<group>"; };
 		62AB5F8A1C73057F008513DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeetUp/Info.plist; sourceTree = "<group>"; };
+		62ADC2351D043FA70044DD48 /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		62BD34871C8EB932008751B0 /* FacebookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookModel.swift; sourceTree = "<group>"; };
 		62BD34891C8ED234008751B0 /* ContactListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListModel.swift; sourceTree = "<group>"; };
 		62C15D9A1CDDEF8C006B17A3 /* FriendSessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendSessionCell.xib; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				623BBD5B1C7EE92A00643C3C /* Controller */,
 				623BBD5A1C7EE91600643C3C /* View */,
 				62AB5F7B1C73057F008513DF /* AppDelegate.swift */,
+				62ADC2351D043FA70044DD48 /* Location.gpx */,
 			);
 			path = MeetUp;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */,
 				62C2CA021C8AE5440029B3DB /* Default-568h@2x.png in Resources */,
 				62AB5F861C73057F008513DF /* Assets.xcassets in Resources */,
+				62ADC2361D043FA70044DD48 /* Location.gpx in Resources */,
 				621538FC1CCC7DD700554726 /* ManageFriendViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

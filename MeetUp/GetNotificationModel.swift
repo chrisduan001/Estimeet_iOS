@@ -75,6 +75,10 @@ class GetNotificationModel: BaseModel {
         }
     }
     
+    private func updateFriendProfile(friendName: String) {
+        
+    }
+    
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
         serviceHelper.getAllNotifications(baseUser!.userId!, userUId: baseUser!.userUId!, token: baseUser!.token!) { (response) in
@@ -104,6 +108,9 @@ class GetNotificationModel: BaseModel {
                     case self.NOTIFICAITON_SESSION_ACCEPTANCE:
                         self.createNewSession(item.appendix)
                         break
+                    case self.NOTIFICATION_PROFILE_CHANGE:
+                        self.updateFriendProfile(item.appendix)
+                        break
                     default:break
                     }
                     
@@ -130,6 +137,7 @@ class GetNotificationModel: BaseModel {
     private let NOTIFICATION_FRIEND_REQUEST = 0
     private let NOTIFICATION_SESSION_REQUEST = 1
     private let NOTIFICAITON_SESSION_ACCEPTANCE = 2
+    private let NOTIFICATION_PROFILE_CHANGE = 3
 }
 
 protocol GetNotificationListener: BaseListener {

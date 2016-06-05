@@ -16,7 +16,6 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     private var locationManager: CLLocationManager!
     
     private var trackTimer: NSTimer!
-    private var backgroundTaskIdentifier: UIBackgroundTaskIdentifier!
     
     private var locationData: String!
     
@@ -29,45 +28,29 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     func startTracking(trackingLength: NSNumber) {
         guard trackingLength.intValue > 0 else {
             AppDelegate.SESSION_TIME_TO_EXPIRE = nil
-            stopTimer()
             return
         }
         
         SessionFactory.sharedInstance.setSessionTrackingExpireTime(trackingLength)
-        makeContinuousTracking()
+        checkPermissionAndMakeOneOffRequest()
         
-        stopTimer()
-        trackTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(LocationServiceModel.makeContinuousTracking), userInfo: nil, repeats: true)
-    }
-    
-    private func stopTimer() {
-        if trackTimer != nil {
-            trackTimer.invalidate()
-            trackTimer = nil
+        if !shouldStopContinousTracking() {
+            makeContinousTracking()
         }
     }
-    
-    //timer method
-    func makeContinuousTracking() {
-        if AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
-            (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue {
-            self.stopTrackingTimer()
-            
-            print("Tracking timer stopped")
-        } else {
-            print("Get location")
-            self.getCurrentLocation()
-        }
+
+    private func makeContinousTracking() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.startMonitoringSignificantLocationChanges()
     }
     
-    private func getCurrentLocation() {
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.distanceFilter = 100.0
-        }
-        
+    private func shouldStopContinousTracking() -> Bool {
+        return AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
+            (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue
+    }
+    
+    private func checkPermissionAndMakeOneOffRequest() {
         if CLLocationManager.authorizationStatus() == .Denied {
             onPermissionDenied()
             return
@@ -95,15 +78,11 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
             listener!.onLocationAuthorized()
         }
         
-        startLocationUpdate()
+//        startLocationUpdate()
     }
     
     private func stopTrackingTimer() {
         AppDelegate.SESSION_TIME_TO_EXPIRE = nil
-        if trackTimer != nil {
-            trackTimer.invalidate()
-            trackTimer = nil
-        }
         
         if listener != nil {
             listener?.onSessionCompleted()
@@ -128,7 +107,10 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         userDefaults.saveUserGeo(locationData)
         //send geo data to server
         makeNetworkRequest()
-        locationManager.stopUpdatingLocation()
+        
+        if shouldStopContinousTracking() {
+            locationManager.stopMonitoringSignificantLocationChanges()
+        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {

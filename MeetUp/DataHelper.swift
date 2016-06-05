@@ -185,7 +185,9 @@ class DataHelper {
     }
     
     func deleteFriendSession(friend: Friend) {
-        deleteSession(friend.session!)
+        if let fSession = friend.session {
+            deleteSession(fSession)
+        }
     }
     
     func deleteSessionById(id: Int) {

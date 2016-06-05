@@ -48,6 +48,9 @@ class PushNotification {
             //session cancelled, delete item from db
             onSessionCancelled(Int(msgArray[1])!, isAppActive: isAppActive)
             break
+        case 104:
+            onActiveSessionCancelled()
+            break
         default: break
         }
     }
@@ -66,6 +69,10 @@ class PushNotification {
                AppDelegate.SESSION_TIME_TO_EXPIRE = nil
             }
         }
+    }
+    
+    private func onActiveSessionCancelled() {
+        
     }
     
     //will cause app to fetch data from server

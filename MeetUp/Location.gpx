@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode"> 
+
+    <!--
+            Provide one or more waypoints containing a latitude/longitude pair. If you provide one
+            waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
+            Xcode will simulate a route visitng each waypoint.
+     -->
+    <wpt lat="-36.840929" lon="174.739526">
+<!--         <time>2016-06-05T14:55:37Z</time>-->
+	</wpt>
+    
+    <wpt lat="-36.841600" lon="174.739672">
+<!--        <time>2016-06-05T14:55:57Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.842704" lon="174.739865">
+<!--        <time>2016-06-05T14:56:37Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.843794" lon="174.740062">
+<!--        <time>2016-06-05T14:56:57Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.845692" lon="174.741550">
+<!--        <time>2016-06-05T14:57:37Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.846783" lon="174.743431">
+<!--        <time>2016-06-05T14:57:57Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.848483" lon="174.743405">
+<!--        <time>2016-06-05T14:58:37Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.850483" lon="174.745405">
+<!--        <time>2016-06-05T14:58:57Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.852483" lon="174.745405">
+<!--        <time>2016-06-05T14:59:37Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.856483" lon="174.748405">
+<!--        <time>2016-06-05T14:59:57Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.858483" lon="174.750405">
+<!--        <time>2016-06-05T15:00:37Z</time>-->
+    </wpt>
+    
+    <wpt lat="-36.861483" lon="174.745405">
+<!--        <time>2016-06-05T15:00:57Z</time>-->
+    </wpt>
+</gpx>
