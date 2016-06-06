@@ -64,7 +64,7 @@ class GetNotificationModel: BaseModel {
         guard dateCreated.intValue > 0 else {
             return
         }
-        getNotificationListener.onCreateNewSession(dateCreated)
+        getNotificationListener.onCreateNewSession(expireInMillis)
     }
     
     private func deleteNotification(notificationId: Int) {
@@ -141,7 +141,7 @@ class GetNotificationModel: BaseModel {
 }
 
 protocol GetNotificationListener: BaseListener {
-    func onCreateNewSession(dateCreated: NSNumber)
+    func onCreateNewSession(expiresInMillis: NSNumber)
 }
 
 

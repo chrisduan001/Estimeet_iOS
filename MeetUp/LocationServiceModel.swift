@@ -13,44 +13,17 @@ import UIKit
 class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     weak var listener: LocationServiceListener?
     
-    private var locationManager: CLLocationManager!
-    
-    private var trackTimer: NSTimer!
-    
+    var locationManager: CLLocationManager!
+
     private var locationData: String!
     
-    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: LocationServiceListener?) {
+    required init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: LocationServiceListener?) {
         self.listener = listener
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
-    
-    //MARK: CONTROLLER CALL
-    func startTracking(trackingLength: NSNumber) {
-        guard trackingLength.intValue > 0 else {
-            AppDelegate.SESSION_TIME_TO_EXPIRE = nil
-            return
-        }
-        
-        SessionFactory.sharedInstance.setSessionTrackingExpireTime(trackingLength)
-        checkPermissionAndMakeOneOffRequest()
-        
-        if !shouldStopContinousTracking() {
-            makeContinousTracking()
-        }
-    }
 
-    private func makeContinousTracking() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.startMonitoringSignificantLocationChanges()
-    }
-    
-    private func shouldStopContinousTracking() -> Bool {
-        return AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
-            (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue
-    }
-    
-    private func checkPermissionAndMakeOneOffRequest() {
+    //used by sub class
+    func checkLocationPermission() {
         if CLLocationManager.authorizationStatus() == .Denied {
             onPermissionDenied()
             return
@@ -77,16 +50,6 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         if listener != nil {
             listener!.onLocationAuthorized()
         }
-        
-//        startLocationUpdate()
-    }
-    
-    private func stopTrackingTimer() {
-        AppDelegate.SESSION_TIME_TO_EXPIRE = nil
-        
-        if listener != nil {
-            listener?.onSessionCompleted()
-        }
     }
     
     //MARK: LOCATION MANAGER DELEGATE
@@ -107,18 +70,10 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         userDefaults.saveUserGeo(locationData)
         //send geo data to server
         makeNetworkRequest()
-        
-        if shouldStopContinousTracking() {
-            locationManager.stopMonitoringSignificantLocationChanges()
-        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error occurred while get location")
-    }
-    
-    private func startLocationUpdate() {
-        locationManager.startUpdatingLocation()
     }
     
     //MARK: EXTEND SUPER
@@ -127,7 +82,15 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     }
     
     override func onAuthError() {
-        self.stopTrackingTimer()
+        self.stopTracking()
+    }
+    
+    //called when auth error
+    private func stopTracking() {
+        AppDelegate.SESSION_TIME_TO_EXPIRE = nil
+        if listener != nil {
+            listener?.onSessionCompleted()
+        }
     }
     
     override func onError(message: String) {}

@@ -13,6 +13,9 @@ class PushNotification {
 
     static let GENERAL_NOTIFICATION_KEY = "co.nz.estimeet.pushmessage"
     static let NO_SESSION_KEY = "co.nz.estimeet.nosession"
+    static let REQUEST_LOCATION_KEY = "co.nz.estimeet.requestLocation"
+    
+    var bgTask: UIBackgroundTaskIdentifier!
     
     static let sharedInstance = PushNotification()
     private init() {
@@ -22,7 +25,7 @@ class PushNotification {
         let isAppActive = UIApplication.sharedApplication().applicationState == .Active
         guard let pushMessage = message["message"] as? String else {
             if isAppActive {
-                sendPushBroadcastMessage(PushNotification.GENERAL_NOTIFICATION_KEY)
+                sendPushBroadcastMessage(PushNotification.GENERAL_NOTIFICATION_KEY, userInfo: nil)
             }
             return
         }
@@ -34,7 +37,7 @@ class PushNotification {
         case 102:
             if isAppActive {
                 //friend accepted session
-                sendPushBroadcastMessage(PushNotification.GENERAL_NOTIFICATION_KEY)
+                sendPushBroadcastMessage(PushNotification.GENERAL_NOTIFICATION_KEY, userInfo: nil)
             } else {
                 let numberFormatter = NSNumberFormatter()
                 numberFormatter.numberStyle = .DecimalStyle
@@ -51,6 +54,9 @@ class PushNotification {
         case 104:
             onActiveSessionCancelled()
             break
+        case 105:
+            onRequestedOneOffLocation(msgArray[1], appActive: isAppActive)
+            break
         default: break
         }
     }
@@ -61,12 +67,10 @@ class PushNotification {
         sessionFactory.deleteSessionById(dataHelper, friendId: friendId)
         let timeLeft = sessionFactory.checkSession(dataHelper)
         if timeLeft == nil || timeLeft <= 0 {
+            AppDelegate.SESSION_TIME_TO_EXPIRE = nil
             if isAppActive {
-                ModelFactory.sharedInstance.provideLocationServicemodel(nil).startTracking(-1)
                 //send broadcast if the app is active, will need to reset the toolbar
-                sendPushBroadcastMessage(PushNotification.NO_SESSION_KEY)
-            } else {
-               AppDelegate.SESSION_TIME_TO_EXPIRE = nil
+                sendPushBroadcastMessage(PushNotification.NO_SESSION_KEY, userInfo: nil)
             }
         }
     }
@@ -75,8 +79,24 @@ class PushNotification {
         
     }
     
+    //MARK: LOCATION SERVICE
+    lazy var oneOffLocation: OneOffLocationService = {
+       return ModelFactory.sharedInstance.provideLocationServicemodel(nil)
+    }()
+    private func onRequestedOneOffLocation(msg: String, appActive: Bool) {
+        if appActive {
+            sendPushBroadcastMessage(PushNotification.REQUEST_LOCATION_KEY, userInfo: ["data" : msg])
+        } else {
+            oneOffLocation.makeRequestWithBackgroundTask()
+        }
+    }
+//
+//    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+//        
+//    }
+    
     //will cause app to fetch data from server
-    private func sendPushBroadcastMessage(key: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName(key, object: self, userInfo: nil)
+    private func sendPushBroadcastMessage(key: String, userInfo: [NSObject: AnyObject]?) {
+        NSNotificationCenter.defaultCenter().postNotificationName(key, object: self, userInfo: userInfo)
     }
 }

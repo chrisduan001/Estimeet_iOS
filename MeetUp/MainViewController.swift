@@ -36,6 +36,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNoSessionNotification), name: PushNotification.NO_SESSION_KEY, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNotification), name: PushNotification.REQUEST_LOCATION_KEY, object: nil)
+        
         //app delegate observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveLifecycleNotification), name: AppDelegate.LIFE_CYCLE_NOTIFICATION, object: nil)
         
@@ -47,10 +49,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
         mainModel.setUpMainTableView()
-        friendListModel = ModelFactory.sharedInstance.provideFriendListModel(nil)
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
         getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
-        locationServiceModel = ModelFactory.sharedInstance.provideLocationServicemodel(self)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -69,6 +69,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @objc private func onReceiveNotification(notification: NSNotification) {
         if notification.name == PushNotification.GENERAL_NOTIFICATION_KEY {
             getNotificationModel.getAllNotifications()
+        } else if notification.name == PushNotification.REQUEST_LOCATION_KEY {
+            let info = notification.userInfo!["data"] as! String
+            makeOneOffLocationRequest()
         }
     }
     
@@ -107,17 +110,18 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             expireTime = -1
         } else {
             setTravelModeToolbarVisible()
+            makeOneOffLocationRequest()
         }
         
-        locationServiceModel.startTracking(NSNumber(integer: expireTime!))
+        continuousLocationService.startContinuousTracking(NSNumber(integer: expireTime!))
     }
     
     func onNoSessionsAvailable() {
         removeTravelModeToolbar()
     }
     
-    func onCreateNewSession(dateCreated: NSNumber) {
-        locationServiceModel.startTracking(dateCreated)
+    func onCreateNewSession(expiresInMillis: NSNumber) {
+        continuousLocationService.startContinuousTracking(expiresInMillis)
     }
     
     func onSessionCompleted() {
@@ -247,6 +251,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
         
         return true
+    }
+    
+    private func makeOneOffLocationRequest() {
+        oneOffLocationService.makeOneOffLocationRequest()
     }
     
     //MARK: TABLEVIEW
@@ -428,7 +436,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 self.selectedFriend = friend
                 
                 //start tracking with default time + 1, if user not respond to the request, stop tracking
-                self.locationServiceModel.startTracking(TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: SessionFactory.sharedInstance.DEFAULT_EXPIRE_TIME + 1))
+                self.continuousLocationService.startContinuousTracking(TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: SessionFactory.sharedInstance.DEFAULT_EXPIRE_TIME + 1))
                 self.setTravelModeToolbarVisible()
             }
             
@@ -562,15 +570,24 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     var isAnyFriends: Bool = false
     var user: User?
     
-    var friendListModel: FriendListModel!
     var sessionModel: SessionModel!
     var getNotificationModel: GetNotificationModel!
     var mainModel: MainModel!
-    var locationServiceModel: LocationServiceModel!
+    
+    lazy var friendListModel: FriendListModel = {
+        return ModelFactory.sharedInstance.provideFriendListModel(nil)
+    }()
+    
+    lazy var continuousLocationService: ContinuousLocationService = {
+        [unowned self] in
+        return ModelFactory.sharedInstance.provideLocationServicemodel(self)
+    }()
+    
+    lazy var oneOffLocationService: OneOffLocationService = {
+        return ModelFactory.sharedInstance.provideLocationServicemodel(nil)
+    }()
     
     var selectedFriend: Friend?
-    
-    private var locationManager: CLLocationManager!
     
     private var fetchedResultsController: NSFetchedResultsController!
     

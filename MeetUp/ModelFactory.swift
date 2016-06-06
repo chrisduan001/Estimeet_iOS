@@ -59,7 +59,7 @@ class ModelFactory {
         return GetNotificationModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
     }
     
-    func provideLocationServicemodel(listener: LocationServiceListener?) -> LocationServiceModel {
-        return LocationServiceModel(serviceHelper: serviceHelper, userDefaults: userDefaults, listener: listener)
+    func provideLocationServicemodel<T : LocationServiceModel>(listener: LocationServiceListener?) -> T {
+        return T(serviceHelper: serviceHelper, userDefaults: userDefaults, listener: listener)
     }
 }
