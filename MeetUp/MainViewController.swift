@@ -71,7 +71,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             getNotificationModel.getAllNotifications()
         } else if notification.name == PushNotification.REQUEST_LOCATION_KEY {
             let info = notification.userInfo!["data"] as! String
-            makeOneOffLocationRequest()
         }
     }
     
@@ -110,7 +109,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             expireTime = -1
         } else {
             setTravelModeToolbarVisible()
-            makeOneOffLocationRequest()
         }
         
         continuousLocationService.startContinuousTracking(NSNumber(integer: expireTime!))
@@ -251,10 +249,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
         
         return true
-    }
-    
-    private func makeOneOffLocationRequest() {
-        oneOffLocationService.makeOneOffLocationRequest()
     }
     
     //MARK: TABLEVIEW
@@ -581,10 +575,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     lazy var continuousLocationService: ContinuousLocationService = {
         [unowned self] in
         return ModelFactory.sharedInstance.provideLocationServicemodel(self)
-    }()
-    
-    lazy var oneOffLocationService: OneOffLocationService = {
-        return ModelFactory.sharedInstance.provideLocationServicemodel(nil)
     }()
     
     var selectedFriend: Friend?

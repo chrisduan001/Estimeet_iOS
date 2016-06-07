@@ -45,11 +45,6 @@ class ContinuousLocationService: LocationServiceModel {
         }
     }
     
-    private func shouldStopContinousTracking() -> Bool {
-        return AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
-            (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue
-    }
-    
     override func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         if shouldStopContinousTracking() {
             stopContinuousTracking()

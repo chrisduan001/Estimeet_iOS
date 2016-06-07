@@ -22,7 +22,7 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
 
-    //used by sub class
+    //MARK: CALLED BY SUBCLASS
     func checkLocationPermission() {
         if CLLocationManager.authorizationStatus() == .Denied {
             onPermissionDenied()
@@ -39,6 +39,12 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
         }
     }
     
+    func shouldStopContinousTracking() -> Bool {
+        return AppDelegate.SESSION_TIME_TO_EXPIRE == nil ||
+            (NSDate.timeIntervalSinceReferenceDate() * 1000) > AppDelegate.SESSION_TIME_TO_EXPIRE!.doubleValue
+    }
+    
+    //MARK:PERMISSSION RESULT
     private func onPermissionDenied() {
         AppDelegate.SESSION_TIME_TO_EXPIRE = nil
         if listener != nil {

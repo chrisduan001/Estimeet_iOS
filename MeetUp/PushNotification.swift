@@ -83,21 +83,18 @@ class PushNotification {
     lazy var oneOffLocation: OneOffLocationService = {
        return ModelFactory.sharedInstance.provideLocationServicemodel(nil)
     }()
+    
     private func onRequestedOneOffLocation(msg: String, appActive: Bool) {
-        if appActive {
-            sendPushBroadcastMessage(PushNotification.REQUEST_LOCATION_KEY, userInfo: ["data" : msg])
-        } else {
-            requestBackgroundTaskWithLocation()
-        }
+        requestOneOffLocation()
     }
     
-    func requestBackgroundTaskWithLocation()  {
-        oneOffLocation.makeRequestWithBackgroundTask()
+    private func requestOneOffLocation()  {
+        oneOffLocation.makeOneOffLocationRequest()
     }
-//
-//    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-//        
-//    }
+    
+    func requestLocationWithTimer() {
+        oneOffLocation.makeRequestWithTimer()
+    }
     
     //will cause app to fetch data from server
     private func sendPushBroadcastMessage(key: String, userInfo: [NSObject: AnyObject]?) {
