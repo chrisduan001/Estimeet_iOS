@@ -9,8 +9,8 @@ PODS:
   - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
-  - Digits (1.15.1):
-    - TwitterCore (= 1.15.1)
+  - Digits (2.2.0):
+    - TwitterCore (= 2.2.0)
   - Fabric (1.6.6)
   - FBSDKCoreKit (4.10.0):
     - Bolts (~> 1.5)
@@ -21,7 +21,7 @@ PODS:
   - PonyDebugger (0.4.5):
     - SocketRocket
   - SocketRocket (0.5.0)
-  - TwitterCore (1.15.1):
+  - TwitterCore (2.2.0):
     - Fabric
 
 DEPENDENCIES:
@@ -48,7 +48,7 @@ SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
   Bolts: f52a250053bb517ca874523c3913776359ab3def
-  Digits: 369c517143ab4f9f35d77628540493a2042f8cc2
+  Digits: 335c479574eb2bbc50be326c1daf505b68d87135
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
@@ -56,6 +56,6 @@ SPEC CHECKSUMS:
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
   SocketRocket: 2c51efccd2d73c99a923407ca4b06e7e9da95dbf
-  TwitterCore: 12983a7464e34afbbf18881347898a9db526ac71
+  TwitterCore: 115527630bb2986954adc928b8c895a92bcd57e5
 
 COCOAPODS: 0.39.0
