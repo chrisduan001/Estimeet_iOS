@@ -87,8 +87,12 @@ class PushNotification {
         if appActive {
             sendPushBroadcastMessage(PushNotification.REQUEST_LOCATION_KEY, userInfo: ["data" : msg])
         } else {
-            oneOffLocation.makeRequestWithBackgroundTask()
+            requestBackgroundTaskWithLocation()
         }
+    }
+    
+    func requestBackgroundTaskWithLocation()  {
+        oneOffLocation.makeRequestWithBackgroundTask()
     }
 //
 //    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {

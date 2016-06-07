@@ -41,14 +41,6 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
-                    <rect key="frame" x="0.0" y="108" width="600" height="453"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
-                        <outlet property="delegate" destination="-1" id="qK8-Wi-hYB"/>
-                    </connections>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSj-gP-LjW">
                     <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                     <subviews>
@@ -59,16 +51,15 @@
                                     <rect key="frame" x="53" y="1" width="44" height="42"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="kSq-Cz-FKv"/>
+                                        <constraint firstAttribute="width" constant="44" id="5tm-ch-NKk"/>
+                                        <constraint firstAttribute="height" constant="42" id="UwJ-We-3eO"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="tEf-M4-EKy" firstAttribute="top" secondItem="6di-zk-wgy" secondAttribute="top" constant="1" id="JRv-rU-EdC"/>
-                                <constraint firstAttribute="bottom" secondItem="tEf-M4-EKy" secondAttribute="bottom" constant="1" id="djQ-4h-epE"/>
-                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerY" secondItem="6di-zk-wgy" secondAttribute="centerY" id="mh5-cH-dWB"/>
-                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerX" secondItem="6di-zk-wgy" secondAttribute="centerX" id="ogc-xk-Yjx"/>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerY" secondItem="6di-zk-wgy" secondAttribute="centerY" id="Jro-BC-WHH"/>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerX" secondItem="6di-zk-wgy" secondAttribute="centerX" id="rhZ-HV-SOm"/>
                             </constraints>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="dP4-q4-CAm" appends="YES" id="RhL-U1-Sgr"/>
@@ -81,7 +72,8 @@
                                     <rect key="frame" x="53" y="1" width="44" height="42"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="OkS-wu-QuY"/>
+                                        <constraint firstAttribute="height" constant="42" id="3wS-w1-r6N"/>
+                                        <constraint firstAttribute="width" constant="44" id="bG7-an-g3i"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="lrd-sz-Uee" appends="YES" id="gFP-iW-ftI"/>
@@ -90,10 +82,8 @@
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerX" secondItem="Mus-Vn-uGa" secondAttribute="centerX" id="Qjm-wZ-aUT"/>
-                                <constraint firstAttribute="bottom" secondItem="hod-kl-CFF" secondAttribute="bottom" constant="1" id="TFX-pw-CD3"/>
-                                <constraint firstItem="hod-kl-CFF" firstAttribute="top" secondItem="Mus-Vn-uGa" secondAttribute="top" constant="1" id="kA1-c0-WzJ"/>
-                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerY" secondItem="Mus-Vn-uGa" secondAttribute="centerY" id="qFI-9Q-nSk"/>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerX" secondItem="Mus-Vn-uGa" secondAttribute="centerX" id="GfK-2p-KbQ"/>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerY" secondItem="Mus-Vn-uGa" secondAttribute="centerY" id="h17-DF-Z5X"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42w-8z-akB">
@@ -103,7 +93,8 @@
                                     <rect key="frame" x="53" y="1" width="44" height="42"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="lun-tR-5fW"/>
+                                        <constraint firstAttribute="height" constant="42" id="mWI-7c-zNB"/>
+                                        <constraint firstAttribute="width" constant="44" id="nYg-gx-JzB"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="HHb-3p-bfT" appends="YES" id="dzp-zx-c8j"/>
@@ -112,10 +103,8 @@
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerX" secondItem="42w-8z-akB" secondAttribute="centerX" id="JcX-Uj-xv0"/>
-                                <constraint firstAttribute="bottom" secondItem="jCu-4v-BKi" secondAttribute="bottom" constant="1" id="U0Z-91-iHf"/>
-                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerY" secondItem="42w-8z-akB" secondAttribute="centerY" id="t0x-ZM-vGO"/>
-                                <constraint firstItem="jCu-4v-BKi" firstAttribute="top" secondItem="42w-8z-akB" secondAttribute="top" constant="1" id="z7f-nd-NfG"/>
+                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerX" secondItem="42w-8z-akB" secondAttribute="centerX" id="kzj-Mj-wbc"/>
+                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerY" secondItem="42w-8z-akB" secondAttribute="centerY" id="t8Y-Nt-Mik"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sK6-TX-73r">
@@ -125,7 +114,8 @@
                                     <rect key="frame" x="53" y="1" width="44" height="42"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="JjV-Lf-veX"/>
+                                        <constraint firstAttribute="height" constant="42" id="FPh-7T-8dN"/>
+                                        <constraint firstAttribute="width" constant="44" id="HVh-5r-1os"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="9i2-cR-nCL" appends="YES" id="yzG-Zf-Lqg"/>
@@ -134,10 +124,8 @@
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerX" secondItem="sK6-TX-73r" secondAttribute="centerX" id="FuT-QS-tRH"/>
-                                <constraint firstAttribute="bottom" secondItem="mSm-2U-8kY" secondAttribute="bottom" constant="1" id="r7a-aJ-qEJ"/>
-                                <constraint firstItem="mSm-2U-8kY" firstAttribute="top" secondItem="sK6-TX-73r" secondAttribute="top" constant="1" id="wjf-rN-5CN"/>
-                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerY" secondItem="sK6-TX-73r" secondAttribute="centerY" id="xXN-Jh-AaN"/>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerX" secondItem="sK6-TX-73r" secondAttribute="centerX" id="2lU-NJ-JuM"/>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerY" secondItem="sK6-TX-73r" secondAttribute="centerY" id="yF4-v7-yl4"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -165,13 +153,20 @@
                         <constraint firstItem="sK6-TX-73r" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="top" id="tj7-U0-t8w"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
+                    <rect key="frame" x="0.0" y="108" width="600" height="453"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
+                        <outlet property="delegate" destination="-1" id="qK8-Wi-hYB"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vSj-gP-LjW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="56N-Vi-Do1"/>
                 <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="bottom" id="AwP-gt-lvJ"/>
                 <constraint firstAttribute="trailing" secondItem="mCS-y5-TnE" secondAttribute="trailing" id="Jwe-7E-sxm"/>
-                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="M35-FI-N5Q"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="top" secondItem="mCS-y5-TnE" secondAttribute="bottom" id="Ty2-58-oZw"/>
                 <constraint firstItem="vSj-gP-LjW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ukj-s1-CvR"/>
                 <constraint firstAttribute="bottom" secondItem="HSq-JY-hmO" secondAttribute="bottom" constant="-5" id="X0a-hg-PBM"/>
@@ -180,11 +175,6 @@
                 <constraint firstAttribute="trailing" secondItem="HSq-JY-hmO" secondAttribute="trailing" id="uOw-XS-cHR"/>
                 <constraint firstItem="mCS-y5-TnE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zwA-tW-7ok"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="M35-FI-N5Q"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="182" y="463"/>
         </view>
         <tapGestureRecognizer id="dP4-q4-CAm" userLabel="Walk tap">

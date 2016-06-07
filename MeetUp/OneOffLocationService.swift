@@ -20,6 +20,8 @@ class OneOffLocationService: LocationServiceModel {
         PushNotification.sharedInstance.bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
             self.makeLocationRequest()
         }
+        
+        print("BG Time Left: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
     }
     
     private func makeLocationRequest() {
