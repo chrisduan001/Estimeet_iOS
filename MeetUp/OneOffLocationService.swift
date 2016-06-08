@@ -16,8 +16,8 @@ class OneOffLocationService: LocationServiceModel {
     
     //MARK: PUBLIC METHOD CALL
     //called when location was requested via push and there is active session
-    func makeOneOffLocationRequest() {
-        startBackgroundService()
+    func makeOneOffLocationRequest(id: String) {
+        startBackgroundService(id)
     }
     
     //called when app went to background
@@ -25,14 +25,26 @@ class OneOffLocationService: LocationServiceModel {
         guard !shouldStopContinousTracking() else {
             return
         }
-        startBackgroundService()
+        startBackgroundService(nil)
+        //timer will run for 3 minutes and then location will only updated on request
         initTimer()
     }
     
-    private func startBackgroundService() {
+    private func startBackgroundService(id: String?) {
         PushNotification.sharedInstance.bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
+            self.setUpRequestType(id)
             self.stopTimer()
             self.makeLocationRequest()
+        }
+    }
+    
+    private func setUpRequestType(id: String?) {
+        if id != nil {
+            idToNotify = id
+            requestType = .NotifyUpdate
+        } else {
+            idToNotify = nil
+            requestType = .SendGeo
         }
     }
     
@@ -43,7 +55,9 @@ class OneOffLocationService: LocationServiceModel {
     }
     
     @objc private func onTimerTicked() {
-        shouldStopContinousTracking() ? stopTimer() : makeLocationRequest()
+        //todo..disabled for testing
+        //shouldStopContinousTracking() ? stopTimer() : makeLocationRequest()
+        makeLocationRequest()
     }
     
     private func stopTimer() {

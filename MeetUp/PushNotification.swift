@@ -84,12 +84,12 @@ class PushNotification {
        return ModelFactory.sharedInstance.provideLocationServicemodel(nil)
     }()
     
-    private func onRequestedOneOffLocation(msg: String, appActive: Bool) {
-        requestOneOffLocation()
+    private func onRequestedOneOffLocation(id: String, appActive: Bool) {
+        requestOneOffLocation(id)
     }
     
-    private func requestOneOffLocation()  {
-        oneOffLocation.makeOneOffLocationRequest()
+    private func requestOneOffLocation(id: String)  {
+        oneOffLocation.makeOneOffLocationRequest(id)
     }
     
     func requestLocationWithTimer() {

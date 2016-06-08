@@ -36,8 +36,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNoSessionNotification), name: PushNotification.NO_SESSION_KEY, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNotification), name: PushNotification.REQUEST_LOCATION_KEY, object: nil)
-        
         //app delegate observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveLifecycleNotification), name: AppDelegate.LIFE_CYCLE_NOTIFICATION, object: nil)
         
@@ -69,8 +67,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @objc private func onReceiveNotification(notification: NSNotification) {
         if notification.name == PushNotification.GENERAL_NOTIFICATION_KEY {
             getNotificationModel.getAllNotifications()
-        } else if notification.name == PushNotification.REQUEST_LOCATION_KEY {
-            let info = notification.userInfo!["data"] as! String
         }
     }
     

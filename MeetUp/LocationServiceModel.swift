@@ -11,10 +11,16 @@ import CoreLocation
 import UIKit
 
 class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
-    weak var listener: LocationServiceListener?
+    enum NetworkRequestType {
+        case SendGeo
+        case NotifyUpdate
+    }
     
     var locationManager: CLLocationManager!
-
+    var requestType: NetworkRequestType?
+    var idToNotify: String?
+    weak var listener: LocationServiceListener?
+    
     private var locationData: String!
     
     required init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: LocationServiceListener?) {
@@ -74,6 +80,11 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         locationData = "\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)"
         userDefaults.saveUserGeo(locationData)
+        
+        if requestType == nil {
+            //default request type
+            requestType = .SendGeo
+        }
         //send geo data to server
         makeNetworkRequest()
     }
@@ -84,7 +95,11 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
-        serviceHelper.sendGeoData(locationData, userUid: baseUser!.userUId!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!, notificationModel: NotificationEntity(senderId: baseUser!.userId!, receiverId: 0, receiverUId: "")) { _ in }
+        if requestType! == .NotifyUpdate && idToNotify != nil{
+            serviceHelper.sendGeoDataWithNotify(locationData, userId: baseUser!.userId!, userUid: baseUser!.userUId!, tag: idToNotify!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!)
+        } else {
+            serviceHelper.sendGeoData(locationData, userUid: baseUser!.userUId!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!, notificationModel: NotificationEntity(senderId: baseUser!.userId!, receiverId: 0, receiverUId: "")) { _ in }
+        }
     }
     
     override func onAuthError() {
