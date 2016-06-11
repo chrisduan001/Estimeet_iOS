@@ -29,6 +29,26 @@ class MainModel: BaseModel {
         makeNetworkRequest()
     }
     
+    func requestPendingFriendSessionData() {
+        //friend id will be set in user default when received friend location became availble push notification
+        if let ids = userDefaults.getFriendLocationAvailableId() {
+            let trimmedId = ids.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            guard !trimmedId.isEmpty else {
+                return
+            }
+            let idArray: [Int] = trimmedId.componentsSeparatedByString(" ").map { Int($0)! }
+            let idSet = Set(idArray)
+            let friends = idSet.map { dataHelper.getFriend($0) }.filter {$0 != nil}
+            
+            for friend in friends {
+                sendSessionDataRequest(friend!)
+            }
+            
+            //reset user default
+            userDefaults.setFriendLocationAvailableId(nil)
+        }
+    }
+    
     func setTravelMode(travelMode: Int) {
         userDefaults.saveTravelMode(travelMode)
     }

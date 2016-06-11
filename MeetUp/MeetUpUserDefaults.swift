@@ -25,6 +25,8 @@ class MeetUpUserDefaults {
     
     private let USER_GEO = "USER_GEO"
     private let TRAVEL_MODE = "TRAVEL_MODE"
+    
+    private let PENDING_FRIEND_LOCATION_AVAILABLE = "AVAILABLE_FRIEND_ID"
 
     static let sharedInstance = MeetUpUserDefaults()
     private init() {}
@@ -139,6 +141,18 @@ class MeetUpUserDefaults {
         userDefaults.setInteger(travelMode, forKey: TRAVEL_MODE)
         
         userDefaults.synchronize()
+    }
+    
+    func setFriendLocationAvailableId(friendsId: String?) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(friendsId, forKey: PENDING_FRIEND_LOCATION_AVAILABLE)
+        
+        userDefaults.synchronize()
+    }
+    
+    func getFriendLocationAvailableId() -> String? {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        return userDefaults.objectForKey(PENDING_FRIEND_LOCATION_AVAILABLE) as? String
     }
     
     func removeUserDefault() {

@@ -14,6 +14,7 @@ class PushNotification {
     static let GENERAL_NOTIFICATION_KEY = "co.nz.estimeet.pushmessage"
     static let NO_SESSION_KEY = "co.nz.estimeet.nosession"
     static let REQUEST_LOCATION_KEY = "co.nz.estimeet.requestLocation"
+    static let FRIEND_LOCATION_AVAILABLE_KEY = "co.nz.estimeet.friendlocationavaiable"
     
     var bgTask: UIBackgroundTaskIdentifier!
     
@@ -58,7 +59,7 @@ class PushNotification {
             onRequestedOneOffLocation(Int(msgArray[1])!, tag: msgArray[2])
             break
         case 200: //friend location became available, can request distance and eta now
-            onFriendLocationAvailable(Int(msgArray[1])!)
+            onFriendLocationAvailable(Int(msgArray[1])!, isAppActive: isAppActive)
             break
         default: break
         }
@@ -82,8 +83,15 @@ class PushNotification {
         
     }
     
-    private func onFriendLocationAvailable(friendId: Int) {
+    private func onFriendLocationAvailable(friendId: Int, isAppActive: Bool) {
+        let userDefaults = ModelFactory.sharedInstance.provideUserDefaults()
+        let newId = userDefaults.getFriendLocationAvailableId().map { $0 == nil ? "\(friendId) " : "\(friendId)"}
         
+        userDefaults.setFriendLocationAvailableId(newId)
+        
+        if isAppActive {
+            sendPushBroadcastMessage(PushNotification.FRIEND_LOCATION_AVAILABLE_KEY, userInfo: nil)
+        }
     }
     
     //MARK: LOCATION SERVICE

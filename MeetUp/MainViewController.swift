@@ -36,6 +36,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNoSessionNotification), name: PushNotification.NO_SESSION_KEY, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onFriendLocationAvailable), name: PushNotification.FRIEND_LOCATION_AVAILABLE_KEY, object: nil)
+        
         //app delegate observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveLifecycleNotification), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
@@ -78,12 +80,17 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         onResume()
     }
     
+    @objc private func onFriendLocationAvailable() {
+        mainModel.requestPendingFriendSessionData()
+    }
+    
     private func onResume() {
         print("on resume called")
         sessionModel.checkSessionExpiration()
         
         if UIApplication.sharedApplication().applicationState == .Active {
             getNotificationModel.getAllNotifications()
+            mainModel.requestPendingFriendSessionData()
         }
     }
     
