@@ -99,8 +99,8 @@ class PushNotification {
         oneOffLocation.makeOneOffLocationRequest(id, tag: tag)
     }
     
-    func requestLocationWithTimer() {
-        oneOffLocation.makeRequestWithTimer()
+    func requestLocationWithTimer(appActive isAppActive: Bool) {
+        oneOffLocation.makeRequestWithTimer(isAppActive)
     }
     
     //will cause app to fetch data from server

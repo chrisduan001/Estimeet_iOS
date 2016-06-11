@@ -124,6 +124,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onLocationAuthorized() {
+        //check if location permission granted when trying to send request 
+        //or request user's location
         if selectedFriend != nil {
             sessionModel.sendSessionRequest(selectedFriend!)
             selectedFriend = nil

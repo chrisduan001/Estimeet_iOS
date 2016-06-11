@@ -20,12 +20,19 @@ class OneOffLocationService: LocationServiceModel {
         startBackgroundService(id, tag: tag)
     }
     
-    //called when app went to background
-    func makeRequestWithTimer() {
+    //called when app went to background or come to foreground
+    func makeRequestWithTimer(isAppActive: Bool) {
+        stopTimer()
         guard !shouldStopContinousTracking() else {
             return
         }
-        startBackgroundService(nil, tag: "")
+        
+        if !isAppActive {
+           startBackgroundService(nil, tag: "")
+        } else {
+            //make initial request, then start timer
+            makeLocationRequest()
+        }
         //timer will run for 3 minutes and then location will only updated on request
         initTimer()
     }
