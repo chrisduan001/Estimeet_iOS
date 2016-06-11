@@ -55,7 +55,10 @@ class PushNotification {
             onActiveSessionCancelled()
             break
         case 105:
-            onRequestedOneOffLocation(msgArray[1], appActive: isAppActive)
+            onRequestedOneOffLocation(Int(msgArray[1])!, tag: msgArray[2])
+            break
+        case 200: //friend location became available, can request distance and eta now
+            onFriendLocationAvailable(Int(msgArray[1])!)
             break
         default: break
         }
@@ -79,17 +82,21 @@ class PushNotification {
         
     }
     
+    private func onFriendLocationAvailable(friendId: Int) {
+        
+    }
+    
     //MARK: LOCATION SERVICE
     lazy var oneOffLocation: OneOffLocationService = {
        return ModelFactory.sharedInstance.provideLocationServicemodel(nil)
     }()
     
-    private func onRequestedOneOffLocation(id: String, appActive: Bool) {
-        requestOneOffLocation(id)
+    private func onRequestedOneOffLocation(id: Int, tag: String) {
+        requestOneOffLocation(id, tag: tag)
     }
     
-    private func requestOneOffLocation(id: String)  {
-        oneOffLocation.makeOneOffLocationRequest(id)
+    private func requestOneOffLocation(id: Int, tag: String)  {
+        oneOffLocation.makeOneOffLocationRequest(id, tag: tag)
     }
     
     func requestLocationWithTimer() {

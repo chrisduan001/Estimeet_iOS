@@ -18,7 +18,8 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     var requestType: NetworkRequestType?
-    var idToNotify: String?
+    var tagToNotify: String?
+    var receiverId: Int?
     weak var listener: LocationServiceListener?
     
     private var locationData: String!
@@ -95,8 +96,9 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
     
     //MARK: EXTEND SUPER
     override func startNetworkRequest() {
-        if requestType! == .NotifyUpdate && idToNotify != nil{
-            serviceHelper.sendGeoDataWithNotify(locationData, userId: baseUser!.userId!, userUid: baseUser!.userUId!, tag: idToNotify!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!)
+        if requestType! == .NotifyUpdate && receiverId != nil{
+            let notification = NotificationEntity(senderId: baseUser!.userId!, receiverId: receiverId!, receiverUId: tagToNotify!)
+            serviceHelper.sendGeoDataWithNotify(notification, userUid: baseUser!.userUId!, geoData: locationData, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!)
         } else {
             serviceHelper.sendGeoData(locationData, userUid: baseUser!.userUId!, travelMode: userDefaults.getTravelMode(), token: baseUser!.token!, notificationModel: NotificationEntity(senderId: baseUser!.userId!, receiverId: 0, receiverUId: "")) { _ in }
         }

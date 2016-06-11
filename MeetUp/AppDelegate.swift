@@ -17,7 +17,6 @@ import PonyDebugger
 class AppDelegate: UIResponder, UIApplicationDelegate {
     //time to expire in milliseconds
     static var SESSION_TIME_TO_EXPIRE: NSNumber?
-    static let LIFE_CYCLE_NOTIFICATION = "co.nz.lifecyclenotification"
 
     var window: UIWindow?
     static let plistDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GlobalVariable", ofType: "plist")!)
@@ -36,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             setMainRootViewController()
         }
-
         
         window?.makeKeyAndVisible()
 
@@ -76,8 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(AppDelegate.LIFE_CYCLE_NOTIFICATION, object: self, userInfo: nil)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -115,6 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         PushNotification.sharedInstance.receivePushMessage(userInfo)
+        completionHandler(.NoData)
     }
 
     // MARK: - Core Data stack

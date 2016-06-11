@@ -37,7 +37,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveNoSessionNotification), name: PushNotification.NO_SESSION_KEY, object: nil)
         
         //app delegate observer
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveLifecycleNotification), name: AppDelegate.LIFE_CYCLE_NOTIFICATION, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveLifecycleNotification), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         let headerImg = UIImage(named: "navigation_icon")
         self.navigationItem.titleView = UIImageView(image: headerImg)
@@ -74,16 +74,17 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         removeTravelModeToolbar()
     }
     
-    @objc private func onReceiveLifecycleNotification(notification: NSNotification) {
-        if notification.name == AppDelegate.LIFE_CYCLE_NOTIFICATION {
-            onResume()
-        }
+    @objc private func onReceiveLifecycleNotification() {
+        onResume()
     }
     
     private func onResume() {
         print("on resume called")
         sessionModel.checkSessionExpiration()
-        getNotificationModel.getAllNotifications()
+        
+        if UIApplication.sharedApplication().applicationState == .Active {
+            getNotificationModel.getAllNotifications()
+        }
     }
     
     //MARK: MODEL CALLBACK

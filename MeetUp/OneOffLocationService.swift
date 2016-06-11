@@ -16,8 +16,8 @@ class OneOffLocationService: LocationServiceModel {
     
     //MARK: PUBLIC METHOD CALL
     //called when location was requested via push and there is active session
-    func makeOneOffLocationRequest(id: String) {
-        startBackgroundService(id)
+    func makeOneOffLocationRequest(id: Int, tag: String) {
+        startBackgroundService(id, tag: tag)
     }
     
     //called when app went to background
@@ -25,25 +25,27 @@ class OneOffLocationService: LocationServiceModel {
         guard !shouldStopContinousTracking() else {
             return
         }
-        startBackgroundService(nil)
+        startBackgroundService(nil, tag: "")
         //timer will run for 3 minutes and then location will only updated on request
         initTimer()
     }
     
-    private func startBackgroundService(id: String?) {
+    private func startBackgroundService(id: Int?, tag: String) {
         PushNotification.sharedInstance.bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
-            self.setUpRequestType(id)
+            self.setUpRequestType(id, tag: tag)
             self.stopTimer()
             self.makeLocationRequest()
         }
     }
     
-    private func setUpRequestType(id: String?) {
+    private func setUpRequestType(id: Int?, tag: String) {
         if id != nil {
-            idToNotify = id
+            receiverId = id
+            tagToNotify = tag
             requestType = .NotifyUpdate
         } else {
-            idToNotify = nil
+            receiverId = nil
+            tagToNotify = ""
             requestType = .SendGeo
         }
     }
@@ -56,8 +58,7 @@ class OneOffLocationService: LocationServiceModel {
     
     @objc private func onTimerTicked() {
         //todo..disabled for testing
-        //shouldStopContinousTracking() ? stopTimer() : makeLocationRequest()
-        makeLocationRequest()
+        shouldStopContinousTracking() ? stopTimer() : makeLocationRequest()
     }
     
     private func stopTimer() {
@@ -70,20 +71,20 @@ class OneOffLocationService: LocationServiceModel {
     //MARK: LOCATION LOGIC
     private func makeLocationRequest() {
         //location just got requested
-        print("time since now: \(currentTime.timeIntervalSinceNow)")
-        guard abs(currentTime.timeIntervalSinceNow) > 5.0 else {
-            return
+        let isLocationExpired = abs(currentTime.timeIntervalSinceNow) > 5.0
+        print("Is location expired: \(isLocationExpired)")
+        if isLocationExpired {
+            if self.locationManager == nil {
+                self.locationManager = CLLocationManager()
+                self.locationManager.delegate = self
+                self.locationManager.allowsBackgroundLocationUpdates = true
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+                self.locationManager.distanceFilter = 100.0
+            }
+            
+            currentTime = NSDate()
+            self.locationManager.startUpdatingLocation()
         }
-        
-        if self.locationManager == nil {
-            self.locationManager = CLLocationManager()
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            self.locationManager.distanceFilter = 100.0
-        }
-        
-        currentTime = NSDate()
-        self.locationManager.startUpdatingLocation()
     }
     
     override func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {

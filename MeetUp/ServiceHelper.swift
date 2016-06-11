@@ -158,9 +158,9 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
-    func sendGeoDataWithNotify(geoData: String, userId: Int, userUid: String, tag: String, travelMode: Int, token: String) {
-        let url = "\(ServiceHelper.BASE_URL)/user/sendgeodatawithnotify?data=\(geoData)&userid=\(userId)&useruid=\(userUid)&tag=\(tag)&travelmode=\(travelMode)"
-        let request = Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
+    func sendGeoDataWithNotify(notificationEntity: NotificationEntity, userUid: String, geoData: String, travelMode: Int, token: String) {
+        let url = "\(ServiceHelper.BASE_URL)/user/sendgeodatawithnotify?data=\(geoData)&useruid=\(userUid)&travelmode=\(travelMode)"
+        let request = Alamofire.request(.POST, url, parameters: getJsonString(notificationEntity), encoding: .JSON, headers: getAuthHeader(token))
         
         print("send geo data with notify: \(request.request)")
     }
