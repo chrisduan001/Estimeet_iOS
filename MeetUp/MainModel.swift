@@ -38,7 +38,7 @@ class MainModel: BaseModel {
             }
             let idArray: [Int] = trimmedId.componentsSeparatedByString(" ").map { Int($0)! }
             let idSet = Set(idArray)
-            let friends = idSet.map { dataHelper.getFriend($0) }.filter {$0 != nil}
+            let friends = idSet.map { dataHelper.getFriend($0)}.filter { $0 != nil }
             
             for friend in friends {
                 sendSessionDataRequest(friend!)

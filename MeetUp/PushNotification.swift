@@ -85,9 +85,14 @@ class PushNotification {
     
     private func onFriendLocationAvailable(friendId: Int, isAppActive: Bool) {
         let userDefaults = ModelFactory.sharedInstance.provideUserDefaults()
-        let newId = userDefaults.getFriendLocationAvailableId().map { $0 == nil ? "\(friendId) " : "\(friendId)"}
+        var newIdString: String
+        if let existingId = userDefaults.getFriendLocationAvailableId() {
+            newIdString = "\(existingId) \(friendId)"
+        } else {
+            newIdString = "\(friendId)"
+        }
         
-        userDefaults.setFriendLocationAvailableId(newId)
+        userDefaults.setFriendLocationAvailableId(newIdString)
         
         if isAppActive {
             sendPushBroadcastMessage(PushNotification.FRIEND_LOCATION_AVAILABLE_KEY, userInfo: nil)

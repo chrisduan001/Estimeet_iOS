@@ -79,7 +79,7 @@ class DataHelper {
         
         do {
             let result = try context.executeFetchRequest(request) as! [Friend]
-            return result[0]
+            return result.count > 0 ? result[0] : nil
         } catch {}
         
         return nil
