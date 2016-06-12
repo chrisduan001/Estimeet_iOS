@@ -11,6 +11,7 @@ import ObjectMapper
 
 class RequestLocationEntity: Mappable {
     var userId: Int!
+    var userUid: String!
     var friendId: Int!
     var friendUid: String!
     var sessionId: Int!
@@ -18,8 +19,9 @@ class RequestLocationEntity: Mappable {
     var travelMode: Int!
     var userGeo: String!
     
-    init(userId: Int, friendId: Int, friendUid: String, sessionId: Int, sessionLid: String, travelMode: Int, userGeo: String) {
+    init(userId: Int, userUid: String, friendId: Int, friendUid: String, sessionId: Int, sessionLid: String, travelMode: Int, userGeo: String) {
         self.userId = userId
+        self.userUid = userUid
         self.friendId = friendId
         self.friendUid = friendUid
         self.sessionId = sessionId
@@ -32,6 +34,7 @@ class RequestLocationEntity: Mappable {
     
     func mapping(map: Map) {
         userId          <- map["userId"]
+        userUid         <- map["userUid"]
         friendId        <- map["friendId"]
         friendUid       <- map["friendUid"]
         sessionId       <- map["sessionId"]

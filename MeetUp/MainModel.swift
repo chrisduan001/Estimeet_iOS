@@ -66,6 +66,7 @@ class MainModel: BaseModel {
         }
         //-1 get default mode
         let entity = RequestLocationEntity(userId: baseUser!.userId!,
+                                          userUid: baseUser!.userUId!,
                                          friendId: friendObj.userId!.integerValue,
                                         friendUid: friendObj.userUId!,
                                         sessionId: friendObj.session!.sessionId!.integerValue,
