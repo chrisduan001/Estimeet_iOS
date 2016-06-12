@@ -55,6 +55,14 @@ class SessionFactory {
         }
     }
     
+    func setTimeOnWaitingLocationUpdate(dataHelper: DataHelper, session: SessionColumn?) {
+        dataHelper.updateTimeOnWaitingForLocation(Int(NSDate.timeIntervalSinceReferenceDate()), session: session)
+    }
+    
+    func clearTimeOnWatingLocationUpdate(dataHelper: DataHelper, session: SessionColumn?) {
+        dataHelper.updateTimeOnWaitingForLocation(nil, session: session)
+    }
+    
     func deleteFriendSession(dataHelper: DataHelper, friend: Friend) {
         dataHelper.deleteFriendSession(friend)
     }

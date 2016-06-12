@@ -255,20 +255,41 @@ class DataHelper {
     }
     
     //MARK: SESSION DATA
-    func storeSessionData(distance: Int, eta: Int, travelMode: Int, session: SessionColumn) {
-        if session.sessionData == nil {
-            session.sessionData = createNewSessionDataObject();
+    func storeSessionData(distance: Int, eta: Int, travelMode: Int, session: SessionColumn?) {
+        guard session != nil else {
+            return
         }
-        session.sessionData?.sessionColumn = session
-        session.friend!.dateUpdated = NSDate.timeIntervalSinceReferenceDate() * 1000
-        session.sessionData!.distance = distance
-        session.sessionData!.eta = eta
-        session.sessionData!.travelMode = travelMode
+        
+        if session!.sessionData == nil {
+            session!.sessionData = createNewSessionDataObject()
+        }
+        session!.sessionData?.sessionColumn = session
+        session!.friend!.dateUpdated = NSDate.timeIntervalSinceReferenceDate() * 1000
+        session!.sessionData!.distance = distance
+        session!.sessionData!.eta = eta
+        session!.sessionData!.travelMode = travelMode
         
         do {
             try context.save()
         } catch {
             print("error occurred while save session data")
+        }
+    }
+    
+    func updateTimeOnWaitingForLocation(time: Int?, session: SessionColumn?) {
+        if let sessionObj = session {
+            if sessionObj.sessionData == nil {
+                sessionObj.sessionData = createNewSessionDataObject()
+            }
+            
+            sessionObj.sessionData?.sessionColumn = sessionObj
+            sessionObj.sessionData?.timeOnWaitingUpdate = time
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            print("error occurred while save sessdata timeonwaitingupdates")
         }
     }
     

@@ -13,6 +13,7 @@ class MainModel: BaseModel {
     private let dataHelper: DataHelper
     
     private var friendObj: Friend!
+    private var pendingLocationRequest: [Friend]?
     
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, listener: MainModelListener) {
         self.listener = listener
@@ -38,11 +39,12 @@ class MainModel: BaseModel {
             }
             let idArray: [Int] = trimmedId.componentsSeparatedByString(" ").map { Int($0)! }
             let idSet = Set(idArray)
-            let friends = idSet.map { dataHelper.getFriend($0)}.filter { $0 != nil }
+            let friends = idSet.map { dataHelper.getFriend($0)}.filter { $0 != nil }.map { $0! }
             
-            for friend in friends {
-                sendSessionDataRequest(friend!)
-            }
+            //request location data should be done one at the time
+            //request multiple user's location data at the same time is not supported
+            pendingLocationRequest = friends
+            sendRequestAndRemoveFriend()
             
             //reset user default
             userDefaults.setFriendLocationAvailableId(nil)
@@ -55,6 +57,25 @@ class MainModel: BaseModel {
     
     func getTravelMode() {
         listener.onGetTravelMode(userDefaults.getTravelMode())
+    }
+    
+    private func onRequestLocationDataCompleted() {
+        sendRequestAndRemoveFriend()
+    }
+    
+    private func sendRequestAndRemoveFriend() {
+        if var requestList = pendingLocationRequest {
+            guard requestList.count > 0 else {
+                pendingLocationRequest = nil
+                return
+            }
+            sendSessionDataRequest(requestList[0])
+            
+            requestList.removeFirst()
+            if requestList.count <= 0 {
+                pendingLocationRequest = nil
+            }
+        }
     }
     
     //MARK: EXTEND SUPER
@@ -84,14 +105,23 @@ class MainModel: BaseModel {
                 SessionFactory.sharedInstance.checkSession(self.dataHelper)
             }
             guard !self.isAnyErrors(response) else {
+                self.onRequestLocationDataCompleted()
                 return
             }
             
-            let locationModel = listItem!.items[0]
-            self.dataHelper.storeSessionData(locationModel.distance,
-                                             eta: locationModel.eta,
-                                             travelMode: locationModel.travelMode,
-                                             session: self.friendObj!.session!)
+            if listItem!.items.count <= 0 {
+                //latest location updates not found, push notification has been sent to friend and requested to upload the geo location
+                //this method records the time that the request was sent
+                //if not get location updates, will need to show user that their friend's either doesn't have connection or location updates was turned off
+                SessionFactory.sharedInstance.setTimeOnWaitingLocationUpdate(self.dataHelper, session: self.friendObj!.session)
+            } else {
+                let locationModel = listItem!.items[0]
+                self.dataHelper.storeSessionData(locationModel.distance,
+                                                 eta: locationModel.eta,
+                                                 travelMode: locationModel.travelMode,
+                                                 session: self.friendObj!.session)
+            }
+            self.onRequestLocationDataCompleted()
         }
     }
     

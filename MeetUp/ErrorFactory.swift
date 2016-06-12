@@ -14,7 +14,6 @@ class ErrorFactory {
     
     static let ERROR_CODE_USER_GEO_UNAVAILABLE = 710
     static let ERROR_SESSION_EXPIRED = 701
-    static let ERROR_CODE_SESSION_FRIEND_GEO_EXPIRED = 702
     
     static let GENERIC_ERROR_MESSAGE = 1000
     static let ERROR_NETWORK = 2013
@@ -34,9 +33,6 @@ class ErrorFactory {
             break
         case ERROR_SESSION_EXPIRED:
             errorMessage = NSLocalizedString(GlobalString.error_session_exp, comment: "session expired error")
-            break
-        case ERROR_CODE_SESSION_FRIEND_GEO_EXPIRED:
-            errorMessage = NSLocalizedString(GlobalString.friend_location_expire, comment: "friend didn't update their location")
             break
         case GENERIC_ERROR_MESSAGE:
             errorMessage = generateGenericErrorMessage()

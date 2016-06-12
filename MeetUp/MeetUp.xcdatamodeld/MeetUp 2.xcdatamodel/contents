@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Friend" representedClassName=".Friend" syncable="YES">
+        <attribute name="dateUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="favourite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageUri" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionHeader" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userUId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SessionColumn" inverseName="friend" inverseEntity="SessionColumn" syncable="YES"/>
+    </entity>
+    <entity name="SessionColumn" representedClassName=".SessionColumn" syncable="YES">
+        <attribute name="dateCreated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="expireInMillis" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="friendId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sessionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sessionLId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sessionLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sessionRequestedTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sessionType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="friend" maxCount="1" deletionRule="Nullify" destinationEntity="Friend" inverseName="session" inverseEntity="Friend" syncable="YES"/>
+        <relationship name="sessionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SessionData" inverseName="sessionColumn" inverseEntity="SessionData" syncable="YES"/>
+    </entity>
+    <entity name="SessionData" representedClassName=".SessionData" syncable="YES">
+        <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="eta" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sessionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeOnWaitingUpdate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="travelMode" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="sessionColumn" maxCount="1" deletionRule="Nullify" destinationEntity="SessionColumn" inverseName="sessionData" inverseEntity="SessionColumn" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Friend" positionX="-119" positionY="-373" width="128" height="180"/>
+        <element name="SessionColumn" positionX="-378" positionY="-288" width="128" height="195"/>
+        <element name="SessionData" positionX="-63" positionY="54" width="128" height="135"/>
+    </elements>
+</model>

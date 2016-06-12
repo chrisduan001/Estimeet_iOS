@@ -2,7 +2,7 @@
 //  SessionData+CoreDataProperties.swift
 //  MeetUp
 //
-//  Created by Chris Duan on 1/05/16.
+//  Created by Chris Duan on 12/06/16.
 //  Copyright © 2016 Chris. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,6 +18,7 @@ extension SessionData {
     @NSManaged var eta: NSNumber?
     @NSManaged var sessionId: NSNumber?
     @NSManaged var travelMode: NSNumber?
+    @NSManaged var timeOnWaitingUpdate: NSNumber?
     @NSManaged var sessionColumn: SessionColumn?
 
 }
