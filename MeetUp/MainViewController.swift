@@ -377,6 +377,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.img_action.hidden = true
     }
     
+    //view for session data not obtained, and request is sent
+    private func setupRequestedSessionView(cell: FriendSessionTableViewCell, friend: Friend, requestExpired: Bool) {
+        setupDefaultSessionView(cell, friend: friend)
+        cell.friend_name.text = friend.userName! + (requestExpired ? " (Location failed)" : " (Requested)")
+    }
+    
     private func setUpSentSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
         cell.addView(cell.view_request_sent)
         cell.request_sent_name.text = friend.userName
@@ -394,19 +400,45 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func setUpActiveSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
         if let sessionData = friend.session?.sessionData {
-            cell.addView(cell.view_distance_eta)
-            let expireString = TravelInfoFactory.sharedInstance.isLocationDataExpired(friend.dateUpdated!) ?NSLocalizedString(GlobalString.expired_string, comment: "expired") : ""
+            if sessionData.distance != nil && sessionData.eta != nil{
+                setupLocationDataCell(cell, dateUpdated: friend.dateUpdated!, sessionData: sessionData)
+            } else {
+                //session distance and eta value is not available
+                //todo..need to set up a proper design for this
+                setupRequestedSessionView(cell, friend: friend, requestExpired: isWaitingForFriendLocationExpired(sessionData) )
+            }
             
-            cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
-            
-            cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
-            cell.session_location.text = "Location: Unknown"
         } else {
             setupDefaultSessionView(cell, friend: friend)
         }
         cell.img_action.hidden = false
         
         addCircularProgressView(cell)
+    }
+    
+    private func setupLocationDataCell(cell: FriendSessionTableViewCell, dateUpdated: NSNumber, sessionData: SessionData) {
+        cell.addView(cell.view_distance_eta)
+        
+        //todo..find a proper design for message that showing friend's location is not available
+        let expireString = TravelInfoFactory.sharedInstance.isLocationDataExpired(dateUpdated) ?
+        isWaitingForFriendLocationExpired(sessionData) ? "Location failed" :
+            NSLocalizedString(GlobalString.expired_string, comment: "expired") : ""
+        
+        cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
+        
+        cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
+        cell.session_location.text = "Location: Unknown"
+    }
+    
+    private func isWaitingForFriendLocationExpired(sessionData: SessionData) -> Bool {
+        let timeToWaitForFriendLocationUpdate = 180.0 //3 minutes
+        if let waitingTime = sessionData.timeOnWaitingUpdate {
+            if (NSDate.timeIntervalSinceReferenceDate() - waitingTime.doubleValue) > timeToWaitForFriendLocationUpdate {
+                return true
+            }
+        }
+        
+        return false
     }
     
     private func addCircularProgressView(cell: FriendSessionTableViewCell) {

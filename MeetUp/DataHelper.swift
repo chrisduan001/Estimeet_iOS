@@ -268,6 +268,8 @@ class DataHelper {
         session!.sessionData!.distance = distance
         session!.sessionData!.eta = eta
         session!.sessionData!.travelMode = travelMode
+        //once session data updated, reset waiting update value
+        session!.sessionData!.timeOnWaitingUpdate = nil
         
         do {
             try context.save()
