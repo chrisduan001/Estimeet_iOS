@@ -14,5 +14,6 @@ pod 'Digits'
 pod 'Crashlytics'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
+pod 'Firebase'
 end
 
