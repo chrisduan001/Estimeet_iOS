@@ -19,12 +19,15 @@ class ManageProfileModel: BaseModel {
         userDefaults.saveUserImageData(image)
     }
     
+    func updateUserProfile(name: String, imageString: String) {
+        
+    }
+    
     //MARK EXTEND SUPER
     override func startNetworkRequest() {
     }
     
-    override func onAuthError() {
-    }
+    override func onAuthError() {}
     
     override func onError(message: String) {
     }

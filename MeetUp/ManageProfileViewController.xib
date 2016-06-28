@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageProfileViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="iXR-CY-QMw" id="Khp-6k-yRP"/>
                 <outlet property="lblId" destination="heV-4k-Hel" id="qau-GU-vgM"/>
                 <outlet property="lblMobile" destination="dCk-bL-Xdl" id="GjC-vW-o7T"/>
                 <outlet property="lblName" destination="D6R-u5-ZuW" id="usA-LZ-4LD"/>
@@ -139,6 +140,9 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iXR-CY-QMw">
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -153,6 +157,8 @@
                 <constraint firstItem="a4r-UO-bIL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KjD-ze-JRz"/>
                 <constraint firstItem="BrR-FN-v1m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="NOa-u2-S2Z"/>
                 <constraint firstItem="I8i-JW-5C1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Rbb-0h-NaF"/>
+                <constraint firstItem="iXR-CY-QMw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Vdl-ZO-R47"/>
+                <constraint firstItem="iXR-CY-QMw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XG7-0v-qQQ"/>
                 <constraint firstItem="BrR-FN-v1m" firstAttribute="top" secondItem="a4r-UO-bIL" secondAttribute="bottom" constant="8" id="bUC-9z-sNC"/>
                 <constraint firstAttribute="trailing" secondItem="BrR-FN-v1m" secondAttribute="trailing" constant="8" id="dBZ-7h-w07"/>
                 <constraint firstItem="zdC-J6-ihj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="faj-Ta-nWk"/>

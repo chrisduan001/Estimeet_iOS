@@ -59,7 +59,7 @@ class PushNotification {
             onRequestedOneOffLocation(Int(msgArray[1])!, tag: msgArray[2])
             break
         case 200: //friend location became available, can request distance and eta now
-            onFriendLocationAvailable(Int(msgArray[1])!, isAppActive: isAppActive)
+            onFriendLocationAvailable(msgArray[1], isAppActive: isAppActive)
             break
         default: break
         }
@@ -83,7 +83,7 @@ class PushNotification {
         
     }
     
-    private func onFriendLocationAvailable(friendId: Int, isAppActive: Bool) {
+    private func onFriendLocationAvailable(friendId: String, isAppActive: Bool) {
         let userDefaults = ModelFactory.sharedInstance.provideUserDefaults()
         var newIdString: String
         if let existingId = userDefaults.getFriendLocationAvailableId() {

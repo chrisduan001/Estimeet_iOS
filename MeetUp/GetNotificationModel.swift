@@ -127,6 +127,7 @@ class GetNotificationModel: BaseModel {
     }
     
     override func onAuthError() {
+        userDefaults.removeUserDefault()
         getNotificationListener.onAuthFail()
     }
     

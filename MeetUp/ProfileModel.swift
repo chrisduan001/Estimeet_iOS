@@ -10,7 +10,8 @@ import Foundation
 
 class ProfileModel: BaseModel {
     unowned let listener: ProfileListener
-    var updateModel: UpdateProfile!
+    private var updateModel: UpdateProfile!
+    private var isRegister: Bool!
     
     init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: ProfileListener) {
         self.listener = listener
@@ -18,14 +19,24 @@ class ProfileModel: BaseModel {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
-    func onStartUpdateProfile(name: String, imageString: String) {
+    func onStartUpdateProfile(name: String, imageString: String, isRegister: Bool) {
+        self.isRegister = isRegister
         updateModel = UpdateProfile(userId: baseUser!.userId!, userUId: baseUser!.userUId!, imageString: imageString, userRegion: "", userName: name)
+        
         makeNetworkRequest()
+    }
+    
+    func saveUserImage(image: NSData) {
+        userDefaults.saveUserImageData(image)
+    }
+    
+    func resetUserProfile() {
+        listener.onResetUserProfile(userDefaults.getUserFromDefaults()!)
     }
     
     //MARK EXTEND SUPER
     override func startNetworkRequest() {
-        serviceHelper.updateProfile(updateModel, token: baseUser!.token!) {
+        serviceHelper.updateProfile(updateModel, isRegister: isRegister, token: baseUser!.token!) {
             response in
             let user = response.result.value
             guard !self.isAnyErrors(response) else {
@@ -49,4 +60,5 @@ class ProfileModel: BaseModel {
 
 protocol ProfileListener: BaseListener {
     func onProfileUpdated()
+    func onResetUserProfile(user: User)
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class ManageProfileViewController: BaseViewController, UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate{
+    UINavigationControllerDelegate, ProfileListener{
     @IBOutlet weak var userDp: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var userName: UILabel!
@@ -21,9 +21,9 @@ class ManageProfileViewController: BaseViewController, UIImagePickerControllerDe
     var user: User!
     
     private lazy var imagePicker: UIImagePickerController = self.setupImagePicker()
-    private var model: ManageProfileModel!
+    private var model: ProfileModel!
     
-    //MARK: LIFE CYCLE
+    //MARK: LIFE CYCLE & VIEW
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +31,7 @@ class ManageProfileViewController: BaseViewController, UIImagePickerControllerDe
     }
     
     func initialize() {
-        model = ModelFactory.sharedInstance.provideManageProfileModel(self)
+        model = ModelFactory.sharedInstance.provideProfileModel(self)
         
         setUpView()
         setupUserImage()
@@ -45,6 +45,8 @@ class ManageProfileViewController: BaseViewController, UIImagePickerControllerDe
         userName.text = user.userName
         userIdString.text = "No available at the moment"
         userMobile.text = user.phoneNumber
+        
+        removeSaveDpButton()
     }
     
     private func setupUserImage() {
@@ -67,16 +69,56 @@ class ManageProfileViewController: BaseViewController, UIImagePickerControllerDe
     
     private func setupImagePicker() -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .PhotoLibrary
         imagePicker.delegate = self
         
         return imagePicker
     }
     
+    private func addSaveDpButton() {
+        let saveButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ManageProfileViewController.saveTapped))
+        navigationItem.setRightBarButtonItem(saveButtonItem, animated: true)
+    }
+    
+    private func removeSaveDpButton() {
+        navigationItem.setRightBarButtonItem(nil, animated: true)
+    }
+    
+    @objc private func saveTapped() {
+        startActivityIndicator()
+        model.onStartUpdateProfile(user.userName!, imageString: getImageDataEncode(), isRegister: false)
+    }
+    
+    //MARK: DELEGATE
+    func onProfileUpdated() {
+        endActivityIndicator()
+        removeSaveDpButton()
+        model.saveUserImage(UIImagePNGRepresentation(userDp.image!)!)
+    }
+    
+    func onResetUserProfile(user: User) {
+        self.user = user
+    }
+    
+    override func onAuthFail() {
+        onUpdateProfileFailed()
+    }
+    
+    override func onError(message: String) {
+        super.onError(message)
+        onUpdateProfileFailed()
+    }
+    
+    private func onUpdateProfileFailed() {
+        endActivityIndicator()
+        model.resetUserProfile()
+    }
+    
     //MARK: OTHER LOGIC
     private func getImageDataEncode() -> String {
         let imageData = UIImagePNGRepresentation(userDp.image!)!
+        print("image size: \(imageData.length / 1024))")
         return imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
     }
     
@@ -88,6 +130,21 @@ class ManageProfileViewController: BaseViewController, UIImagePickerControllerDe
     //MARK: IMAGE
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        userDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        let compress = UIImageJPEGRepresentation(image!, 0.01)
+//        let compress2 = UIImageJPEGRepresentation(image!, 0.2)
+//        self.userDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let compressed = scaleDown(image!, withSize: CGSize(width: 90, height: 90))
+        let data = UIImagePNGRepresentation(compressed)
+        self.userDp.image = compressed
+        addSaveDpButton()
+    }
+    
+    func scaleDown(image: UIImage, withSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(withSize, true, 0.0)
+        image.drawInRect(CGRectMake(0, 0, withSize.width, withSize.height))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return scaledImage
     }
 }

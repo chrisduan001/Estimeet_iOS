@@ -69,7 +69,7 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
         
         let imageData = UIImagePNGRepresentation(imgUserDp.image!)!
         ModelFactory.sharedInstance.provideProfileModel(self)
-            .onStartUpdateProfile(userName, imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))
+            .onStartUpdateProfile(userName, imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength), isRegister: true)
 
         startActivityIndicator()
     }
@@ -81,6 +81,10 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
     //MARK: CALL BACK
     func onProfileUpdated() {
         ModelFactory.sharedInstance.provideFriendListModel(self).getFriendList()
+    }
+    
+    func onResetUserProfile(user: User) {
+        //method not implemented
     }
     
     func onFacebookSuccessful(id: String, userName: String) {

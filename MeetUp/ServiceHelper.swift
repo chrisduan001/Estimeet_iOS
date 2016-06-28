@@ -39,8 +39,8 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
-    func updateProfile(updateModel: UpdateProfile, token: String, completionHandler: (response: Response<User, NSError>) -> Void) {
-        let profileUri = ServiceHelper.BASE_URL + "/profile/updateuserprofile"
+    func updateProfile(updateModel: UpdateProfile, isRegister: Bool, token: String, completionHandler: (response: Response<User, NSError>) -> Void) {
+        let profileUri = ServiceHelper.BASE_URL + "/profile/updateuserprofile?isRegister=\(isRegister)"
         let request = Alamofire.request(.POST, profileUri, parameters: getJsonString(updateModel), encoding: .JSON, headers: getAuthHeader(token))
         request.responseObject {
             (response: Response<User, NSError>) in

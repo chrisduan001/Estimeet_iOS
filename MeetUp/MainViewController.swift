@@ -106,6 +106,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    override func onAuthFail() {
+        super.onAuthFail()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func onCheckSessionExpiration(timeToExpire: Int?) {
         var expireTime = timeToExpire
         if expireTime == nil {
