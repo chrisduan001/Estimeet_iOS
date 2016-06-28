@@ -75,8 +75,19 @@ class GetNotificationModel: BaseModel {
         }
     }
     
-    private func updateFriendProfile(friendName: String) {
-        
+    private func updateFriendProfile(appendix: String) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let appendixArray = appendix.componentsSeparatedByString(",")
+            
+            if let friend = self.dataHelper.getFriend(Int(appendixArray[0])!) {
+                friend.userName = appendixArray[1]
+                friend.image = ImageFactory.sharedInstance.loadImageFromUrl(friend.imageUri!)
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.dataHelper.updateCoreDataContext()
+            }
+        }
     }
     
     //MARK: EXTEND SUPER

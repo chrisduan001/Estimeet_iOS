@@ -19,4 +19,8 @@ class ImageFactory {
                                                    optionsInfo: [.Transition(ImageTransition.Fade(1))],
                                              completionHandler: completionHandler)
     }
+    
+    func loadImageFromUrl(url: String) -> NSData? {
+        return NSData(contentsOfURL: NSURL(string: url)!)
+    }
 }

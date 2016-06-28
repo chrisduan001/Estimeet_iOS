@@ -23,6 +23,14 @@ class DataHelper {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     }
     
+    func updateCoreDataContext() {
+        do {
+            try context.save()
+        } catch {
+            //TODO..ADD PROPER EXCEPTION HANDLING
+        }
+    }
+    
     //MARK: FRIEND ACTIONS
     func storeFriendList(friends: [FriendEntity]) {
         let entity = NSEntityDescription.entityForName(String(Friend), inManagedObjectContext: context)
