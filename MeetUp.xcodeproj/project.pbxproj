@@ -56,6 +56,7 @@
 		627780E81CEB25D700FF69E9 /* TempSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E71CEB25D700FF69E9 /* TempSessionModel.swift */; };
 		627780EA1CEC6E1700FF69E9 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E91CEC6E1700FF69E9 /* SessionResponse.swift */; };
 		628E94791CD9E2E0002385FD /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628E94781CD9E2E0002385FD /* PushNotification.swift */; };
+		629FB5751D222A590099ADED /* DpBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629FB5741D222A590099ADED /* DpBaseViewController.swift */; };
 		62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62A3529F1C7EE63E00701ECA /* MainViewController.xib */; };
 		62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7B1C73057F008513DF /* AppDelegate.swift */; };
 		62AB5F7E1C73057F008513DF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7D1C73057F008513DF /* MainViewController.swift */; };
@@ -140,6 +141,7 @@
 		627780E91CEC6E1700FF69E9 /* SessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		628E94781CD9E2E0002385FD /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		629205E61D0D6EA7007FBBB9 /* MeetUp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeetUp 2.xcdatamodel"; sourceTree = "<group>"; };
+		629FB5741D222A590099ADED /* DpBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DpBaseViewController.swift; sourceTree = "<group>"; };
 		62A3529F1C7EE63E00701ECA /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		62AB5F781C73057F008513DF /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62AB5F7B1C73057F008513DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				622785E61C8BCE2F006FDD55 /* ProfileViewController.swift */,
 				621538F91CCC7DD700554726 /* ManageFriendViewController.swift */,
 				62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */,
+				629FB5741D222A590099ADED /* DpBaseViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -455,7 +458,7 @@
 				62AB5F761C73057F008513DF /* Resources */,
 				D34AF9E7CEE4A7FE4697F004 /* Embed Pods Frameworks */,
 				92C43AC0D0226675BA308C43 /* Copy Pods Resources */,
-				62C2C9FE1C8AE3540029B3DB /* ShellScript */,
+				62C2C9FE1C8AE3540029B3DB /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -472,7 +475,7 @@
 		62AB5F701C73057F008513DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Chris;
 				TargetAttributes = {
@@ -531,13 +534,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		62C2C9FE1C8AE3540029B3DB /* ShellScript */ = {
+		62C2C9FE1C8AE3540029B3DB /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +635,7 @@
 				62024B0D1CD21D1200AB5C90 /* MeetUp.xcdatamodeld in Sources */,
 				622785EB1C8BD460006FDD55 /* MeetUpUserDefaults.swift in Sources */,
 				6240B1BD1C8834D900899CD9 /* BaseResponse.swift in Sources */,
+				629FB5751D222A590099ADED /* DpBaseViewController.swift in Sources */,
 				62024B2E1CD611D900AB5C90 /* TimeConverter.swift in Sources */,
 				62C2C9FD1C8AC9B90029B3DB /* RoundedButton.swift in Sources */,
 				62C15D9D1CDDF0EA006B17A3 /* FriendSessionTableViewCell.swift in Sources */,
@@ -774,6 +779,7 @@
 			baseConfigurationReference = D958C55934E8DFB1745195A1 /* Pods-MeetUp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -786,6 +792,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.nz.estimeet.estimeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -794,6 +801,7 @@
 			baseConfigurationReference = D13B20D89153F4132EB95735 /* Pods-MeetUp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

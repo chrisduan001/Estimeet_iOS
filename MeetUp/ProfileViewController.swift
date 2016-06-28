@@ -9,23 +9,20 @@
 import UIKit
 import Kingfisher
 
-class ProfileViewController: BaseViewController, ProfileListener, FriendListListener, FbCallbackListener, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class ProfileViewController: DpBaseViewController, ProfileListener, FriendListListener, FbCallbackListener {
 
-    @IBOutlet weak var imgUserDp: UIImageView!
     @IBOutlet weak var lblEnterName: UILabel!
     @IBOutlet weak var tfUserName: UITextField!
     @IBOutlet weak var btnGetStart: UIButton!
     @IBOutlet weak var lblOr: UILabel!
     @IBOutlet weak var btn_facebook: UIButton!
 
-    private var imagePicker: UIImagePickerController!
-    
     //MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        isRegisterController = true
         setUpLabelDisplay()
-        setUpImageAction()
     }
 
     func setUpLabelDisplay() {
@@ -35,28 +32,13 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
         self.lblOr.text = NSLocalizedString(GlobalString.profile_lbl_or, comment: "label or")
     }
     
-    func setUpImageAction() {
-        self.imgUserDp.layer.cornerRadius = self.imgUserDp.frame.size.width / 2
-        self.imgUserDp.clipsToBounds = true
-        
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.userDpTapped))
-        self.imgUserDp.addGestureRecognizer(tapRecognizer)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     //MARK: BUTTON ACTION
-    func userDpTapped() {
-        imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
+
     @IBAction func onGetStart(sender: UIButton) {
         guard let userName = tfUserName.text where !userName.isEmpty else {
             showAlert(NSLocalizedString(GlobalString.alert_title_error, comment: "alert title"),
@@ -67,9 +49,8 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
             return
         }
         
-        let imageData = UIImagePNGRepresentation(imgUserDp.image!)!
         ModelFactory.sharedInstance.provideProfileModel(self)
-            .onStartUpdateProfile(userName, imageString: imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength), isRegister: true)
+            .onStartUpdateProfile(userName, imageString: getImageDataEncode(), isRegister: true)
 
         startActivityIndicator()
     }
@@ -105,11 +86,5 @@ class ProfileViewController: BaseViewController, ProfileListener, FriendListList
     
     func setFriendFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {
         NSException(name: "Not implement exception", reason: "This method has to be implemented", userInfo: nil).raise()
-    }
-    
-    //MARK: IMAGE
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        imgUserDp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
 }

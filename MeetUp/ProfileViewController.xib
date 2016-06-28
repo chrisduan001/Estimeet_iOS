@@ -10,7 +10,7 @@
                 <outlet property="activityIndicator" destination="b24-Px-1nN" id="O1W-T2-v2K"/>
                 <outlet property="btnGetStart" destination="8fP-Xr-ive" id="MwC-P3-Ev4"/>
                 <outlet property="btn_facebook" destination="uGt-h7-UmM" id="xEl-25-BeO"/>
-                <outlet property="imgUserDp" destination="NDO-bE-8HQ" id="dbq-nf-mhX"/>
+                <outlet property="imgUserDp" destination="NDO-bE-8HQ" id="0gx-bs-CST"/>
                 <outlet property="lblEnterName" destination="TkP-7a-zhR" id="vS8-Tc-OVL"/>
                 <outlet property="lblOr" destination="ZCz-zY-r66" id="zxS-MT-YM6"/>
                 <outlet property="tfUserName" destination="owr-UW-NjX" id="5Wb-Yn-ne2"/>
@@ -22,12 +22,16 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_dp" translatesAutoresizingMaskIntoConstraints="NO" id="NDO-bE-8HQ">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NDO-bE-8HQ">
                     <rect key="frame" x="235" y="46" width="130" height="130"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="130" id="4UP-M4-cL3"/>
                         <constraint firstAttribute="height" constant="130" id="Pun-kh-mW7"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="v9d-dU-xGa" appends="YES" id="WQN-mm-Ol4"/>
+                    </connections>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name (Place holder)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkP-7a-zhR">
                     <rect key="frame" x="48" y="192" width="504" height="20.5"/>
@@ -143,8 +147,10 @@
             </constraints>
             <point key="canvasLocation" x="168" y="392"/>
         </view>
+        <tapGestureRecognizer id="v9d-dU-xGa">
+            <connections>
+                <action selector="userDpTapped:" destination="-1" id="vsn-A6-Rhi"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
-    <resources>
-        <image name="default_dp" width="430" height="383"/>
-    </resources>
 </document>

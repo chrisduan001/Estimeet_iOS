@@ -8,10 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageProfileViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="iXR-CY-QMw" id="Khp-6k-yRP"/>
+                <outlet property="imgUserDp" destination="N1o-pz-rgT" id="et2-y2-80u"/>
                 <outlet property="lblId" destination="heV-4k-Hel" id="qau-GU-vgM"/>
                 <outlet property="lblMobile" destination="dCk-bL-Xdl" id="GjC-vW-o7T"/>
                 <outlet property="lblName" destination="D6R-u5-ZuW" id="usA-LZ-4LD"/>
-                <outlet property="userDp" destination="N1o-pz-rgT" id="piE-gm-477"/>
                 <outlet property="userIdString" destination="vTo-9E-stg" id="CzG-0f-xgn"/>
                 <outlet property="userMobile" destination="BrR-FN-v1m" id="WAo-lK-Teu"/>
                 <outlet property="userName" destination="aLb-ja-xeX" id="QF7-0k-5ZG"/>
@@ -31,7 +31,7 @@
                         <constraint firstAttribute="height" constant="90" id="piF-za-KPZ"/>
                     </constraints>
                     <connections>
-                        <outletCollection property="gestureRecognizers" destination="SU0-OF-ZzT" appends="YES" id="2c6-lC-b3x"/>
+                        <outletCollection property="gestureRecognizers" destination="LKz-g1-GAE" appends="YES" id="MmJ-k9-MkT"/>
                     </connections>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdC-J6-ihj">
@@ -170,9 +170,9 @@
                 <constraint firstAttribute="trailing" secondItem="zdC-J6-ihj" secondAttribute="trailing" id="rcv-1f-gX4"/>
             </constraints>
         </view>
-        <tapGestureRecognizer id="SU0-OF-ZzT">
+        <tapGestureRecognizer id="LKz-g1-GAE">
             <connections>
-                <action selector="onDpClicked:" destination="-1" id="sc2-fj-BHH"/>
+                <action selector="userDpTapped:" destination="-1" id="Om7-bh-xDL"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
