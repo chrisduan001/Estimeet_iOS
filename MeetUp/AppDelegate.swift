@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import DigitsKit
+import Crashlytics
 import FBSDKCoreKit
 import PonyDebugger
 
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        Fabric.with([Digits.self])
+        Fabric.with([Digits.self, Crashlytics.self])
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
@@ -35,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             setMainRootViewController()
         }
-        
+
         window?.makeKeyAndVisible()
 
         //PONY DEBUGGER

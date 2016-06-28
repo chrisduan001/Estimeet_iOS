@@ -11,6 +11,7 @@ pod 'Kingfisher', '~> 2.0'
 pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
 pod 'Fabric'
 pod 'Digits'
+pod 'Crashlytics'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 end
