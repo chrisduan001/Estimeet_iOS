@@ -57,13 +57,14 @@ class LoginViewController : BaseViewController, LoginListener {
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         self.endActivityIndicator()
-                        guard let name = user.userName where name.isEmpty else {
-                            //go to main page
-                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                            appDelegate.setMainRootViewController()
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                            return
-                        }
+                    
+//                        guard let name = user.userName else {
+//                            //go to main page
+//                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                            appDelegate.setMainRootViewController()
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+//                            return
+//                        }
                 
                         Navigator.sharedInstance.navigateToProfilePage(self)
                     }
