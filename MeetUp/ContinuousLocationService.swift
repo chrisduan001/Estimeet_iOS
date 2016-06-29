@@ -19,6 +19,11 @@ class ContinuousLocationService: LocationServiceModel {
         }
         
         SessionFactory.sharedInstance.setSessionTrackingExpireTime(trackingLength)
+        
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+        }
+        
         checkLocationPermission()
         
         if !shouldStopContinousTracking() {
@@ -39,10 +44,11 @@ class ContinuousLocationService: LocationServiceModel {
     private func makeContinousTracking() {
         if locationManager == nil {
             locationManager = CLLocationManager()
-            locationManager.allowsBackgroundLocationUpdates = true
-            locationManager.delegate = self
-            locationManager.startMonitoringSignificantLocationChanges()
         }
+        
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.delegate = self
+        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     override func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {

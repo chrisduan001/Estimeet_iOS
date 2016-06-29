@@ -203,7 +203,7 @@
         <image name="ic_directions_bus_green" width="26" height="26"/>
         <image name="ic_directions_car_green" width="26" height="26"/>
         <image name="ic_directions_walk_green" width="26" height="26"/>
-        <image name="ic_group_add_white" width="26" height="26"/>
-        <image name="ic_person_white" width="26" height="26"/>
+        <image name="ic_group_add_white" width="40" height="40"/>
+        <image name="ic_person_white" width="40" height="40"/>
     </resources>
 </document>

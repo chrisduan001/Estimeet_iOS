@@ -41,7 +41,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         //app delegate observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onReceiveLifecycleNotification), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
-        let headerImg = UIImage(named: "navigation_icon")
+        let headerImg = UIImage(named: "home_logo")
         self.navigationItem.titleView = UIImageView(image: headerImg)
         
         travelModeToolbarDefaultHeight = travelModeToolbar.frame.size.height
