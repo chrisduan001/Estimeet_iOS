@@ -13,7 +13,6 @@ import DigitsKit
 import Crashlytics
 import FBSDKCoreKit
 import PonyDebugger
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Fabric.with([Digits.self, Crashlytics.self])
         
-        FIRApp.configure()
-        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
@@ -39,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             setMainRootViewController()
         }
-
+        
         window?.makeKeyAndVisible()
 
         //PONY DEBUGGER

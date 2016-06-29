@@ -1,46 +1,29 @@
 PODS:
-  - Alamofire (3.2.1)
+  - Alamofire (3.4.1)
   - AlamofireObjectMapper (2.1.2):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - Bolts (1.6.0):
-    - Bolts/AppLinks (= 1.6.0)
-    - Bolts/Tasks (= 1.6.0)
-  - Bolts/AppLinks (1.6.0):
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.6.0)
+  - Bolts/Tasks (1.7.0)
   - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
-  - Digits (2.2.0):
-    - TwitterCore (= 2.2.0)
-  - Fabric (1.6.6)
-  - FBSDKCoreKit (4.10.0):
-    - Bolts (~> 1.5)
-  - FBSDKLoginKit (4.10.0):
+  - Digits (2.3.0):
+    - TwitterCore (= 2.3.0)
+  - Fabric (1.6.7)
+  - FBSDKCoreKit (4.13.1):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.13.1):
     - FBSDKCoreKit
-  - Firebase (3.2.1):
-    - Firebase/Core (= 3.2.1)
-  - Firebase/Analytics (3.2.1):
-    - FirebaseAnalytics (= 3.2.0)
-  - Firebase/Core (3.2.1):
-    - Firebase/Analytics (= 3.2.1)
-  - FirebaseAnalytics (3.2.0):
-    - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseInstanceID (1.0.6)
-  - GoogleInterchangeUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.1.1)
-  - GoogleUtilities (1.3.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - Kingfisher (2.0.4)
-  - ObjectMapper (1.1.5)
+  - Kingfisher (2.4.1)
+  - ObjectMapper (1.3.0)
   - PonyDebugger (0.4.5):
     - SocketRocket
-  - SocketRocket (0.5.0)
-  - TwitterCore (2.2.0):
+  - SocketRocket (0.5.1)
+  - TwitterCore (2.3.0):
     - Fabric
 
 DEPENDENCIES:
@@ -51,7 +34,6 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
-  - Firebase
   - Kingfisher (~> 2.0)
   - ObjectMapper (~> 1.1)
   - PonyDebugger (from `https://github.com/square/PonyDebugger.git`)
@@ -62,28 +44,22 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   PonyDebugger:
-    :commit: 1a9b1a1f328fc79463aac978828044d9aacbbada
+    :commit: 21e6c1f01afcad2632956372b83edc04ce316908
     :git: https://github.com/square/PonyDebugger.git
 
 SPEC CHECKSUMS:
-  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
-  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
-  Digits: 335c479574eb2bbc50be326c1daf505b68d87135
-  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
-  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
-  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
-  Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
-  FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
-  FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
-  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
-  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
-  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  Kingfisher: 8f1ec2c067ade2c549a1a594379b69c4b1ff81ab
-  ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
+  Digits: af82d24ec38035cc555b60f55cca5abc68a76bed
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
+  FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
+  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
-  SocketRocket: 2c51efccd2d73c99a923407ca4b06e7e9da95dbf
-  TwitterCore: 115527630bb2986954adc928b8c895a92bcd57e5
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  TwitterCore: 817eae3e291fa4125b47789e26a4f6f024115c1f
 
 COCOAPODS: 0.39.0
