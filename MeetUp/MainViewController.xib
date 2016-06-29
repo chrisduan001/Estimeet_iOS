@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-JY-hmO">
-                    <rect key="frame" x="0.0" y="561" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                     <items>
                         <barButtonItem image="ic_group_add_white" id="Mwd-gI-g0E">
                             <color key="tintColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,7 +154,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
-                    <rect key="frame" x="0.0" y="108" width="600" height="453"/>
+                    <rect key="frame" x="0.0" y="108" width="600" height="448"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
@@ -169,7 +169,7 @@
                 <constraint firstAttribute="trailing" secondItem="mCS-y5-TnE" secondAttribute="trailing" id="Jwe-7E-sxm"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="top" secondItem="mCS-y5-TnE" secondAttribute="bottom" id="Ty2-58-oZw"/>
                 <constraint firstItem="vSj-gP-LjW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ukj-s1-CvR"/>
-                <constraint firstAttribute="bottom" secondItem="HSq-JY-hmO" secondAttribute="bottom" constant="-5" id="X0a-hg-PBM"/>
+                <constraint firstAttribute="bottom" secondItem="HSq-JY-hmO" secondAttribute="bottom" id="X0a-hg-PBM"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sBJ-GJ-ze8"/>
                 <constraint firstAttribute="trailing" secondItem="vSj-gP-LjW" secondAttribute="trailing" id="tPO-oT-sZ3"/>
                 <constraint firstAttribute="trailing" secondItem="HSq-JY-hmO" secondAttribute="trailing" id="uOw-XS-cHR"/>
