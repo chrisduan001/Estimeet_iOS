@@ -14,7 +14,7 @@ extension UIColor {
     }
     
     public func sectionHeaderColor() -> UIColor {
-        return UIColorFromHex("#cccccc")
+        return UIColorFromHex("#efeff4")
     }
     
     public func headerTextColor() -> UIColor {

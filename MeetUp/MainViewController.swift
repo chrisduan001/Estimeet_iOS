@@ -481,7 +481,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             
         } else {
             //get distance and eta
-            sendRequest = UITableViewRowAction(style: .Normal, title: "Request Estimeet") { (action, index) in
+            sendRequest = UITableViewRowAction(style: .Normal, title: "Refresh") { (action, index) in
                 self.mainModel.sendSessionDataRequest(friend)
                 self.tableView.editing = false
             }

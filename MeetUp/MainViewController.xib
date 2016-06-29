@@ -42,17 +42,17 @@
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSj-gP-LjW">
-                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="64" width="600" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6di-zk-wgy">
-                            <rect key="frame" x="0.0" y="0.0" width="150.5" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="150.5" height="60"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_walk_green" translatesAutoresizingMaskIntoConstraints="NO" id="tEf-M4-EKy">
-                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <rect key="frame" x="55" y="10" width="40" height="40"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="5tm-ch-NKk"/>
-                                        <constraint firstAttribute="height" constant="42" id="UwJ-We-3eO"/>
+                                        <constraint firstAttribute="width" constant="40" id="5tm-ch-NKk"/>
+                                        <constraint firstAttribute="height" constant="40" id="UwJ-We-3eO"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
@@ -66,14 +66,14 @@
                             </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mus-Vn-uGa">
-                            <rect key="frame" x="300" y="0.0" width="149.5" height="44"/>
+                            <rect key="frame" x="300" y="0.0" width="149.5" height="60"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_bus_green" translatesAutoresizingMaskIntoConstraints="NO" id="hod-kl-CFF">
-                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <rect key="frame" x="55" y="10" width="40" height="40"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="42" id="3wS-w1-r6N"/>
-                                        <constraint firstAttribute="width" constant="44" id="bG7-an-g3i"/>
+                                        <constraint firstAttribute="height" constant="40" id="3wS-w1-r6N"/>
+                                        <constraint firstAttribute="width" constant="40" id="bG7-an-g3i"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="lrd-sz-Uee" appends="YES" id="gFP-iW-ftI"/>
@@ -87,14 +87,14 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42w-8z-akB">
-                            <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                            <rect key="frame" x="450" y="0.0" width="150" height="60"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_bike_green" translatesAutoresizingMaskIntoConstraints="NO" id="jCu-4v-BKi">
-                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <rect key="frame" x="55" y="10" width="40" height="40"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="42" id="mWI-7c-zNB"/>
-                                        <constraint firstAttribute="width" constant="44" id="nYg-gx-JzB"/>
+                                        <constraint firstAttribute="height" constant="40" id="mWI-7c-zNB"/>
+                                        <constraint firstAttribute="width" constant="40" id="nYg-gx-JzB"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="HHb-3p-bfT" appends="YES" id="dzp-zx-c8j"/>
@@ -108,14 +108,14 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sK6-TX-73r">
-                            <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                            <rect key="frame" x="150" y="0.0" width="150" height="60"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_car_green" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-2U-8kY">
-                                    <rect key="frame" x="53" y="1" width="44" height="42"/>
+                                    <rect key="frame" x="55" y="10" width="40" height="40"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="42" id="FPh-7T-8dN"/>
-                                        <constraint firstAttribute="width" constant="44" id="HVh-5r-1os"/>
+                                        <constraint firstAttribute="height" constant="40" id="FPh-7T-8dN"/>
+                                        <constraint firstAttribute="width" constant="40" id="HVh-5r-1os"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="9i2-cR-nCL" appends="YES" id="yzG-Zf-Lqg"/>
@@ -131,7 +131,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="1rD-BF-aeh"/>
+                        <constraint firstAttribute="height" constant="60" id="1rD-BF-aeh"/>
                         <constraint firstItem="6di-zk-wgy" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="top" id="3Ft-EZ-9Zt"/>
                         <constraint firstItem="42w-8z-akB" firstAttribute="width" secondItem="Mus-Vn-uGa" secondAttribute="width" id="5hv-kE-PbF"/>
                         <constraint firstItem="Mus-Vn-uGa" firstAttribute="height" secondItem="sK6-TX-73r" secondAttribute="height" id="5sm-1w-J6t"/>
@@ -154,7 +154,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
-                    <rect key="frame" x="0.0" y="108" width="600" height="448"/>
+                    <rect key="frame" x="0.0" y="124" width="600" height="432"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
