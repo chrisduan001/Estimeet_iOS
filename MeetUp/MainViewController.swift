@@ -46,6 +46,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         travelModeToolbarDefaultHeight = travelModeToolbar.frame.size.height
         
+        DigitsModel.logout()
+        
         //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
         mainModel.setUpMainTableView()

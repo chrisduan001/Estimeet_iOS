@@ -16,7 +16,10 @@ class PushChannelModel: BaseModel {
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
-    func registerPushChannel(deviceToken: NSData) {        
+    func registerPushChannel(deviceToken: NSData) {
+        if baseUser == nil {
+            return
+        }
         if userDefaults.getVersionCode() == nil || userDefaults.getVersionCode()! != buildNumber {
             userDefaults.setVersionCode(buildNumber)
             makeNetworkRequest()

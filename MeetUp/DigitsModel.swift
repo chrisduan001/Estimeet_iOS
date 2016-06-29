@@ -38,4 +38,8 @@ class DigitsModel {
             completionHandler(signinAuth: model)
         }
     }
+    
+    static func logout() {
+        Digits.sharedInstance().logOut()
+    }
 }
