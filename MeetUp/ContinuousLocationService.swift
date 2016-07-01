@@ -11,6 +11,8 @@ import CoreLocation
 
 class ContinuousLocationService: LocationServiceModel {
     
+    private var isTrackingStarted = false
+    
     func startContinuousTracking(trackingLength: NSNumber) {
         guard trackingLength.intValue > 0 else {
             AppDelegate.SESSION_TIME_TO_EXPIRE = nil
@@ -19,11 +21,7 @@ class ContinuousLocationService: LocationServiceModel {
         }
         
         SessionFactory.sharedInstance.setSessionTrackingExpireTime(trackingLength)
-        
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-        }
-        
+                
         checkLocationPermission()
         
         if !shouldStopContinousTracking() {
@@ -34,6 +32,7 @@ class ContinuousLocationService: LocationServiceModel {
     }
     
     private func stopContinuousTracking() {
+        isTrackingStarted = false
         if locationManager != nil {
             locationManager.stopMonitoringSignificantLocationChanges()
             locationManager.delegate = nil
@@ -46,9 +45,12 @@ class ContinuousLocationService: LocationServiceModel {
             locationManager = CLLocationManager()
         }
         
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.delegate = self
-        locationManager.startMonitoringSignificantLocationChanges()
+        if !isTrackingStarted {
+            isTrackingStarted = true
+            locationManager.allowsBackgroundLocationUpdates = true
+            locationManager.delegate = self
+            locationManager.startMonitoringSignificantLocationChanges()
+        }
     }
     
     override func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {

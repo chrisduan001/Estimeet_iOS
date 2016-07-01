@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Crashlytics
+
 class PushChannelModel: BaseModel {
     
     private let buildNumber: String!
@@ -17,9 +19,6 @@ class PushChannelModel: BaseModel {
     }
     
     func registerPushChannel(deviceToken: NSData) {
-        if baseUser == nil {
-            return
-        }
         if userDefaults.getVersionCode() == nil || userDefaults.getVersionCode()! != buildNumber {
             userDefaults.setVersionCode(buildNumber)
             makeNetworkRequest()
@@ -29,7 +28,7 @@ class PushChannelModel: BaseModel {
         do {
             try notificationHub.registerNativeWithDeviceToken(deviceToken, tags: tag)
         } catch {
-            print("register channcel failed")
+            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while register push channel. Class: \(String(PushChannelModel))", code: 0, userInfo: nil))
         }
     }
     

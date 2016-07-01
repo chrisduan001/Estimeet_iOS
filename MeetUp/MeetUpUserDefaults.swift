@@ -68,6 +68,12 @@ class MeetUpUserDefaults {
         userDefaults.synchronize()
     }
     
+    func getUserUid() -> String? {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        return userDefaults.objectForKey(USER_ID) as? String
+    }
+    
     func updateUserProfile(name: String, imageUri: String) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(name, forKey: NAME)

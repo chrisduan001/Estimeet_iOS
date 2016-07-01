@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UIKit
+import Crashlytics
 
 class DataHelper {
     
@@ -27,7 +28,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            //TODO..ADD PROPER EXCEPTION HANDLING
+            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while making database access. Class: \(String(DataHelper)) UserId: \(ModelFactory.sharedInstance.provideUserDefaults().getUserUid())", code: 0, userInfo: nil))
         }
     }
     
@@ -46,7 +47,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            //TODO..ADD PROPER EXCEPTION HANDLING
+            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while making database access. Class: \(String(DataHelper)) UserId: \(ModelFactory.sharedInstance.provideUserDefaults().getUserUid())", code: 0, userInfo: nil))
         }
     }
     
@@ -59,7 +60,9 @@ class DataHelper {
         
         do {
             try context.save()
-        } catch {}
+        } catch {
+            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while making database access. Class: \(String(DataHelper))", code: 0, userInfo: nil))
+        }
     }
     
     func saveFriendImage(friendObj: Friend, imgData: NSData) {

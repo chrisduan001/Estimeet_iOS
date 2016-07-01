@@ -8,6 +8,7 @@
 
 import Foundation
 import ContactsUI
+import Crashlytics
 
 class ContactListModel {
     
@@ -51,7 +52,9 @@ class ContactListModel {
                     }
                 }
             }
-        } catch {}
+        } catch {
+            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while get contacts. Class: \(String(ContactListModel)) userid: \(ModelFactory.sharedInstance.provideUserDefaults().getUserUid())", code: 0, userInfo: nil))
+        }
         
         return contactList
     }

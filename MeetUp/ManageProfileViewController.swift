@@ -16,7 +16,7 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
     @IBOutlet weak var lblMobile: UILabel!
     @IBOutlet weak var userMobile: UILabel!
     
-    var user: User!
+    var user: User?
     
     private var model: ProfileModel!
     
@@ -31,6 +31,9 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
     func initialize() {
         model = ModelFactory.sharedInstance.provideProfileModel(self)
         
+        if user == nil {
+            model.getUserFromLocalStorage()
+        }
         setUpView()
         setupUserImage()
     }
@@ -40,25 +43,25 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
         lblId.text = NSLocalizedString(GlobalString.profile_id, comment: "Id")
         lblMobile.text = NSLocalizedString(GlobalString.profile_mobile, comment: "Mobile")
         
-        userName.text = user.userName
+        userName.text = user!.userName
         userIdString.text = "No available at the moment"
-        userMobile.text = user.phoneNumber
+        userMobile.text = user!.phoneNumber
         
         removeSaveDpButton()
     }
     
     private func setupUserImage() {
-        if user.image == nil {
+        if user!.image == nil {
             ImageFactory.sharedInstance.loadImageFromUrl(imgUserDp,
-                                                         fromUrl: NSURL(string: user.dpUri!)!,
+                                                         fromUrl: NSURL(string: user!.dpUri!)!,
                                                          placeHolder: nil,
                                                          completionHandler: { (image, error, cacheType, imageURL) in
                                                             let data = UIImagePNGRepresentation(image!)
                                                             self.model.saveUserImage(data!)
-                                                            self.user.image = data
+                                                            self.user!.image = data
             })
         } else {
-            imgUserDp.image = UIImage(data: user.image!)
+            imgUserDp.image = UIImage(data: user!.image!)
         }
     }
     
@@ -68,7 +71,7 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
     
     func saveTapped() {
         startActivityIndicator()
-        model.onStartUpdateProfile(user.userName!, imageString: getImageDataEncode(), isRegister: false)
+        model.onStartUpdateProfile(user!.userName!, imageString: getImageDataEncode(), isRegister: false)
     }
     
     //MARK: DELEGATE
@@ -78,7 +81,7 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
         model.saveUserImage(UIImagePNGRepresentation(imgUserDp.image!)!)
     }
     
-    func onResetUserProfile(user: User) {
+    func onReterieveUser(user: User) {
         self.user = user
     }
     
@@ -93,6 +96,6 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
     
     private func onUpdateProfileFailed() {
         endActivityIndicator()
-        model.resetUserProfile()
+        model.getUserFromLocalStorage()
     }
 }

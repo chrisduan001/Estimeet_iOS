@@ -27,9 +27,8 @@ class Navigator {
         vc.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func navigateToManageProfile(vc: BaseViewController, user: User) {
+    func navigateToManageProfile(vc: BaseViewController) {
         let controller = ManageProfileViewController(nibName: "ManageProfileViewController", bundle: nil)
-        controller.user = user
         vc.navigationController?.pushViewController(controller, animated: true)
     }
 }

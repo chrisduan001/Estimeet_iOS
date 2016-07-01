@@ -30,8 +30,8 @@ class ProfileModel: BaseModel {
         userDefaults.saveUserImageData(image)
     }
     
-    func resetUserProfile() {
-        listener.onResetUserProfile(userDefaults.getUserFromDefaults()!)
+    func getUserFromLocalStorage() {
+        listener.onReterieveUser(userDefaults.getUserFromDefaults()!)
     }
     
     //MARK EXTEND SUPER
@@ -60,5 +60,5 @@ class ProfileModel: BaseModel {
 
 protocol ProfileListener: BaseListener {
     func onProfileUpdated()
-    func onResetUserProfile(user: User)
+    func onReterieveUser(user: User)
 }

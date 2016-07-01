@@ -64,7 +64,7 @@ class ProfileViewController: DpBaseViewController, ProfileListener, FriendListLi
         ModelFactory.sharedInstance.provideFriendListModel(self).getFriendList()
     }
     
-    func onResetUserProfile(user: User) {
+    func onReterieveUser(user: User) {
         //method not implemented
     }
     
@@ -79,7 +79,6 @@ class ProfileViewController: DpBaseViewController, ProfileListener, FriendListLi
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let mainVc = appDelegate.window!.rootViewController as! MainViewController
         mainVc.isAnyFriends = friends != nil && friends?.count > 0
-        mainVc.user = MeetUpUserDefaults.sharedInstance.getUserFromDefaults()
         endActivityIndicator()
         self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Crashlytics
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
     NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener,
@@ -46,13 +47,15 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         travelModeToolbarDefaultHeight = travelModeToolbar.frame.size.height
         
-        DigitsModel.logout()
-        
         //models
         mainModel = ModelFactory.sharedInstance.provideMainModel(self)
         mainModel.setUpMainTableView()
         sessionModel = ModelFactory.sharedInstance.provideSessionModel(self)
         getNotificationModel = ModelFactory.sharedInstance.provideGetNotificationModel(self)
+        
+        //register push notification
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.registerForPushNotifications(UIApplication.sharedApplication())
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -60,8 +63,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
 
     override func viewDidAppear(animated: Bool) {
-        //this method will only run once on start up check if user has already logged in
-        initialSetUp()
+        //user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
+        //isanyfriends will always be false, unless it was set from profilevc when user login for the first time
+        if isAnyFriends {
+            Navigator.sharedInstance.navigateToFriendList(self)
+        }
     }
     
     deinit {
@@ -198,7 +204,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func onManageProfile(sender: UIBarButtonItem) {
-        Navigator.sharedInstance.navigateToManageProfile(self, user: user!)
+        Navigator.sharedInstance.navigateToManageProfile(self)
     }
     
     private func onWalkingSelected() {
@@ -592,22 +598,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: INIT SET UP
-    private func initialSetUp() {
-        user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
-        
-        if isAnyFriends {
-            Navigator.sharedInstance.navigateToFriendList(self)
-        }
-        
-        //register push notification
-        //todo..need refactor, maybe dynamically set rootview controller eg: at appdelegate if user==nil, set login vc as root
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.registerForPushNotifications(UIApplication.sharedApplication())
-    }
-    
     var isAnyFriends: Bool = false
-    var user: User?
     
     var sessionModel: SessionModel!
     var getNotificationModel: GetNotificationModel!

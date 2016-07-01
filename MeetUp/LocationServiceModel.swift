@@ -41,6 +41,9 @@ class LocationServiceModel: BaseModel, CLLocationManagerDelegate {
             return
         }
         
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+        }
         if locationManager.respondsToSelector(#selector(CLLocationManager.requestAlwaysAuthorization)) {
             locationManager.requestAlwaysAuthorization()
         }
