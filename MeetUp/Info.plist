@@ -114,5 +114,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Omnes-Regular.otf</string>
+		<string>Omnes-Medium.otf</string>
+		<string>Omnes-Semibold.otf</string>
+	</array>
 </dict>
 </plist>

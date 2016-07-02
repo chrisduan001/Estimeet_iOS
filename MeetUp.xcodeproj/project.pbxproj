@@ -54,6 +54,9 @@
 		6240B1BD1C8834D900899CD9 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6240B1BC1C8834D900899CD9 /* BaseResponse.swift */; };
 		6263AE7B1D055F3A00E7C951 /* ContinuousLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263AE7A1D055F3A00E7C951 /* ContinuousLocationService.swift */; };
 		6272DA721D276D91004A2116 /* FabricLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6272DA711D276D91004A2116 /* FabricLogger.swift */; };
+		6272DA761D27C5A6004A2116 /* Omnes-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6272DA731D27C5A5004A2116 /* Omnes-Regular.otf */; };
+		6272DA771D27C5A6004A2116 /* Omnes-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6272DA741D27C5A5004A2116 /* Omnes-Medium.otf */; };
+		6272DA781D27C5A6004A2116 /* Omnes-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6272DA751D27C5A5004A2116 /* Omnes-Semibold.otf */; };
 		627780E81CEB25D700FF69E9 /* TempSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E71CEB25D700FF69E9 /* TempSessionModel.swift */; };
 		627780EA1CEC6E1700FF69E9 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E91CEC6E1700FF69E9 /* SessionResponse.swift */; };
 		628E94791CD9E2E0002385FD /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628E94781CD9E2E0002385FD /* PushNotification.swift */; };
@@ -139,6 +142,9 @@
 		6240B1BC1C8834D900899CD9 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		6263AE7A1D055F3A00E7C951 /* ContinuousLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuousLocationService.swift; sourceTree = "<group>"; };
 		6272DA711D276D91004A2116 /* FabricLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabricLogger.swift; sourceTree = "<group>"; };
+		6272DA731D27C5A5004A2116 /* Omnes-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Regular.otf"; sourceTree = "<group>"; };
+		6272DA741D27C5A5004A2116 /* Omnes-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Medium.otf"; sourceTree = "<group>"; };
+		6272DA751D27C5A5004A2116 /* Omnes-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Semibold.otf"; sourceTree = "<group>"; };
 		627780E71CEB25D700FF69E9 /* TempSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempSessionModel.swift; sourceTree = "<group>"; };
 		627780E91CEC6E1700FF69E9 /* SessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		628E94781CD9E2E0002385FD /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
@@ -326,6 +332,17 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		6272DA791D27C5BB004A2116 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				6272DA731D27C5A5004A2116 /* Omnes-Regular.otf */,
+				6272DA741D27C5A5004A2116 /* Omnes-Medium.otf */,
+				6272DA751D27C5A5004A2116 /* Omnes-Semibold.otf */,
+				62AB5F871C73057F008513DF /* LaunchScreen.storyboard */,
+			);
+			name = font;
+			sourceTree = "<group>";
+		};
 		62794FDF1C8D77E100112261 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,7 +357,6 @@
 				6240B1B11C86E90E00899CD9 /* Localizable.strings */,
 				62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */,
 				62B6983D1D23A82D00A015EF /* Assets.xcassets */,
-				62AB5F871C73057F008513DF /* LaunchScreen.storyboard */,
 				62AB5F8A1C73057F008513DF /* Info.plist */,
 				62AB5F791C73057F008513DF /* Products */,
 				62C2CA031C8AE55B0029B3DB /* Support */,
@@ -411,6 +427,7 @@
 		62C2CA031C8AE55B0029B3DB /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				6272DA791D27C5BB004A2116 /* font */,
 				6203A8241CCB837D00401B07 /* WindowsAzureMessaging_Bridging_Header.h */,
 				62C2CA011C8AE5440029B3DB /* Default-568h@2x.png */,
 			);
@@ -522,11 +539,14 @@
 				6240B1AF1C86E90E00899CD9 /* Localizable.strings in Resources */,
 				622785E51C8BCA65006FDD55 /* ProfileViewController.xib in Resources */,
 				623BBD5D1C7EE97800643C3C /* LoginViewController.xib in Resources */,
+				6272DA761D27C5A6004A2116 /* Omnes-Regular.otf in Resources */,
 				62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */,
 				621539001CCCA03E00554726 /* ManageFriendCell.xib in Resources */,
 				62B6983E1D23A82D00A015EF /* Assets.xcassets in Resources */,
 				62C15D9B1CDDEF8C006B17A3 /* FriendSessionCell.xib in Resources */,
 				62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */,
+				6272DA771D27C5A6004A2116 /* Omnes-Medium.otf in Resources */,
+				6272DA781D27C5A6004A2116 /* Omnes-Semibold.otf in Resources */,
 				62AB5F891C73057F008513DF /* LaunchScreen.storyboard in Resources */,
 				62C2CA021C8AE5440029B3DB /* Default-568h@2x.png in Resources */,
 				62ADC2361D043FA70044DD48 /* Location.gpx in Resources */,
