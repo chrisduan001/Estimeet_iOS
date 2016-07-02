@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
         
         if user == nil || user!.userName!.isEmpty {
-            let loginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-            window?.rootViewController = loginViewController
+            setLoginRootViewController()
         } else {
             setMainRootViewController()
         }
@@ -56,6 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: mainViewController)
         navigationController.navigationBar.tintColor = UIColor().primaryColor()
         window?.rootViewController = navigationController
+    }
+    
+    func setLoginRootViewController() {
+        let loginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        window?.rootViewController = loginViewController
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

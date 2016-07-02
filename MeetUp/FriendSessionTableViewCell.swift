@@ -85,11 +85,13 @@ class FriendSessionTableViewCell: UITableViewCell {
     }
     
     func addCircularProgress() {
-        circularProgressView.hidden = false
-        //set initial state
-        delegate.onCellTimerTicked(self)
-        
-        startProgressTimer()
+        if circularProgressView.hidden {
+            circularProgressView.hidden = false
+            //set initial state
+            delegate.onCellTimerTicked(self)
+            
+            startProgressTimer()
+        }
     }
     
     func setCellSessionProgress(progress: CGFloat) {

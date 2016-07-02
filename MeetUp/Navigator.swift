@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import UIKit
+
 class Navigator {
     static let sharedInstance = Navigator()
     
     private init() {}
     
     func navigateToLogin(vc: BaseViewController) {
-        let modalVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        vc.presentViewController(modalVC, animated: true, completion: nil)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.setLoginRootViewController()
+        vc.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func navigateToProfilePage(vc: BaseViewController) {
