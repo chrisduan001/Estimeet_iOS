@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 import UIKit
-import Crashlytics
 
 class DataHelper {
     
@@ -28,7 +27,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while making database access. Class: \(String(DataHelper)) UserId: \(ModelFactory.sharedInstance.provideUserDefaults().getUserUid())", code: 0, userInfo: nil))
+            logException()
         }
     }
     
@@ -47,7 +46,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while making database access. Class: \(String(DataHelper)) UserId: \(ModelFactory.sharedInstance.provideUserDefaults().getUserUid())", code: 0, userInfo: nil))
+            logException()
         }
     }
     
@@ -61,7 +60,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while making database access. Class: \(String(DataHelper))", code: 0, userInfo: nil))
+            logException()
         }
     }
     
@@ -71,7 +70,9 @@ class DataHelper {
         dispatch_async(dispatch_get_main_queue()) {
             do {
                 try self.context.save()
-            } catch {}
+            } catch {
+                self.logException()
+            }
         }
     }
     
@@ -80,7 +81,9 @@ class DataHelper {
         
         do {
             try context.save()
-        } catch {}
+        } catch {
+            logException()
+        }
     }
     
     func getFriend(id: Int) -> Friend? {
@@ -91,7 +94,9 @@ class DataHelper {
         do {
             let result = try context.executeFetchRequest(request) as! [Friend]
             return result.count > 0 ? result[0] : nil
-        } catch {}
+        } catch {
+            logException()
+        }
         
         return nil
     }
@@ -105,7 +110,9 @@ class DataHelper {
         
         do {
             try context.executeRequest(deleteRequest)
-        } catch {}
+        } catch {
+            logException()
+        }
     }
     
     func deleteAllSession() {
@@ -118,7 +125,7 @@ class DataHelper {
             try context.executeRequest(sessionDataDeleteRequest)
             try context.executeRequest(deleteRequest)
         } catch {
-            print("error occurred while delete all session")
+            logException()
         }
     }
     
@@ -135,7 +142,7 @@ class DataHelper {
             try context.executeRequest(sessionDataDeleteRequest)
             try context.executeRequest(sessionDeleteRequest)
         } catch {
-            print("error occurred while delete active sessions")
+            logException()
         }
         
     }
@@ -151,7 +158,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error occurred while delete session")
+            logException()
         }
     }
     
@@ -166,7 +173,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error while save new session")
+            logException()
         }
     }
     
@@ -177,7 +184,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error when insert session")
+            logException()
         }
     }
     
@@ -191,7 +198,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error while save session")
+            logException()
         }
     }
     
@@ -216,7 +223,9 @@ class DataHelper {
             try context.save()
             
             return friendObj.session!.dateCreated!
-        } catch {}
+        } catch {
+            logException()
+        }
         
         return -1
     }
@@ -226,7 +235,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error while accept new session")
+            logException()
         }
     }
     
@@ -234,7 +243,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error while update session")
+            logException()
         }
     }
     
@@ -246,7 +255,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error while update session id")
+            logException()
         }
     }
     
@@ -260,7 +269,9 @@ class DataHelper {
         let request = NSFetchRequest(entityName: String(SessionColumn))
         do {
             return try context.executeFetchRequest(request) as! [SessionColumn]
-        } catch {}
+        } catch {
+            logException()
+        }
         
         return []
     }
@@ -285,7 +296,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error occurred while save session data")
+            logException()
         }
     }
     
@@ -302,7 +313,7 @@ class DataHelper {
         do {
             try context.save()
         } catch {
-            print("error occurred while save sessdata timeonwaitingupdates")
+            logException()
         }
     }
     
@@ -328,6 +339,10 @@ class DataHelper {
         request.sortDescriptors = [sort]
         
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "sectionHeader", cacheName: "mainSessionCache")
+    }
+    
+    private func logException() {
+        FabricLogger.sharedInstance.logError("Catched exception: Error while making database access", className: String(DataHelper), code: 0, userInfo: nil)
     }
     
     private let SECTION_HEADER_FRIEND = "Friend"

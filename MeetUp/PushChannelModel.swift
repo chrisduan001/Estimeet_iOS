@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Crashlytics
 
 class PushChannelModel: BaseModel {
     
@@ -28,7 +27,7 @@ class PushChannelModel: BaseModel {
         do {
             try notificationHub.registerNativeWithDeviceToken(deviceToken, tags: tag)
         } catch {
-            Crashlytics.sharedInstance().recordError(NSError(domain: "Error while register push channel. Class: \(String(PushChannelModel))", code: 0, userInfo: nil))
+            FabricLogger.sharedInstance.logError("CatchedException: Error while register push channel", className: String(PushChannelModel), code: 0, userInfo: nil)
         }
     }
     

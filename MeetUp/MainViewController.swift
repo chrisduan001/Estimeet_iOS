@@ -110,7 +110,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
-            print("An exception occurred while fetch request")
+            FabricLogger.sharedInstance.logError("CatchedException: An exception occurred while fetch request", className: String(MainViewController), code: 0, userInfo: nil)
         }
     }
     

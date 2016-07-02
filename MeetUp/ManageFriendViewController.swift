@@ -37,7 +37,7 @@ FriendListListener, ManageFriendCellDelegate {
                 tableView.reloadData()
             }
         } catch {
-            print("An exception occurred while fetch reuest")
+            FabricLogger.sharedInstance.logError("CatchedException: An exception occurred while fetch reuest", className: String(ManageFriendViewController), code: 0, userInfo: nil)
         }
     }
     
