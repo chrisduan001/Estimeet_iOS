@@ -239,10 +239,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func resetToolbarSelection() {
-        travel_mode_walk.image = getUIImageNamed("ic_directions_walk_green")
-        travel_mode_car.image = getUIImageNamed("ic_directions_car_green")
-        travel_mode_bus.image = getUIImageNamed("ic_directions_bus_green")
-        travel_mode_bike.image = getUIImageNamed("ic_directions_bike_green")
+        travel_mode_walk.image = getUIImageNamed("ic_directions_walk")
+        travel_mode_car.image = getUIImageNamed("ic_directions_car")
+        travel_mode_bus.image = getUIImageNamed("ic_directions_bus")
+        travel_mode_bike.image = getUIImageNamed("ic_directions_bike")
     }
     
     private func getUIImageNamed(name: String) -> UIImage {
