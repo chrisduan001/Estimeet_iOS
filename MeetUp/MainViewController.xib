@@ -40,6 +40,7 @@
                             </connections>
                         </barButtonItem>
                     </items>
+                    <color key="tintColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSj-gP-LjW">
                     <rect key="frame" x="0.0" y="64" width="600" height="60"/>
