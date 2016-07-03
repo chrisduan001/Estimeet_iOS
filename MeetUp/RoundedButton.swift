@@ -56,8 +56,8 @@ class RoundButton: UIButton {
         //shadow
         shapeLayer.shadowColor = shadowColor.CGColor
         shapeLayer.shadowPath = shapeLayer.path
-        shapeLayer.shadowOpacity = 0.8
-        shapeLayer.shadowRadius = 2;
+        shapeLayer.shadowOpacity = 0.0
+        shapeLayer.shadowRadius = 2
         shapeLayer.shadowOffset = CGSizeMake(2.0, 2.0)
         self.layer.insertSublayer(shapeLayer, atIndex: 0)
         self.roundRectLayer = shapeLayer

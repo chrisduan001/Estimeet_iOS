@@ -350,11 +350,13 @@
 			children = (
 			);
 			name = Facebook;
+			path = MeetUp;
 			sourceTree = "<group>";
 		};
 		62AB5F6F1C73057F008513DF = {
 			isa = PBXGroup;
 			children = (
+				62794FDF1C8D77E100112261 /* Facebook */,
 				62AB5F7A1C73057F008513DF /* MeetUp */,
 				6240B1B11C86E90E00899CD9 /* Localizable.strings */,
 				62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */,
@@ -413,7 +415,6 @@
 		62C2C9FB1C8AC9A00029B3DB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				62794FDF1C8D77E100112261 /* Facebook */,
 				62C2C9FC1C8AC9B90029B3DB /* RoundedButton.swift */,
 				62C2CA061C8AE8470029B3DB /* CustomColor.swift */,
 				622785E21C8BBFD9006FDD55 /* GlobalString.swift */,

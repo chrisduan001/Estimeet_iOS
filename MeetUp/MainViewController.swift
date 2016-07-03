@@ -26,9 +26,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var travelModeToolbarHeightContraint: NSLayoutConstraint!
     
+    @IBOutlet var noFriendView: UIView!
+    
     private var travelModeToolbarDefaultHeight: CGFloat!
     
-    //MARK: LIFECYCLE    
+    //MARK: LIFECYCLE & View
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +62,16 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
 
     override func viewWillAppear(animated: Bool) {
         onResume()
+    }
+
+    private func addNoFriendView() {
+        noFriendView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - toolbar.frame.height)
+        view.addSubview(noFriendView)
+        noFriendView.bringSubviewToFront(noFriendView)
+    }
+    
+    private func removeNoFriendView() {
+        noFriendView.removeFromSuperview()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -176,7 +188,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: TOOLBAR BUTTON CLICK EVENT
     @IBAction func manageFriendClicked(sender: UIBarButtonItem) {
-        onManageFriend(sender)
+        onManageFriend()
     }
     
     @IBAction func manageProfileClicked(sender: UIBarButtonItem) {
@@ -199,7 +211,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         onBikeSelected()
     }
     
-    private func onManageFriend(sender: UIBarButtonItem) {
+    @IBAction func onAddFriendsClicked(sender: UIButton) {
+        onManageFriend()
+    }
+    
+    private func onManageFriend() {
         Navigator.sharedInstance.navigateToFriendList(self)
     }
     
@@ -272,10 +288,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: TABLEVIEW
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if let sections = fetchedResultsController.sections {
+        if let sections = fetchedResultsController.sections where sections.count > 0 {
+            removeNoFriendView()
             return sections.count
         }
         
+        addNoFriendView()
         return 0
     }
     

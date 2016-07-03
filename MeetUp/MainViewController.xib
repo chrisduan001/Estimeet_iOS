@@ -4,9 +4,17 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Omnes-Regular.otf">
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
+                <outlet property="noFriendView" destination="4yY-D0-g53" id="5QH-tV-8xA"/>
                 <outlet property="tableView" destination="mCS-y5-TnE" id="B9c-mc-5vq"/>
                 <outlet property="toolbar" destination="HSq-JY-hmO" id="IBB-OM-y2t"/>
                 <outlet property="travelModeToolbar" destination="vSj-gP-LjW" id="W83-zL-XzF"/>
@@ -201,8 +209,72 @@
         <view contentMode="scaleToFill" id="4yY-D0-g53" userLabel="NoFriendView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Its empty here :'(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuI-MP-Gbq">
+                    <rect key="frame" x="100" y="297" width="400" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="400" id="4cy-gw-MhS"/>
+                        <constraint firstAttribute="height" constant="30" id="V78-lS-fV4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add friends to send Estimeets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s17-AQ-20h">
+                    <rect key="frame" x="100" y="327" width="400" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="3Dg-Zd-DCh"/>
+                        <constraint firstAttribute="width" constant="400" id="ot8-xD-nD4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_friend_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OTq-eC-QIN">
+                    <rect key="frame" x="240" y="200" width="120" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="7Pl-kx-qkR"/>
+                        <constraint firstAttribute="width" constant="120" id="j9G-lW-lZC"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dls-0s-gJa" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
+                    <rect key="frame" x="200" y="381" width="200" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="3dP-hf-ueU"/>
+                        <constraint firstAttribute="width" constant="200" id="TtZ-jX-3Xh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                    <state key="normal" title="Add Friends">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="roundColor">
+                            <color key="value" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onAddFriendsClicked:" destination="-1" eventType="touchUpInside" id="44Z-Pr-fMN"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="-471" y="909"/>
+            <constraints>
+                <constraint firstItem="dls-0s-gJa" firstAttribute="centerX" secondItem="4yY-D0-g53" secondAttribute="centerX" id="KGN-qk-Kgu"/>
+                <constraint firstItem="iuI-MP-Gbq" firstAttribute="centerX" secondItem="4yY-D0-g53" secondAttribute="centerX" id="L20-k3-3oS"/>
+                <constraint firstItem="dls-0s-gJa" firstAttribute="top" secondItem="s17-AQ-20h" secondAttribute="bottom" constant="24" id="LQV-G7-Q4j"/>
+                <constraint firstItem="iuI-MP-Gbq" firstAttribute="top" secondItem="OTq-eC-QIN" secondAttribute="bottom" constant="17" id="ZLW-fM-thC"/>
+                <constraint firstItem="s17-AQ-20h" firstAttribute="top" secondItem="iuI-MP-Gbq" secondAttribute="bottom" id="aHH-fw-rsS"/>
+                <constraint firstItem="s17-AQ-20h" firstAttribute="centerX" secondItem="4yY-D0-g53" secondAttribute="centerX" id="asO-29-NSK"/>
+                <constraint firstItem="OTq-eC-QIN" firstAttribute="centerX" secondItem="4yY-D0-g53" secondAttribute="centerX" id="juE-Rh-q1e"/>
+                <constraint firstItem="OTq-eC-QIN" firstAttribute="centerY" secondItem="4yY-D0-g53" secondAttribute="centerY" constant="-60" id="y2p-mf-yIe"/>
+            </constraints>
+            <point key="canvasLocation" x="-489" y="709"/>
         </view>
     </objects>
     <resources>
@@ -212,5 +284,6 @@
         <image name="ic_directions_walk" width="26" height="26"/>
         <image name="ic_group_add_white" width="40" height="40"/>
         <image name="ic_person_white" width="40" height="40"/>
+        <image name="no_friend_icon" width="147" height="99"/>
     </resources>
 </document>

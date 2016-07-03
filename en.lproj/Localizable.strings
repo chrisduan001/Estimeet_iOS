@@ -68,3 +68,7 @@
 
 "action_send_estimeet"          = "Send Estimeet";
 "action_refresh"                = "Refresh";
+"action_title_add_friends"      = "Add Friends";
+
+"no_friend_text_1"                = "Its empty here :'( Add friends to send Estimeets";
+"no_friend_text_2"                = "Add friends to send Estimeets";

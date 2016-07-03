@@ -66,4 +66,8 @@ class GlobalString{
     
     static let action_send_estimeet = "action_send_estimeet"
     static let action_refresh       = "action_refresh"
+    static let action_add_friends   = "action_title_add_friends"
+    
+    static let no_friend_text_1     = "no_friend_text_1"
+    static let no_friend_text_2     = "no_friend_text_2"
 }
