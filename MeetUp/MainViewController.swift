@@ -458,7 +458,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.addCircularProgress()
     }
     
-    //MARK: TABLEVIEW ACTION
+    //MARK: TABLEVIEW ACTION    
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         let friend = fetchedResultsController.objectAtIndexPath(indexPath) as! Friend
         if friend.session != nil && friend.session!.sessionType! != SessionFactory.sharedInstance.ACTIVE_SESSION {
@@ -492,7 +492,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 self.tableView.editing = false
             }
         }
-
+        
+        UIButton.appearance().setAttributedTitle(MeetUpAttributedString.sharedInstance.getCustomFontAttributedString(sendRequest.title!, size: 17.0, typeface: MeetUpAttributedString.CustomFontTypeface.semiBold), forState: .Normal)
+        
         sendRequest.backgroundColor = UIColor().primaryColor()
         
         return [sendRequest]

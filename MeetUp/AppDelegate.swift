@@ -55,11 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: mainViewController)
         navigationController.navigationBar.tintColor = UIColor().primaryColor()
         window?.rootViewController = navigationController
+        
+        setBarButtonItemFontStyle()
     }
     
     func setLoginRootViewController() {
         let loginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
         window?.rootViewController = loginViewController
+        
+        setBarButtonItemFontStyle()
+    }
+    
+    private func setBarButtonItemFontStyle() {
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : MeetUpAttributedString.sharedInstance.getCustomFont(MeetUpAttributedString.CustomFontTypeface.semiBold, size: 17.0)], forState: .Normal)
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

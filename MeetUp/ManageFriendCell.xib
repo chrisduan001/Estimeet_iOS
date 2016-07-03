@@ -21,27 +21,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YXC-Eg-sKC">
-                        <rect key="frame" x="8" y="5" width="60" height="60"/>
+                        <rect key="frame" x="10" y="12" width="45" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="U28-cj-k7g"/>
-                            <constraint firstAttribute="width" constant="60" id="oho-N9-85O"/>
+                            <constraint firstAttribute="height" constant="45" id="U28-cj-k7g"/>
+                            <constraint firstAttribute="width" constant="45" id="oho-N9-85O"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donald Thrump" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYu-rh-fgR">
-                        <rect key="frame" x="76" y="26" width="188" height="17"/>
-                        <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                        <rect key="frame" x="83" y="24" width="186" height="21"/>
+                        <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mQu-hz-jTj">
-                        <rect key="frame" x="272" y="15" width="40" height="40"/>
+                        <rect key="frame" x="277" y="17" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="XFe-2l-XKc"/>
-                            <constraint firstAttribute="height" constant="40" id="wTZ-13-vCg"/>
+                            <constraint firstAttribute="width" constant="35" id="XFe-2l-XKc"/>
+                            <constraint firstAttribute="height" constant="35" id="wTZ-13-vCg"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2j9-WG-3aO">
-                        <rect key="frame" x="76" y="68" width="244" height="1"/>
+                        <rect key="frame" x="73" y="68" width="247" height="1"/>
                         <color key="backgroundColor" red="0.93008207070707072" green="0.93008207070707072" blue="0.93008207070707072" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="UBd-Iu-Gmt"/>
@@ -50,10 +50,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="mQu-hz-jTj" firstAttribute="centerY" secondItem="EmU-Fg-a3x" secondAttribute="centerY" id="0aN-G4-ijH"/>
-                    <constraint firstItem="EYu-rh-fgR" firstAttribute="leading" secondItem="YXC-Eg-sKC" secondAttribute="trailing" constant="8" id="3no-D9-ttK"/>
-                    <constraint firstItem="YXC-Eg-sKC" firstAttribute="leading" secondItem="EmU-Fg-a3x" secondAttribute="leadingMargin" id="7kL-Gg-ec4"/>
+                    <constraint firstItem="EYu-rh-fgR" firstAttribute="leading" secondItem="YXC-Eg-sKC" secondAttribute="trailing" constant="28" id="3no-D9-ttK"/>
+                    <constraint firstItem="YXC-Eg-sKC" firstAttribute="leading" secondItem="EmU-Fg-a3x" secondAttribute="leadingMargin" constant="2" id="7kL-Gg-ec4"/>
                     <constraint firstAttribute="bottom" secondItem="2j9-WG-3aO" secondAttribute="bottom" id="KbY-B2-Hf2"/>
-                    <constraint firstItem="2j9-WG-3aO" firstAttribute="leading" secondItem="YXC-Eg-sKC" secondAttribute="trailing" constant="8" id="YND-A6-Sue"/>
+                    <constraint firstItem="2j9-WG-3aO" firstAttribute="leading" secondItem="YXC-Eg-sKC" secondAttribute="trailing" constant="18" id="YND-A6-Sue"/>
                     <constraint firstItem="mQu-hz-jTj" firstAttribute="trailing" secondItem="EmU-Fg-a3x" secondAttribute="trailingMargin" id="agm-OA-1Qv"/>
                     <constraint firstItem="mQu-hz-jTj" firstAttribute="leading" secondItem="EYu-rh-fgR" secondAttribute="trailing" constant="8" id="eqB-VU-LHb"/>
                     <constraint firstItem="EYu-rh-fgR" firstAttribute="centerY" secondItem="EmU-Fg-a3x" secondAttribute="centerY" id="jZ4-xH-WXU"/>

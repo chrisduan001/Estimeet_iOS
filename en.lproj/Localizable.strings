@@ -36,8 +36,9 @@
 
 "navigation_main"               = "Main";
 "page_title_profile"            = "Profile";
+"page_title_all_friends"        = "Friends";
 
-"table_recommend_friend"        = "Recommended Friends";
+"table_recommend_friend"        = "All Friends";
 
 "page_profile_name"             = "Name";
 "page_profile_id"               = "ID";

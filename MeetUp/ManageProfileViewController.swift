@@ -16,6 +16,8 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
     @IBOutlet weak var lblMobile: UILabel!
     @IBOutlet weak var userMobile: UILabel!
     
+    @IBOutlet var headerViews: [UIView]!
+    
     var user: User?
     
     private var model: ProfileModel!
@@ -24,6 +26,9 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString(GlobalString.navigation_main, comment: "navigation button")
+        self.navigationItem.title = NSLocalizedString(GlobalString.page_title_profile, comment: "title")
+    
         isRegisterController = false
         initialize()
     }
@@ -36,12 +41,16 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
         }
         setUpView()
         setupUserImage()
+        setUpHeaderViews()
     }
     
     private func setUpView() {
         lblName.text = NSLocalizedString(GlobalString.profile_name, comment: "Name")
+        lblName.textColor = UIColor().headerTextColor()
         lblId.text = NSLocalizedString(GlobalString.profile_id, comment: "Id")
+        lblId.textColor = UIColor().headerTextColor()
         lblMobile.text = NSLocalizedString(GlobalString.profile_mobile, comment: "Mobile")
+        lblMobile.textColor = UIColor().headerTextColor()
         
         userName.text = user!.userName
         userIdString.text = "No available at the moment"
@@ -62,6 +71,12 @@ class ManageProfileViewController: DpBaseViewController, ProfileListener{
             })
         } else {
             imgUserDp.image = UIImage(data: user!.image!)
+        }
+    }
+    
+    private func setUpHeaderViews() {
+        for view in headerViews {
+            view.backgroundColor = UIColor().sectionHeaderColor()
         }
     }
     

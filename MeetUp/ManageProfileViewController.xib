@@ -9,11 +9,9 @@
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
-        </mutableArray>
-        <mutableArray key="Omnes-Semibold.otf">
-            <string>Omnes-Semibold</string>
-            <string>Omnes-Semibold</string>
-            <string>Omnes-Semibold</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -28,6 +26,9 @@
                 <outlet property="userMobile" destination="BrR-FN-v1m" id="WAo-lK-Teu"/>
                 <outlet property="userName" destination="aLb-ja-xeX" id="QF7-0k-5ZG"/>
                 <outlet property="view" destination="iN0-l3-epB" id="RIE-eD-BSS"/>
+                <outletCollection property="headerViews" destination="zdC-J6-ihj" collectionClass="NSMutableArray" id="SJU-7J-pcY"/>
+                <outletCollection property="headerViews" destination="I8i-JW-5C1" collectionClass="NSMutableArray" id="7ba-ny-iao"/>
+                <outletCollection property="headerViews" destination="a4r-UO-bIL" collectionClass="NSMutableArray" id="m5y-rw-Vs7"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N1o-pz-rgT">
-                    <rect key="frame" x="255" y="70" width="90" height="90"/>
+                    <rect key="frame" x="255" y="90" width="90" height="90"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="UVM-x2-Lbm"/>
@@ -47,7 +48,7 @@
                     </connections>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdC-J6-ihj">
-                    <rect key="frame" x="0.0" y="183" width="600" height="30"/>
+                    <rect key="frame" x="0.0" y="203" width="600" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6R-u5-ZuW">
                             <rect key="frame" x="8" y="0.0" width="584" height="30"/>
@@ -67,7 +68,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8i-JW-5C1">
-                    <rect key="frame" x="0.0" y="279" width="600" height="30"/>
+                    <rect key="frame" x="0.0" y="299" width="600" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heV-4k-Hel">
                             <rect key="frame" x="8" y="0.0" width="584" height="30"/>
@@ -89,25 +90,23 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donald Trump" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLb-ja-xeX">
-                    <rect key="frame" x="8" y="216" width="584" height="60"/>
+                    <rect key="frame" x="18" y="236" width="574" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Vb8-88-bvc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="17"/>
-                    <color key="textColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTo-9E-stg">
-                    <rect key="frame" x="8" y="312" width="584" height="60"/>
+                    <rect key="frame" x="18" y="332" width="574" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="KdH-wC-eWG"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="17"/>
-                    <color key="textColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4r-UO-bIL">
-                    <rect key="frame" x="0.0" y="380" width="600" height="30"/>
+                    <rect key="frame" x="0.0" y="400" width="600" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-bL-Xdl">
                             <rect key="frame" x="8" y="0.0" width="584" height="30"/>
@@ -126,12 +125,11 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+64 1232323" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrR-FN-v1m">
-                    <rect key="frame" x="8" y="418" width="584" height="60"/>
+                    <rect key="frame" x="18" y="438" width="574" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="5Kg-fC-DSV"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="17"/>
-                    <color key="textColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iXR-CY-QMw">
@@ -141,15 +139,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vTo-9E-stg" firstAttribute="top" secondItem="I8i-JW-5C1" secondAttribute="bottom" constant="3" id="01r-gR-8ww"/>
-                <constraint firstItem="vTo-9E-stg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="1mR-cV-H9x"/>
+                <constraint firstItem="vTo-9E-stg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="1mR-cV-H9x"/>
                 <constraint firstAttribute="trailing" secondItem="a4r-UO-bIL" secondAttribute="trailing" id="A9z-Vh-Fzd"/>
-                <constraint firstItem="N1o-pz-rgT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="Dzy-NO-Rqc"/>
+                <constraint firstItem="N1o-pz-rgT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="Dzy-NO-Rqc"/>
                 <constraint firstAttribute="trailing" secondItem="I8i-JW-5C1" secondAttribute="trailing" id="Gra-Rj-gHA"/>
-                <constraint firstItem="aLb-ja-xeX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Iu3-i8-nPb"/>
+                <constraint firstItem="aLb-ja-xeX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="Iu3-i8-nPb"/>
                 <constraint firstItem="zdC-J6-ihj" firstAttribute="top" secondItem="N1o-pz-rgT" secondAttribute="bottom" constant="23" id="J5O-Vj-Fzv"/>
                 <constraint firstAttribute="trailing" secondItem="vTo-9E-stg" secondAttribute="trailing" constant="8" id="JCM-iX-8x9"/>
                 <constraint firstItem="a4r-UO-bIL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KjD-ze-JRz"/>
-                <constraint firstItem="BrR-FN-v1m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="NOa-u2-S2Z"/>
+                <constraint firstItem="BrR-FN-v1m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="NOa-u2-S2Z"/>
                 <constraint firstItem="I8i-JW-5C1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Rbb-0h-NaF"/>
                 <constraint firstItem="iXR-CY-QMw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Vdl-ZO-R47"/>
                 <constraint firstItem="iXR-CY-QMw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XG7-0v-qQQ"/>

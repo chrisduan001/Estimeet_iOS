@@ -24,7 +24,7 @@ class TableViewHeader {
         label.center.y = withHeight / CGFloat(2)
         label.center = labelCenter
         
-        label.text = withTitle
+        label.attributedText = MeetUpAttributedString.sharedInstance.getCustomFontAttributedString(withTitle, size: 17.0, typeface: MeetUpAttributedString.CustomFontTypeface.regular)
         label.textColor = textColor
         
         view.addSubview(label)

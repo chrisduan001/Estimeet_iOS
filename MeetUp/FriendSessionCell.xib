@@ -8,8 +8,15 @@
     <customFonts key="customFonts">
         <mutableArray key="Omnes-Regular.otf">
             <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
         </mutableArray>
         <mutableArray key="Omnes-Semibold.otf">
+            <string>Omnes-Semibold</string>
             <string>Omnes-Semibold</string>
         </mutableArray>
     </customFonts>
@@ -24,7 +31,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7o2-95-uy7">
-                        <rect key="frame" x="10" y="12.5" width="45" height="45"/>
+                        <rect key="frame" x="10" y="12" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="D13-Kw-bry"/>
                             <constraint firstAttribute="width" constant="45" id="S44-G3-7Iz"/>
@@ -41,10 +48,20 @@
                         <rect key="frame" x="73" y="8" width="180" height="53.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95Z-rF-Ba2">
+                        <rect key="frame" x="73" y="68.5" width="247" height="1"/>
+                        <color key="backgroundColor" red="0.93008207070000004" green="0.93008207070000004" blue="0.93008207070000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="zjQ-JF-OHI"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xmd-Fu-Hi1" firstAttribute="leading" secondItem="kii-Tb-18O" secondAttribute="trailing" constant="24" id="1F7-5L-N93"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="95Z-rF-Ba2" secondAttribute="bottom" constant="-8" id="Fbp-nK-40U"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="leading" secondItem="7o2-95-uy7" secondAttribute="trailing" constant="18" id="NE8-za-RQp"/>
+                    <constraint firstItem="95Z-rF-Ba2" firstAttribute="leading" secondItem="7o2-95-uy7" secondAttribute="trailing" constant="18" id="PUU-Hz-wHF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="95Z-rF-Ba2" secondAttribute="trailing" constant="-8" id="Pop-TQ-aDT"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="top" secondItem="pL3-3k-3i6" secondAttribute="topMargin" id="Q0T-0R-HU0"/>
                     <constraint firstItem="kii-Tb-18O" firstAttribute="bottom" secondItem="pL3-3k-3i6" secondAttribute="bottomMargin" id="XRr-Ua-fCU"/>
                     <constraint firstItem="7o2-95-uy7" firstAttribute="leading" secondItem="pL3-3k-3i6" secondAttribute="leadingMargin" constant="2" id="hsn-rr-Ljt"/>
@@ -79,17 +96,18 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1X-E9-dse">
-                    <rect key="frame" x="0.0" y="0.0" width="187" height="22.5"/>
-                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="17"/>
+                    <rect key="frame" x="10" y="5" width="177" height="17.5"/>
+                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="21"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzg-Ye-fce" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="30" width="70" height="23"/>
+                    <rect key="frame" x="10" y="30" width="70" height="23"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="23" id="sYX-fD-kaK"/>
                         <constraint firstAttribute="width" constant="70" id="v8s-U4-Tdd"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
                     <state key="normal" title="Accept">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -112,7 +130,8 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-4a-y78">
-                    <rect key="frame" x="82" y="30" width="70" height="23"/>
+                    <rect key="frame" x="92" y="30" width="70" height="23"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
                     <state key="normal" title="Ignore">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -129,10 +148,10 @@
                 <constraint firstAttribute="bottom" secondItem="dzg-Ye-fce" secondAttribute="bottom" id="Zdx-yp-QPp"/>
                 <constraint firstAttribute="trailing" secondItem="h1X-E9-dse" secondAttribute="trailing" id="jPy-KX-qhT"/>
                 <constraint firstItem="h1X-E9-dse" firstAttribute="bottom" secondItem="dzg-Ye-fce" secondAttribute="top" constant="-8" id="ltf-f3-fs0"/>
-                <constraint firstItem="dzg-Ye-fce" firstAttribute="leading" secondItem="FEf-j6-PVD" secondAttribute="leading" id="mLT-OP-SoJ"/>
-                <constraint firstItem="h1X-E9-dse" firstAttribute="leading" secondItem="FEf-j6-PVD" secondAttribute="leading" id="vAo-QM-xsX"/>
+                <constraint firstItem="dzg-Ye-fce" firstAttribute="leading" secondItem="FEf-j6-PVD" secondAttribute="leading" constant="10" id="mLT-OP-SoJ"/>
+                <constraint firstItem="h1X-E9-dse" firstAttribute="leading" secondItem="FEf-j6-PVD" secondAttribute="leading" constant="10" id="vAo-QM-xsX"/>
                 <constraint firstItem="r1J-4a-y78" firstAttribute="width" secondItem="dzg-Ye-fce" secondAttribute="width" id="wgU-wy-BVW"/>
-                <constraint firstItem="h1X-E9-dse" firstAttribute="top" secondItem="FEf-j6-PVD" secondAttribute="top" id="xxT-kC-SvM"/>
+                <constraint firstItem="h1X-E9-dse" firstAttribute="top" secondItem="FEf-j6-PVD" secondAttribute="top" constant="5" id="xxT-kC-SvM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="547" y="520"/>
@@ -142,8 +161,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nq9-Zz-Tmq">
-                    <rect key="frame" x="0.0" y="0.0" width="187" height="53.5"/>
-                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                    <rect key="frame" x="10" y="0.0" width="177" height="53.5"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -152,7 +171,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="nq9-Zz-Tmq" secondAttribute="trailing" id="4zy-wd-zZ9"/>
                 <constraint firstAttribute="bottom" secondItem="nq9-Zz-Tmq" secondAttribute="bottom" id="ZJ2-uB-R1b"/>
-                <constraint firstItem="nq9-Zz-Tmq" firstAttribute="leading" secondItem="abM-8l-tyb" secondAttribute="leading" id="cPP-Hj-eO4"/>
+                <constraint firstItem="nq9-Zz-Tmq" firstAttribute="leading" secondItem="abM-8l-tyb" secondAttribute="leading" constant="10" id="cPP-Hj-eO4"/>
                 <constraint firstItem="nq9-Zz-Tmq" firstAttribute="top" secondItem="abM-8l-tyb" secondAttribute="top" id="m8Z-9o-rTc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -163,29 +182,29 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 2.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWC-eH-6iV">
-                    <rect key="frame" x="0.0" y="0.0" width="187" height="15"/>
+                    <rect key="frame" x="10" y="0.0" width="177" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="qua-Cf-zdT"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 5 Minutes (Walk)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYv-hm-kAG">
-                    <rect key="frame" x="0.0" y="19" width="187" height="15"/>
+                    <rect key="frame" x="10" y="19" width="177" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="jd8-Xa-5jc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Auckland" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOE-vk-cEM">
-                    <rect key="frame" x="0.0" y="38" width="187" height="15"/>
+                    <rect key="frame" x="10" y="38" width="177" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ptC-tQ-cTt"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -196,11 +215,11 @@
                 <constraint firstItem="BWC-eH-6iV" firstAttribute="top" secondItem="m6c-sk-3VK" secondAttribute="top" id="LAe-VC-bXe"/>
                 <constraint firstAttribute="trailing" secondItem="JOE-vk-cEM" secondAttribute="trailing" id="MO0-yP-3Ne"/>
                 <constraint firstItem="rYv-hm-kAG" firstAttribute="centerY" secondItem="m6c-sk-3VK" secondAttribute="centerY" id="P0U-1S-XpJ"/>
-                <constraint firstItem="JOE-vk-cEM" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" id="R3g-Lb-OxS"/>
+                <constraint firstItem="JOE-vk-cEM" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" constant="10" id="R3g-Lb-OxS"/>
                 <constraint firstAttribute="trailing" secondItem="rYv-hm-kAG" secondAttribute="trailing" id="WLU-gC-8FJ"/>
-                <constraint firstItem="rYv-hm-kAG" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" id="Z3y-iT-60y"/>
+                <constraint firstItem="rYv-hm-kAG" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" constant="10" id="Z3y-iT-60y"/>
                 <constraint firstAttribute="bottom" secondItem="JOE-vk-cEM" secondAttribute="bottom" id="siH-Tk-Jas"/>
-                <constraint firstItem="BWC-eH-6iV" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" id="vux-5c-XZe"/>
+                <constraint firstItem="BWC-eH-6iV" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" constant="10" id="vux-5c-XZe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="547" y="844.5"/>
@@ -210,17 +229,17 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAd-Ig-Wp8">
-                    <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <rect key="frame" x="10" y="5" width="177" height="24"/>
+                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="21"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimeet request sent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pn-kC-6ML">
-                    <rect key="frame" x="0.0" y="38" width="187" height="15.5"/>
+                    <rect key="frame" x="10" y="33" width="177" height="15.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="6mP-DL-aN1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -228,12 +247,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="1pn-kC-6ML" secondAttribute="trailing" id="Khj-3J-xIH"/>
-                <constraint firstItem="1pn-kC-6ML" firstAttribute="top" secondItem="oAd-Ig-Wp8" secondAttribute="bottom" constant="8" id="S7E-px-Xpb"/>
+                <constraint firstItem="1pn-kC-6ML" firstAttribute="top" secondItem="oAd-Ig-Wp8" secondAttribute="bottom" constant="4" id="S7E-px-Xpb"/>
                 <constraint firstAttribute="trailing" secondItem="oAd-Ig-Wp8" secondAttribute="trailing" id="XaO-Ri-jGp"/>
-                <constraint firstItem="oAd-Ig-Wp8" firstAttribute="top" secondItem="MqJ-x5-bbY" secondAttribute="top" id="prA-zj-6mZ"/>
-                <constraint firstAttribute="bottom" secondItem="1pn-kC-6ML" secondAttribute="bottom" id="qgm-7V-Gzv"/>
-                <constraint firstItem="1pn-kC-6ML" firstAttribute="leading" secondItem="MqJ-x5-bbY" secondAttribute="leading" id="rnP-Bo-bNO"/>
-                <constraint firstItem="oAd-Ig-Wp8" firstAttribute="leading" secondItem="MqJ-x5-bbY" secondAttribute="leading" id="vcb-kK-Tae"/>
+                <constraint firstItem="oAd-Ig-Wp8" firstAttribute="top" secondItem="MqJ-x5-bbY" secondAttribute="top" constant="5" id="prA-zj-6mZ"/>
+                <constraint firstAttribute="bottom" secondItem="1pn-kC-6ML" secondAttribute="bottom" constant="5" id="qgm-7V-Gzv"/>
+                <constraint firstItem="1pn-kC-6ML" firstAttribute="leading" secondItem="MqJ-x5-bbY" secondAttribute="leading" constant="10" id="rnP-Bo-bNO"/>
+                <constraint firstItem="oAd-Ig-Wp8" firstAttribute="leading" secondItem="MqJ-x5-bbY" secondAttribute="leading" constant="10" id="vcb-kK-Tae"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="904" y="664.75"/>

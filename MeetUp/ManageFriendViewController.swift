@@ -18,7 +18,7 @@ FriendListListener, ManageFriendCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString(GlobalString.navigation_main, comment: "navigation button")
-        self.navigationItem.title = NSLocalizedString(GlobalString.page_title_profile, comment: "title")
+        self.navigationItem.title = NSLocalizedString(GlobalString.page_title_all_friend, comment: "title")
         
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(self)
         friendListModel.getFriendFetchedResultsController()

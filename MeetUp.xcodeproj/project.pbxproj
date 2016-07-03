@@ -57,6 +57,7 @@
 		6272DA761D27C5A6004A2116 /* Omnes-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6272DA731D27C5A5004A2116 /* Omnes-Regular.otf */; };
 		6272DA771D27C5A6004A2116 /* Omnes-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6272DA741D27C5A5004A2116 /* Omnes-Medium.otf */; };
 		6272DA781D27C5A6004A2116 /* Omnes-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6272DA751D27C5A5004A2116 /* Omnes-Semibold.otf */; };
+		6272DA7B1D28A1B5004A2116 /* MeetUpAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6272DA7A1D28A1B5004A2116 /* MeetUpAttributedString.swift */; };
 		627780E81CEB25D700FF69E9 /* TempSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E71CEB25D700FF69E9 /* TempSessionModel.swift */; };
 		627780EA1CEC6E1700FF69E9 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E91CEC6E1700FF69E9 /* SessionResponse.swift */; };
 		628E94791CD9E2E0002385FD /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628E94781CD9E2E0002385FD /* PushNotification.swift */; };
@@ -145,6 +146,7 @@
 		6272DA731D27C5A5004A2116 /* Omnes-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Regular.otf"; sourceTree = "<group>"; };
 		6272DA741D27C5A5004A2116 /* Omnes-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Medium.otf"; sourceTree = "<group>"; };
 		6272DA751D27C5A5004A2116 /* Omnes-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Semibold.otf"; sourceTree = "<group>"; };
+		6272DA7A1D28A1B5004A2116 /* MeetUpAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetUpAttributedString.swift; sourceTree = "<group>"; };
 		627780E71CEB25D700FF69E9 /* TempSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempSessionModel.swift; sourceTree = "<group>"; };
 		627780E91CEC6E1700FF69E9 /* SessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		628E94781CD9E2E0002385FD /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				62024B2D1CD611D900AB5C90 /* TimeConverter.swift */,
 				62DE35891CFAA19100CE46F5 /* CircularProgress.swift */,
 				6272DA711D276D91004A2116 /* FabricLogger.swift */,
+				6272DA7A1D28A1B5004A2116 /* MeetUpAttributedString.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				623867381CCB203E001ADA20 /* ListItem.swift in Sources */,
 				62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */,
 				62024B0F1CD47A0C00AB5C90 /* SessionModel.swift in Sources */,
+				6272DA7B1D28A1B5004A2116 /* MeetUpAttributedString.swift in Sources */,
 				62D5BF551CE1E9460085CDBE /* RequestLocationEntity.swift in Sources */,
 				6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */,
 				622785F21C8C1E6B006FDD55 /* UpdateProfile.swift in Sources */,

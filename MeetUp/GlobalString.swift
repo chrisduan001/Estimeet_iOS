@@ -37,6 +37,7 @@ class GlobalString{
     
     static let navigation_main      = "navigation_main"
     static let page_title_profile   = "page_title_profile"
+    static let page_title_all_friend = "page_title_all_friends"
     
     static let table_recommend_friend = "table_recommend_friend"
     
