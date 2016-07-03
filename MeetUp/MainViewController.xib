@@ -198,6 +198,12 @@
                 <action selector="bikeTapped:" destination="-1" id="CpG-mf-XcL"/>
             </connections>
         </tapGestureRecognizer>
+        <view contentMode="scaleToFill" id="4yY-D0-g53" userLabel="NoFriendView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="-471" y="909"/>
+        </view>
     </objects>
     <resources>
         <image name="ic_directions_bike" width="26" height="26"/>

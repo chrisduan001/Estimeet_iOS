@@ -65,3 +65,6 @@
 
 "notification_new_session"      = "You got a new session request";
 "notification_session_create"   = "New session created";
+
+"action_send_estimeet"          = "Send Estimeet";
+"action_refresh"                = "Refresh";

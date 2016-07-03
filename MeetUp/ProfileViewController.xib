@@ -4,6 +4,16 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Omnes-Regular.otf">
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
@@ -23,25 +33,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name (Place holder)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkP-7a-zhR">
-                    <rect key="frame" x="30" y="240" width="540" height="25.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <rect key="frame" x="30" y="240" width="540" height="21"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bob Smith" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="owr-UW-NjX">
-                    <rect key="frame" x="30" y="281" width="540" height="35"/>
+                    <rect key="frame" x="30" y="277" width="540" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="0g0-9B-Bp9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fP-Xr-ive" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
-                    <rect key="frame" x="30" y="356" width="540" height="40"/>
+                    <rect key="frame" x="30" y="352" width="540" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="k5n-Vq-hel"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <state key="normal" title="Get started">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -61,11 +71,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGt-h7-UmM" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
-                    <rect key="frame" x="30" y="475" width="540" height="40"/>
+                    <rect key="frame" x="30" y="471" width="540" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="h5J-Dt-cCr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <state key="normal" title="Import from facebook">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -85,19 +95,19 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gei-n5-Ztq">
-                    <rect key="frame" x="30" y="435" width="540" height="1"/>
+                    <rect key="frame" x="30" y="431" width="540" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="IrN-Ju-hc9"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-zY-r66">
-                    <rect key="frame" x="279" y="425" width="42" height="20.5"/>
+                    <rect key="frame" x="279" y="423" width="42" height="17"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="42" id="ZE0-8U-dCn"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -105,8 +115,8 @@
                     <rect key="frame" x="290" y="290" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pg0-dg-Gxg" userLabel="User Id">
-                    <rect key="frame" x="30" y="324" width="540" height="0.0"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="30" y="320" width="540" height="0.0"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

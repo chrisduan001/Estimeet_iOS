@@ -16,6 +16,8 @@ class BaseViewController: UIViewController, BaseListener {
     //MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: MeetUpAttributedString.sharedInstance.getCustomFont(MeetUpAttributedString.CustomFontTypeface.semiBold, size: 17.0)]
     }
     
     func logOut() {

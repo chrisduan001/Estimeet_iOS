@@ -472,7 +472,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         var sendRequest: UITableViewRowAction
         if friend.session == nil {
-            sendRequest = UITableViewRowAction(style: .Normal, title: "Send Estimeet") { (action, index) in
+            sendRequest = UITableViewRowAction(style: .Normal, title: NSLocalizedString(GlobalString.action_send_estimeet, comment: "Send Estimeet")) { (action, index) in
                 //check background app refresh
                 guard self.checkBAFAvailability() else {
                     return
@@ -487,7 +487,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             
         } else {
             //get distance and eta
-            sendRequest = UITableViewRowAction(style: .Normal, title: "Refresh") { (action, index) in
+            sendRequest = UITableViewRowAction(style: .Normal, title: NSLocalizedString(GlobalString.action_refresh, comment: "Refresh")) { (action, index) in
                 self.mainModel.sendSessionDataRequest(friend)
                 self.tableView.editing = false
             }
