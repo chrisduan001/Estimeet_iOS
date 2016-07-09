@@ -79,6 +79,10 @@ class SessionFactory {
         friend.session!.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
         friend.session!.sessionType = ACTIVE_SESSION
         
+        if !friend.favourite!.boolValue {
+            friend.favourite = NSNumber(bool: true)
+        }
+        
         dataHelper.acceptNewSession(friend)
     }
     

@@ -16,4 +16,12 @@ class FabricLogger {
         let errorMsg = "\(message). Class: \(className). UserId: \(ModelFactory.sharedInstance.provideUserDefaults().getUserUid())"
         Crashlytics.sharedInstance().recordError(NSError(domain: errorMsg, code: code, userInfo: userInfo))
     }
+    
+    func setUserInfo() {
+        let user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults();
+        if let id = user?.userId {
+            Crashlytics.sharedInstance().setIntValue(Int32(id), forKey: "User Id")
+            Crashlytics.sharedInstance().setObjectValue(user?.userName, forKey: "User Name")
+        }
+    }
 }

@@ -34,6 +34,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FabricLogger.sharedInstance.setUserInfo()
+        
         //push notification received observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(onReceiveNotification), name: PushNotification.GENERAL_NOTIFICATION_KEY, object: nil)
         

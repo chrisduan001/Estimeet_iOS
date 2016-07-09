@@ -327,13 +327,13 @@ class DataHelper {
     func getFriendsFetchedResults() -> NSFetchedResultsController {
         let request = NSFetchRequest(entityName: String(Friend))
         let sort = NSSortDescriptor(key: "userName", ascending: true)
-        request.sortDescriptors = [sort]
+        request.sortDescriptors = [sort] 
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "manageFriendCache")
     }
     
     func getSessionFetchedResults() -> NSFetchedResultsController {
         let request = NSFetchRequest(entityName: String(Friend))
-        let predict = NSPredicate(format: "favourite == %@", NSNumber(bool: true))
+        let predict = NSPredicate(format: "favourite == %@ OR session != nil", NSNumber(bool: true))
         let sort = NSSortDescriptor(key: "sectionHeader", ascending: true)
         request.predicate = predict
         request.sortDescriptors = [sort]
