@@ -36,6 +36,23 @@ class LoginModel: BaseModel {
         }
     }
     
+    func onManualSignin() {
+        serviceHelper.manualSignIn { (response) in
+            print("sign in response: \(response.response)")
+            let user = response.result.value
+            if !self.isAnyErrors(response) {
+                self.userDefaults.saveUserDefault(user!)
+                //update baseuser data. password will be changed
+                self.baseUser = self.userDefaults.getUserFromDefaults()
+                if let name = user?.userName where !name.isEmpty {
+                    self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
+                }
+                
+                self.listener.onLoginSuccess(user!)
+            }
+        }
+    }
+    
     func sendContactList(contactList: String) {
         contactModel = Contacts(userId: baseUser!.userId!, userUId: baseUser!.userUId!, contacts: contactList)
         makeNetworkRequest()

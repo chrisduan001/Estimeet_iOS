@@ -42,6 +42,15 @@ class LoginViewController : BaseViewController, LoginListener {
         }
     }
     
+    var viewTapped = 0
+    @IBAction func manualSignIn(sender: UITapGestureRecognizer) {
+        viewTapped += 1
+        
+        if viewTapped == 5 {
+            loginModel.onManualSignin()
+            viewTapped = 0
+        }
+    }
     //MARK: CALL BACK
     func onLoginSuccess(user: User) {
         endActivityIndicator()

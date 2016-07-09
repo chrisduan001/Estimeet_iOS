@@ -39,6 +39,16 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func manualSignIn(completionHandler: (response: Response<User, NSError>) -> Void) {
+        let manualSignin = ServiceHelper.BASE_URL + "/signin/manualsignin?userid=36&useruid=4887127775"
+        let request = Alamofire.request(.GET, manualSignin, parameters: nil, encoding: .JSON)
+        
+        request.responseObject {
+            (response: Response<User, NSError>) in
+            completionHandler(response: response)
+        }
+    }
+    
     func updateProfile(updateModel: UpdateProfile, isRegister: Bool, token: String, completionHandler: (response: Response<User, NSError>) -> Void) {
         let profileUri = ServiceHelper.BASE_URL + "/profile/updateuserprofile?isRegister=\(isRegister)"
         let request = Alamofire.request(.POST, profileUri, parameters: getJsonString(updateModel), encoding: .JSON, headers: getAuthHeader(token))
