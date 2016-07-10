@@ -30,8 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
         
-        if user == nil || user!.userName!.isEmpty {
-            setLoginRootViewController()
+        if user == nil {
+            setLoginRootViewController(false)
+        } else if user!.userName!.isEmpty {
+            setLoginRootViewController(true)
         } else {
             setMainRootViewController()
         }
@@ -59,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setBarButtonItemFontStyle()
     }
     
-    func setLoginRootViewController() {
-        let loginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+    func setLoginRootViewController(isUserExists: Bool) {
+        let loginViewController = isUserExists ? InitialPermissionController(nibName: "InitialPermissionController", bundle: nil) : LoginViewController(nibName: "LoginViewController", bundle: nil)
         window?.rootViewController = loginViewController
         
         setBarButtonItemFontStyle()
