@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -96,6 +96,12 @@
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>App use Locations service mode Always</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Omnes-Regular.otf</string>
+		<string>Omnes-Medium.otf</string>
+		<string>Omnes-Semibold.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -111,14 +117,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Omnes-Regular.otf</string>
-		<string>Omnes-Medium.otf</string>
-		<string>Omnes-Semibold.otf</string>
 	</array>
 </dict>
 </plist>
