@@ -31,7 +31,7 @@ class LoginModel: BaseModel {
                     self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
                 }
                 
-                self.listener.onLoginSuccess(user!)
+                self.listener.setUser(user!)
             }
         }
     }
@@ -48,7 +48,7 @@ class LoginModel: BaseModel {
                     self.userDefaults.updateUserProfile(name, imageUri: user!.dpUri!)
                 }
                 
-                self.listener.onLoginSuccess(user!)
+                self.listener.setUser(user!)
             }
         }
     }
@@ -70,5 +70,5 @@ class LoginModel: BaseModel {
 }
 
 protocol LoginListener: BaseListener {
-    func onLoginSuccess(user: User)
+    func setUser(user: User)
 }

@@ -52,34 +52,17 @@ class LoginViewController : BaseViewController, LoginListener {
         }
     }
     //MARK: CALL BACK
-    func onLoginSuccess(user: User) {
+    func setUser(user: User) {
         endActivityIndicator()
         
-        //dialog shows before ask user for permission
-        showAlert(NSLocalizedString(GlobalString.alert_title_info, comment: "Permission"),
-                  message: NSLocalizedString(GlobalString.prompt_address_book, comment: "permission prompt") ,
-                   buttons: [NSLocalizedString(GlobalString.alert_button_ok, comment: "ok button")],
-              onOkClicked:{ (alert: UIAlertAction!) in
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    self.startActivityIndicator()
-                    self.loginModel.sendContactList(ContactListModel().getContactList())
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.endActivityIndicator()
-                        
-                        if user.userName != nil && !user.userName!.isEmpty {
-                            //go to main page
-                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                            appDelegate.setMainRootViewController()
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                            return
-                        }
-                
-                        Navigator.sharedInstance.navigateToProfilePage(self)
-                    }
-                }
-                
-        },
-              onSecondButtonClicked: nil)
+        if user.userName != nil && !user.userName!.isEmpty {
+            //go to main page
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.setMainRootViewController()
+            self.dismissViewControllerAnimated(true, completion: nil)
+            return
+        }
+        
+        Navigator.sharedInstance.navigateToInitPermissionPage(self)
     }
 }

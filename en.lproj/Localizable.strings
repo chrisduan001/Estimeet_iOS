@@ -17,6 +17,11 @@
 "profile_lbl_or"                = "Or";
 
 "permission_prompt_addressbook" = "We need your permission to access your address book to find your friend";
+"permission_contact_book"       = "Contact Book";
+"permission_contact_top_lbl"    = "We need to access your contact";
+"permission_contact_bottom_lbl" = "book to find your friends";
+"permission_btn"                = "GRANT CONTACT PERMISSION";
+"permission_des_lbl"            = "We also need access to location and notification";
 
 "alert_title_error"             = "Error";
 "alert_title_info"              = "Info";

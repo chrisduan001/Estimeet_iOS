@@ -34,6 +34,11 @@ class GlobalString{
     static let error_setting        = "error_setting"
     
     static let prompt_address_book  = "permission_prompt_addressbook"
+    static let perm_contact_book    = "permission_contact_book"
+    static let perm_contact_top_lbl = "permission_contact_top_lbl"
+    static let perm_contact_btn_lbl = "permission_contact_bottom_lbl"
+    static let perm_btn             = "permission_btn"
+    static let perm_des_lbl         = "permission_des_lbl"
     
     static let navigation_main      = "navigation_main"
     static let page_title_profile   = "page_title_profile"

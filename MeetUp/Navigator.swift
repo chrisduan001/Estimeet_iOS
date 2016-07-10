@@ -16,8 +16,13 @@ class Navigator {
     
     func navigateToLogin(vc: BaseViewController) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.setLoginRootViewController()
+        appDelegate.setLoginRootViewController(false)
         vc.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    func navigateToInitPermissionPage(vc: BaseViewController) {
+        let modalVc = InitialPermissionController(nibName: "InitialPermissionController", bundle: nil)
+        vc.presentViewController(modalVc, animated: true, completion: nil)
     }
     
     func navigateToProfilePage(vc: BaseViewController) {

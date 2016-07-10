@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Omnes-Medium.otf">
+            <string>Omnes-Medium</string>
+            <string>Omnes-Medium</string>
+        </mutableArray>
+        <mutableArray key="Omnes-Regular.otf">
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitialPermissionController" customModule="MeetUp" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="vDi-Ve-1Aq" id="ljs-ar-77p"/>
+                <outlet property="contactBookLbl" destination="cHd-sx-ZmK" id="6pV-D3-1zh"/>
+                <outlet property="contactBottomLbl" destination="cFk-Ry-pgF" id="dqv-29-bHi"/>
+                <outlet property="contactTopLbl" destination="ron-Ss-pjF" id="nh3-dr-Lbl"/>
+                <outlet property="grantPermissionBtn" destination="js1-Ly-3vt" id="OyQ-w3-bNW"/>
+                <outlet property="permissionDesLbl" destination="zUE-yY-1ZT" id="I6N-tE-aOJ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="GlR-nC-MeA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_book" translatesAutoresizingMaskIntoConstraints="NO" id="ZBP-q4-DBh">
+                    <rect key="frame" x="243" y="180" width="113" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="5Ie-8o-pLG"/>
+                        <constraint firstAttribute="width" constant="113" id="7VU-Ti-YPf"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHd-sx-ZmK">
+                    <rect key="frame" x="226" y="330" width="149" height="25"/>
+                    <fontDescription key="fontDescription" name="Omnes-Medium" family="Omnes" pointSize="25"/>
+                    <color key="textColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need to access your contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ron-Ss-pjF">
+                    <rect key="frame" x="185" y="370" width="231" height="17"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book to find your friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFk-Ry-pgF">
+                    <rect key="frame" x="213" y="395" width="174.5" height="17"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="js1-Ly-3vt" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
+                    <rect key="frame" x="169" y="442" width="263" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="4Dv-D8-51F"/>
+                        <constraint firstAttribute="width" constant="263" id="bjg-6Y-eFt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Omnes-Medium" family="Omnes" pointSize="15"/>
+                    <state key="normal" title="GRANT CONTACT PERMISSION">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="roundColor">
+                            <color key="value" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onGrantPermission:" destination="-1" eventType="touchUpInside" id="fEM-gN-j46"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vDi-Ve-1Aq">
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We also need access to location and notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUE-yY-1ZT">
+                    <rect key="frame" x="158" y="480" width="284.5" height="14.5"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ZBP-q4-DBh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7ns-HO-jT0"/>
+                <constraint firstItem="ron-Ss-pjF" firstAttribute="top" secondItem="cHd-sx-ZmK" secondAttribute="bottom" constant="15" id="Elk-f2-aNi"/>
+                <constraint firstItem="zUE-yY-1ZT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Fg7-0d-IwH"/>
+                <constraint firstItem="cFk-Ry-pgF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KV4-Qm-cNf"/>
+                <constraint firstItem="cHd-sx-ZmK" firstAttribute="top" secondItem="ZBP-q4-DBh" secondAttribute="bottom" constant="30" id="NJk-Wq-ib3"/>
+                <constraint firstItem="vDi-Ve-1Aq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="PcS-tL-XE8"/>
+                <constraint firstItem="js1-Ly-3vt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RLH-vf-HpR"/>
+                <constraint firstItem="ZBP-q4-DBh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-60" id="URe-4N-jUi"/>
+                <constraint firstItem="js1-Ly-3vt" firstAttribute="top" secondItem="cFk-Ry-pgF" secondAttribute="bottom" constant="30" id="Xyx-Nh-vhR"/>
+                <constraint firstItem="cFk-Ry-pgF" firstAttribute="top" secondItem="ron-Ss-pjF" secondAttribute="bottom" constant="8" id="faF-bI-ynK"/>
+                <constraint firstItem="vDi-Ve-1Aq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kQG-Nf-MtQ"/>
+                <constraint firstItem="ron-Ss-pjF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lfh-aU-fa6"/>
+                <constraint firstItem="cHd-sx-ZmK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vVz-88-tnE"/>
+                <constraint firstItem="zUE-yY-1ZT" firstAttribute="top" secondItem="js1-Ly-3vt" secondAttribute="bottom" constant="8" id="vxB-Nq-5GT"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="contact_book" width="155" height="178"/>
+    </resources>
+</document>
