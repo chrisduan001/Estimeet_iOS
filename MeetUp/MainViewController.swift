@@ -12,8 +12,8 @@ import Crashlytics
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
     NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener,
-    FriendSessionCellDelegate, LocationServiceListener{
-    
+    FriendSessionCellDelegate, LocationServiceListener {
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
 
@@ -29,6 +29,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var noFriendView: UIView!
     
     private var travelModeToolbarDefaultHeight: CGFloat!
+    
+    var locationManager: CLLocationManager!
     
     //MARK: LIFECYCLE & View
     override func viewDidLoad() {
@@ -60,6 +62,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         //register push notification
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.registerForPushNotifications(UIApplication.sharedApplication())
+        
+        checkLocationPermission()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -74,14 +78,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func removeNoFriendView() {
         noFriendView.removeFromSuperview()
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        //user = ModelFactory.sharedInstance.provideUserDefaults().getUserFromDefaults()
-        //isanyfriends will always be false, unless it was set from profilevc when user login for the first time
-        if isAnyFriends {
-            Navigator.sharedInstance.navigateToFriendList(self)
-        }
     }
     
     deinit {
@@ -160,7 +156,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func onLocationAuthorized() {
         //check if location permission granted when trying to send request 
         //or request user's location
+        
+        //selected frine == nil when mainvc shows up and check if user has correct permission
         if selectedFriend != nil {
+            self.setTravelModeToolbarVisible()
             sessionModel.sendSessionRequest(selectedFriend!)
             selectedFriend = nil
         }
@@ -269,6 +268,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: TRAVEL MODE TOOLBAR 
     private func setTravelModeToolbarVisible() {
+        guard travelModeToolbarHeightContraint.constant == 0 else {
+            return
+        }
         travelModeToolbarHeightContraint.constant = travelModeToolbarDefaultHeight
         resetToolbarSelection()
         mainModel.getTravelMode()
@@ -502,7 +504,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 
                 //start tracking with default time + 1, if user not respond to the request, stop tracking
                 self.continuousLocationService.startContinuousTracking(TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value: SessionFactory.sharedInstance.DEFAULT_EXPIRE_TIME + 1))
-                self.setTravelModeToolbarVisible()
             }
             
         } else {
@@ -620,8 +621,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    var isAnyFriends: Bool = false
-    
+    //MARK: LOCATION PERMISSION
+    private func checkLocationPermission() {
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            locationManager = CLLocationManager()
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+
     var sessionModel: SessionModel!
     var getNotificationModel: GetNotificationModel!
     var mainModel: MainModel!

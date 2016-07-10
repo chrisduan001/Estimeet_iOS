@@ -54,6 +54,9 @@ class LoginModel: BaseModel {
     }
     
     func sendContactList(contactList: String) {
+        guard !contactList.isEmpty else {
+            return
+        }
         contactModel = Contacts(userId: baseUser!.userId!, userUId: baseUser!.userUId!, contacts: contactList)
         makeNetworkRequest()
     }

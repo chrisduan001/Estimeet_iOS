@@ -48,21 +48,21 @@ class FriendListModel: BaseModel {
                 let friendsList = listItem?.items as [FriendEntity]!
                 self.dataHelper.storeFriendList(friendsList)
             }
-            self.listener!.onGetFriendList(listItem?.items)
+            self.listener!.onGetFriendList()
         }
     }
     
     override func onAuthError() {
         super.onAuthError()
-        listener!.onGetFriendList(nil)
+        listener!.onGetFriendList()
     }
     
     override func onError(message: String) {
-        listener!.onGetFriendList(nil)
+        listener!.onGetFriendList()
     }
 }
 
 protocol FriendListListener: BaseListener {
-    func onGetFriendList(friends: [FriendEntity]?)
+    func onGetFriendList()
     func setFriendFetchedResultsController(fetchedResultsController: NSFetchedResultsController)
 }

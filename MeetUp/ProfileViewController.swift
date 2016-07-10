@@ -75,12 +75,10 @@ class ProfileViewController: DpBaseViewController, ProfileListener, FriendListLi
         imgUserDp.kf_setImageWithURL(NSURL(string: dpUri)!, placeholderImage: nil)
     }
     
-    func onGetFriendList(friends: [FriendEntity]?) {
+    func onGetFriendList() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let mainVc = appDelegate.window!.rootViewController as! MainViewController
-        mainVc.isAnyFriends = friends != nil && friends?.count > 0
+        appDelegate.setMainRootViewController()
         endActivityIndicator()
-        self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     }
     
     func setFriendFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {

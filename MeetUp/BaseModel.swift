@@ -26,6 +26,9 @@ class BaseModel: NSObject {
     }
     
     func makeNetworkRequest() {
+        guard baseUser != nil else {
+            return
+        }
         if isTokenExpired((baseUser?.expireTime)!) {
             serviceHelper.requestAuthToken(baseUser!.userId!, password: baseUser!.password!) {
                 response in
@@ -114,9 +117,7 @@ class BaseModel: NSObject {
     }
     
     //MARK SUB CLASS IMPLEMENTATION
-    func startNetworkRequest() {
-        throwUnImplementException()
-    }
+    func startNetworkRequest() {}
     
     func onAuthError()  {
         userDefaults.removeUserDefault()

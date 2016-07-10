@@ -41,7 +41,7 @@ FriendListListener, ManageFriendCellDelegate {
         }
     }
     
-    func onGetFriendList(friends: [FriendEntity]?) {
+    func onGetFriendList() {
         endActivityIndicator()
     }
     
