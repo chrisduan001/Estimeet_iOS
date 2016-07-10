@@ -53,6 +53,7 @@ class FriendListModel: BaseModel {
     }
     
     override func onAuthError() {
+        super.onAuthError()
         listener!.onGetFriendList(nil)
     }
     

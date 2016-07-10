@@ -118,7 +118,9 @@ class BaseModel: NSObject {
         throwUnImplementException()
     }
     
-    func onAuthError()  {}
+    func onAuthError()  {
+        userDefaults.removeUserDefault()
+    }
     
     func onError(message: String) {}
     

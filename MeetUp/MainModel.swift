@@ -126,6 +126,7 @@ class MainModel: BaseModel {
     }
     
     override func onAuthError() {
+        super.onAuthError()
         listener.onAuthFail()
     }
     

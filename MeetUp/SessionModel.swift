@@ -137,6 +137,7 @@ class SessionModel: BaseModel {
     }
     
     override func onAuthError() {
+        super.onAuthError()
         sessionListener.onAuthFail()
     }
     
