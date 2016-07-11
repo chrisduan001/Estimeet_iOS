@@ -193,6 +193,37 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
+    func searchFriendByPhoneNumber(phoneNumber: String, token: String, completionHandler: (response: Response<ListItem<User>, NSError>) -> Void) {
+        let searchByPhoneNumber = "\(ServiceHelper.BASE_URL)/user/findfriendbyphonenumber?phonenumber=\(phoneNumber)"
+        
+        let request = Alamofire.request(.GET, searchByPhoneNumber, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseObject { (response: Response<ListItem<User>, NSError>) in
+            print("request result \(response.response)")
+            completionHandler(response: response)
+        }
+        
+        logDebugInfo(request)
+    }
+    
+    func requestAddFriend(addFriendEntity: AddFriendEntity, token: String, completionHandler: (response: Bool) -> Void) {
+        let addFriendUrl = "\(ServiceHelper.BASE_URL)/user/requestaddfriend"
+        
+        let request = Alamofire.request(.POST, addFriendUrl, parameters: getJsonString(addFriendEntity), encoding: .JSON, headers: getAuthHeader(token))
+        
+        request.responseString { (response: Response<String, NSError>) in
+            print("request result \(response.response)")
+            var result = false
+            if let value = response.result.value {
+                result = value == "true"
+            }
+            
+            completionHandler(response: result)
+        }
+        
+        logDebugInfo(request)
+    }
+    
     private func getAuthHeader(token: String) -> [String: String] {
         return ["Authorization" : "Bearer \(token)"]
     }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageFriendViewController" customModule="MeetUp" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="aYl-ZK-Vcv" id="YAW-0h-4IN"/>
+                <outlet property="searchDisplayController" destination="4m9-FP-BhJ" id="0yA-Rh-afV"/>
                 <outlet property="tableView" destination="oin-fw-AcM" id="gj8-N0-u4k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Oq4-cM-SML"/>
             </connections>
@@ -38,7 +38,15 @@
                 <constraint firstAttribute="trailing" secondItem="oin-fw-AcM" secondAttribute="trailing" id="bPQ-pv-88x"/>
                 <constraint firstItem="aYl-ZK-Vcv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="evK-ii-ulA"/>
             </constraints>
-            <point key="canvasLocation" x="-447" y="184"/>
+            <point key="canvasLocation" x="-1184" y="196"/>
         </view>
+        <searchDisplayController id="4m9-FP-BhJ">
+            <connections>
+                <outlet property="delegate" destination="-1" id="Tlm-LE-kzO"/>
+                <outlet property="searchContentsController" destination="-1" id="pyt-FQ-hjE"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="Kwa-q8-c1y"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="KEq-ab-yk3"/>
+            </connections>
+        </searchDisplayController>
     </objects>
 </document>

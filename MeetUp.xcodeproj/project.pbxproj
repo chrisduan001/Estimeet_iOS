@@ -87,6 +87,9 @@
 		62DE358A1CFAA19100CE46F5 /* CircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DE35891CFAA19100CE46F5 /* CircularProgress.swift */; };
 		62F0AA211D31C1F100A79C9C /* InitialPermissionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F0AA201D31C1F100A79C9C /* InitialPermissionController.xib */; };
 		62F0AA231D31C8EB00A79C9C /* InitialPermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0AA221D31C8EB00A79C9C /* InitialPermissionController.swift */; };
+		62F0AA251D339B1800A79C9C /* AddFriendEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0AA241D339B1800A79C9C /* AddFriendEntity.swift */; };
+		62F0AA271D339EC200A79C9C /* SearchFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0AA261D339EC200A79C9C /* SearchFriendModel.swift */; };
+		62F0AA291D339ED200A79C9C /* AddFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0AA281D339ED200A79C9C /* AddFriendModel.swift */; };
 		62F8879C1CCDBDAE009C1C4F /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */; };
 		62F887A81CCE09B9009C1C4F /* ManageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */; };
 		62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */; };
@@ -180,6 +183,9 @@
 		62DE35891CFAA19100CE46F5 /* CircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgress.swift; sourceTree = "<group>"; };
 		62F0AA201D31C1F100A79C9C /* InitialPermissionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialPermissionController.xib; sourceTree = "<group>"; };
 		62F0AA221D31C8EB00A79C9C /* InitialPermissionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialPermissionController.swift; sourceTree = "<group>"; };
+		62F0AA241D339B1800A79C9C /* AddFriendEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendEntity.swift; sourceTree = "<group>"; };
+		62F0AA261D339EC200A79C9C /* SearchFriendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendModel.swift; sourceTree = "<group>"; };
+		62F0AA281D339ED200A79C9C /* AddFriendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendModel.swift; sourceTree = "<group>"; };
 		62F8879B1CCDBDAE009C1C4F /* ImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
 		62F887A71CCE09B9009C1C4F /* ManageProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileViewController.swift; sourceTree = "<group>"; };
 		62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageProfileViewController.xib; sourceTree = "<group>"; };
@@ -288,6 +294,8 @@
 				623D64431CD9F65C00F344E6 /* PushChannelModel.swift */,
 				623D64471CDB563000F344E6 /* GetNotificationModel.swift */,
 				627780E71CEB25D700FF69E9 /* TempSessionModel.swift */,
+				62F0AA261D339EC200A79C9C /* SearchFriendModel.swift */,
+				62F0AA281D339ED200A79C9C /* AddFriendModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -315,6 +323,7 @@
 				62C3A6261CC39559005D2F83 /* Contacts.swift */,
 				623D64451CDB36A200F344E6 /* NotificationEntity.swift */,
 				62D5BF541CE1E9460085CDBE /* RequestLocationEntity.swift */,
+				62F0AA241D339B1800A79C9C /* AddFriendEntity.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -655,6 +664,7 @@
 				623D64461CDB36A200F344E6 /* NotificationEntity.swift in Sources */,
 				62024B261CD5A3E500AB5C90 /* SessionData.swift in Sources */,
 				62024B2C1CD60A0600AB5C90 /* SessionFactory.swift in Sources */,
+				62F0AA291D339ED200A79C9C /* AddFriendModel.swift in Sources */,
 				62C2CA071C8AE8470029B3DB /* CustomColor.swift in Sources */,
 				622785F01C8C1C99006FDD55 /* ProfileModel.swift in Sources */,
 				6240B1991C86CEA100899CD9 /* User.swift in Sources */,
@@ -676,6 +686,7 @@
 				622785ED1C8C198D006FDD55 /* Navigator.swift in Sources */,
 				62DE358A1CFAA19100CE46F5 /* CircularProgress.swift in Sources */,
 				6238673A1CCB214D001ADA20 /* FriendEntity.swift in Sources */,
+				62F0AA251D339B1800A79C9C /* AddFriendEntity.swift in Sources */,
 				62024B2A1CD5A3E500AB5C90 /* Friend.swift in Sources */,
 				6240B1B81C8827C300899CD9 /* BaseViewController.swift in Sources */,
 				62F0AA231D31C8EB00A79C9C /* InitialPermissionController.swift in Sources */,
@@ -696,6 +707,7 @@
 				6203A8201CCB4F8500401B07 /* DataHelper.swift in Sources */,
 				622785F21C8C1E6B006FDD55 /* UpdateProfile.swift in Sources */,
 				6263AE7B1D055F3A00E7C951 /* ContinuousLocationService.swift in Sources */,
+				62F0AA271D339EC200A79C9C /* SearchFriendModel.swift in Sources */,
 				622785E11C8B8947006FDD55 /* SigninAuth.swift in Sources */,
 				62C3A6251CC384EB005D2F83 /* ErrorFactory.swift in Sources */,
 				62D5BF531CE1E8080085CDBE /* LocationModelResponse.swift in Sources */,
