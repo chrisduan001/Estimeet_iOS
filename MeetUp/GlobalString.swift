@@ -32,6 +32,7 @@ class GlobalString{
     static let error_baf            = "error_baf"
     static let error_permission_title = "error_permission_title"
     static let error_setting        = "error_setting"
+    static let error_add_friend     = "error_add_friend"
     
     static let prompt_address_book  = "permission_prompt_addressbook"
     static let perm_contact_book    = "permission_contact_book"

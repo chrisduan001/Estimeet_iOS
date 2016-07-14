@@ -38,6 +38,7 @@
 "error_baf"                     = "Background app fresh was turned off, you will not be able to update your location, please consider to turn it on";
 "error_permission_title"        = "Permission required";
 "error_setting"                 = "Setting";
+"error_add_friend"              = "An error has occurred, please try again";
 
 "navigation_main"               = "Main";
 "page_title_profile"            = "Profile";

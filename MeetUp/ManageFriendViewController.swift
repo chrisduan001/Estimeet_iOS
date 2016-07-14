@@ -9,12 +9,11 @@
 import UIKit
 import Kingfisher
 
-class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate,
-FriendListListener, ManageFriendCellDelegate {
+class ManageFriendViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FriendListListener, ManageFriendCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     private var fetchedResultsController: NSFetchedResultsController!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString(GlobalString.navigation_main, comment: "navigation button")
@@ -22,6 +21,8 @@ FriendListListener, ManageFriendCellDelegate {
         
         friendListModel = ModelFactory.sharedInstance.provideFriendListModel(self)
         friendListModel.getFriendFetchedResultsController()
+
+        setupSearchController()
     }
     
     //MARK: CALLBACK
@@ -173,4 +174,13 @@ FriendListListener, ManageFriendCellDelegate {
     //MARK: VARIABLE
     var friendList = [FriendEntity]()
     var friendListModel: FriendListModel!
+    lazy var searchFriendMode: SearchFriendModel = {
+        [unowned self] in
+        return ModelFactory.sharedInstance.provideSearchFriendModel(self)
+    }()
+    
+    lazy var addFriendModel: AddFriendModel = {
+        [unowned self] in
+        return ModelFactory.sharedInstance.provideAddFriendModel(self)
+    }()
 }

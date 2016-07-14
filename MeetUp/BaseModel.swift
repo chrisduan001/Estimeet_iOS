@@ -117,7 +117,9 @@ class BaseModel: NSObject {
     }
     
     //MARK SUB CLASS IMPLEMENTATION
-    func startNetworkRequest() {}
+    func startNetworkRequest() {
+        FabricLogger.sharedInstance.logError("Method need to be override by subclass", className: String(BaseModel), code: 0, userInfo: nil)
+    }
     
     func onAuthError()  {
         userDefaults.removeUserDefault()

@@ -10,11 +10,13 @@ import Foundation
 
 class SearchFriendModel: BaseModel {
     unowned let listener: SearchFriendListener
+    private let dataHelper: DataHelper
     
     private var phoneNumber: String!
     
-    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, listener: SearchFriendListener) {
+    init(serviceHelper: ServiceHelper, userDefaults: MeetUpUserDefaults, dataHelper: DataHelper, listener: SearchFriendListener) {
         self.listener = listener
+        self.dataHelper = dataHelper
         super.init(serviceHelper: serviceHelper, userDefaults: userDefaults)
     }
     
@@ -29,18 +31,33 @@ class SearchFriendModel: BaseModel {
         serviceHelper.searchFriendByPhoneNumber(phoneNumber!, token: baseUser!.token!) {
             response in
             print("Search friend result \(response.response)")
+            guard !self.isAnyErrors(response) else {
+                return
+            }
+            
             if let listItem = response.result.value,
-                let data = listItem.items,
-                let friendList = data as [User]? {
+                let data = listItem.items {
+                
+                let friendList: [UserFromSearch] = data.map { obj in
+                    obj.isFriend = self.dataHelper.getFriend(obj.userId!) != nil
+                    return obj
+                }
                 self.listener.onSearchResult(friendList)
+            } else {
+                self.listener.onSearchResult([])
             }
         }
     }
     
-    override func onAuthError() {}
+    override func onAuthError() {
+        listener.onSearchFailed()
+    }
     
-    override func onError(message: String) {}
+    override func onError(message: String) {
+        listener.onSearchFailed()
+    }
 }
 protocol SearchFriendListener: BaseListener {
-    func onSearchResult(users: [User])
+    func onSearchResult(users: [UserFromSearch])
+    func onSearchFailed()
 }

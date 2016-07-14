@@ -193,12 +193,12 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
-    func searchFriendByPhoneNumber(phoneNumber: String, token: String, completionHandler: (response: Response<ListItem<User>, NSError>) -> Void) {
+    func searchFriendByPhoneNumber(phoneNumber: String, token: String, completionHandler: (response: Response<ListItem<UserFromSearch>, NSError>) -> Void) {
         let searchByPhoneNumber = "\(ServiceHelper.BASE_URL)/user/findfriendbyphonenumber?phonenumber=\(phoneNumber)"
         
         let request = Alamofire.request(.GET, searchByPhoneNumber, parameters: nil, encoding: .JSON, headers: getAuthHeader(token))
         
-        request.responseObject { (response: Response<ListItem<User>, NSError>) in
+        request.responseObject { (response: Response<ListItem<UserFromSearch>, NSError>) in
             print("request result \(response.response)")
             completionHandler(response: response)
         }

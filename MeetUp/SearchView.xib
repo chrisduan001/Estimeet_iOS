@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchView" customModule="MeetUp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x0u-04-d0G">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="Mxh-Q1-YDb"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="l7p-U4-7bW"/>
+                    </connections>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-yy-cv0">
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="x0u-04-d0G" secondAttribute="trailing" id="12E-LU-gBg"/>
+                <constraint firstItem="x0u-04-d0G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5jw-TV-THf"/>
+                <constraint firstItem="x0u-04-d0G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ey6-yM-Ynj"/>
+                <constraint firstItem="Q4P-yy-cv0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="P4l-wE-UnL"/>
+                <constraint firstItem="Q4P-yy-cv0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VJK-p5-kqu"/>
+                <constraint firstAttribute="bottom" secondItem="x0u-04-d0G" secondAttribute="bottom" id="isH-Kk-ZgC"/>
+            </constraints>
+            <connections>
+                <outlet property="activityIndicator" destination="Q4P-yy-cv0" id="z65-iw-Y1s"/>
+                <outlet property="tableView" destination="x0u-04-d0G" id="3Zg-MN-c3f"/>
+            </connections>
+        </view>
+    </objects>
+</document>

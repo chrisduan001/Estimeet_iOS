@@ -55,6 +55,14 @@ class ModelFactory {
         return GetNotificationModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
     }
     
+    func provideSearchFriendModel(listener: SearchFriendListener) -> SearchFriendModel {
+        return SearchFriendModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
+    }
+    
+    func provideAddFriendModel(listener: AddFriendListener) -> AddFriendModel {
+        return AddFriendModel(serviceHelper: serviceHelper, userDefaults: userDefaults, dataHelper: dataHelper, listener: listener)
+    }
+    
     func provideLocationServicemodel<T : LocationServiceModel>(listener: LocationServiceListener?) -> T {
         return T(serviceHelper: serviceHelper, userDefaults: userDefaults, listener: listener)
     }

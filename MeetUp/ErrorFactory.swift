@@ -16,6 +16,7 @@ class ErrorFactory {
     static let ERROR_SESSION_EXPIRED = 701
     
     static let GENERIC_ERROR_MESSAGE = 1000
+    static let ERROR_ADD_FRIEND = 1001
     static let ERROR_NETWORK = 2013
     
     static func generateErrorWithCode(errorCode: Int) -> String {
@@ -39,6 +40,9 @@ class ErrorFactory {
             break
         case ERROR_NETWORK:
             errorMessage = NSLocalizedString(GlobalString.error_network, comment: "network error")
+            break
+        case ERROR_ADD_FRIEND:
+            errorMessage = NSLocalizedString(GlobalString.error_add_friend, comment: "add friend error")
             break
         default:
             errorMessage = generateGenericErrorMessage()
