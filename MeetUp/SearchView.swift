@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchView: UIView, UITableViewDataSource, UITableViewDelegate {
+class SearchView: UIView, UITableViewDataSource, UITableViewDelegate, ManageFriendCellDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -16,8 +16,15 @@ class SearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     private var searchResult: [UserFromSearch]!
     private var requestedId: Int!
     
+    private var searchViewDelegate: SearchViewDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    //MARK: CALLED BY SUPER VIEW
+    func setDelegate(delegate: SearchViewDelegate?) {
+        searchViewDelegate = delegate
     }
     
     func setTableData(result: [UserFromSearch]) {
@@ -40,8 +47,17 @@ class SearchView: UIView, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func startActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
     private func hideActivityIndicator() {
         activityIndicator.stopAnimating()
+    }
+    
+    //MARK: TABLEVIEW
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return ManageFriendTableViewCell.CELL_HEIGHT + 20
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,7 +85,20 @@ class SearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     private func setUpCell(cell: ManageFriendTableViewCell, indexPath: NSIndexPath) {
+        cell.indexPath = indexPath
+        cell.setDelegate(self)
         
+        let user = searchResult[indexPath.row]
+        cell.friendName.text = user.userName
+        cell.friendAction.image = UIImage(named: "add_friend")
+        cell.friendAction.hidden = user.isFriend!
+        
+        ImageFactory.sharedInstance.loadImageFromUrl(cell.friendDp, fromUrl: NSURL(string: user.dpUri!)!, placeHolder: nil, completionHandler: nil)
+    }
+    
+    func onAddFriendClicked(indexPath: NSIndexPath) {
+        startActivityIndicator()
+        searchViewDelegate!.addFriend(searchResult[indexPath.row])
     }
 }
 

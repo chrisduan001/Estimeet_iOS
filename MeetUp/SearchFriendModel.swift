@@ -38,10 +38,11 @@ class SearchFriendModel: BaseModel {
             if let listItem = response.result.value,
                 let data = listItem.items {
                 
-                let friendList: [UserFromSearch] = data.map { obj in
-                    obj.isFriend = self.dataHelper.getFriend(obj.userId!) != nil
-                    return obj
-                }
+                let friendList: [UserFromSearch] = data.map {
+                    $0.isFriend = self.dataHelper.getFriend($0.userId!) != nil
+                    return $0
+                    }.filter { $0.userId! != self.baseUser!.userId! }
+
                 self.listener.onSearchResult(friendList)
             } else {
                 self.listener.onSearchResult([])

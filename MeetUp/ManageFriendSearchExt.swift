@@ -26,6 +26,7 @@ extension ManageFriendViewController: UISearchResultsUpdating, UISearchBarDelega
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if let phoneNumber = searchController.searchBar.text where phoneNumber.characters.count > 6 {
             //search
+            searchView.startActivityIndicator()
             searchFriendMode.searchFriendByPhoneNumber(phoneNumber)
         }
     }
@@ -44,6 +45,7 @@ extension ManageFriendViewController: UISearchResultsUpdating, UISearchBarDelega
     
     private func removeSearchView() {
         searchView.removeFromSuperview()
+        searchView.setDelegate(nil)
     }
     
     private func addSearchTableView() {
@@ -57,6 +59,8 @@ extension ManageFriendViewController: UISearchResultsUpdating, UISearchBarDelega
         UIView.animateWithDuration(0.5, animations: {
             searchView.alpha = 1.0
             }, completion: nil);
+        
+        searchView.setDelegate(self)
     }
     
     //MARK: VIEW CALLBACK
