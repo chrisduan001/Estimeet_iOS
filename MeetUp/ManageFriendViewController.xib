@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageFriendViewController" customModule="MeetUp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageFriendViewController" customModule="Estimeet" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="aYl-ZK-Vcv" id="YAW-0h-4IN"/>
                 <outlet property="searchDisplayController" destination="4m9-FP-BhJ" id="0yA-Rh-afV"/>

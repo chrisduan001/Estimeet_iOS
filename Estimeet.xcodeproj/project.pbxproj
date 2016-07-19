@@ -162,7 +162,7 @@
 		629205E61D0D6EA7007FBBB9 /* MeetUp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeetUp 2.xcdatamodel"; sourceTree = "<group>"; };
 		629FB5741D222A590099ADED /* DpBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DpBaseViewController.swift; sourceTree = "<group>"; };
 		62A3529F1C7EE63E00701ECA /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		62AB5F781C73057F008513DF /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62AB5F781C73057F008513DF /* Estimeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Estimeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62AB5F7B1C73057F008513DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62AB5F7D1C73057F008513DF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		62AB5F8A1C73057F008513DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeetUp/Info.plist; sourceTree = "<group>"; };
@@ -399,7 +399,7 @@
 		62AB5F791C73057F008513DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				62AB5F781C73057F008513DF /* MeetUp.app */,
+				62AB5F781C73057F008513DF /* Estimeet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -499,9 +499,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		62AB5F771C73057F008513DF /* MeetUp */ = {
+		62AB5F771C73057F008513DF /* Estimeet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 62AB5F8D1C73057F008513DF /* Build configuration list for PBXNativeTarget "MeetUp" */;
+			buildConfigurationList = 62AB5F8D1C73057F008513DF /* Build configuration list for PBXNativeTarget "Estimeet" */;
 			buildPhases = (
 				EC652BE271AE20FA7095A323 /* Check Pods Manifest.lock */,
 				62AB5F741C73057F008513DF /* Sources */,
@@ -515,9 +515,9 @@
 			);
 			dependencies = (
 			);
-			name = MeetUp;
+			name = Estimeet;
 			productName = MeetUp;
-			productReference = 62AB5F781C73057F008513DF /* MeetUp.app */;
+			productReference = 62AB5F781C73057F008513DF /* Estimeet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -544,7 +544,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 62AB5F731C73057F008513DF /* Build configuration list for PBXProject "MeetUp" */;
+			buildConfigurationList = 62AB5F731C73057F008513DF /* Build configuration list for PBXProject "Estimeet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -557,7 +557,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				62AB5F771C73057F008513DF /* MeetUp */,
+				62AB5F771C73057F008513DF /* Estimeet */,
 			);
 		};
 /* End PBXProject section */
@@ -856,7 +856,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.nz.estimeet.estimeet;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Estimeet;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -879,7 +879,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.nz.estimeet.estimeet;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Estimeet;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -887,7 +887,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		62AB5F731C73057F008513DF /* Build configuration list for PBXProject "MeetUp" */ = {
+		62AB5F731C73057F008513DF /* Build configuration list for PBXProject "Estimeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				62AB5F8B1C73057F008513DF /* Debug */,
@@ -896,7 +896,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		62AB5F8D1C73057F008513DF /* Build configuration list for PBXNativeTarget "MeetUp" */ = {
+		62AB5F8D1C73057F008513DF /* Build configuration list for PBXNativeTarget "Estimeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				62AB5F8E1C73057F008513DF /* Debug */,

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,36 +28,36 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_book" translatesAutoresizingMaskIntoConstraints="NO" id="ZBP-q4-DBh">
-                    <rect key="frame" x="243" y="180" width="113" height="120"/>
+                    <rect key="frame" x="103.5" y="120" width="113" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="5Ie-8o-pLG"/>
                         <constraint firstAttribute="width" constant="113" id="7VU-Ti-YPf"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHd-sx-ZmK">
-                    <rect key="frame" x="226" y="330" width="149" height="25"/>
+                    <rect key="frame" x="85" y="270" width="149" height="25"/>
                     <fontDescription key="fontDescription" name="Omnes-Medium" family="Omnes" pointSize="25"/>
                     <color key="textColor" red="0.46666666670000001" green="0.64705882349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need to access your contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ron-Ss-pjF">
-                    <rect key="frame" x="185" y="370" width="231" height="17"/>
+                    <rect key="frame" x="44" y="310" width="231" height="17"/>
                     <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book to find your friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFk-Ry-pgF">
-                    <rect key="frame" x="213" y="395" width="174.5" height="17"/>
+                    <rect key="frame" x="72" y="335" width="174.5" height="17"/>
                     <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="js1-Ly-3vt" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
-                    <rect key="frame" x="169" y="442" width="263" height="30"/>
+                    <rect key="frame" x="28" y="382" width="263" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="4Dv-D8-51F"/>
                         <constraint firstAttribute="width" constant="263" id="bjg-6Y-eFt"/>
@@ -77,10 +76,10 @@
                     </connections>
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vDi-Ve-1Aq">
-                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                    <rect key="frame" x="150" y="230" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We also need access to location and notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUE-yY-1ZT">
-                    <rect key="frame" x="158" y="480" width="284.5" height="14.5"/>
+                    <rect key="frame" x="17" y="420" width="284.5" height="14.5"/>
                     <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -103,6 +102,8 @@
                 <constraint firstItem="cHd-sx-ZmK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vVz-88-tnE"/>
                 <constraint firstItem="zUE-yY-1ZT" firstAttribute="top" secondItem="js1-Ly-3vt" secondAttribute="bottom" constant="8" id="vxB-Nq-5GT"/>
             </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="533" y="310"/>
         </view>
     </objects>
     <resources>
