@@ -53,6 +53,7 @@ class SessionModel: BaseModel {
     func acceptNewSession(friendObj: Friend) {
         resetRequestType()
         request_type_create_session = true
+        //temp session was used when the request is failed, will need it to reset the session to previous state
         storeTempSession(friendObj)
         SessionFactory.sharedInstance.acceptNewSession(dataHelper, friend: friendObj)
         
@@ -85,8 +86,10 @@ class SessionModel: BaseModel {
         if request_type_cancel_session! {
             processCancelSessionRequest()
         } else if request_type_send_request! {
+            //request a new session
             processSendSessionRequest()
         } else if request_type_create_session! {
+            //accept session request
             processCreateSessionRequest()
         }
     }
@@ -121,8 +124,8 @@ class SessionModel: BaseModel {
                                     notificationEntity: notificationModel,
                                     token: baseUser!.token!,
                                     completionHandler: { (response) in
+                                        self.createSessionResponse = response.result.value
                                         guard !self.isAnyErrors(response) else {
-                                            self.createSessionResponse = response.result.value
                                             return
                                         }
                                         
@@ -142,6 +145,7 @@ class SessionModel: BaseModel {
     }
     
     //check if the error is session expired error, need to delete session if the session has expired
+    //otherwise restore the session to previous state use tempsessionmodel
     private var createSessionResponse: BaseResponse?
     override func onError(message: String) {
         if request_type_create_session! {

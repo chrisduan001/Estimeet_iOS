@@ -16,9 +16,14 @@ class SessionFactory {
         session.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
     }
     
-    private func setUpSessionTime(expireTime: NSNumber, session: SessionColumn) {
+    private func setUpSessionTimeWithExpireTime(expireTime: NSNumber, session: SessionColumn) {
         session.expireInMillis = expireTime
         session.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
+    }
+    
+    private func setUpSessionTimeWithRequestTime(requestTime: Int, session: SessionColumn) {
+        let timeInMinutes = getRequestTimeInMinutes(requestTime)
+        session.expireInMillis = TimeConverter.sharedInstance.convertToMilliseconds(TimeType.MINUTES, value:timeInMinutes)
     }
     
     func createRequestedSession(session: SessionColumn, friendId: NSNumber) {
@@ -42,7 +47,7 @@ class SessionFactory {
         session.friendId = friendId
         session.sessionType = ACTIVE_SESSION
         session.sessionRequestedTime = length
-        setUpSessionTime(expireInMillis, session: session)
+        setUpSessionTimeWithExpireTime(expireInMillis, session: session)
         
         return session
     }
@@ -78,6 +83,7 @@ class SessionFactory {
     func acceptNewSession(dataHelper: DataHelper, friend: Friend) {
         friend.session!.dateCreated = NSDate.timeIntervalSinceReferenceDate() * 1000
         friend.session!.sessionType = ACTIVE_SESSION
+        setUpSessionTimeWithRequestTime(friend.session!.sessionRequestedTime!.integerValue, session: friend.session!)
         
         if !friend.favourite!.boolValue {
             friend.favourite = NSNumber(bool: true)
@@ -136,5 +142,5 @@ class SessionFactory {
     let RECEIVED_SESSION = 102
     let ACTIVE_SESSION = 103
     //time to expire after session request
-    let DEFAULT_EXPIRE_TIME = 5.0
+    let DEFAULT_EXPIRE_TIME = 5
 }
