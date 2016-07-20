@@ -11,6 +11,9 @@ import UIKit
 class LoginViewController : BaseViewController, LoginListener {
     
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var iosTesterView: UIView!
+    @IBOutlet weak var testerName: UITextField!
+    @IBOutlet weak var testerPassword: UITextField!
     
     private var loginModel: LoginModel!
     
@@ -18,6 +21,7 @@ class LoginViewController : BaseViewController, LoginListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        iosTesterView.hidden = true
         self.initialize()
     }
     
@@ -46,11 +50,18 @@ class LoginViewController : BaseViewController, LoginListener {
     @IBAction func manualSignIn(sender: UITapGestureRecognizer) {
         viewTapped += 1
         
-        if viewTapped == 5 {
-            loginModel.onManualSignin()
+        if viewTapped >= 10 {
+            iosTesterView.hidden = false
             viewTapped = 0
         }
     }
+    
+    @IBAction func onTesterSignIn(sender: UIButton) {
+        if let name = testerName.text, password = testerPassword.text {
+            loginModel.onManualSignin(name, password: password)
+        }
+    }
+    
     //MARK: CALL BACK
     func setUser(user: User) {
         endActivityIndicator()

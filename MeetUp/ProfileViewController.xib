@@ -14,7 +14,7 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="MeetUp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Estimeet" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="b24-Px-1nN" id="O1W-T2-v2K"/>
                 <outlet property="btnGetStart" destination="8fP-Xr-ive" id="MwC-P3-Ev4"/>
@@ -45,7 +45,7 @@
                     <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="21"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fP-Xr-ive" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fP-Xr-ive" customClass="RoundButton" customModule="Estimeet" customModuleProvider="target">
                     <rect key="frame" x="30" y="352" width="540" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="k5n-Vq-hel"/>
@@ -69,7 +69,7 @@
                         <action selector="onGetStart:" destination="-1" eventType="touchUpInside" id="QjB-IB-D3a"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGt-h7-UmM" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGt-h7-UmM" customClass="RoundButton" customModule="Estimeet" customModuleProvider="target">
                     <rect key="frame" x="30" y="471" width="540" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="h5J-Dt-cCr"/>

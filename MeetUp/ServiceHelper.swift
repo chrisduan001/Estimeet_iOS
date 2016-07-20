@@ -39,8 +39,8 @@ class ServiceHelper {
         logDebugInfo(request)
     }
     
-    func manualSignIn(completionHandler: (response: Response<User, NSError>) -> Void) {
-        let manualSignin = ServiceHelper.BASE_URL + "/signin/manualsignin?userid=36&useruid=4887127775"
+    func manualSignIn(name: String, password: String, completionHandler: (response: Response<User, NSError>) -> Void) {
+        let manualSignin = ServiceHelper.BASE_URL + "/signin/manualsignin?username=\(name)&password=\(password)"
         let request = Alamofire.request(.GET, manualSignin, parameters: nil, encoding: .JSON)
         
         request.responseObject {

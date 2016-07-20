@@ -36,8 +36,8 @@ class LoginModel: BaseModel {
         }
     }
     
-    func onManualSignin() {
-        serviceHelper.manualSignIn { (response) in
+    func onManualSignin(userName: String, password: String) {
+        serviceHelper.manualSignIn(userName, password: password) { (response) in
             print("sign in response: \(response.response)")
             let user = response.result.value
             if !self.isAnyErrors(response) {
