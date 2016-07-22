@@ -12,7 +12,7 @@ class ErrorFactory {
     private static let ERROR_CODE_DATA_INCONSISTENCY = 100
     private static let ERROR_CODE_DATA_INSERT = 600
     
-    static let ERROR_CODE_USER_GEO_UNAVAILABLE = 710
+    static let ERROR_CODE_SESSION_GENERIC = 700
     static let ERROR_SESSION_EXPIRED = 701
     
     static let GENERIC_ERROR_MESSAGE = 1000
@@ -29,8 +29,8 @@ class ErrorFactory {
         case ERROR_CODE_DATA_INSERT:
             errorMessage = NSLocalizedString(GlobalString.error_insert_data, comment: "insert data error")
             break
-        case ERROR_CODE_USER_GEO_UNAVAILABLE:
-            errorMessage = NSLocalizedString(GlobalString.user_geo_unavailable, comment: "unable to get location error")
+        case ERROR_CODE_SESSION_GENERIC:
+            errorMessage = NSLocalizedString(GlobalString.user_session_generic, comment: "unable to get location error")
             break
         case ERROR_SESSION_EXPIRED:
             errorMessage = NSLocalizedString(GlobalString.error_session_exp, comment: "session expired error")

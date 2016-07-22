@@ -65,7 +65,7 @@
 "travel_info_eta"               = "ETA: ";
 "expired_string"                = "(Expired)";
 
-"user_geo_unavailable"          = "Unable to get your location, request failed";
+"session_error_generic"         = "An error occurred while getting the distance, please try again";
 "user_location_unavilable"      = "Your location is not available, please grant location permissions";
 "friend_location_expire"        = "Your friend didn't upload their location yet, please try again later";
 

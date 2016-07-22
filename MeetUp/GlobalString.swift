@@ -66,7 +66,7 @@ class GlobalString{
     static let travel_info_eta      = "travel_info_eta"
     static let expired_string       = "expired_string"
     
-    static let user_geo_unavailable = "user_geo_unavailable"
+    static let user_session_generic = "session_error_generic"
     static let user_location_failed = "user_location_unavilable"
     static let friend_location_expire = "friend_location_expire"
     
