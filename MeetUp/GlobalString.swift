@@ -34,6 +34,8 @@ class GlobalString{
     static let error_setting        = "error_setting"
     static let error_add_friend     = "error_add_friend"
     
+    static let user_geo_unavailable = "user_geo_unavailable"
+    
     static let prompt_address_book  = "permission_prompt_addressbook"
     static let perm_contact_book    = "permission_contact_book"
     static let perm_contact_top_lbl = "permission_contact_top_lbl"
