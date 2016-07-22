@@ -32,8 +32,9 @@ class AddFriendModel: BaseModel {
             if !response {
                 self.onError(ErrorFactory.generateErrorWithCode(ErrorFactory.ERROR_ADD_FRIEND))
             } else {
-                let friendEntity = FriendEntity(userId: self.friend.userId!, userUId: self.friend.userUId!, userName: self.friend.userName!, dpUri: self.friend.dpUri!, image: self.friend.image!, isFavourite: true)
+                let friendEntity = FriendEntity(userId: self.friend.userId!, userUId: self.friend.userUId!, userName: self.friend.userName!, dpUri: self.friend.dpUri!, image: self.friend.image, isFavourite: true)
                 self.dataHelper.saveFriend(friendEntity)
+                self.listener.onAddFriendSuccessful()
             }
         }
     }

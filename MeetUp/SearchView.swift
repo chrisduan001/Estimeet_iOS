@@ -98,7 +98,10 @@ class SearchView: UIView, UITableViewDataSource, UITableViewDelegate, ManageFrie
     
     func onAddFriendClicked(indexPath: NSIndexPath) {
         startActivityIndicator()
-        searchViewDelegate!.addFriend(searchResult[indexPath.row])
+        let user = searchResult[indexPath.row]
+        user.isFriend = true
+        tableView.reloadData()
+        searchViewDelegate!.addFriend(user)
     }
 }
 
