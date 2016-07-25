@@ -277,7 +277,7 @@ class DataHelper {
     }
     
     //MARK: SESSION DATA
-    func storeSessionData(distance: Int, eta: Int, travelMode: Int, session: SessionColumn?) {
+    func storeSessionData(distance: Int, eta: Int, travelMode: Int, location: String, session: SessionColumn?) {
         guard session != nil else {
             return
         }
@@ -289,6 +289,7 @@ class DataHelper {
         session!.friend!.dateUpdated = NSDate.timeIntervalSinceReferenceDate() * 1000
         session!.sessionData!.distance = distance
         session!.sessionData!.eta = eta
+        session!.sessionData!.location = location
         session!.sessionData!.travelMode = travelMode
         //once session data updated, reset waiting update value
         session!.sessionData!.timeOnWaitingUpdate = nil

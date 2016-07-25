@@ -462,7 +462,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.session_distance.text = "\(NSLocalizedString(GlobalString.travel_info_distance, comment: "distance")) \(TravelInfoFactory.sharedInstance.getDistanceString(sessionData.distance!.doubleValue))" + expireString
         
         cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
-        cell.session_location.text = "Location: Unknown"
+        cell.session_location.text = "\(NSLocalizedString(GlobalString.travel_info_location, comment: "location")) \(sessionData.location!)" + expireString
     }
     
     private func isWaitingForFriendLocationExpired(sessionData: SessionData) -> Bool {

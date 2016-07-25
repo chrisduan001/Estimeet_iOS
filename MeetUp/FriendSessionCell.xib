@@ -177,7 +177,7 @@
             <point key="canvasLocation" x="547" y="669"/>
         </view>
         <view contentMode="scaleToFill" id="m6c-sk-3VK">
-            <rect key="frame" x="0.0" y="0.0" width="187" height="53.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="187" height="54"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 2.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWC-eH-6iV">
@@ -199,7 +199,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Auckland" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOE-vk-cEM">
-                    <rect key="frame" x="10" y="38" width="177" height="15"/>
+                    <rect key="frame" x="10" y="39" width="177" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ptC-tQ-cTt"/>
                     </constraints>
@@ -221,7 +221,7 @@
                 <constraint firstItem="BWC-eH-6iV" firstAttribute="leading" secondItem="m6c-sk-3VK" secondAttribute="leading" constant="10" id="vux-5c-XZe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="547" y="844.5"/>
+            <point key="canvasLocation" x="198.5" y="855"/>
         </view>
         <view contentMode="scaleToFill" id="MqJ-x5-bbY">
             <rect key="frame" x="0.0" y="0.0" width="187" height="53.5"/>

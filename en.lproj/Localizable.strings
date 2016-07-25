@@ -63,6 +63,7 @@
 "distance_unit_km"              = "KM";
 "travel_info_distance"          = "Distance: ";
 "travel_info_eta"               = "ETA: ";
+"travel_info_location"          = "Location: ";
 "expired_string"                = "(Expired)";
 
 "session_error_generic"         = "An error occurred while getting the distance, please try again";

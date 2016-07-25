@@ -119,6 +119,7 @@ class MainModel: BaseModel {
                 self.dataHelper.storeSessionData(locationModel.distance,
                                                  eta: locationModel.eta,
                                                  travelMode: locationModel.travelMode,
+                                                 location: locationModel.location,
                                                  session: self.friendObj!.session)
             }
             self.onRequestLocationDataCompleted()

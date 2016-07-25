@@ -66,6 +66,7 @@ class GlobalString{
     static let distance_unit_km     = "KM"
     static let travel_info_distance = "travel_info_distance"
     static let travel_info_eta      = "travel_info_eta"
+    static let travel_info_location = "travel_info_location"
     static let expired_string       = "expired_string"
     
     static let user_session_generic = "session_error_generic"
