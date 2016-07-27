@@ -151,6 +151,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="b24-Px-1nN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3P6-eV-flz"/>
                 <constraint firstItem="Gei-n5-Ztq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="3qB-Xv-U8F"/>
@@ -185,11 +186,19 @@
                 <constraint firstItem="TkP-7a-zhR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="vbC-60-WpW"/>
                 <constraint firstItem="TkP-7a-zhR" firstAttribute="top" secondItem="cvP-uu-Ucu" secondAttribute="bottom" constant="50" id="xZC-BY-Gas"/>
             </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="OR4-tB-use" appends="YES" id="j2H-r8-Tkh"/>
+            </connections>
             <point key="canvasLocation" x="168" y="392"/>
         </view>
         <tapGestureRecognizer id="v9d-dU-xGa">
             <connections>
                 <action selector="userDpTapped:" destination="-1" id="vsn-A6-Rhi"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="OR4-tB-use" userLabel="Main view Gesture">
+            <connections>
+                <action selector="onDismissKeyboard:" destination="-1" id="93k-1Z-3at"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

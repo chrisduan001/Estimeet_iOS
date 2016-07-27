@@ -59,6 +59,9 @@ class ProfileViewController: DpBaseViewController, ProfileListener, FriendListLi
         FacebookModel().onStartFacebookLogin(self, listener: self)
     }
     
+    @IBAction func onDismissKeyboard(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
     //MARK: CALL BACK
     func onProfileUpdated() {
         ModelFactory.sharedInstance.provideFriendListModel(self).getFriendList()
