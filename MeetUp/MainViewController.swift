@@ -514,8 +514,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
-        UIButton.appearance().setAttributedTitle(MeetUpAttributedString.sharedInstance.getCustomFontAttributedString(sendRequest.title!, size: 17.0, typeface: MeetUpAttributedString.CustomFontTypeface.semiBold), forState: .Normal)
-        
         sendRequest.backgroundColor = UIColor().primaryColor()
         
         return [sendRequest]
