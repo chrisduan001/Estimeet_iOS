@@ -26,8 +26,8 @@ class PushChannelModel: BaseModel {
         let tag: Set<String> = [baseUser!.userUId!]
         do {
             try notificationHub.registerNativeWithDeviceToken(deviceToken, tags: tag)
-        } catch {
-            FabricLogger.sharedInstance.logError("CatchedException: Error while register push channel", className: String(PushChannelModel), code: 0, userInfo: nil)
+        } catch let error as NSError {
+            FabricLogger.sharedInstance.logError("CatchedException: Error while register push channel. Error message: \(error.localizedDescription) \n \(error.localizedFailureReason) \n tag: \(tag)", className: String(PushChannelModel), code: 0, userInfo: nil)
         }
     }
     
