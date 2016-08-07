@@ -22,7 +22,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var travel_mode_walk: UIImageView!
     @IBOutlet var travel_mode_car: UIImageView!
     @IBOutlet var travel_mode_bus: UIImageView!
-    @IBOutlet var travel_mode_bike: UIImageView!
+    @IBOutlet var travel_mode_text: UILabel!
     
     @IBOutlet weak var travelModeToolbarHeightContraint: NSLayoutConstraint!
     
@@ -180,9 +180,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         case TRAVEL_MODE.TRANSIT.rawValue:
             onTransitSelected()
             break
-        case TRAVEL_MODE.BIKE.rawValue:
-            onBikeSelected()
-            break
         default: break
         }
     }
@@ -208,10 +205,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         onTransitSelected()
     }
     
-    @IBAction func bikeTapped(sender: UITapGestureRecognizer) {
-        onBikeSelected()
-    }
-    
     @IBAction func onAddFriendsClicked(sender: UIButton) {
         onManageFriend()
     }
@@ -229,37 +222,50 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         resetToolbarSelection()
         travel_mode_walk.image = getUIImageNamed("ic_directions_walk_selected")
         mainModel.setTravelMode(TRAVEL_MODE.WALKING.rawValue)
+        
+        setTravelModeText(TRAVEL_MODE.WALKING.rawValue)
     }
     
     private func onDrivingSelected() {
         print("driving selected")
         resetToolbarSelection()
         travel_mode_car.image = getUIImageNamed("ic_directions_car_selected")
-        
         mainModel.setTravelMode(TRAVEL_MODE.DRIVING.rawValue)
+        
+        setTravelModeText(TRAVEL_MODE.DRIVING.rawValue)
     }
     
     private func onTransitSelected() {
         print("transit selected")
         resetToolbarSelection()
         travel_mode_bus.image = getUIImageNamed("ic_directions_bus_selected")
-        
         mainModel.setTravelMode(TRAVEL_MODE.TRANSIT.rawValue)
+        
+        setTravelModeText(TRAVEL_MODE.TRANSIT.rawValue)
     }
     
-    private func onBikeSelected() {
-        print("Bike selected")
-        resetToolbarSelection()
-        travel_mode_bike.image = getUIImageNamed("ic_directions_bike_selected")
-        
-        mainModel.setTravelMode(TRAVEL_MODE.BIKE.rawValue)
+    private func setTravelModeText(travelMode: Int) {
+        switch travelMode {
+        case TRAVEL_MODE.DRIVING.rawValue:
+            travel_mode_text.text = NSLocalizedString(GlobalString.travel_mode_car_txt,
+                                                      comment: "in a car")
+            break
+        case TRAVEL_MODE.WALKING.rawValue:
+            travel_mode_text.text = NSLocalizedString(GlobalString.travel_mode_walk_txt,
+                                                      comment: "on foot")
+            break
+        case TRAVEL_MODE.TRANSIT.rawValue:
+            travel_mode_text.text = NSLocalizedString(GlobalString.travel_mode_bus_txt,
+                                                      comment: "on bus")
+            break
+        default: break
+        }
     }
     
     private func resetToolbarSelection() {
         travel_mode_walk.image = getUIImageNamed("ic_directions_walk")
         travel_mode_car.image = getUIImageNamed("ic_directions_car")
         travel_mode_bus.image = getUIImageNamed("ic_directions_bus")
-        travel_mode_bike.image = getUIImageNamed("ic_directions_bike")
     }
     
     private func getUIImageNamed(name: String) -> UIImage {
@@ -645,7 +651,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private var fetchedResultsController: NSFetchedResultsController!
     
     private enum TRAVEL_MODE: Int {
-        case WALKING, DRIVING, TRANSIT, BIKE
+        case WALKING, DRIVING, TRANSIT
     }
 }
 

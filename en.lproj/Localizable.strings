@@ -65,6 +65,9 @@
 "travel_info_eta"               = "ETA: ";
 "travel_info_location"          = "Location: ";
 "expired_string"                = "(Expired)";
+"travel_mode_walk_txt"          = "You are\n on foot";
+"travel_mode_car_txt"           = "You are\n in a bus";
+"travel_mode_transit_txt"       = "You are\n in a car";
 
 "session_error_generic"         = "An error occurred while getting the distance, please try again";
 "user_location_unavilable"      = "Your location is not available, please grant location permissions";

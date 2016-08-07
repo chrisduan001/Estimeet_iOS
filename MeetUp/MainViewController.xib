@@ -8,6 +8,7 @@
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,9 +19,9 @@
                 <outlet property="toolbar" destination="HSq-JY-hmO" id="IBB-OM-y2t"/>
                 <outlet property="travelModeToolbar" destination="vSj-gP-LjW" id="W83-zL-XzF"/>
                 <outlet property="travelModeToolbarHeightContraint" destination="1rD-BF-aeh" id="odC-jm-NOt"/>
-                <outlet property="travel_mode_bike" destination="jCu-4v-BKi" id="4Dx-Zn-ibI"/>
                 <outlet property="travel_mode_bus" destination="hod-kl-CFF" id="MLC-QN-F33"/>
                 <outlet property="travel_mode_car" destination="mSm-2U-8kY" id="2s7-WA-f26"/>
+                <outlet property="travel_mode_text" destination="eMP-5T-lKX" id="zlf-34-Mhi"/>
                 <outlet property="travel_mode_walk" destination="tEf-M4-EKy" id="8Ha-ro-MTg"/>
                 <outlet property="view" destination="iN0-l3-epB" id="4Ox-SM-1mH"/>
             </connections>
@@ -55,26 +56,43 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6di-zk-wgy">
                             <rect key="frame" x="0.0" y="0.0" width="150.5" height="60"/>
                             <subviews>
-                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_walk" translatesAutoresizingMaskIntoConstraints="NO" id="tEf-M4-EKy">
-                                    <rect key="frame" x="55" y="10" width="40" height="40"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are   in a car" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMP-5T-lKX">
+                                    <rect key="frame" x="8" y="0.0" width="134.5" height="60"/>
+                                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstItem="eMP-5T-lKX" firstAttribute="leading" secondItem="6di-zk-wgy" secondAttribute="leading" constant="8" id="6YT-mT-X2D"/>
+                                <constraint firstAttribute="trailing" secondItem="eMP-5T-lKX" secondAttribute="trailing" constant="8" id="Esm-qh-8WH"/>
+                                <constraint firstAttribute="bottom" secondItem="eMP-5T-lKX" secondAttribute="bottom" id="J9I-5n-dk0"/>
+                                <constraint firstItem="eMP-5T-lKX" firstAttribute="top" secondItem="6di-zk-wgy" secondAttribute="top" id="mWf-2r-4yi"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mus-Vn-uGa">
+                            <rect key="frame" x="300" y="0.0" width="149.5" height="60"/>
+                            <subviews>
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_car" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-2U-8kY">
+                                    <rect key="frame" x="54" y="10" width="40" height="40"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="5tm-ch-NKk"/>
-                                        <constraint firstAttribute="height" constant="40" id="UwJ-We-3eO"/>
+                                        <constraint firstAttribute="height" constant="40" id="FPh-7T-8dN"/>
+                                        <constraint firstAttribute="width" constant="40" id="HVh-5r-1os"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="9i2-cR-nCL" appends="YES" id="yzG-Zf-Lqg"/>
+                                    </connections>
                                 </imageView>
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerY" secondItem="6di-zk-wgy" secondAttribute="centerY" id="Jro-BC-WHH"/>
-                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerX" secondItem="6di-zk-wgy" secondAttribute="centerX" id="rhZ-HV-SOm"/>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerY" secondItem="Mus-Vn-uGa" secondAttribute="centerY" id="WiK-zo-RE2"/>
+                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerX" secondItem="Mus-Vn-uGa" secondAttribute="centerX" id="cFT-gz-PdQ"/>
                             </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="dP4-q4-CAm" appends="YES" id="RhL-U1-Sgr"/>
-                            </connections>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mus-Vn-uGa">
-                            <rect key="frame" x="300" y="0.0" width="149.5" height="60"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42w-8z-akB">
+                            <rect key="frame" x="450" y="0.0" width="150" height="60"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_bus" translatesAutoresizingMaskIntoConstraints="NO" id="hod-kl-CFF">
                                     <rect key="frame" x="55" y="10" width="40" height="40"/>
@@ -90,50 +108,29 @@
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerX" secondItem="Mus-Vn-uGa" secondAttribute="centerX" id="GfK-2p-KbQ"/>
-                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerY" secondItem="Mus-Vn-uGa" secondAttribute="centerY" id="h17-DF-Z5X"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42w-8z-akB">
-                            <rect key="frame" x="450" y="0.0" width="150" height="60"/>
-                            <subviews>
-                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_bike" translatesAutoresizingMaskIntoConstraints="NO" id="jCu-4v-BKi">
-                                    <rect key="frame" x="55" y="10" width="40" height="40"/>
-                                    <gestureRecognizers/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="mWI-7c-zNB"/>
-                                        <constraint firstAttribute="width" constant="40" id="nYg-gx-JzB"/>
-                                    </constraints>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="HHb-3p-bfT" appends="YES" id="dzp-zx-c8j"/>
-                                    </connections>
-                                </imageView>
-                            </subviews>
-                            <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerX" secondItem="42w-8z-akB" secondAttribute="centerX" id="kzj-Mj-wbc"/>
-                                <constraint firstItem="jCu-4v-BKi" firstAttribute="centerY" secondItem="42w-8z-akB" secondAttribute="centerY" id="t8Y-Nt-Mik"/>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerX" secondItem="42w-8z-akB" secondAttribute="centerX" id="Lop-zY-lv4"/>
+                                <constraint firstItem="hod-kl-CFF" firstAttribute="centerY" secondItem="42w-8z-akB" secondAttribute="centerY" id="WFA-rg-h1y"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sK6-TX-73r">
                             <rect key="frame" x="150" y="0.0" width="150" height="60"/>
                             <subviews>
-                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_car" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-2U-8kY">
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_directions_walk" translatesAutoresizingMaskIntoConstraints="NO" id="tEf-M4-EKy">
                                     <rect key="frame" x="55" y="10" width="40" height="40"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="FPh-7T-8dN"/>
-                                        <constraint firstAttribute="width" constant="40" id="HVh-5r-1os"/>
+                                        <constraint firstAttribute="width" constant="40" id="5tm-ch-NKk"/>
+                                        <constraint firstAttribute="height" constant="40" id="UwJ-We-3eO"/>
                                     </constraints>
                                     <connections>
-                                        <outletCollection property="gestureRecognizers" destination="9i2-cR-nCL" appends="YES" id="yzG-Zf-Lqg"/>
+                                        <outletCollection property="gestureRecognizers" destination="dP4-q4-CAm" appends="YES" id="WB6-ck-X3Y"/>
                                     </connections>
                                 </imageView>
                             </subviews>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerX" secondItem="sK6-TX-73r" secondAttribute="centerX" id="2lU-NJ-JuM"/>
-                                <constraint firstItem="mSm-2U-8kY" firstAttribute="centerY" secondItem="sK6-TX-73r" secondAttribute="centerY" id="yF4-v7-yl4"/>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerY" secondItem="sK6-TX-73r" secondAttribute="centerY" id="8HI-Mi-ve4"/>
+                                <constraint firstItem="tEf-M4-EKy" firstAttribute="centerX" secondItem="sK6-TX-73r" secondAttribute="centerX" id="JGk-ac-ebO"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -183,7 +180,7 @@
                 <constraint firstAttribute="trailing" secondItem="HSq-JY-hmO" secondAttribute="trailing" id="uOw-XS-cHR"/>
                 <constraint firstItem="mCS-y5-TnE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zwA-tW-7ok"/>
             </constraints>
-            <point key="canvasLocation" x="182" y="463"/>
+            <point key="canvasLocation" x="-142" y="677"/>
         </view>
         <tapGestureRecognizer id="dP4-q4-CAm" userLabel="Walk tap">
             <connections>
@@ -198,11 +195,6 @@
         <tapGestureRecognizer id="lrd-sz-Uee" userLabel="Transit tap">
             <connections>
                 <action selector="busTapped:" destination="-1" id="sRm-29-uEu"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer id="HHb-3p-bfT" userLabel="Bike tap">
-            <connections>
-                <action selector="bikeTapped:" destination="-1" id="CpG-mf-XcL"/>
             </connections>
         </tapGestureRecognizer>
         <view contentMode="scaleToFill" id="4yY-D0-g53" userLabel="NoFriendView">
@@ -273,11 +265,10 @@
                 <constraint firstItem="OTq-eC-QIN" firstAttribute="centerX" secondItem="4yY-D0-g53" secondAttribute="centerX" id="juE-Rh-q1e"/>
                 <constraint firstItem="OTq-eC-QIN" firstAttribute="centerY" secondItem="4yY-D0-g53" secondAttribute="centerY" constant="-60" id="y2p-mf-yIe"/>
             </constraints>
-            <point key="canvasLocation" x="-489" y="709"/>
+            <point key="canvasLocation" x="-901" y="646"/>
         </view>
     </objects>
     <resources>
-        <image name="ic_directions_bike" width="26" height="26"/>
         <image name="ic_directions_bus" width="26" height="26"/>
         <image name="ic_directions_car" width="26" height="26"/>
         <image name="ic_directions_walk" width="26" height="26"/>

@@ -67,6 +67,9 @@ class GlobalString{
     static let travel_info_distance = "travel_info_distance"
     static let travel_info_eta      = "travel_info_eta"
     static let travel_info_location = "travel_info_location"
+    static let travel_mode_walk_txt = "travel_mode_walk_txt"
+    static let travel_mode_car_txt  = "travel_mode_car_txt"
+    static let travel_mode_bus_txt  = "travel_mode_transit_txt"
     static let expired_string       = "expired_string"
     
     static let user_session_generic = "session_error_generic"

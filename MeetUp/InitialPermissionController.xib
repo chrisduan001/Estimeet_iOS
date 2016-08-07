@@ -15,7 +15,7 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitialPermissionController" customModule="MeetUp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitialPermissionController" customModule="Estimeet" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="vDi-Ve-1Aq" id="ljs-ar-77p"/>
                 <outlet property="contactBookLbl" destination="cHd-sx-ZmK" id="6pV-D3-1zh"/>
@@ -56,7 +56,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="js1-Ly-3vt" customClass="RoundButton" customModule="MeetUp" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="js1-Ly-3vt" customClass="RoundButton" customModule="Estimeet" customModuleProvider="target">
                     <rect key="frame" x="28" y="382" width="263" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="4Dv-D8-51F"/>
