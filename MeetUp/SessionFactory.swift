@@ -99,13 +99,13 @@ class SessionFactory {
     func getRequestTimeInMinutes(requestLength: Int) -> Int {
         switch requestLength {
         case 0:
-            return 15
-        case 1:
             return 30
+        case 1:
+            return 45
         case 2:
             return 60
         default:
-            return 15
+            return 30
         }
     }
     
