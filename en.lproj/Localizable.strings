@@ -74,7 +74,7 @@
 "friend_location_expire"        = "Your friend didn't upload their location yet, please try again later";
 "user_geo_unavailable"          = "Unable to get your location, request failed";
 
-"notification_new_session"      = "You got a new session request";
+"notification_new_session"      = "%@ wants to estimeet you!";
 "notification_session_create"   = "New session created";
 
 "session_default_text"          = "Swipe to Refresh(expire in 30 min)";
