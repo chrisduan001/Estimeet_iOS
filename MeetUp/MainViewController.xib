@@ -208,7 +208,7 @@
                         <constraint firstAttribute="height" constant="30" id="V78-lS-fV4"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add friends to send Estimeets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s17-AQ-20h">
@@ -218,7 +218,7 @@
                         <constraint firstAttribute="width" constant="400" id="ot8-xD-nD4"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_friend_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OTq-eC-QIN">

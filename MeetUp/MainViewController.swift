@@ -418,6 +418,14 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.img_action.hidden = true
     }
     
+    private func setupDefaultActiveSessionView(cell: FriendSessionTableViewCell, friend: Friend) {
+        cell.addView(cell.active_view_default)
+        cell.active_view_friend_name.text = friend.userName
+        cell.img_action.hidden = false
+        //todo..temp set to 30 minutes
+        cell.active_view_default_text.text = NSLocalizedString(GlobalString.session_default_text, comment: "swipe to refresh")
+    }
+    
     //view for session data not obtained, and request is sent
     private func setupRequestedSessionView(cell: FriendSessionTableViewCell, friend: Friend, requestExpired: Bool) {
         setupDefaultSessionView(cell, friend: friend)
@@ -450,7 +458,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
             
         } else {
-            setupDefaultSessionView(cell, friend: friend)
+            setupDefaultActiveSessionView(cell, friend: friend)
         }
         cell.img_action.hidden = false
         

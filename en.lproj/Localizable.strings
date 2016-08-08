@@ -77,6 +77,8 @@
 "notification_new_session"      = "You got a new session request";
 "notification_session_create"   = "New session created";
 
+"session_default_text"          = "Swipe to Refresh(expire in 30 min)";
+
 "action_send_estimeet"          = "Send Estimeet";
 "action_refresh"                = "Refresh";
 "action_title_add_friends"      = "Add Friends";

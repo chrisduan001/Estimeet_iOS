@@ -26,6 +26,11 @@ class FriendSessionTableViewCell: UITableViewCell {
     @IBOutlet var view_default: UIView!
     @IBOutlet weak var friend_name: UILabel!
     
+    //active session default container
+    @IBOutlet var active_view_default: UIView!
+    @IBOutlet weak var active_view_friend_name: UILabel!
+    @IBOutlet weak var active_view_default_text: UILabel!
+    
     //session distance and eta
     @IBOutlet var view_distance_eta: UIView!
     @IBOutlet weak var session_distance: UILabel!

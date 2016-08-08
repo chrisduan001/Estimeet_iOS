@@ -76,6 +76,8 @@ class GlobalString{
     static let user_location_failed = "user_location_unavilable"
     static let friend_location_expire = "friend_location_expire"
     
+    static let session_default_text = "session_default_text"
+    
     static let action_send_estimeet = "action_send_estimeet"
     static let action_refresh       = "action_refresh"
     static let action_add_friends   = "action_title_add_friends"

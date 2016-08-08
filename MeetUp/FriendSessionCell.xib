@@ -5,9 +5,12 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Omnes-Medium.otf">
+            <string>Omnes-Medium</string>
+            <string>Omnes-Medium</string>
+            <string>Omnes-Medium</string>
+        </mutableArray>
         <mutableArray key="Omnes-Regular.otf">
-            <string>Omnes-Regular</string>
-            <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
@@ -17,16 +20,17 @@
         <mutableArray key="Omnes-Semibold.otf">
             <string>Omnes-Semibold</string>
             <string>Omnes-Semibold</string>
+            <string>Omnes-Semibold</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="NTA-bk-ajI" customClass="FriendSessionTableViewCell" customModule="Estimeet" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NTA-bk-ajI" id="pL3-3k-3i6">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7o2-95-uy7">
@@ -37,18 +41,18 @@
                         </constraints>
                     </imageView>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="Xmd-Fu-Hi1">
-                        <rect key="frame" x="277" y="17" width="35" height="35"/>
+                        <rect key="frame" x="357" y="17" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="JCg-pU-4lo"/>
                             <constraint firstAttribute="width" constant="35" id="yX6-Si-pTC"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kii-Tb-18O">
-                        <rect key="frame" x="73" y="8" width="180" height="53.5"/>
+                        <rect key="frame" x="73" y="8" width="260" height="53.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95Z-rF-Ba2">
-                        <rect key="frame" x="73" y="68.5" width="247" height="1"/>
+                        <rect key="frame" x="73" y="68.5" width="327" height="1"/>
                         <color key="backgroundColor" red="0.93008207070000004" green="0.93008207070000004" blue="0.93008207070000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="zjQ-JF-OHI"/>
@@ -70,6 +74,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="active_view_default" destination="Xoj-1N-otZ" id="q4O-jg-wFk"/>
+                <outlet property="active_view_default_text" destination="aBM-Dp-X6V" id="Fhq-SN-zrQ"/>
+                <outlet property="active_view_friend_name" destination="MX5-jF-4wc" id="e71-ST-gAs"/>
                 <outlet property="btn_accept" destination="dzg-Ye-fce" id="hO8-zx-FHV"/>
                 <outlet property="btn_ignore" destination="r1J-4a-y78" id="N3O-yV-hCZ"/>
                 <outlet property="circularProgressView" destination="wqe-GQ-Pmy" id="n8F-Wh-MsE"/>
@@ -174,36 +181,67 @@
                 <constraint firstItem="nq9-Zz-Tmq" firstAttribute="top" secondItem="abM-8l-tyb" secondAttribute="top" id="m8Z-9o-rTc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="547" y="669"/>
+            <point key="canvasLocation" x="511.5" y="693.75"/>
+        </view>
+        <view contentMode="scaleToFill" id="Xoj-1N-otZ">
+            <rect key="frame" x="0.0" y="0.0" width="260" height="53.5"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sean Bean" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MX5-jF-4wc">
+                    <rect key="frame" x="10" y="0.0" width="250" height="33.5"/>
+                    <fontDescription key="fontDescription" name="Omnes-Semibold" family="Omnes" pointSize="21"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to Refresh (expire in 30 minutes)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBM-Dp-X6V">
+                    <rect key="frame" x="8" y="33" width="252" height="20"/>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MX5-jF-4wc" firstAttribute="top" secondItem="Xoj-1N-otZ" secondAttribute="top" id="2gc-Di-Kbg"/>
+                <constraint firstItem="aBM-Dp-X6V" firstAttribute="leading" secondItem="Xoj-1N-otZ" secondAttribute="leading" constant="8" id="E86-wZ-Hxr"/>
+                <constraint firstAttribute="bottom" secondItem="aBM-Dp-X6V" secondAttribute="bottom" id="RWO-Fl-SS5"/>
+                <constraint firstAttribute="bottom" secondItem="MX5-jF-4wc" secondAttribute="bottom" constant="20" id="YcN-z4-g3u"/>
+                <constraint firstItem="aBM-Dp-X6V" firstAttribute="top" secondItem="MX5-jF-4wc" secondAttribute="bottom" id="eTJ-Rm-n22"/>
+                <constraint firstAttribute="trailing" secondItem="MX5-jF-4wc" secondAttribute="trailing" id="jaI-T6-27B"/>
+                <constraint firstAttribute="trailing" secondItem="aBM-Dp-X6V" secondAttribute="trailing" id="jzS-b0-UzI"/>
+                <constraint firstItem="MX5-jF-4wc" firstAttribute="leading" secondItem="Xoj-1N-otZ" secondAttribute="leading" constant="10" id="tVj-lV-fB9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="162" y="642.25"/>
         </view>
         <view contentMode="scaleToFill" id="m6c-sk-3VK">
-            <rect key="frame" x="0.0" y="0.0" width="187" height="54"/>
+            <rect key="frame" x="0.0" y="0.0" width="260" height="54"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 2.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWC-eH-6iV">
-                    <rect key="frame" x="10" y="0.0" width="177" height="15"/>
+                    <rect key="frame" x="10" y="0.0" width="250" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="qua-Cf-zdT"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Omnes-Medium" family="Omnes" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 5 Minutes (Walk)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYv-hm-kAG">
-                    <rect key="frame" x="10" y="19" width="177" height="15"/>
+                    <rect key="frame" x="10" y="19" width="250" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="jd8-Xa-5jc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Omnes-Medium" family="Omnes" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Auckland" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOE-vk-cEM">
-                    <rect key="frame" x="10" y="39" width="177" height="15"/>
+                    <rect key="frame" x="10" y="39" width="250" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ptC-tQ-cTt"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Omnes-Medium" family="Omnes" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
