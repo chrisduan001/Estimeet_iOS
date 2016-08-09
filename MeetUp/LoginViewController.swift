@@ -62,6 +62,9 @@ class LoginViewController : BaseViewController, LoginListener {
         }
     }
     
+    @IBAction func mainViewTapped(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
     //MARK: CALL BACK
     func setUser(user: User) {
         endActivityIndicator()
