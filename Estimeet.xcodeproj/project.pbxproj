@@ -158,6 +158,7 @@
 		6272DA7A1D28A1B5004A2116 /* MeetUpAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetUpAttributedString.swift; sourceTree = "<group>"; };
 		627780E71CEB25D700FF69E9 /* TempSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempSessionModel.swift; sourceTree = "<group>"; };
 		627780E91CEC6E1700FF69E9 /* SessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+		628ACD7E1D670C55004F117D /* MeetUp 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeetUp 4.xcdatamodel"; sourceTree = "<group>"; };
 		628E94781CD9E2E0002385FD /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		629205E61D0D6EA7007FBBB9 /* MeetUp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeetUp 2.xcdatamodel"; sourceTree = "<group>"; };
 		629FB5741D222A590099ADED /* DpBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DpBaseViewController.swift; sourceTree = "<group>"; };
@@ -910,11 +911,12 @@
 		62024B0B1CD21D1200AB5C90 /* MeetUp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				628ACD7E1D670C55004F117D /* MeetUp 4.xcdatamodel */,
 				620704191D46053D0053B25C /* MeetUp 3.xcdatamodel */,
 				629205E61D0D6EA7007FBBB9 /* MeetUp 2.xcdatamodel */,
 				62024B0C1CD21D1200AB5C90 /* MeetUp.xcdatamodel */,
 			);
-			currentVersion = 620704191D46053D0053B25C /* MeetUp 3.xcdatamodel */;
+			currentVersion = 628ACD7E1D670C55004F117D /* MeetUp 4.xcdatamodel */;
 			name = MeetUp.xcdatamodeld;
 			path = MeetUp/MeetUp.xcdatamodeld;
 			sourceTree = "<group>";

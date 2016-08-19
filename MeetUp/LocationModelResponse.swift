@@ -14,6 +14,7 @@ class LocationModelResponse: BaseResponse {
     var eta: Int!
     var travelMode: Int!
     var location: String!
+    var geoCoordinate: String!
     
     required init?(_ map: Map) {
         super.init(map)
@@ -37,5 +38,6 @@ class LocationModelResponse: BaseResponse {
         eta             <- map["eta"]
         travelMode      <- map["travelMode"]
         location        <- map["location"]
+        geoCoordinate   <- map["geoCoordinate"]
     }
 }

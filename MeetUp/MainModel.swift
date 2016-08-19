@@ -120,6 +120,7 @@ class MainModel: BaseModel {
                                                  eta: locationModel.eta,
                                                  travelMode: locationModel.travelMode,
                                                  location: locationModel.location,
+                                                 geoCoordinate: locationModel.geoCoordinate,
                                                  session: self.friendObj!.session)
             }
             self.onRequestLocationDataCompleted()

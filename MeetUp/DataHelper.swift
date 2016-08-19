@@ -277,7 +277,7 @@ class DataHelper {
     }
     
     //MARK: SESSION DATA
-    func storeSessionData(distance: Int, eta: Int, travelMode: Int, location: String, session: SessionColumn?) {
+    func storeSessionData(distance: Int, eta: Int, travelMode: Int, location: String, geoCoordinate: String, session: SessionColumn?) {
         guard session != nil else {
             return
         }
@@ -290,6 +290,7 @@ class DataHelper {
         session!.sessionData!.distance = distance
         session!.sessionData!.eta = eta
         session!.sessionData!.location = location
+        session!.sessionData!.geoCoordinate = geoCoordinate
         session!.sessionData!.travelMode = travelMode
         //once session data updated, reset waiting update value
         session!.sessionData!.timeOnWaitingUpdate = nil
