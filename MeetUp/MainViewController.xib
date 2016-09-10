@@ -9,11 +9,13 @@
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
             <string>Omnes-Regular</string>
+            <string>Omnes-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Estimeet" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="sh6-2c-gmz" id="Gqh-2n-HXE"/>
                 <outlet property="noFriendView" destination="4yY-D0-g53" id="5QH-tV-8xA"/>
                 <outlet property="tableView" destination="mCS-y5-TnE" id="B9c-mc-5vq"/>
                 <outlet property="toolbar" destination="HSq-JY-hmO" id="IBB-OM-y2t"/>
@@ -159,25 +161,47 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mCS-y5-TnE">
-                    <rect key="frame" x="0.0" y="124" width="600" height="432"/>
+                    <rect key="frame" x="0.0" y="324" width="600" height="232"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Xva-17-NUL"/>
                         <outlet property="delegate" destination="-1" id="qK8-Wi-hYB"/>
                     </connections>
                 </tableView>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-2c-gmz">
+                    <rect key="frame" x="0.0" y="124" width="600" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="vZd-tY-tyX"/>
+                    </constraints>
+                </mapView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint: You can only see friends that are closeby" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gR-Cf-pvY">
+                    <rect key="frame" x="0.0" y="294" width="600" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="do8-NE-9eQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Omnes-Regular" family="Omnes" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vSj-gP-LjW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="56N-Vi-Do1"/>
-                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="bottom" id="AwP-gt-lvJ"/>
+                <constraint firstAttribute="trailing" secondItem="sh6-2c-gmz" secondAttribute="trailing" id="Ill-Ec-VCG"/>
                 <constraint firstAttribute="trailing" secondItem="mCS-y5-TnE" secondAttribute="trailing" id="Jwe-7E-sxm"/>
+                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="5gR-Cf-pvY" secondAttribute="bottom" id="QlU-I3-2Gq"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="top" secondItem="mCS-y5-TnE" secondAttribute="bottom" id="Ty2-58-oZw"/>
+                <constraint firstAttribute="trailing" secondItem="5gR-Cf-pvY" secondAttribute="trailing" id="U5n-7V-uqE"/>
                 <constraint firstItem="vSj-gP-LjW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ukj-s1-CvR"/>
+                <constraint firstItem="sh6-2c-gmz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WT2-vF-09y"/>
                 <constraint firstAttribute="bottom" secondItem="HSq-JY-hmO" secondAttribute="bottom" id="X0a-hg-PBM"/>
+                <constraint firstItem="mCS-y5-TnE" firstAttribute="top" secondItem="sh6-2c-gmz" secondAttribute="bottom" id="do3-su-P71"/>
+                <constraint firstItem="sh6-2c-gmz" firstAttribute="top" secondItem="vSj-gP-LjW" secondAttribute="bottom" id="f0n-co-N91"/>
                 <constraint firstItem="HSq-JY-hmO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sBJ-GJ-ze8"/>
                 <constraint firstAttribute="trailing" secondItem="vSj-gP-LjW" secondAttribute="trailing" id="tPO-oT-sZ3"/>
                 <constraint firstAttribute="trailing" secondItem="HSq-JY-hmO" secondAttribute="trailing" id="uOw-XS-cHR"/>
+                <constraint firstItem="5gR-Cf-pvY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wv2-P6-wIv"/>
                 <constraint firstItem="mCS-y5-TnE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zwA-tW-7ok"/>
             </constraints>
             <point key="canvasLocation" x="-142" y="677"/>

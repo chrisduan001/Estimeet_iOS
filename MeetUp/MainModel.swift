@@ -59,6 +59,10 @@ class MainModel: BaseModel {
         listener.onGetTravelMode(userDefaults.getTravelMode())
     }
     
+    func getUserGeo() -> String? {
+        return userDefaults.getUserGeo()
+    }
+    
     private func onRequestLocationDataCompleted() {
         sendRequestAndRemoveFriend()
     }
@@ -116,6 +120,7 @@ class MainModel: BaseModel {
                 SessionFactory.sharedInstance.setTimeOnWaitingLocationUpdate(self.dataHelper, session: self.friendObj!.session)
             } else {
                 let locationModel = listItem!.items[0]
+                print("geo coordinate: \(locationModel.geoCoordinate)")
                 self.dataHelper.storeSessionData(locationModel.distance,
                                                  eta: locationModel.eta,
                                                  travelMode: locationModel.travelMode,

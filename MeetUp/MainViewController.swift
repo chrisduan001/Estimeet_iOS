@@ -9,10 +9,11 @@
 import UIKit
 import CoreLocation
 import Crashlytics
+import MapKit
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,
     NSFetchedResultsControllerDelegate, MainModelListener, SessionListener, GetNotificationListener,
-    FriendSessionCellDelegate, LocationServiceListener {
+    FriendSessionCellDelegate, LocationServiceListener, MKMapViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -24,6 +25,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var travel_mode_bus: UIImageView!
     @IBOutlet var travel_mode_text: UILabel!
     
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var travelModeToolbarHeightContraint: NSLayoutConstraint!
     
     @IBOutlet var noFriendView: UIView!
@@ -64,6 +66,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         appDelegate.registerForPushNotifications(UIApplication.sharedApplication())
         
         checkLocationPermission()
+        
+        centerMapOnLocation()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -112,6 +116,66 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: MAPVIEW
+    private func centerMapOnLocation() {
+        guard let userCLLocation = getUserCLLocation() else {
+            return
+        }
+        mapView.delegate = self
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(userCLLocation.coordinate, 5000, 5000)
+        
+        mapView.setRegion(coordinateRegion, animated: true)
+        
+        mapView.showsUserLocation = true
+    }
+    
+    private func getUserCLLocation() -> CLLocation? {
+        if let geoCoordinate = mainModel.getUserGeo() {
+            let geoArray = geoCoordinate.componentsSeparatedByString(",")
+            return CLLocation(latitude: Double(geoArray[0])!, longitude: Double(geoArray[1])!)
+        }
+        
+        return nil;
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.isKindOfClass(MKUserLocation) {
+            return nil
+        }
+        
+        let reuseId = "friend"
+        var friendMarker = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        if friendMarker == nil {
+            friendMarker = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        } else {
+            friendMarker?.annotation = annotation
+        }
+        
+        let mapMark = annotation as! MapMark
+        
+        let friendDp = UIImage(data: mapMark.image)
+        let size = CGSize(width: 25, height: 25)
+        UIGraphicsBeginImageContext(size)
+        friendDp?.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndPDFContext()
+
+        friendMarker!.image = resizedImage
+        friendMarker?.layer.cornerRadius = (friendMarker?.frame.size.height)! / 2
+        friendMarker?.layer.masksToBounds = true
+        
+        
+        return friendMarker
+    }
+    
+    func removeAnnotations() {
+        for annotation in mapView.annotations {
+            if !annotation.isKindOfClass(MKUserLocation) {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+    
     //MARK: MODEL CALLBACK
     func setSessionFetchedResultsController(fetchedResultsController: NSFetchedResultsController) {
         self.fetchedResultsController = fetchedResultsController
@@ -132,6 +196,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func onCheckSessionExpiration(timeToExpire: Int?) {
         var expireTime = timeToExpire
         if expireTime == nil {
+            removeAnnotations()
             removeTravelModeToolbar()
             expireTime = -1
         } else {
@@ -451,12 +516,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if let sessionData = friend.session?.sessionData {
             if sessionData.distance != nil && sessionData.eta != nil{
                 setupLocationDataCell(cell, dateUpdated: friend.dateUpdated!, sessionData: sessionData)
+                setupMapViewDp(sessionData);
             } else {
                 //session distance and eta value is not available
                 //todo..need to set up a proper design for this
                 setupRequestedSessionView(cell, friend: friend, requestExpired: isWaitingForFriendLocationExpired(sessionData) )
             }
-            
         } else {
             setupDefaultActiveSessionView(cell, friend: friend)
         }
@@ -477,6 +542,20 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         cell.session_eta.text = "\(NSLocalizedString(GlobalString.travel_info_eta, comment: "eta")) \(TravelInfoFactory.sharedInstance.getEtaString(sessionData.eta!.integerValue))" + expireString
         cell.session_location.text = "\(NSLocalizedString(GlobalString.travel_info_location, comment: "location")) \(sessionData.location == nil ? "" : sessionData.location!)" + expireString
+    }
+    
+    private func setupMapViewDp(sessionData: SessionData) {
+        if let friendGeo = sessionData.geoCoordinate {
+            if sessionData.distance?.intValue <= 20000 {
+                if let friendDp = sessionData.sessionColumn?.friend?.image {
+                    let friendAnnotation = MapMark(image: friendDp)
+                    let geoArray = friendGeo.componentsSeparatedByString(",")
+                    friendAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(geoArray[0])!, longitude: Double(geoArray[1])!)
+                    
+                    mapView.addAnnotation(friendAnnotation)
+                }
+            }
+        }
     }
     
     private func isWaitingForFriendLocationExpired(sessionData: SessionData) -> Bool {

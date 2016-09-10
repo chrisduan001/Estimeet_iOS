@@ -24,11 +24,12 @@ class LocationModelResponse: BaseResponse {
         super.init()
     }
     
-    init(distance: Int, eta: Int, travelMode: Int, location: String) {
+    init(distance: Int, eta: Int, travelMode: Int, location: String, geoCoordinate: String) {
         self.distance = distance
         self.eta = eta
         self.travelMode = travelMode
         self.location = location
+        self.geoCoordinate = geoCoordinate
         
         super.init()
     }
