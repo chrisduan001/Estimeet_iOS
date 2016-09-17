@@ -99,11 +99,11 @@
 		62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */; };
 		62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */; };
 		62FE812C1D84089A0028E9C5 /* MapMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE812B1D84089A0028E9C5 /* MapMark.swift */; };
-		653B95412D35C0DAC541D3A0 /* Pods_MeetUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */; };
-		B5C5DF23333207B66A1270E8 /* Pods_Estimeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1B4F8E99091F11A0FC47F4 /* Pods_Estimeet.framework */; };
+		9E5B8E4B3812492C610C2D4A /* Pods_Estimeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004970672215B05C4A28081D /* Pods_Estimeet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		004970672215B05C4A28081D /* Pods_Estimeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Estimeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62024B071CD2007A00AB5C90 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		62024B091CD2069D00AB5C90 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		62024B0C1CD21D1200AB5C90 /* MeetUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetUp.xcdatamodel; sourceTree = "<group>"; };
@@ -202,10 +202,8 @@
 		62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageProfileViewController.xib; sourceTree = "<group>"; };
 		62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileModel.swift; sourceTree = "<group>"; };
 		62FE812B1D84089A0028E9C5 /* MapMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMark.swift; sourceTree = "<group>"; };
-		BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D13B20D89153F4132EB95735 /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
-		D958C55934E8DFB1745195A1 /* Pods-MeetUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeetUp/Pods-MeetUp.debug.xcconfig"; sourceTree = "<group>"; };
-		DD1B4F8E99091F11A0FC47F4 /* Pods_Estimeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Estimeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		995D9B1B4B153D1E63CE65A6 /* Pods-Estimeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Estimeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet.debug.xcconfig"; sourceTree = "<group>"; };
+		B100FBACA456505D50A8748C /* Pods-Estimeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Estimeet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,15 +211,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				653B95412D35C0DAC541D3A0 /* Pods_MeetUp.framework in Frameworks */,
 				620E72E11CD76CCB0064B59F /* WindowsAzureMessaging.framework in Frameworks */,
-				B5C5DF23333207B66A1270E8 /* Pods_Estimeet.framework in Frameworks */,
+				9E5B8E4B3812492C610C2D4A /* Pods_Estimeet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3823835C5485F1D188F3DE1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				995D9B1B4B153D1E63CE65A6 /* Pods-Estimeet.debug.xcconfig */,
+				B100FBACA456505D50A8748C /* Pods-Estimeet.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		62024B121CD59A1100AB5C90 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,8 +404,8 @@
 				62AB5F8A1C73057F008513DF /* Info.plist */,
 				62AB5F791C73057F008513DF /* Products */,
 				62C2CA031C8AE55B0029B3DB /* Support */,
-				6E2B3280B9B1C273820C92D2 /* Pods */,
 				E9783D84E790D32DB76B19CC /* Frameworks */,
+				3823835C5485F1D188F3DE1D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -485,21 +491,11 @@
 			name = Factory;
 			sourceTree = "<group>";
 		};
-		6E2B3280B9B1C273820C92D2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D958C55934E8DFB1745195A1 /* Pods-MeetUp.debug.xcconfig */,
-				D13B20D89153F4132EB95735 /* Pods-MeetUp.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		E9783D84E790D32DB76B19CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				620E72E01CD76CCB0064B59F /* WindowsAzureMessaging.framework */,
-				BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */,
-				DD1B4F8E99091F11A0FC47F4 /* Pods_Estimeet.framework */,
+				004970672215B05C4A28081D /* Pods_Estimeet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -511,13 +507,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62AB5F8D1C73057F008513DF /* Build configuration list for PBXNativeTarget "Estimeet" */;
 			buildPhases = (
-				EC652BE271AE20FA7095A323 /* Check Pods Manifest.lock */,
+				D6009E43EC02B754489E88E5 /* [CP] Check Pods Manifest.lock */,
 				62AB5F741C73057F008513DF /* Sources */,
 				62AB5F751C73057F008513DF /* Frameworks */,
 				62AB5F761C73057F008513DF /* Resources */,
-				D34AF9E7CEE4A7FE4697F004 /* Embed Pods Frameworks */,
-				92C43AC0D0226675BA308C43 /* Copy Pods Resources */,
 				62C2C9FE1C8AE3540029B3DB /* Run Script */,
+				1C19432F2F6B869C704E84D6 /* [CP] Embed Pods Frameworks */,
+				EB4B00550446E1D1CCFC5D8F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -598,6 +594,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1C19432F2F6B869C704E84D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		62C2C9FE1C8AE3540029B3DB /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,49 +623,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3079a9957e68f68df335e1a9b7c0639f58b480a4 0669ef4af6c4a013fb9fc088797dbc5cdf73d1c88bf647e0f20c65b13e97a64a";
 		};
-		92C43AC0D0226675BA308C43 /* Copy Pods Resources */ = {
+		D6009E43EC02B754489E88E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D34AF9E7CEE4A7FE4697F004 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EC652BE271AE20FA7095A323 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB4B00550446E1D1CCFC5D8F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -856,6 +852,7 @@
 		};
 		62AB5F8E1C73057F008513DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 995D9B1B4B153D1E63CE65A6 /* Pods-Estimeet.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -881,6 +878,7 @@
 		};
 		62AB5F8F1C73057F008513DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B100FBACA456505D50A8748C /* Pods-Estimeet.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
