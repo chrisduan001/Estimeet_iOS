@@ -100,6 +100,7 @@
 		62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */; };
 		62FE812C1D84089A0028E9C5 /* MapMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE812B1D84089A0028E9C5 /* MapMark.swift */; };
 		653B95412D35C0DAC541D3A0 /* Pods_MeetUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */; };
+		B5C5DF23333207B66A1270E8 /* Pods_Estimeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1B4F8E99091F11A0FC47F4 /* Pods_Estimeet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +205,7 @@
 		BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13B20D89153F4132EB95735 /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
 		D958C55934E8DFB1745195A1 /* Pods-MeetUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeetUp/Pods-MeetUp.debug.xcconfig"; sourceTree = "<group>"; };
+		DD1B4F8E99091F11A0FC47F4 /* Pods_Estimeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Estimeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			files = (
 				653B95412D35C0DAC541D3A0 /* Pods_MeetUp.framework in Frameworks */,
 				620E72E11CD76CCB0064B59F /* WindowsAzureMessaging.framework in Frameworks */,
+				B5C5DF23333207B66A1270E8 /* Pods_Estimeet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +499,7 @@
 			children = (
 				620E72E01CD76CCB0064B59F /* WindowsAzureMessaging.framework */,
 				BC7FEE2F6C9D2355F7014324 /* Pods_MeetUp.framework */,
+				DD1B4F8E99091F11A0FC47F4 /* Pods_Estimeet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -555,7 +559,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				"zh-Hans",
 			);
 			mainGroup = 62AB5F6F1C73057F008513DF;
 			productRefGroup = 62AB5F791C73057F008513DF /* Products */;
@@ -621,7 +624,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeetUp/Pods-MeetUp-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D34AF9E7CEE4A7FE4697F004 /* Embed Pods Frameworks */ = {
@@ -636,7 +639,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeetUp/Pods-MeetUp-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC652BE271AE20FA7095A323 /* Check Pods Manifest.lock */ = {
@@ -853,7 +856,6 @@
 		};
 		62AB5F8E1C73057F008513DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D958C55934E8DFB1745195A1 /* Pods-MeetUp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -879,7 +881,6 @@
 		};
 		62AB5F8F1C73057F008513DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D13B20D89153F4132EB95735 /* Pods-MeetUp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

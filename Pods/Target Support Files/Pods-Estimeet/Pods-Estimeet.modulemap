@@ -1,0 +1,6 @@
+framework module Pods_Estimeet {
+  umbrella header "Pods-Estimeet-umbrella.h"
+
+  export *
+  module * { export * }
+}
