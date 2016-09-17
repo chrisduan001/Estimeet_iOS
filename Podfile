@@ -4,13 +4,14 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Estimeet' do
-pod 'Alamofire', '~> 3.5.0'
+pod 'Alamofire'
 pod 'AlamofireObjectMapper', '~> 2.1'
 pod 'ObjectMapper', '~> 1.1'
 pod 'Kingfisher', '~> 2.0'
 pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
 pod 'Fabric'
 pod 'Digits'
+pod 'TwitterCore'
 pod 'Crashlytics'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'

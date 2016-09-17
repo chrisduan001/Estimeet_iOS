@@ -27,7 +27,7 @@ PODS:
     - Fabric
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5.0)
+  - Alamofire
   - AlamofireObjectMapper (~> 2.1)
   - Crashlytics
   - Digits
@@ -37,6 +37,7 @@ DEPENDENCIES:
   - Kingfisher (~> 2.0)
   - ObjectMapper (~> 1.1)
   - PonyDebugger (from `https://github.com/square/PonyDebugger.git`)
+  - TwitterCore
 
 EXTERNAL SOURCES:
   PonyDebugger:
@@ -62,6 +63,6 @@ SPEC CHECKSUMS:
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   TwitterCore: a139904c80805ad3dde9eef1100704f96f646d1d
 
-PODFILE CHECKSUM: aec52adb65be2122a7582431f46a1c4af0d7a0a4
+PODFILE CHECKSUM: ef841b52a914d5308d11a08cfa729a090459340c
 
 COCOAPODS: 1.0.1

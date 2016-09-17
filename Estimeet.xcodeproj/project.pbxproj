@@ -61,6 +61,15 @@
 		627780E81CEB25D700FF69E9 /* TempSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E71CEB25D700FF69E9 /* TempSessionModel.swift */; };
 		627780EA1CEC6E1700FF69E9 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627780E91CEC6E1700FF69E9 /* SessionResponse.swift */; };
 		628E94791CD9E2E0002385FD /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628E94781CD9E2E0002385FD /* PushNotification.swift */; };
+		629A2CB41D8D16FB0095134A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CB31D8D16FB0095134A /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CB61D8D18580095134A /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CB51D8D18580095134A /* AlamofireObjectMapper.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CB81D8D18690095134A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CB71D8D18690095134A /* Bolts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CBF1D8D187C0095134A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CB91D8D187C0095134A /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CC01D8D187C0095134A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CBA1D8D187C0095134A /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CC11D8D187C0095134A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CBB1D8D187C0095134A /* Kingfisher.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CC21D8D187C0095134A /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CBC1D8D187C0095134A /* ObjectMapper.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CC31D8D187C0095134A /* PonyDebugger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CBD1D8D187C0095134A /* PonyDebugger.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		629A2CC41D8D187C0095134A /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629A2CBE1D8D187C0095134A /* SocketRocket.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		629FB5751D222A590099ADED /* DpBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629FB5741D222A590099ADED /* DpBaseViewController.swift */; };
 		62A352A01C7EE63E00701ECA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62A3529F1C7EE63E00701ECA /* MainViewController.xib */; };
 		62AB5F7C1C73057F008513DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB5F7B1C73057F008513DF /* AppDelegate.swift */; };
@@ -99,7 +108,7 @@
 		62F887AA1CCE09F4009C1C4F /* ManageProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F887A91CCE09F4009C1C4F /* ManageProfileViewController.xib */; };
 		62F887AC1CCE127F009C1C4F /* ManageProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F887AB1CCE127F009C1C4F /* ManageProfileModel.swift */; };
 		62FE812C1D84089A0028E9C5 /* MapMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE812B1D84089A0028E9C5 /* MapMark.swift */; };
-		9E5B8E4B3812492C610C2D4A /* Pods_Estimeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004970672215B05C4A28081D /* Pods_Estimeet.framework */; };
+		9E5B8E4B3812492C610C2D4A /* Pods_Estimeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004970672215B05C4A28081D /* Pods_Estimeet.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +172,15 @@
 		628ACD7E1D670C55004F117D /* MeetUp 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeetUp 4.xcdatamodel"; sourceTree = "<group>"; };
 		628E94781CD9E2E0002385FD /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		629205E61D0D6EA7007FBBB9 /* MeetUp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeetUp 2.xcdatamodel"; sourceTree = "<group>"; };
+		629A2CB31D8D16FB0095134A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		629A2CB51D8D18580095134A /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/AlamofireObjectMapper/AlamofireObjectMapper.framework"; sourceTree = "<group>"; };
+		629A2CB71D8D18690095134A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/Bolts/Bolts.framework"; sourceTree = "<group>"; };
+		629A2CB91D8D187C0095134A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		629A2CBA1D8D187C0095134A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		629A2CBB1D8D187C0095134A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/Kingfisher/Kingfisher.framework"; sourceTree = "<group>"; };
+		629A2CBC1D8D187C0095134A /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/ObjectMapper/ObjectMapper.framework"; sourceTree = "<group>"; };
+		629A2CBD1D8D187C0095134A /* PonyDebugger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PonyDebugger.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/PonyDebugger/PonyDebugger.framework"; sourceTree = "<group>"; };
+		629A2CBE1D8D187C0095134A /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketRocket.framework; path = "../../Library/Developer/Xcode/DerivedData/Estimeet-bkihheudnxvecqfvgbjtfzqbfmim/Build/Products/Debug-iphonesimulator/SocketRocket/SocketRocket.framework"; sourceTree = "<group>"; };
 		629FB5741D222A590099ADED /* DpBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DpBaseViewController.swift; sourceTree = "<group>"; };
 		62A3529F1C7EE63E00701ECA /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		62AB5F781C73057F008513DF /* Estimeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Estimeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +229,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629A2CBF1D8D187C0095134A /* FBSDKCoreKit.framework in Frameworks */,
+				629A2CC01D8D187C0095134A /* FBSDKLoginKit.framework in Frameworks */,
+				629A2CC11D8D187C0095134A /* Kingfisher.framework in Frameworks */,
+				629A2CC21D8D187C0095134A /* ObjectMapper.framework in Frameworks */,
+				629A2CC31D8D187C0095134A /* PonyDebugger.framework in Frameworks */,
+				629A2CC41D8D187C0095134A /* SocketRocket.framework in Frameworks */,
+				629A2CB81D8D18690095134A /* Bolts.framework in Frameworks */,
+				629A2CB61D8D18580095134A /* AlamofireObjectMapper.framework in Frameworks */,
+				629A2CB41D8D16FB0095134A /* Alamofire.framework in Frameworks */,
 				620E72E11CD76CCB0064B59F /* WindowsAzureMessaging.framework in Frameworks */,
 				9E5B8E4B3812492C610C2D4A /* Pods_Estimeet.framework in Frameworks */,
 			);
@@ -494,6 +521,15 @@
 		E9783D84E790D32DB76B19CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				629A2CB91D8D187C0095134A /* FBSDKCoreKit.framework */,
+				629A2CBA1D8D187C0095134A /* FBSDKLoginKit.framework */,
+				629A2CBB1D8D187C0095134A /* Kingfisher.framework */,
+				629A2CBC1D8D187C0095134A /* ObjectMapper.framework */,
+				629A2CBD1D8D187C0095134A /* PonyDebugger.framework */,
+				629A2CBE1D8D187C0095134A /* SocketRocket.framework */,
+				629A2CB71D8D18690095134A /* Bolts.framework */,
+				629A2CB51D8D18580095134A /* AlamofireObjectMapper.framework */,
+				629A2CB31D8D16FB0095134A /* Alamofire.framework */,
 				620E72E01CD76CCB0064B59F /* WindowsAzureMessaging.framework */,
 				004970672215B05C4A28081D /* Pods_Estimeet.framework */,
 			);
@@ -596,7 +632,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1C19432F2F6B869C704E84D6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -604,14 +640,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		62C2C9FE1C8AE3540029B3DB /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -640,7 +675,7 @@
 		};
 		EB4B00550446E1D1CCFC5D8F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -648,10 +683,9 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Estimeet/Pods-Estimeet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
