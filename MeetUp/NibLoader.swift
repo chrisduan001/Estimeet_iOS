@@ -14,7 +14,7 @@ class NibLoader {
     func loadNibWithName(nibName: String, owner: AnyObject!, ofclass: AnyClass!) -> AnyObject! {
         let nibs = NSBundle.mainBundle().loadNibNamed(nibName, owner: owner, options: nil)
         
-        for object in nibs {
+        for object in nibs! {
             if object.isKindOfClass(ofclass) {
                 return object
             }

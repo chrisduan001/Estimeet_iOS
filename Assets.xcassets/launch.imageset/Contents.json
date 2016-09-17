@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Default.png",
+      "filename" : "launch.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Default-568h@2x.png",
+      "filename" : "launch@2x.png",
       "scale" : "2x"
     },
     {

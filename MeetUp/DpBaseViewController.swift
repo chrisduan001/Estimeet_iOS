@@ -42,7 +42,7 @@ class DpBaseViewController: BaseViewController, UIImagePickerControllerDelegate,
         image.drawInRect(CGRectMake(0, 0, withSize.width, withSize.height))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return scaledImage
+        return scaledImage!
     }
     
     private func compressImage(image: UIImage) -> NSData {
